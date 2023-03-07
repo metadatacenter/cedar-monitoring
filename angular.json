@@ -68,7 +68,9 @@
               "browserTarget": "cedar-internals:build:production"
             },
             "development": {
-              "browserTarget": "cedar-internals:build:development"
+              "browserTarget": "cedar-internals:build:development",
+              "port": 4300,
+              "disableHostCheck": true
             }
           },
           "defaultConfiguration": "development"
