@@ -1,0 +1,55 @@
+{
+  "App": {
+    "Title": "CEDAR",
+    "NavTitle": "CEDAR Internals",
+    "WindowTitle": "CEDAR Internals",
+    "SelectPage": "Select Page",
+    "Home": "Home",
+    "Language": "Language",
+    "View": "View",
+    "Edit": "Edit",
+    "Form": "Form",
+    "Copy": "Copy to Clipboard",
+    "Copied": "Copied",
+    "Save": "Save",
+    "Value": "Value",
+    "Validate": "Validate"
+  },
+  "Generic": {
+    "Loading": "Loading...",
+    "fieldJsonSchema": "Template Field JSON Schema",
+    "elementJsonSchema": "Template Element JSON Schema",
+    "templateJsonSchema": "Template JSON Schema",
+    "jsonLD": "Metadata JSON-LD",
+    "rdf": "Metadata RDF"
+  },
+  "error": {
+    "resourceNotPublic": "The requested resource is not publicly available"
+  },
+  "ArtifactHeader": {
+    "Type": "Type",
+    "SchemaName": "Name",
+    "SchemaDescription": "Description",
+    "CreatedOn": "Created on",
+    "LastUpdatedOn": "Last Updated on",
+    "Version": "Version",
+    "PublicationStatus": "Publication Status",
+    "CEDAR": "CEDAR",
+    "LinkToArtifact": "Try to view artifact in CEDAR (Login required)",
+    "LinkToPopulate": "Fill out artifact in CEDAR (Login required)"
+  },
+  "type": {
+    "https://schema.metadatacenter.org/core/TemplateField": "Metadata field (Read-Only)",
+    "https://schema.metadatacenter.org/core/TemplateElement": "Metadata element (Read-Only)",
+    "https://schema.metadatacenter.org/core/Template": "Metadata template (Read-Only)",
+    "TemplateInstance": "Metadata instance (Read-Only)"
+  },
+  "biboStatus": {
+    "bibo:draft": "Draft",
+    "bibo:published": "Published"
+  },
+  "loadError": {
+    "401": "We are sorry, but this artifact has not been made public by its owner.<br/><a href='{{link}}'>Try to view artifact in CEDAR</a> (Login required)",
+    "404": "We are sorry, but we have no artifact with this id."
+  }
+}

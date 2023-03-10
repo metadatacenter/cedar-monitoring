@@ -1,0 +1,46 @@
+{
+  "App": {
+    "Title": "CEDAR",
+    "NavTitle": "CEDAR OpenView",
+    "WindowTitle": "CEDAR OpenView",
+    "SelectPage": "Select Page",
+    "Home": "Home",
+    "Language": "Language",
+    "View": "View",
+    "Edit": "Edit",
+    "Form": "Form",
+    "Copy": "Copy to Clipcoard",
+    "Copied": "Copied",
+    "Save": "Save",
+    "Value": "Value",
+    "Validate": "Validate"
+  },
+  "Generic": {
+    "Loading": "Adatbetöltés...",
+    "fieldJsonSchema": "Template Field JSON Schema",
+    "elementJsonSchema": "Template Element JSON Schema",
+    "templateJsonSchema": "Template JSON Schema",
+    "jsonLD": "Metadata JSON-LD",
+    "rdf": "Metadata RDF"
+  },
+  "error": {
+    "resourceNotPublic": "A hivatkozott erőforrás nem érhető el publikusan"
+  },
+  "ArtifactHeader": {
+    "Type": "Típus",
+    "SchemaName": "Név",
+    "SchemaDescription": "Leírás",
+    "CEDAR": "CEDAR",
+    "Link": "<a href='{{link}}'>Nyisd meg CEDAR-ban</a> (Bejelentkezés szükséges)"
+  },
+  "type": {
+    "https://schema.metadatacenter.org/core/TemplateField": "Metaadat mező",
+    "https://schema.metadatacenter.org/core/TemplateElement": "Metaadat elem",
+    "https://schema.metadatacenter.org/core/Template": "Metaadat sablon",
+    "TemplateInstance": "Metaadat példány"
+  },
+  "loadError": {
+    "401": "Sajnáljuk, de az adott adatot a tulajdonosa nem tette nyitottá!<br/><a href='{{link}}'>Nyisd meg CEDAR-ban</a> (Bejelentkezés szükséges)",
+    "404": "Sajnáljuk, de az adott adatot nem található a rendszerünkben!"
+  }
+}
