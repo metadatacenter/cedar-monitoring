@@ -12,6 +12,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {AppConfigService} from "./services/app-config.service";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {initializeKeycloak} from "./init/keycloak-init.factory";
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,6 +39,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     ResourcesModule,
     MaterialModule,
     HttpClientModule,
+    KeycloakAngularModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -57,6 +60,12 @@ const appInitializerFn = (appConfig: AppConfigService) => {
       useFactory: appInitializerFn,
       multi: true,
       deps: [AppConfigService]
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
     }
   ],
   bootstrap: [AppComponent]

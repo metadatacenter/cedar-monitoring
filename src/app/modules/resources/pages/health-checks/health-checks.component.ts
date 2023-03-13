@@ -12,6 +12,7 @@ import {HttpClient} from '@angular/common/http';
 import {UiService} from '../../../../services/ui.service';
 import {AppConfigService} from '../../../../services/app-config.service';
 import {HealthCheck} from "../../../../shared/model/health-check.model";
+import {MicroservicesService} from "../../../../services/microservices.service";
 
 @Component({
   selector: 'app-folder-content',
@@ -20,8 +21,12 @@ import {HealthCheck} from "../../../../shared/model/health-check.model";
 })
 export class HealthChecksComponent extends CedarPageComponent implements OnInit {
 
-  public healthCheck?: HealthCheck = undefined;
-  public healthChecksStatus: number = 0;
+  public serverNames: string[] = [];
+  public healthCheckMap: Map<string, HealthCheck> = new Map<string, HealthCheck>();
+  public healthCheckStatusMap: Map<string, number> = new Map<string, number>();
+  public nrLoaded: number = 0;
+  public nrErrored: number = 0;
+  public nrTotal: number = 0;
 
   constructor(
     localSettings: LocalSettingsService,
@@ -33,26 +38,56 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
     dataHandler: DataHandlerService,
     private http: HttpClient,
     private uiService: UiService,
-    private configService: AppConfigService
+    private configService: AppConfigService,
+    private microservicesService: MicroservicesService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
+    this.serverNames = this.microservicesService.getServerNames();
+    this.nrTotal = this.serverNames.length;
     this.initDataHandler();
+    for (let serverName of this.serverNames) {
+      this.dataHandler
+        .requireId(DataHandlerDataId.HEALTH_CHECK, serverName);
+    }
     this.dataHandler
-      .requireId(DataHandlerDataId.HEALTH_CHECK, "resource")
-      .load(() => this.dataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
+      .load(() => this.allDataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
-  private dataLoadedCallback() {
-    this.healthCheck = this.dataStore.getHealthCheck("resource");
+  private allDataLoadedCallback() {
+    for (let serverName of this.serverNames) {
+      const v = this.dataStore.getHealthCheck(serverName);
+      if (v) {
+        this.healthCheckMap.set(serverName, v);
+        this.nrLoaded++;
+      }
+    }
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
-    this.healthChecksStatus = error.status;
+    this.healthCheckStatusMap.set(dataStatus.id, error.status);
+    this.nrErrored++;
   }
 
+  getStatus(serverName: string): string {
+    let status = this.healthCheckStatusMap.get(serverName);
+    if (status) {
+      return 'Error: ' + status;
+    } else {
+      return 'Health check loaded';
+    }
+  }
+
+  getServerColor(serverName: string) {
+    let status = this.healthCheckStatusMap.get(serverName);
+    if (status) {
+      return 'warn';
+    } else {
+      return 'primary';
+    }
+  }
 }
 
 

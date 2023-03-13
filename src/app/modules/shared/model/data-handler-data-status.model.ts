@@ -10,6 +10,7 @@ export class DataHandlerDataStatus {
   //
   loaded: boolean = false;
   canceled: boolean = false;
+  errored: boolean = false;
 
   private constructor() {
   }

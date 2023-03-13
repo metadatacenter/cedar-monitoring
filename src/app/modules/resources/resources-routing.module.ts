@@ -1,13 +1,13 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {EverytimeService} from "../../services/can-activate/everytime.service";
 import {HealthChecksComponent} from "./pages/health-checks/health-checks.component";
+import {AuthGuard} from "../../guard/auth.guard";
 
 export const routes: Routes = [
   {
     path: 'health-checks',
     component: HealthChecksComponent,
-    canActivate: [EverytimeService]
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -1,3 +1,10 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>park</mat-icon>
+  </button>
+  <a [routerLink]="'/'">CEDAR Internals View</a>
+</mat-toolbar>
+
 <mat-card class="wrapperCard">
   <mat-card-content class="flex-container">
 
@@ -9,7 +16,7 @@
         <mat-card-title>
           Health Checks
         </mat-card-title>
-        <mat-card-subtitle>Health checks of all the microservices</mat-card-subtitle>
+        <mat-card-subtitle>Health checks of all microservices</mat-card-subtitle>
       </mat-card-header>
     </mat-card>
 

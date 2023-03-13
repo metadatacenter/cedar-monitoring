@@ -78,10 +78,11 @@ export class DataHandlerService {
   }
 
   private handleLoadError(error: any, dataStatus: DataHandlerDataStatus) {
+    dataStatus.errored = true;
     if (this.errorCallback != null) {
       this.errorCallback(error, dataStatus);
     }
-    this.spinner.hide();
+    this.checkCompletion();
   }
 
   private loadHealthCheck(dataStatus: DataHandlerDataStatus) {
@@ -103,7 +104,7 @@ export class DataHandlerService {
   private checkCompletion() {
     let allLoaded = true;
     this.dataIdMap.forEach((dataStatus: DataHandlerDataStatus) => {
-      if (dataStatus.loaded === false && dataStatus.canceled === false) {
+      if (dataStatus.loaded === false && dataStatus.canceled === false && dataStatus.errored === false) {
         allLoaded = false;
       }
     });

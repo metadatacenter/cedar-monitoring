@@ -1,1 +1,41 @@
-health checks
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>park</mat-icon>
+  </button>
+  <a [routerLink]="'/'">CEDAR Internals View - Health Checks</a>
+</mat-toolbar>
+
+<mat-card>
+  <mat-card-content>
+    <div class="button-row">
+      <button mat-button>
+        <mat-icon>health_and_safety</mat-icon>
+        Microservice health check summary:
+      </button>
+      <button mat-raised-button color="{{nrLoaded === nrTotal ? 'primary' : 'warn'}}">{{nrLoaded}}
+        of {{nrTotal}} loaded
+      </button>
+      <button mat-raised-button color="{{nrErrored > 0 ? 'warn' : 'primary'}}">{{nrErrored}} errored</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="wrapperCard">
+  <mat-card-content class="flex-container">
+
+    <ng-container *ngFor="let serverName of serverNames">
+      <mat-card class="dash-card" [routerLink]="'/health-checks'">
+        <mat-card-header>
+          <div mat-card-avatar>
+            <mat-icon color="{{getServerColor(serverName)}}">health_and_safety</mat-icon>
+          </div>
+          <mat-card-title>
+            {{serverName}}
+          </mat-card-title>
+          <mat-card-subtitle>{{getStatus(serverName)}}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </ng-container>
+
+  </mat-card-content>
+</mat-card>
