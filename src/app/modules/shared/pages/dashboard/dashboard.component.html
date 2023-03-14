@@ -1,9 +1,4 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>park</mat-icon>
-  </button>
-  <a [routerLink]="'/'">CEDAR Internals View</a>
-</mat-toolbar>
+<app-header></app-header>
 
 <mat-card class="wrapperCard">
   <mat-card-content class="flex-container">
@@ -17,6 +12,18 @@
           Health Checks
         </mat-card-title>
         <mat-card-subtitle>Health checks of all microservices</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/profile'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">account_circle</mat-icon>
+        </div>
+        <mat-card-title>
+          Profile
+        </mat-card-title>
+        <mat-card-subtitle>View own profile data. Lightweight data loaded from Keycloak</mat-card-subtitle>
       </mat-card-header>
     </mat-card>
 

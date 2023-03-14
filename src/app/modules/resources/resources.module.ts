@@ -3,11 +3,13 @@ import {SharedModule} from '../shared';
 import {ResourcesRoutingModule} from './resources-routing.module';
 import {MaterialModule} from '../material-module';
 import {HealthChecksComponent} from "./pages/health-checks/health-checks.component";
+import {ProfileComponent} from "./pages/profile/profile.component";
 
 
 @NgModule({
   declarations: [
-    HealthChecksComponent
+    HealthChecksComponent,
+    ProfileComponent
   ],
   imports: [
     SharedModule,

@@ -33,5 +33,9 @@ export class UiService {
     window.open(destination, '_blank');
   }
 
+  openUrl(destination: string) {
+    window.location.href = destination;
+  }
+
 }
 

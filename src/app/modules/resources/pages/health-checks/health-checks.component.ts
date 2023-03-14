@@ -13,9 +13,10 @@ import {UiService} from '../../../../services/ui.service';
 import {AppConfigService} from '../../../../services/app-config.service';
 import {HealthCheck} from "../../../../shared/model/health-check.model";
 import {MicroservicesService} from "../../../../services/microservices.service";
+import {KeycloakService} from "keycloak-angular";
 
 @Component({
-  selector: 'app-folder-content',
+  selector: 'app-health-checks',
   templateUrl: './health-checks.component.html',
   styleUrls: ['./health-checks.component.scss']
 })
@@ -36,15 +37,17 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
     route: ActivatedRoute,
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
+    keycloak: KeycloakService,
     private http: HttpClient,
     private uiService: UiService,
     private configService: AppConfigService,
     private microservicesService: MicroservicesService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
+    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     this.serverNames = this.microservicesService.getServerNames();
     this.nrTotal = this.serverNames.length;
     this.initDataHandler();

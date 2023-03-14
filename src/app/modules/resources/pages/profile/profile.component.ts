@@ -1,4 +1,3 @@
-import {CedarPageComponent} from '../../components/base/cedar-page-component.component';
 import {Component, OnInit} from '@angular/core';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
@@ -9,13 +8,14 @@ import {DataHandlerService} from '../../../../services/data-handler.service';
 import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
+import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class DashboardComponent extends CedarPageComponent implements OnInit {
+export class ProfileComponent extends CedarPageComponent implements OnInit {
 
   constructor(
     localSettings: LocalSettingsService,
@@ -34,5 +34,13 @@ export class DashboardComponent extends CedarPageComponent implements OnInit {
 
   override ngOnInit() {
     super.ngOnInit();
+  }
+
+  openCEDARPage() {
+    this.uiService.openUrlInBlank("https://cedar.metadatacenter.orgx/");
+  }
+
+  openLogout() {
+    this.keycloak.logout("https://internalsview.metadatacenter.orgx/");
   }
 }
