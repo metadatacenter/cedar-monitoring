@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HealthChecksComponent} from "./pages/health-checks/health-checks.component";
 import {AuthGuard} from "../../guard/auth.guard";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {ResourceInfoComponent} from "./pages/resource-info/resource-info.component";
 
 export const routes: Routes = [
   {
@@ -13,6 +14,11 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'resource-info',
+    component: ResourceInfoComponent,
     canActivate: [AuthGuard]
   }
 ];

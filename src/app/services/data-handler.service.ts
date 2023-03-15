@@ -6,6 +6,10 @@ import {DataHandlerDataId} from '../modules/shared/model/data-handler-data-id.mo
 import {SpinnerService} from './spinner.service';
 import {HealthChecksService} from "./load-data/health-checks.service";
 import {HealthCheck} from "../shared/model/health-check.model";
+import {ResourceIdLookup} from "../shared/model/resource-id-lookup.model";
+import {ResourceIdLookupService} from "./load-data/resource-id-lookup.service";
+import {ResourceReportUserService} from "./load-data/resource-report-user.service";
+import {ResourceReportUser} from "../shared/model/resource-report-user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +27,8 @@ export class DataHandlerService {
     public spinner: SpinnerService,
     private translateService: TranslateService,
     private healthChecksService: HealthChecksService,
+    private resourceIdLookupService: ResourceIdLookupService,
+    private resourceReportUserService: ResourceReportUserService
   ) {
     this.dataIdMap = new Map<string, DataHandlerDataStatus>();
     this.dataAvailable = false;
@@ -37,6 +43,9 @@ export class DataHandlerService {
     this.dataAvailable = false;
     this.successCallback = undefined;
     this.errorCallback = undefined;
+    this.healthChecksService.reset();
+    this.resourceIdLookupService.reset();
+    this.resourceReportUserService.reset();
     return this;
   }
 
@@ -74,6 +83,12 @@ export class DataHandlerService {
       case DataHandlerDataId.HEALTH_CHECK:
         this.loadHealthCheck(dataStatus);
         break;
+      case DataHandlerDataId.DETECT_RESOURCE_ID:
+        this.loadResourceIdLookup(dataStatus);
+        break;
+      case DataHandlerDataId.RESOURCE_REPORT_USER:
+        this.loadResourceReportUser(dataStatus);
+        break;
     }
   }
 
@@ -89,6 +104,28 @@ export class DataHandlerService {
     this.healthChecksService.getHealthCheck(dataStatus.id)
       ?.subscribe(healthCheck => {
           this.dataStore.setHealthCheck(dataStatus.id, Object.assign(new HealthCheck(), healthCheck));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadResourceIdLookup(dataStatus: DataHandlerDataStatus) {
+    this.resourceIdLookupService.getResourceIdLookup(dataStatus.id)
+      ?.subscribe(resourceIdLookup => {
+          this.dataStore.setResourceIdLookup(dataStatus.id, Object.assign(new ResourceIdLookup(), resourceIdLookup));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadResourceReportUser(dataStatus: DataHandlerDataStatus) {
+    this.resourceReportUserService.getResourceReportUser(dataStatus.id)
+      ?.subscribe(resourceReportUser => {
+          this.dataStore.setResourceReportUser(dataStatus.id, Object.assign(new ResourceReportUser(), resourceReportUser));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {

@@ -1,27 +1,26 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {AppConfigService} from '../../../../services/app-config.service';
+import {LocalSettingsService} from '../../../../services/local-settings.service';
+import {CedarBase} from '../base/cedar-base.component';
 import {KeycloakService} from "keycloak-angular";
+import {AppConfigService} from "../../../../services/app-config.service";
 import {UiService} from "../../../../services/ui.service";
-import {CedarBase} from "../base/cedar-base.component";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-json-view',
+  templateUrl: './json-view.component.html',
+  styleUrls: ['./json-view.component.css']
 })
-export class HeaderComponent extends CedarBase implements OnInit {
+export class JsonViewComponent extends CedarBase implements OnInit {
 
-  @Input()
-  title: string = '';
-
-  override ngOnInit() {
-  }
+  @Input() inputObject: any;
+  @Input() icon: string = '';
+  @Input() title: string = '';
+  @Input() subtitle: string = '';
 
   constructor(
     localSettings: LocalSettingsService,
@@ -38,11 +37,10 @@ export class HeaderComponent extends CedarBase implements OnInit {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
   }
 
-  openCEDARPage() {
-    this.uiService.openUrlInBlank("https://cedar.metadatacenter.orgx/");
+  ngOnInit() {
   }
 
-  openLogout() {
-    this.keycloak.logout("https://internalsview.metadatacenter.orgx/");
+  stopPropagation(event: Event): void {
+    event.stopPropagation();
   }
 }

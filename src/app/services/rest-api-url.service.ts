@@ -23,8 +23,23 @@ export class RestApiUrlService {
     return `${this.base()}health-check`;
   }
 
+  private resourceIdLookups() {
+    return `${this.base()}command/resource-id-lookup`;
+  }
+
+  private resourceReportUsers() {
+    return `${this.base()}resource/users`;
+  }
+
   public healthCheck(server: string) {
     return `${this.healthChecks()}/${encodeURIComponent(server)}`;
   }
 
+  public resourceIdLookup(resourceId: string) {
+    return `${this.resourceIdLookups()}/${encodeURIComponent(resourceId)}`;
+  }
+
+  public resourceReportUser(userId: string) {
+    return `${this.resourceReportUsers()}/${encodeURIComponent(userId)}`;
+  }
 }

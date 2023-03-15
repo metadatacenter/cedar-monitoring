@@ -7,6 +7,8 @@ import {SpinnerComponent} from './components/spinner/spinner.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {MaterialModule} from '../../modules/material-module';
 import {HeaderComponent} from "./components/header/header.component";
+import {JsonViewComponent} from "./components/json-view/json-view.component";
+import {ClipboardModule} from "@angular/cdk/clipboard";
 
 @NgModule({
   imports: [
@@ -16,11 +18,13 @@ import {HeaderComponent} from "./components/header/header.component";
     RouterModule,
     TranslateModule,
     MaterialModule,
+    ClipboardModule,
   ],
   declarations: [
     SpinnerComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    JsonViewComponent
   ],
   exports: [
     CommonModule,
@@ -29,7 +33,8 @@ import {HeaderComponent} from "./components/header/header.component";
     RouterModule,
     TranslateModule,
     SpinnerComponent,
-    HeaderComponent
+    HeaderComponent,
+    JsonViewComponent
   ]
 })
 export class SharedModule {
