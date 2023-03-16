@@ -1,137 +1,139 @@
 <app-header title="Resource Info"></app-header>
 
-<mat-card class="search-wrapper-card">
-  <mat-card-header>
-    <mat-card-title>Resource id</mat-card-title>
-    <mat-card-subtitle>
-      Please enter a CEDAR link, a fully qualified @id or a UUID for the lookup
-    </mat-card-subtitle>
-  </mat-card-header>
+<mat-card class="wrapper-card">
+  <mat-card class="search-wrapper-card">
+    <mat-card-header>
+      <mat-card-title>Resource id</mat-card-title>
+      <mat-card-subtitle>
+        Please enter a CEDAR link, a fully qualified @id or a UUID for the lookup
+      </mat-card-subtitle>
+    </mat-card-header>
 
-  <mat-card-content style="margin-top:16px">
+    <mat-card-content style="margin-top:16px">
 
-    <mat-form-field class="resource-id-form-field">
-      <mat-label>Resource id</mat-label>
-      <textarea matInput type="text" [(ngModel)]="resourceIdFromPage"></textarea>
-      <button *ngIf="resourceIdFromPage" matSuffix mat-icon-button aria-label="Clear" (click)="resourceIdFromPage=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+      <mat-form-field class="resource-id-form-field">
+        <mat-label>Resource id</mat-label>
+        <textarea matInput type="text" [(ngModel)]="resourceIdFromPage"></textarea>
+        <button *ngIf="resourceIdFromPage" matSuffix mat-icon-button aria-label="Clear" (click)="resourceIdFromPage=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button (click)="lookUpResourceId()">LOOK UP</button>
-  </mat-card-actions>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="lookUpResourceId()">LOOK UP</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="report-wrapper-card" *ngIf="responseSuccess !== undefined">
+
+    <mat-card-header class="mat-elevation-z8">
+      <mat-card-title>Resource id parsing results</mat-card-title>
+      <mat-card-subtitle>
+        Results of parsing the resource id provided above:
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <table mat-table [dataSource]="dataSource">
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No.</th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef> Value</th>
+        <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+      </ng-container>
+
+    </table>
+  </mat-card>
+
+  <app-json-view
+    *ngIf="reportDataUser"
+    [inputObject]="reportDataUser.keycloak.user"
+    title="Keycloak"
+    icon="key"
+    subtitle="Data loaded from Keycloak using kc.realm().users().get() and userResource.roles().realmLevel().listEffective()"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataUser"
+    [inputObject]="reportDataUser.neo4j.user"
+    title="Neo4j - User"
+    icon="device_hub"
+    subtitle="Data loaded from Neo4j using userSession.getUser();"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataUser"
+    [inputObject]="reportDataUser.neo4j.extra"
+    title="Neo4j - Extra"
+    icon="device_hub"
+    subtitle="Data loaded from Neo4j using various helper methods"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataUser"
+    [inputObject]="reportDataUser.opensearch"
+    title="Opensearch"
+    icon="search"
+    subtitle="Data loaded from Opensearch using permission filtering on materialized permissions"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataUser"
+    [inputObject]="reportDataUser.cedarUser"
+    title="CedarUser"
+    icon="person"
+    subtitle="CedarUser object loaded using UserService.findUser(). It is an object-oriented view of the Neo4j data."
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataField"
+    [inputObject]="reportDataField.neo4j.artifact"
+    title="Neo4j - Template Field"
+    icon="device_hub"
+    subtitle="Data loaded from Neo4j using folderSession.findArtifactById();"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataField"
+    [inputObject]="reportDataField.opensearch.document"
+    title="Opensearch"
+    icon="search"
+    subtitle="Data loaded from Opensearch using nodeSearchingService.getDocumentByCedarId()"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataField"
+    [inputObject]="reportDataField.computed.report"
+    title="Computed - Report"
+    icon="description"
+    subtitle="Data loaded using ArtifactReportUtil.getArtifactReport()"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataField"
+    [inputObject]="reportDataField.computed.permissions"
+    title="Computed - Permissions"
+    icon="description"
+    subtitle="Data loaded using permissionSession.getResourcePermissions()"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataField"
+    [inputObject]="reportDataField.computed.materializedPermissions"
+    title="Computed - Materialized Permissions"
+    icon="description"
+    subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
+  ></app-json-view>
 </mat-card>
-
-<mat-card class="report-wrapper-card" *ngIf="responseSuccess !== undefined">
-
-  <mat-card-header class="mat-elevation-z8">
-    <mat-card-title>Resource id parsing results</mat-card-title>
-    <mat-card-subtitle>
-      Results of parsing the resource id provided above:
-    </mat-card-subtitle>
-  </mat-card-header>
-
-  <table mat-table [dataSource]="dataSource">
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No.</th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name</th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="value">
-      <th mat-header-cell *matHeaderCellDef> Value</th>
-      <td mat-cell *matCellDef="let element"> {{element.value}} </td>
-    </ng-container>
-
-  </table>
-</mat-card>
-
-<app-json-view
-  *ngIf="reportDataUser"
-  [inputObject]="reportDataUser.keycloak.user"
-  title="Keycloak"
-  icon="key"
-  subtitle="Data loaded from Keycloak using kc.realm().users().get() and userResource.roles().realmLevel().listEffective()"
-></app-json-view>
-
-<app-json-view
-  *ngIf="reportDataUser"
-  [inputObject]="reportDataUser.neo4j.user"
-  title="Neo4j - User"
-  icon="device_hub"
-  subtitle="Data loaded from Neo4j using userSession.getUser();"
-></app-json-view>
-
-<app-json-view
-  *ngIf="reportDataUser"
-  [inputObject]="reportDataUser.neo4j.extra"
-  title="Neo4j - Extra"
-  icon="device_hub"
-  subtitle="Data loaded from Neo4j using various helper methods"
-></app-json-view>
-
-<app-json-view
-  *ngIf="reportDataUser"
-  [inputObject]="reportDataUser.opensearch"
-  title="Opensearch"
-  icon="search"
-  subtitle="Data loaded from Opensearch using permission filtering on materialized permissions"
-></app-json-view>
-
-<app-json-view
-  *ngIf="reportDataUser"
-  [inputObject]="reportDataUser.cedarUser"
-  title="CedarUser"
-  icon="person"
-  subtitle="CedarUser object loaded using UserService.findUser(). It is an object-oriented view of the Neo4j data."
-></app-json-view>
-
-<app-json-view
-  *ngIf="reportDataField"
-  [inputObject]="reportDataField.neo4j.artifact"
-  title="Neo4j - Template Field"
-  icon="device_hub"
-  subtitle="Data loaded from Neo4j using folderSession.findArtifactById();"
-></app-json-view>
-
-<app-json-view
-  *ngIf="reportDataField"
-  [inputObject]="reportDataField.opensearch.document"
-  title="Opensearch"
-  icon="search"
-  subtitle="Data loaded from Opensearch using nodeSearchingService.getDocumentByCedarId()"
-></app-json-view>
-
-<app-json-view
-  *ngIf="reportDataField"
-  [inputObject]="reportDataField.computed.report"
-  title="Computed - Report"
-  icon="description"
-  subtitle="Data loaded using ArtifactReportUtil.getArtifactReport()"
-></app-json-view>
-
-<app-json-view
-  *ngIf="reportDataField"
-  [inputObject]="reportDataField.computed.permissions"
-  title="Computed - Permissions"
-  icon="description"
-  subtitle="Data loaded using permissionSession.getResourcePermissions()"
-></app-json-view>
-
-<app-json-view
-  *ngIf="reportDataField"
-  [inputObject]="reportDataField.computed.materializedPermissions"
-  title="Computed - Materialized Permissions"
-  icon="description"
-  subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
-></app-json-view>

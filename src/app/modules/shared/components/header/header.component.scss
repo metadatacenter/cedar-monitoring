@@ -1,23 +1,6 @@
-.wrapperCard {
-  background-color: #f5f5f5;
-}
-
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  flex-wrap: wrap;
-
-  .dash-card {
-    cursor: pointer;
-    margin: 5px;
-    width: 300px;
-    height: 120px;
-  }
-
-}
+@use '@angular/material' as mat;
 
 a {
-  color: #ffffff;
+  color: mat.get-color-from-palette(mat.$indigo-palette, 50);
   text-decoration: none;
 }
