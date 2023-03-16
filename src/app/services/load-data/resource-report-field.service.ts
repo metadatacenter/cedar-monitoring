@@ -7,11 +7,12 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {TranslateService} from '@ngx-translate/core';
 import {GenericMultiLoaderService} from "./generic-multi-loader";
 import {ResourceReportUser} from "../../shared/model/resource-report-user.model";
+import {ResourceReportField} from "../../shared/model/resource-report-field.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ResourceReportUserService extends GenericMultiLoaderService<ResourceReportUser> {
+export class ResourceReportFieldService extends GenericMultiLoaderService<ResourceReportField> {
 
   protected constructor(
     http: HttpClient,
@@ -23,7 +24,7 @@ export class ResourceReportUserService extends GenericMultiLoaderService<Resourc
     super(http, restApiUrl, router, notify, translateService);
   }
 
-  getResourceReportUser(resourceId: string): Observable<ResourceReportUser | null> | null {
-    return this.getData(resourceId, this.restApiUrl.resourceReportUser(resourceId));
+  getResourceReportField(resourceId: string): Observable<ResourceReportField | null> | null {
+    return this.getData(resourceId, this.restApiUrl.resourceReportField(resourceId));
   }
 }

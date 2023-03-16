@@ -13,7 +13,7 @@ import {UiService} from "../../../../services/ui.service";
 @Component({
   selector: 'app-json-view',
   templateUrl: './json-view.component.html',
-  styleUrls: ['./json-view.component.css']
+  styleUrls: ['./json-view.component.scss']
 })
 export class JsonViewComponent extends CedarBase implements OnInit {
 

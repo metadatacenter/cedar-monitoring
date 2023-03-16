@@ -1,8 +1,7 @@
 import {CedarInternals} from "./cedar-internals.model";
 
-export class ResourceReportUser extends CedarInternals {
-  public keycloak: any;
+export class ResourceReportField extends CedarInternals {
+  public computed: any;
   public neo4j: any;
   public opensearch: any;
-  public cedarUser: any;
 }

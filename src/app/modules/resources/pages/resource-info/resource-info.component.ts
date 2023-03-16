@@ -12,6 +12,8 @@ import {CedarPageComponent} from "../../../shared/components/base/cedar-page-com
 import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.model";
 import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-status.model";
 import {ResourceIdLookup} from "../../../../shared/model/resource-id-lookup.model";
+import {ResourceReportUser} from "../../../../shared/model/resource-report-user.model";
+import {ResourceReportField} from "../../../../shared/model/resource-report-field.model";
 
 export interface ReportRow {
   position: number;
@@ -49,7 +51,9 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
   }
 
-  public resourceIdFromPage: string = '';
+  //public resourceIdFromPage: string = 'https://metadatacenter.org/users/ab2a9696-291f-4705-b5e6-6c262266c506';
+  public resourceIdFromPage: string = 'https://repo.metadatacenter.orgx/template-fields/ce2a9e0f-2e9f-474b-a5ac-fc7cd5dee036';
+  //public resourceIdFromPage: string = '';
   public resourceIdToLookUp: string = '';
   public resourceIdLookupMap: Map<string, ResourceIdLookup> = new Map<string, ResourceIdLookup>();
   public resourceIdLookupStatusMap: Map<string, number> = new Map<string, number>();
@@ -63,7 +67,8 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
   responseResourceIdSource: string = '';
   responseResourceType: string = '';
 
-  reportDataUser: any;
+  reportDataUser: ResourceReportUser | undefined;
+  reportDataField: ResourceReportField | undefined;
 
   override ngOnInit() {
     super.ngOnInit();
@@ -118,10 +123,19 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
         .requireId(DataHandlerDataId.RESOURCE_REPORT_USER, this.responseResourceId)
         .load(() => this.resourceReportUserCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.resourceReportErrorCallback(error, dataStatus));
     }
+    if (this.responseResourceType == 'field') {
+      this.dataHandler
+        .requireId(DataHandlerDataId.RESOURCE_REPORT_FIELD, this.responseResourceId)
+        .load(() => this.resourceReportFieldCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.resourceReportErrorCallback(error, dataStatus));
+    }
   }
 
   private resourceReportUserCallback() {
     this.reportDataUser = this.dataStore.getResourceReportUser(this.resourceIdToLookUp);
+  }
+
+  private resourceReportFieldCallback() {
+    this.reportDataField = this.dataStore.getResourceReportField(this.resourceIdToLookUp);
   }
 
   private resourceReportErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {

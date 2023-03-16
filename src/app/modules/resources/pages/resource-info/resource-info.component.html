@@ -95,3 +95,43 @@
   icon="person"
   subtitle="CedarUser object loaded using UserService.findUser(). It is an object-oriented view of the Neo4j data."
 ></app-json-view>
+
+<app-json-view
+  *ngIf="reportDataField"
+  [inputObject]="reportDataField.neo4j.artifact"
+  title="Neo4j - Template Field"
+  icon="device_hub"
+  subtitle="Data loaded from Neo4j using folderSession.findArtifactById();"
+></app-json-view>
+
+<app-json-view
+  *ngIf="reportDataField"
+  [inputObject]="reportDataField.opensearch.document"
+  title="Opensearch"
+  icon="search"
+  subtitle="Data loaded from Opensearch using nodeSearchingService.getDocumentByCedarId()"
+></app-json-view>
+
+<app-json-view
+  *ngIf="reportDataField"
+  [inputObject]="reportDataField.computed.report"
+  title="Computed - Report"
+  icon="description"
+  subtitle="Data loaded using ArtifactReportUtil.getArtifactReport()"
+></app-json-view>
+
+<app-json-view
+  *ngIf="reportDataField"
+  [inputObject]="reportDataField.computed.permissions"
+  title="Computed - Permissions"
+  icon="description"
+  subtitle="Data loaded using permissionSession.getResourcePermissions()"
+></app-json-view>
+
+<app-json-view
+  *ngIf="reportDataField"
+  [inputObject]="reportDataField.computed.materializedPermissions"
+  title="Computed - Materialized Permissions"
+  icon="description"
+  subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
+></app-json-view>
