@@ -82,6 +82,8 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
     this.responseResourceIdSource = '';
     this.responseResourceType = '';
     this.updateIdReportTable();
+    this.reportDataUser = undefined;
+    this.reportDataField = undefined;
     this.dataHandler
       .requireId(DataHandlerDataId.DETECT_RESOURCE_ID, this.resourceIdToLookUp)
       .load(() => this.resourceIdLookedUpCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.resourceIdLookUpErrorCallback(error, dataStatus));
@@ -89,7 +91,6 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
 
   private resourceIdLookedUpCallback() {
     const v: any = this.dataStore.getResourceIdLookup(this.resourceIdToLookUp);
-    console.log(v);
     this.responseSuccess = v['success'];
     if (v['resourceIdString']) {
       this.responseResourceId = v['resourceIdString'];

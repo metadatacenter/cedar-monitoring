@@ -1,4 +1,5 @@
 import {KeycloakService} from "keycloak-angular";
+import {environment} from "../../environments/environment";
 
 export function initializeKeycloak(
   keycloak: KeycloakService
@@ -6,7 +7,7 @@ export function initializeKeycloak(
   return () =>
     keycloak.init({
       config: {
-        url: 'https://auth.metadatacenter.orgx/auth',
+        url: environment.keycloakUrl + 'auth',
         realm: 'CEDAR',
         clientId: 'cedar-angular-app',
       },

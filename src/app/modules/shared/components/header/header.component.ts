@@ -9,6 +9,7 @@ import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 import {CedarBase} from "../base/cedar-base.component";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-header',
@@ -39,10 +40,10 @@ export class HeaderComponent extends CedarBase implements OnInit {
   }
 
   openCEDARPage() {
-    this.uiService.openUrlInBlank("https://cedar.metadatacenter.orgx/");
+    this.uiService.openUrlInBlank(environment.cedarUrl);
   }
 
   openLogout() {
-    this.keycloak.logout("https://internalsview.metadatacenter.orgx/");
+    this.keycloak.logout(environment.appUrl);
   }
 }

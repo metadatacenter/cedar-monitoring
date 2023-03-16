@@ -4,8 +4,12 @@
 
 export const environment = {
   production: false,
-  defaultLanguage: 'en',
-  fallbackLanguage: 'en'
+  apiUrl: '',
+  cedarUrl: '',
+  appUrl: '',
+  keycloakUrl: '',
+  defaultLanguage: '',
+  fallbackLanguage: ''
 };
 
 /*

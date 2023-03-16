@@ -35,12 +35,4 @@ export class ProfileComponent extends CedarPageComponent implements OnInit {
   override ngOnInit() {
     super.ngOnInit();
   }
-
-  openCEDARPage() {
-    this.uiService.openUrlInBlank("https://cedar.metadatacenter.orgx/");
-  }
-
-  openLogout() {
-    this.keycloak.logout("https://internalsview.metadatacenter.orgx/");
-  }
 }
