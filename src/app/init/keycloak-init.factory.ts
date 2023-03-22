@@ -7,7 +7,7 @@ export function initializeKeycloak(
   return () =>
     keycloak.init({
       config: {
-        url: environment.keycloakUrl + 'auth',
+        url: environment.keycloakUrl,
         realm: 'CEDAR',
         clientId: 'cedar-angular-app',
       },
