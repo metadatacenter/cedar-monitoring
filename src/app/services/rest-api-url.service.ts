@@ -40,6 +40,14 @@ export class RestApiUrlService {
     return `${this.base()}resource/template-elements`;
   }
 
+  private resourceReportTemplates() {
+    return `${this.base()}resource/templates`;
+  }
+
+  private resourceReportInstances() {
+    return `${this.base()}resource/template-instances`;
+  }
+
   public healthCheck(server: string) {
     return `${this.healthChecks()}/${encodeURIComponent(server)}`;
   }
@@ -58,5 +66,13 @@ export class RestApiUrlService {
 
   resourceReportElement(elementId: string) {
     return `${this.resourceReportElements()}/${encodeURIComponent(elementId)}`;
+  }
+
+  resourceReportTemplate(templateId: string) {
+    return `${this.resourceReportTemplates()}/${encodeURIComponent(templateId)}`;
+  }
+
+  resourceReportInstance(instanceId: string) {
+    return `${this.resourceReportInstances()}/${encodeURIComponent(instanceId)}`;
   }
 }

@@ -14,6 +14,10 @@ import {ResourceReportFieldService} from "./load-data/resource-report-field.serv
 import {ResourceReportField} from "../shared/model/resource-report-field.model";
 import {ResourceReportElementService} from "./load-data/resource-report-element.service";
 import {ResourceReportElement} from "../shared/model/resource-report-element.model";
+import {ResourceReportTemplate} from "../shared/model/resource-report-template.model";
+import {ResourceReportTemplateService} from "./load-data/resource-report-template.service";
+import {ResourceReportInstance} from "../shared/model/resource-report-instance.model";
+import {ResourceReportInstanceService} from "./load-data/resource-report-instance.service";
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +38,9 @@ export class DataHandlerService {
     private resourceIdLookupService: ResourceIdLookupService,
     private resourceReportUserService: ResourceReportUserService,
     private resourceReportFieldService: ResourceReportFieldService,
-    private resourceReportElementService: ResourceReportElementService
+    private resourceReportElementService: ResourceReportElementService,
+    private resourceReportTemplateService: ResourceReportTemplateService,
+    private resourceReportInstanceService: ResourceReportInstanceService
   ) {
     this.dataIdMap = new Map<string, DataHandlerDataStatus>();
     this.dataAvailable = false;
@@ -54,6 +60,8 @@ export class DataHandlerService {
     this.resourceReportUserService.reset();
     this.resourceReportFieldService.reset();
     this.resourceReportElementService.reset();
+    this.resourceReportTemplateService.reset();
+    this.resourceReportInstanceService.reset();
     return this;
   }
 
@@ -102,6 +110,12 @@ export class DataHandlerService {
         break;
       case DataHandlerDataId.RESOURCE_REPORT_ELEMENT:
         this.loadResourceReportElement(dataStatus);
+        break;
+      case DataHandlerDataId.RESOURCE_REPORT_TEMPLATE:
+        this.loadResourceReportTemplate(dataStatus);
+        break;
+      case DataHandlerDataId.RESOURCE_REPORT_INSTANCE:
+        this.loadResourceReportInstance(dataStatus);
         break;
     }
   }
@@ -162,6 +176,28 @@ export class DataHandlerService {
     this.resourceReportElementService.getResourceReportElement(dataStatus.id)
       ?.subscribe(resourceReportElement => {
           this.dataStore.setResourceReportElement(dataStatus.id, Object.assign(new ResourceReportElement(), resourceReportElement));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadResourceReportTemplate(dataStatus: DataHandlerDataStatus) {
+    this.resourceReportTemplateService.getResourceReportTemplate(dataStatus.id)
+      ?.subscribe(resourceReportTemplate => {
+          this.dataStore.setResourceReportTemplate(dataStatus.id, Object.assign(new ResourceReportTemplate(), resourceReportTemplate));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadResourceReportInstance(dataStatus: DataHandlerDataStatus) {
+    this.resourceReportInstanceService.getResourceReportInstance(dataStatus.id)
+      ?.subscribe(resourceReportInstance => {
+          this.dataStore.setResourceReportInstance(dataStatus.id, Object.assign(new ResourceReportInstance(), resourceReportInstance));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {

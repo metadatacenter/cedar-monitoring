@@ -5,4 +5,6 @@ export enum DataHandlerDataId {
   RESOURCE_REPORT_USER = 'resource-report-user',
   RESOURCE_REPORT_FIELD = 'resource-report-field',
   RESOURCE_REPORT_ELEMENT = 'resource-report-element',
+  RESOURCE_REPORT_TEMPLATE = 'resource-report-template',
+  RESOURCE_REPORT_INSTANCE = 'resource-report-instance',
 }
