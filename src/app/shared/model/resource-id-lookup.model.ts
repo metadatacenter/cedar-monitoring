@@ -1,4 +1,4 @@
-import {CedarInternals} from "./cedar-internals.model";
+import {CedarMonitoring} from "./cedar-monitoring.model";
 
-export class ResourceIdLookup extends CedarInternals {
+export class ResourceIdLookup extends CedarMonitoring {
 }

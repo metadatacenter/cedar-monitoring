@@ -4,6 +4,7 @@ import {HealthCheck} from "../shared/model/health-check.model";
 import {ResourceIdLookup} from "../shared/model/resource-id-lookup.model";
 import {ResourceReportUser} from "../shared/model/resource-report-user.model";
 import {ResourceReportField} from "../shared/model/resource-report-field.model";
+import {ResourceReportElement} from "../shared/model/resource-report-element.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class DataStoreService {
   private resourceIdLookupMap: Map<string, ResourceIdLookup>;
   private resourceReportUserMap: Map<string, ResourceReportUser>;
   private resourceReportFieldMap: Map<string, ResourceReportField>;
+  private resourceReportElementMap: Map<string, ResourceReportElement>;
 
   constructor(
     private localSettings: LocalSettingsService
@@ -22,6 +24,7 @@ export class DataStoreService {
     this.resourceIdLookupMap = new Map<string, ResourceIdLookup>();
     this.resourceReportUserMap = new Map<string, ResourceReportUser>();
     this.resourceReportFieldMap = new Map<string, ResourceReportField>();
+    this.resourceReportElementMap = new Map<string, ResourceReportElement>();
   }
 
   setHealthCheck(server: string, healthCheck: HealthCheck) {
@@ -54,6 +57,14 @@ export class DataStoreService {
 
   getResourceReportField(userId: string): ResourceReportField | undefined {
     return this.resourceReportFieldMap.get(userId);
+  }
+
+  setResourceReportElement(elementId: string, report: ResourceReportElement) {
+    this.resourceReportElementMap.set(elementId, report);
+  }
+
+  getResourceReportElement(userId: string): ResourceReportElement | undefined {
+    return this.resourceReportElementMap.get(userId);
   }
 
 }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cedar-internals": {
+    "cedar-monitoring": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cedar-internals",
+            "outputPath": "dist/cedar-monitoring",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -78,10 +78,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cedar-internals:build:production"
+              "browserTarget": "cedar-monitoring:build:production"
             },
             "development": {
-              "browserTarget": "cedar-internals:build:development",
+              "browserTarget": "cedar-monitoring:build:development",
               "port": 4300,
               "disableHostCheck": true
             }
@@ -91,7 +91,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cedar-internals:build"
+            "browserTarget": "cedar-monitoring:build"
           }
         },
         "test": {

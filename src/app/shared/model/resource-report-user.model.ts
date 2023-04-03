@@ -1,6 +1,6 @@
-import {CedarInternals} from "./cedar-internals.model";
+import {CedarMonitoring} from "./cedar-monitoring.model";
 
-export class ResourceReportUser extends CedarInternals {
+export class ResourceReportUser extends CedarMonitoring {
   public keycloak: any;
   public neo4j: any;
   public opensearch: any;

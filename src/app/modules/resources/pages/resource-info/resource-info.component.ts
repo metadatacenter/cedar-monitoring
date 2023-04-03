@@ -14,6 +14,7 @@ import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-sta
 import {ResourceIdLookup} from "../../../../shared/model/resource-id-lookup.model";
 import {ResourceReportUser} from "../../../../shared/model/resource-report-user.model";
 import {ResourceReportField} from "../../../../shared/model/resource-report-field.model";
+import {ResourceReportElement} from "../../../../shared/model/resource-report-element.model";
 
 export interface ReportRow {
   position: number;
@@ -51,8 +52,9 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
   }
 
-  //public resourceIdFromPage: string = 'https://metadatacenter.org/users/ab2a9696-291f-4705-b5e6-6c262266c506';
-  public resourceIdFromPage: string = 'https://repo.metadatacenter.orgx/template-fields/ce2a9e0f-2e9f-474b-a5ac-fc7cd5dee036';
+  //public resourceIdFromPage: string = 'https://metadatacenter.org/users/68d898fd-2b81-492c-b68c-a80c8283fd8a';
+  //public resourceIdFromPage: string = 'https://cedar.metadatacenter.orgx/fields/edit/https://repo.metadatacenter.orgx/template-fields/b428e05f-8ec6-4762-87fd-5f0946a3a126?folderId=https:%2F%2Frepo.metadatacenter.orgx%2Ffolders%2F37100c5c-3759-49ff-86b3-5798a80eba01';
+  public resourceIdFromPage: string = 'https://cedar.metadatacenter.orgx/elements/edit/https://repo.metadatacenter.orgx/template-elements/aebb0a25-ba99-4071-9561-890de2b5ad43?folderId=https:%2F%2Frepo.metadatacenter.orgx%2Ffolders%2F37100c5c-3759-49ff-86b3-5798a80eba01';
   //public resourceIdFromPage: string = '';
   public resourceIdToLookUp: string = '';
   public resourceIdLookupMap: Map<string, ResourceIdLookup> = new Map<string, ResourceIdLookup>();
@@ -69,6 +71,7 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
 
   reportDataUser: ResourceReportUser | undefined;
   reportDataField: ResourceReportField | undefined;
+  reportDataElement: ResourceReportElement | undefined;
 
   override ngOnInit() {
     super.ngOnInit();
@@ -84,6 +87,7 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
     this.updateIdReportTable();
     this.reportDataUser = undefined;
     this.reportDataField = undefined;
+    this.reportDataElement = undefined;
     this.dataHandler
       .requireId(DataHandlerDataId.DETECT_RESOURCE_ID, this.resourceIdToLookUp)
       .load(() => this.resourceIdLookedUpCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.resourceIdLookUpErrorCallback(error, dataStatus));
@@ -129,14 +133,23 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
         .requireId(DataHandlerDataId.RESOURCE_REPORT_FIELD, this.responseResourceId)
         .load(() => this.resourceReportFieldCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.resourceReportErrorCallback(error, dataStatus));
     }
+    if (this.responseResourceType == 'element') {
+      this.dataHandler
+        .requireId(DataHandlerDataId.RESOURCE_REPORT_ELEMENT, this.responseResourceId)
+        .load(() => this.resourceReportElementCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.resourceReportErrorCallback(error, dataStatus));
+    }
   }
 
   private resourceReportUserCallback() {
-    this.reportDataUser = this.dataStore.getResourceReportUser(this.resourceIdToLookUp);
+    this.reportDataUser = this.dataStore.getResourceReportUser(this.responseResourceId);
   }
 
   private resourceReportFieldCallback() {
-    this.reportDataField = this.dataStore.getResourceReportField(this.resourceIdToLookUp);
+    this.reportDataField = this.dataStore.getResourceReportField(this.responseResourceId);
+  }
+
+  private resourceReportElementCallback() {
+    this.reportDataElement = this.dataStore.getResourceReportElement(this.responseResourceId);
   }
 
   private resourceReportErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {

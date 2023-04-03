@@ -36,6 +36,10 @@ export class RestApiUrlService {
     return `${this.base()}resource/template-fields`;
   }
 
+  private resourceReportElements() {
+    return `${this.base()}resource/template-elements`;
+  }
+
   public healthCheck(server: string) {
     return `${this.healthChecks()}/${encodeURIComponent(server)}`;
   }
@@ -50,5 +54,9 @@ export class RestApiUrlService {
 
   resourceReportField(fieldId: string) {
     return `${this.resourceReportFields()}/${encodeURIComponent(fieldId)}`;
+  }
+
+  resourceReportElement(elementId: string) {
+    return `${this.resourceReportElements()}/${encodeURIComponent(elementId)}`;
   }
 }

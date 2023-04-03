@@ -1,6 +1,6 @@
 {
-  "name": "cedar-internals",
-  "version": "2.6.22-SNAPSHOT",
+  "name": "cedar-monitoring",
+  "version": "2.6.24-SNAPSHOT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

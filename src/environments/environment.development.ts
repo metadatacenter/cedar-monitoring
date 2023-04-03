@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://internals.metadatacenter.orgx/',
+  apiUrl: 'https://monitor.metadatacenter.orgx/',
   cedarUrl: 'https://cedar.metadatacenter.orgx/',
-  appUrl: 'https://internalsview.metadatacenter.orgx/',
+  appUrl: 'https://monitoring.metadatacenter.orgx/',
   keycloakUrl: 'https://auth.metadatacenter.orgx/',
   defaultLanguage: 'en',
   fallbackLanguage: 'en'

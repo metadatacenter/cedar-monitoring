@@ -136,4 +136,45 @@
     icon="description"
     subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
   ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataElement"
+    [inputObject]="reportDataElement.neo4j.artifact"
+    title="Neo4j - Template Element"
+    icon="device_hub"
+    subtitle="Data loaded from Neo4j using folderSession.findArtifactById();"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataElement"
+    [inputObject]="reportDataElement.opensearch.document"
+    title="Opensearch"
+    icon="search"
+    subtitle="Data loaded from Opensearch using nodeSearchingService.getDocumentByCedarId()"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataElement"
+    [inputObject]="reportDataElement.computed.report"
+    title="Computed - Report"
+    icon="description"
+    subtitle="Data loaded using ArtifactReportUtil.getArtifactReport()"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataElement"
+    [inputObject]="reportDataElement.computed.permissions"
+    title="Computed - Permissions"
+    icon="description"
+    subtitle="Data loaded using permissionSession.getResourcePermissions()"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataElement"
+    [inputObject]="reportDataElement.computed.materializedPermissions"
+    title="Computed - Materialized Permissions"
+    icon="description"
+    subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
+  ></app-json-view>
+
 </mat-card>

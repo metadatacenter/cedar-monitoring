@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'cedar-internals'`, () => {
+  it(`should have as title 'cedar-monitoring'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('cedar-internals');
+    expect(app.title).toEqual('cedar-monitoring');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('cedar-internals app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('cedar-monitoring app is running!');
   });
 });
