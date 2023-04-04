@@ -8,6 +8,7 @@ import {ResourceReportElement} from "../shared/model/resource-report-element.mod
 import {ResourceReportTemplate} from "../shared/model/resource-report-template.model";
 import {ResourceReportInstance} from "../shared/model/resource-report-instance.model";
 import {ResourceReportGroup} from "../shared/model/resource-report-group.model";
+import {ResourceReportFolder} from "../shared/model/resource-report-folder.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class DataStoreService {
   private resourceIdLookupMap: Map<string, ResourceIdLookup>;
   private resourceReportUserMap: Map<string, ResourceReportUser>;
   private resourceReportGroupMap: Map<string, ResourceReportGroup>;
+  private resourceReportFolderMap: Map<string, ResourceReportFolder>;
   private resourceReportFieldMap: Map<string, ResourceReportField>;
   private resourceReportElementMap: Map<string, ResourceReportElement>;
   private resourceReportTemplateMap: Map<string, ResourceReportTemplate>;
@@ -30,6 +32,7 @@ export class DataStoreService {
     this.resourceIdLookupMap = new Map<string, ResourceIdLookup>();
     this.resourceReportUserMap = new Map<string, ResourceReportUser>();
     this.resourceReportGroupMap = new Map<string, ResourceReportGroup>();
+    this.resourceReportFolderMap = new Map<string, ResourceReportFolder>();
     this.resourceReportFieldMap = new Map<string, ResourceReportField>();
     this.resourceReportElementMap = new Map<string, ResourceReportElement>();
     this.resourceReportTemplateMap = new Map<string, ResourceReportTemplate>();
@@ -66,6 +69,14 @@ export class DataStoreService {
 
   getResourceReportGroup(groupId: string): ResourceReportGroup | undefined {
     return this.resourceReportGroupMap.get(groupId);
+  }
+
+  setResourceReportFolder(folderId: string, report: ResourceReportFolder) {
+    this.resourceReportFolderMap.set(folderId, report);
+  }
+
+  getResourceReportFolder(folderId: string): ResourceReportFolder | undefined {
+    return this.resourceReportFolderMap.get(folderId);
   }
 
   setResourceReportField(fieldId: string, report: ResourceReportField) {

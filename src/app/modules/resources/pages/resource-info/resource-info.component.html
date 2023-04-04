@@ -134,6 +134,41 @@
   ></app-json-view>
 
 
+
+  <!-- Folder -->
+  <app-json-view
+    *ngIf="reportDataFolder"
+    [inputObject]="reportDataFolder.neo4j.folder"
+    title="Neo4j - Folder"
+    icon="device_hub"
+    subtitle="Data loaded from Neo4j using folderSession.findFolderById();"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataFolder"
+    [inputObject]="reportDataFolder.opensearch.document"
+    title="Opensearch"
+    icon="search"
+    subtitle="Data loaded from Opensearch using nodeSearchingService.getDocumentByCedarId()"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataFolder"
+    [inputObject]="reportDataFolder.computed.permissions"
+    title="Computed - Permissions"
+    icon="description"
+    subtitle="Data loaded using permissionSession.getResourcePermissions()"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataFolder"
+    [inputObject]="reportDataFolder.computed.materializedPermissions"
+    title="Computed - Materialized Permissions"
+    icon="description"
+    subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
+  ></app-json-view>
+
+
   <!-- Template Field -->
   <app-json-view
     *ngIf="reportDataField"

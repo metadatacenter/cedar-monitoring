@@ -36,6 +36,10 @@ export class RestApiUrlService {
     return `${this.base()}resource/groups`;
   }
 
+  private resourceReportFolders() {
+    return `${this.base()}resource/folders`;
+  }
+
   private resourceReportFields() {
     return `${this.base()}resource/template-fields`;
   }
@@ -66,6 +70,10 @@ export class RestApiUrlService {
 
   public resourceReportGroup(groupId: string) {
     return `${this.resourceReportGroups()}/${encodeURIComponent(groupId)}`;
+  }
+
+  public resourceReportFolder(folderId: string) {
+    return `${this.resourceReportFolders()}/${encodeURIComponent(folderId)}`;
   }
 
   resourceReportField(fieldId: string) {

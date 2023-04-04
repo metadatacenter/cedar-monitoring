@@ -20,6 +20,8 @@ import {ResourceReportInstance} from "../shared/model/resource-report-instance.m
 import {ResourceReportInstanceService} from "./load-data/resource-report-instance.service";
 import {ResourceReportGroup} from "../shared/model/resource-report-group.model";
 import {ResourceReportGroupService} from "./load-data/resource-report-group.service";
+import {ResourceReportFolder} from "../shared/model/resource-report-folder.model";
+import {ResourceReportFolderService} from "./load-data/resource-report-folder.service";
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +42,7 @@ export class DataHandlerService {
     private resourceIdLookupService: ResourceIdLookupService,
     private resourceReportUserService: ResourceReportUserService,
     private resourceReportGroupService: ResourceReportGroupService,
+    private resourceReportFolderService: ResourceReportFolderService,
     private resourceReportFieldService: ResourceReportFieldService,
     private resourceReportElementService: ResourceReportElementService,
     private resourceReportTemplateService: ResourceReportTemplateService,
@@ -62,6 +65,7 @@ export class DataHandlerService {
     this.resourceIdLookupService.reset();
     this.resourceReportUserService.reset();
     this.resourceReportGroupService.reset();
+    this.resourceReportFolderService.reset();
     this.resourceReportFieldService.reset();
     this.resourceReportElementService.reset();
     this.resourceReportTemplateService.reset();
@@ -111,6 +115,9 @@ export class DataHandlerService {
         break;
       case DataHandlerDataId.RESOURCE_REPORT_GROUP:
         this.loadResourceReportGroup(dataStatus);
+        break;
+      case DataHandlerDataId.RESOURCE_REPORT_FOLDER:
+        this.loadResourceReportFolder(dataStatus);
         break;
       case DataHandlerDataId.RESOURCE_REPORT_FIELD:
         this.loadResourceReportField(dataStatus);
@@ -172,6 +179,17 @@ export class DataHandlerService {
     this.resourceReportGroupService.getResourceReportGroup(dataStatus.id)
       ?.subscribe(resourceReportGroup => {
           this.dataStore.setResourceReportGroup(dataStatus.id, Object.assign(new ResourceReportGroup(), resourceReportGroup));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadResourceReportFolder(dataStatus: DataHandlerDataStatus) {
+    this.resourceReportFolderService.getResourceReportFolder(dataStatus.id)
+      ?.subscribe(resourceReportFolder => {
+          this.dataStore.setResourceReportFolder(dataStatus.id, Object.assign(new ResourceReportFolder(), resourceReportFolder));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {
