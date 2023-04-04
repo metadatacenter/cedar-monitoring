@@ -56,6 +56,7 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
   }
 
+  public resourceIdFromPage: string = '';
   public resourceIdToLookUp: string = '';
   public resourceIdLookupMap: Map<string, ResourceIdLookup> = new Map<string, ResourceIdLookup>();
   public resourceIdLookupStatusMap: Map<string, number> = new Map<string, number>();
