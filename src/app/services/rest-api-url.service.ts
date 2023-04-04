@@ -32,6 +32,10 @@ export class RestApiUrlService {
     return `${this.base()}resource/users`;
   }
 
+  private resourceReportGroups() {
+    return `${this.base()}resource/groups`;
+  }
+
   private resourceReportFields() {
     return `${this.base()}resource/template-fields`;
   }
@@ -58,6 +62,10 @@ export class RestApiUrlService {
 
   public resourceReportUser(userId: string) {
     return `${this.resourceReportUsers()}/${encodeURIComponent(userId)}`;
+  }
+
+  public resourceReportGroup(groupId: string) {
+    return `${this.resourceReportGroups()}/${encodeURIComponent(groupId)}`;
   }
 
   resourceReportField(fieldId: string) {

@@ -57,6 +57,8 @@
     </table>
   </mat-card>
 
+
+  <!-- User -->
   <app-json-view
     *ngIf="reportDataUser"
     [inputObject]="reportDataUser.keycloak.user"
@@ -98,8 +100,41 @@
   ></app-json-view>
 
 
+  <!-- Group -->
+  <app-json-view
+    *ngIf="reportDataGroup"
+    [inputObject]="reportDataGroup.neo4j"
+    title="Neo4j - Group"
+    icon="device_hub"
+    subtitle="Data loaded from Neo4j using groupSession.findGroupById();"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataGroup"
+    [inputObject]="reportDataGroup.groupUsers"
+    title="Neo4j - Group Users"
+    icon="device_hub"
+    subtitle="Data loaded from Neo4j using groupSession.findGroupUsers();"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataGroup"
+    [inputObject]="reportDataGroup.opensearch"
+    title="Opensearch - Group Permission Keys"
+    icon="search"
+    subtitle="Keys used in materialized permission queries"
+  ></app-json-view>
+
+  <app-json-view
+    *ngIf="reportDataGroup"
+    [inputObject]="reportDataGroup.searchCedarIds"
+    title="Opensearch - CEDAR Search Ids"
+    icon="search"
+    subtitle="Data loaded from Opensearch using nodeSearchingService.findAllCedarIdsForGroup();"
+  ></app-json-view>
 
 
+  <!-- Template Field -->
   <app-json-view
     *ngIf="reportDataField"
     [inputObject]="reportDataField.neo4j.artifact"
@@ -141,8 +176,7 @@
   ></app-json-view>
 
 
-
-
+  <!-- Template Element -->
   <app-json-view
     *ngIf="reportDataElement"
     [inputObject]="reportDataElement.neo4j.artifact"
@@ -184,8 +218,7 @@
   ></app-json-view>
 
 
-
-
+  <!-- Template -->
   <app-json-view
     *ngIf="reportDataTemplate"
     [inputObject]="reportDataTemplate.neo4j.artifact"
@@ -227,8 +260,7 @@
   ></app-json-view>
 
 
-
-
+  <!-- Template instance -->
   <app-json-view
     *ngIf="reportDataInstance"
     [inputObject]="reportDataInstance.neo4j.artifact"

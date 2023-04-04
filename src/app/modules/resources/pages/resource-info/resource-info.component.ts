@@ -17,6 +17,7 @@ import {ResourceReportField} from "../../../../shared/model/resource-report-fiel
 import {ResourceReportElement} from "../../../../shared/model/resource-report-element.model";
 import {ResourceReportTemplate} from "../../../../shared/model/resource-report-template.model";
 import {ResourceReportInstance} from "../../../../shared/model/resource-report-instance.model";
+import {ResourceReportGroup} from "../../../../shared/model/resource-report-group.model";
 
 export interface ReportRow {
   position: number;
@@ -58,8 +59,9 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
   //public resourceIdFromPage: string = 'https://cedar.metadatacenter.orgx/fields/edit/https://repo.metadatacenter.orgx/template-fields/b428e05f-8ec6-4762-87fd-5f0946a3a126?folderId=https:%2F%2Frepo.metadatacenter.orgx%2Ffolders%2F37100c5c-3759-49ff-86b3-5798a80eba01';
   //public resourceIdFromPage: string = 'https://cedar.metadatacenter.orgx/elements/edit/https://repo.metadatacenter.orgx/template-elements/aebb0a25-ba99-4071-9561-890de2b5ad43?folderId=https:%2F%2Frepo.metadatacenter.orgx%2Ffolders%2F37100c5c-3759-49ff-86b3-5798a80eba01';
   //public resourceIdFromPage: string = 'https://cedar.metadatacenter.orgx/templates/edit/https://repo.metadatacenter.orgx/templates/6b9cef87-8ec2-4656-bb33-a8aa5ee83f93?folderId=https:%2F%2Frepo.metadatacenter.orgx%2Ffolders%2F37100c5c-3759-49ff-86b3-5798a80eba01';
-  public resourceIdFromPage: string = 'https://cedar.metadatacenter.orgx/instances/edit/https://repo.metadatacenter.orgx/template-instances/177e6860-7b6c-449b-a106-eb13ef0d2a62?folderId=https:%2F%2Frepo.metadatacenter.orgx%2Ffolders%2F37100c5c-3759-49ff-86b3-5798a80eba01';
-  //public resourceIdFromPage: string = '';
+  //public resourceIdFromPage: string = 'https://cedar.metadatacenter.orgx/instances/edit/https://repo.metadatacenter.orgx/template-instances/177e6860-7b6c-449b-a106-eb13ef0d2a62?folderId=https:%2F%2Frepo.metadatacenter.orgx%2Ffolders%2F37100c5c-3759-49ff-86b3-5798a80eba01';
+  //public resourceIdFromPage: string = 'https://repo.metadatacenter.orgx/groups/4396f60f-243d-428a-989b-55182aa1024b';
+  public resourceIdFromPage: string = '';
   public resourceIdToLookUp: string = '';
   public resourceIdLookupMap: Map<string, ResourceIdLookup> = new Map<string, ResourceIdLookup>();
   public resourceIdLookupStatusMap: Map<string, number> = new Map<string, number>();
@@ -74,6 +76,7 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
   responseResourceType: string = '';
 
   reportDataUser: ResourceReportUser | undefined;
+  reportDataGroup: ResourceReportGroup | undefined;
   reportDataField: ResourceReportField | undefined;
   reportDataElement: ResourceReportElement | undefined;
   reportDataTemplate: ResourceReportTemplate | undefined;
@@ -92,6 +95,7 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
     this.responseResourceType = '';
     this.updateIdReportTable();
     this.reportDataUser = undefined;
+    this.reportDataGroup = undefined;
     this.reportDataField = undefined;
     this.reportDataElement = undefined;
     this.reportDataTemplate = undefined;
@@ -156,10 +160,20 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
         .requireId(DataHandlerDataId.RESOURCE_REPORT_INSTANCE, this.responseResourceId)
         .load(() => this.resourceReportInstanceCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.resourceReportErrorCallback(error, dataStatus));
     }
+    if (this.responseResourceType == 'group') {
+      this.dataHandler
+        .requireId(DataHandlerDataId.RESOURCE_REPORT_GROUP, this.responseResourceId)
+        .load(() => this.resourceReportGroupCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.resourceReportErrorCallback(error, dataStatus));
+    }
   }
 
   private resourceReportUserCallback() {
     this.reportDataUser = this.dataStore.getResourceReportUser(this.responseResourceId);
+  }
+
+  private resourceReportGroupCallback() {
+    this.reportDataGroup = this.dataStore.getResourceReportGroup(this.responseResourceId);
+    console.log(this.reportDataGroup);
   }
 
   private resourceReportFieldCallback() {

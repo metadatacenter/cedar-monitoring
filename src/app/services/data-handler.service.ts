@@ -18,6 +18,8 @@ import {ResourceReportTemplate} from "../shared/model/resource-report-template.m
 import {ResourceReportTemplateService} from "./load-data/resource-report-template.service";
 import {ResourceReportInstance} from "../shared/model/resource-report-instance.model";
 import {ResourceReportInstanceService} from "./load-data/resource-report-instance.service";
+import {ResourceReportGroup} from "../shared/model/resource-report-group.model";
+import {ResourceReportGroupService} from "./load-data/resource-report-group.service";
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +39,7 @@ export class DataHandlerService {
     private healthChecksService: HealthChecksService,
     private resourceIdLookupService: ResourceIdLookupService,
     private resourceReportUserService: ResourceReportUserService,
+    private resourceReportGroupService: ResourceReportGroupService,
     private resourceReportFieldService: ResourceReportFieldService,
     private resourceReportElementService: ResourceReportElementService,
     private resourceReportTemplateService: ResourceReportTemplateService,
@@ -58,6 +61,7 @@ export class DataHandlerService {
     this.healthChecksService.reset();
     this.resourceIdLookupService.reset();
     this.resourceReportUserService.reset();
+    this.resourceReportGroupService.reset();
     this.resourceReportFieldService.reset();
     this.resourceReportElementService.reset();
     this.resourceReportTemplateService.reset();
@@ -104,6 +108,9 @@ export class DataHandlerService {
         break;
       case DataHandlerDataId.RESOURCE_REPORT_USER:
         this.loadResourceReportUser(dataStatus);
+        break;
+      case DataHandlerDataId.RESOURCE_REPORT_GROUP:
+        this.loadResourceReportGroup(dataStatus);
         break;
       case DataHandlerDataId.RESOURCE_REPORT_FIELD:
         this.loadResourceReportField(dataStatus);
@@ -154,6 +161,17 @@ export class DataHandlerService {
     this.resourceReportUserService.getResourceReportUser(dataStatus.id)
       ?.subscribe(resourceReportUser => {
           this.dataStore.setResourceReportUser(dataStatus.id, Object.assign(new ResourceReportUser(), resourceReportUser));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadResourceReportGroup(dataStatus: DataHandlerDataStatus) {
+    this.resourceReportGroupService.getResourceReportGroup(dataStatus.id)
+      ?.subscribe(resourceReportGroup => {
+          this.dataStore.setResourceReportGroup(dataStatus.id, Object.assign(new ResourceReportGroup(), resourceReportGroup));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {

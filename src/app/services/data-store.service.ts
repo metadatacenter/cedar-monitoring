@@ -7,6 +7,7 @@ import {ResourceReportField} from "../shared/model/resource-report-field.model";
 import {ResourceReportElement} from "../shared/model/resource-report-element.model";
 import {ResourceReportTemplate} from "../shared/model/resource-report-template.model";
 import {ResourceReportInstance} from "../shared/model/resource-report-instance.model";
+import {ResourceReportGroup} from "../shared/model/resource-report-group.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class DataStoreService {
   private healthCheckMap: Map<string, HealthCheck>;
   private resourceIdLookupMap: Map<string, ResourceIdLookup>;
   private resourceReportUserMap: Map<string, ResourceReportUser>;
+  private resourceReportGroupMap: Map<string, ResourceReportGroup>;
   private resourceReportFieldMap: Map<string, ResourceReportField>;
   private resourceReportElementMap: Map<string, ResourceReportElement>;
   private resourceReportTemplateMap: Map<string, ResourceReportTemplate>;
@@ -27,6 +29,7 @@ export class DataStoreService {
     this.healthCheckMap = new Map<string, HealthCheck>();
     this.resourceIdLookupMap = new Map<string, ResourceIdLookup>();
     this.resourceReportUserMap = new Map<string, ResourceReportUser>();
+    this.resourceReportGroupMap = new Map<string, ResourceReportGroup>();
     this.resourceReportFieldMap = new Map<string, ResourceReportField>();
     this.resourceReportElementMap = new Map<string, ResourceReportElement>();
     this.resourceReportTemplateMap = new Map<string, ResourceReportTemplate>();
@@ -55,6 +58,14 @@ export class DataStoreService {
 
   getResourceReportUser(userId: string): ResourceReportUser | undefined {
     return this.resourceReportUserMap.get(userId);
+  }
+
+  setResourceReportGroup(groupId: string, report: ResourceReportGroup) {
+    this.resourceReportGroupMap.set(groupId, report);
+  }
+
+  getResourceReportGroup(groupId: string): ResourceReportGroup | undefined {
+    return this.resourceReportGroupMap.get(groupId);
   }
 
   setResourceReportField(fieldId: string, report: ResourceReportField) {
