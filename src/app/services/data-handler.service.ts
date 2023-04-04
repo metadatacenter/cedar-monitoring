@@ -249,7 +249,7 @@ export class DataHandlerService {
   private checkCompletion() {
     let allLoaded = true;
     this.dataIdMap.forEach((dataStatus: DataHandlerDataStatus) => {
-      if (dataStatus.loaded === false && dataStatus.canceled === false && dataStatus.errored === false) {
+      if (!dataStatus.loaded && !dataStatus.canceled && !dataStatus.errored) {
         allLoaded = false;
       }
     });

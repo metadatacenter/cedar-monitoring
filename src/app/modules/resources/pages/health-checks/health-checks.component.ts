@@ -48,9 +48,14 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
 
   override ngOnInit() {
     super.ngOnInit();
+    this.nrLoaded = 0;
+    this.nrErrored = 0;
+    this.healthCheckMap.clear();
+    this.healthCheckStatusMap.clear();
     this.serverNames = this.microservicesService.getServerNames();
     this.nrTotal = this.serverNames.length;
     this.initDataHandler();
+    this.dataHandler.reset();
     for (let serverName of this.serverNames) {
       this.dataHandler
         .requireId(DataHandlerDataId.HEALTH_CHECK, serverName);
@@ -67,6 +72,9 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
         this.nrLoaded++;
       }
     }
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 5000);
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
