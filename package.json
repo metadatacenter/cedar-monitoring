@@ -1,6 +1,9 @@
 {
   "name": "cedar-monitoring",
   "version": "2.6.24-SNAPSHOT",
+  "publishConfig": {
+    "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,7 +11,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.4",
     "@angular/cdk": "^15.2.4",
