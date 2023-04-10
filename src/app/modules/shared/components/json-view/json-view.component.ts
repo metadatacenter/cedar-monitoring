@@ -31,10 +31,10 @@ export class JsonViewComponent extends CedarBase implements OnInit {
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
-    private configService: AppConfigService,
-    private uiService: UiService
+    uiService: UiService,
+    private configService: AppConfigService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
+    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   ngOnInit() {

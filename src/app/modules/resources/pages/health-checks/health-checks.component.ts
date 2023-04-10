@@ -38,12 +38,12 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
+    uiService: UiService,
     private http: HttpClient,
-    private uiService: UiService,
     private configService: AppConfigService,
     private microservicesService: MicroservicesService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
+    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   override ngOnInit() {
@@ -72,7 +72,7 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
         this.nrLoaded++;
       }
     }
-    setTimeout(() => {
+    this.uiService.healthCheckTimeout = setTimeout(() => {
       this.ngOnInit();
     }, 5000);
   }

@@ -7,6 +7,7 @@ import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {KeycloakService} from "keycloak-angular";
 import {Component} from "@angular/core";
+import {UiService} from "../../../../services/ui.service";
 
 @Component({
   template: ''
@@ -23,15 +24,17 @@ export abstract class CedarPageComponent extends CedarBase {
     route: ActivatedRoute,
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
-    keycloak: KeycloakService
+    keycloak: KeycloakService,
+    uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
+    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   ngOnInit() {
     this.keycloak.loadUserProfile().then(data => {
       this.keycloakUserProfile = data;
     }).catch(error => console.log(error));
+    clearTimeout(this.uiService.healthCheckTimeout);
   }
 
   protected initDataHandler(): DataHandlerService {

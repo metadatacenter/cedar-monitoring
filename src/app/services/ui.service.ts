@@ -13,6 +13,8 @@ export class UiService {
   public hasTitle: BehaviorSubject<string> = new BehaviorSubject('');
   public hasDescription: BehaviorSubject<string> = new BehaviorSubject('');
 
+  public healthCheckTimeout:any;
+
   constructor(private translateService: TranslateService) {
     this.title = '';
     this.description = '';

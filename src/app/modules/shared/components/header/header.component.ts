@@ -33,10 +33,10 @@ export class HeaderComponent extends CedarBase implements OnInit {
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
+    uiService: UiService,
     private configService: AppConfigService,
-    private uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak);
+    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   openCEDARPage() {

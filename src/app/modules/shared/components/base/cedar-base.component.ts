@@ -7,6 +7,7 @@ import {LocalSettingsService} from '../../../../services/local-settings.service'
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {KeycloakService} from "keycloak-angular";
+import {UiService} from "../../../../services/ui.service";
 
 @Component({
   template: ''
@@ -22,6 +23,7 @@ export abstract class CedarBase implements OnInit {
   protected dataStore: DataStoreService;
   protected dataHandler: DataHandlerService;
   protected keycloak : KeycloakService;
+  protected uiService: UiService;
 
   protected constructor(
     localSettings: LocalSettingsService,
@@ -31,7 +33,8 @@ export abstract class CedarBase implements OnInit {
     route: ActivatedRoute,
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
-    keycloak: KeycloakService
+    keycloak: KeycloakService,
+    uiService: UiService
   ) {
     this.localSettings = localSettings;
     this.translateService = translateService;
@@ -41,6 +44,7 @@ export abstract class CedarBase implements OnInit {
     this.dataStore = dataStore;
     this.dataHandler = dataHandler;
     this.keycloak = keycloak;
+    this.uiService = uiService;
     this.datePipe = new DatePipe('en-US');
   }
 
