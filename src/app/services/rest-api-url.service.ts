@@ -91,4 +91,8 @@ export class RestApiUrlService {
   resourceReportInstance(instanceId: string) {
     return `${this.resourceReportInstances()}/${encodeURIComponent(instanceId)}`;
   }
+
+  redisQueueCounts() {
+    return `${this.base()}redis/queue-counts`;
+  }
 }

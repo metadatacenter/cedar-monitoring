@@ -13,7 +13,8 @@ export class UiService {
   public hasTitle: BehaviorSubject<string> = new BehaviorSubject('');
   public hasDescription: BehaviorSubject<string> = new BehaviorSubject('');
 
-  public healthCheckTimeout:any;
+  public healthCheckTimeout: number = -1;
+  public redisQueueCountTimeout: number = -1;
 
   constructor(private translateService: TranslateService) {
     this.title = '';

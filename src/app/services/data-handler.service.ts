@@ -22,6 +22,8 @@ import {ResourceReportGroup} from "../shared/model/resource-report-group.model";
 import {ResourceReportGroupService} from "./load-data/resource-report-group.service";
 import {ResourceReportFolder} from "../shared/model/resource-report-folder.model";
 import {ResourceReportFolderService} from "./load-data/resource-report-folder.service";
+import {RedisQueueCountsService} from "./load-data/redis-queue-counts.service";
+import {RedisQueueCounts} from "../shared/model/redis-queue-counts.model";
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +48,8 @@ export class DataHandlerService {
     private resourceReportFieldService: ResourceReportFieldService,
     private resourceReportElementService: ResourceReportElementService,
     private resourceReportTemplateService: ResourceReportTemplateService,
-    private resourceReportInstanceService: ResourceReportInstanceService
+    private resourceReportInstanceService: ResourceReportInstanceService,
+    private redisQueueCountsService: RedisQueueCountsService
   ) {
     this.dataIdMap = new Map<string, DataHandlerDataStatus>();
     this.dataAvailable = false;
@@ -70,6 +73,7 @@ export class DataHandlerService {
     this.resourceReportElementService.reset();
     this.resourceReportTemplateService.reset();
     this.resourceReportInstanceService.reset();
+    this.redisQueueCountsService.reset();
     return this;
   }
 
@@ -130,6 +134,9 @@ export class DataHandlerService {
         break;
       case DataHandlerDataId.RESOURCE_REPORT_INSTANCE:
         this.loadResourceReportInstance(dataStatus);
+        break;
+      case DataHandlerDataId.REDIS_QUEUE_COUNTS:
+        this.loadRedisQueueCounts(dataStatus);
         break;
     }
   }
@@ -234,6 +241,17 @@ export class DataHandlerService {
     this.resourceReportInstanceService.getResourceReportInstance(dataStatus.id)
       ?.subscribe(resourceReportInstance => {
           this.dataStore.setResourceReportInstance(dataStatus.id, Object.assign(new ResourceReportInstance(), resourceReportInstance));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadRedisQueueCounts(dataStatus: DataHandlerDataStatus) {
+    this.redisQueueCountsService.getRedisQueueCounts()
+      ?.subscribe(redisQueueCounts => {
+          this.dataStore.setRedisQueueCounts(Object.assign(new RedisQueueCounts(), redisQueueCounts));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {

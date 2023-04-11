@@ -4,6 +4,7 @@ import {HealthChecksComponent} from "./pages/health-checks/health-checks.compone
 import {AuthGuard} from "../../guard/auth.guard";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {ResourceInfoComponent} from "./pages/resource-info/resource-info.component";
+import {QueueCountsComponent} from "./pages/queue-counts/queue-counts.component";
 
 export const routes: Routes = [
   {
@@ -19,6 +20,11 @@ export const routes: Routes = [
   {
     path: 'resource-info',
     component: ResourceInfoComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'queue-counts',
+    component: QueueCountsComponent,
     canActivate: [AuthGuard]
   }
 ];

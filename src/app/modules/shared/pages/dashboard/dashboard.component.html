@@ -39,5 +39,17 @@
       </mat-card-header>
     </mat-card>
 
+    <mat-card class="dash-card" [routerLink]="'/queue-counts'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">filter_list</mat-icon>
+        </div>
+        <mat-card-title>
+          Queue Counts
+        </mat-card-title>
+        <mat-card-subtitle>Redis is used as message queue. Queue counts are loaded directly from Redis</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
   </mat-card-content>
 </mat-card>
