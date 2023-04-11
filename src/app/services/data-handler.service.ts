@@ -24,6 +24,8 @@ import {ResourceReportFolder} from "../shared/model/resource-report-folder.model
 import {ResourceReportFolderService} from "./load-data/resource-report-folder.service";
 import {RedisQueueCountsService} from "./load-data/redis-queue-counts.service";
 import {RedisQueueCounts} from "../shared/model/redis-queue-counts.model";
+import {ResourceCounts} from "../shared/model/resource-counts.model";
+import {ResourceCountsService} from "./load-data/resource-counts.service";
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +51,8 @@ export class DataHandlerService {
     private resourceReportElementService: ResourceReportElementService,
     private resourceReportTemplateService: ResourceReportTemplateService,
     private resourceReportInstanceService: ResourceReportInstanceService,
-    private redisQueueCountsService: RedisQueueCountsService
+    private redisQueueCountsService: RedisQueueCountsService,
+    private resourceCountsService: ResourceCountsService
   ) {
     this.dataIdMap = new Map<string, DataHandlerDataStatus>();
     this.dataAvailable = false;
@@ -74,6 +77,7 @@ export class DataHandlerService {
     this.resourceReportTemplateService.reset();
     this.resourceReportInstanceService.reset();
     this.redisQueueCountsService.reset();
+    this.resourceCountsService.reset();
     return this;
   }
 
@@ -137,6 +141,9 @@ export class DataHandlerService {
         break;
       case DataHandlerDataId.REDIS_QUEUE_COUNTS:
         this.loadRedisQueueCounts(dataStatus);
+        break;
+      case DataHandlerDataId.RESOURCE_COUNTS:
+        this.loadResourceCounts(dataStatus);
         break;
     }
   }
@@ -252,6 +259,17 @@ export class DataHandlerService {
     this.redisQueueCountsService.getRedisQueueCounts()
       ?.subscribe(redisQueueCounts => {
           this.dataStore.setRedisQueueCounts(Object.assign(new RedisQueueCounts(), redisQueueCounts));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadResourceCounts(dataStatus: DataHandlerDataStatus) {
+    this.resourceCountsService.getResourceCounts()
+      ?.subscribe(resourceCounts => {
+          this.dataStore.setResourceCounts(Object.assign(new ResourceCounts(), resourceCounts));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {

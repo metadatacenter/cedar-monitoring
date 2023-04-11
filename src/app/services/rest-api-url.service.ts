@@ -95,4 +95,8 @@ export class RestApiUrlService {
   redisQueueCounts() {
     return `${this.base()}redis/queue-counts`;
   }
+
+  resourceCounts() {
+    return `${this.base()}resources/counts`;
+  }
 }

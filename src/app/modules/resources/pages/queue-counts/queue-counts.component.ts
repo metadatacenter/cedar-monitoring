@@ -16,14 +16,14 @@ import {RedisQueueCounts} from "../../../../shared/model/redis-queue-counts.mode
 export interface ReportRow {
   position: number;
   name: string;
-  value: string;
+  value: number;
 }
 
-const ID_PARSING_REPORT: ReportRow[] = [
-  {position: 1, name: 'App Log', value: ''},
-  {position: 2, name: 'Search Permission', value: ''},
-  {position: 3, name: 'NCBI Submission', value: ''},
-  {position: 4, name: 'Value Recommender', value: ''},
+const REPORT: ReportRow[] = [
+  {position: 1, name: 'App Log', value: 0},
+  {position: 2, name: 'Search Permission', value: 0},
+  {position: 3, name: 'NCBI Submission', value: 0},
+  {position: 4, name: 'Value Recommender', value: 0},
 ];
 
 @Component({
@@ -37,7 +37,7 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
   private redisQueueCountsStatus: number = 0;
 
   displayedColumns: string[] = ['position', 'name', 'value'];
-  dataSource = ID_PARSING_REPORT;
+  dataSource = REPORT;
 
   constructor(
     localSettings: LocalSettingsService,
@@ -75,10 +75,10 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
 
   private updateIdReportTable() {
     if (this.redisQueueCounts) {
-      ID_PARSING_REPORT[0].value = '' + this.redisQueueCounts.appLog;
-      ID_PARSING_REPORT[1].value = '' + this.redisQueueCounts.searchPermission;
-      ID_PARSING_REPORT[2].value = '' + this.redisQueueCounts.ncbiSubmission;
-      ID_PARSING_REPORT[3].value = '' + this.redisQueueCounts.valuerecommender;
+      REPORT[0].value = this.redisQueueCounts.appLog;
+      REPORT[1].value = this.redisQueueCounts.searchPermission;
+      REPORT[2].value = this.redisQueueCounts.ncbiSubmission;
+      REPORT[3].value = this.redisQueueCounts.valuerecommender;
     }
     this.uiService.redisQueueCountTimeout = setTimeout(() => {
       this.ngOnInit();

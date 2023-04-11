@@ -10,6 +10,7 @@ import {ResourceReportInstance} from "../shared/model/resource-report-instance.m
 import {ResourceReportGroup} from "../shared/model/resource-report-group.model";
 import {ResourceReportFolder} from "../shared/model/resource-report-folder.model";
 import {RedisQueueCounts} from "../shared/model/redis-queue-counts.model";
+import {ResourceCounts} from "../shared/model/resource-counts.model";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class DataStoreService {
   private resourceReportTemplateMap: Map<string, ResourceReportTemplate>;
   private resourceReportInstanceMap: Map<string, ResourceReportInstance>;
   private redisQueueCounts: RedisQueueCounts;
+  private resourceCounts: ResourceCounts;
 
   constructor(
     private localSettings: LocalSettingsService
@@ -40,6 +42,7 @@ export class DataStoreService {
     this.resourceReportTemplateMap = new Map<string, ResourceReportTemplate>();
     this.resourceReportInstanceMap = new Map<string, ResourceReportInstance>();
     this.redisQueueCounts = new RedisQueueCounts();
+    this.resourceCounts = new ResourceCounts();
   }
 
   setHealthCheck(server: string, healthCheck: HealthCheck) {
@@ -120,6 +123,14 @@ export class DataStoreService {
 
   getRedisQueueCounts(): RedisQueueCounts | undefined {
     return this.redisQueueCounts;
+  }
+
+  setResourceCounts(counts: ResourceCounts) {
+    this.resourceCounts = counts;
+  }
+
+  getResourceCounts(): ResourceCounts | undefined {
+    return this.resourceCounts;
   }
 
 }
