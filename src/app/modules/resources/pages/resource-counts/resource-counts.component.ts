@@ -102,6 +102,8 @@ export class ResourceCountsComponent extends CedarPageComponent implements OnIni
       REPORT[5].opensearch = '' + this.resourceCounts.opensearch.instance;
       REPORT[6].opensearch = '' + this.resourceCounts.opensearch.folder;
 
+      REPORT[0].keycloak = '' + this.resourceCounts.keycloak.user;
+
     }
   }
 }
