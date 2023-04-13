@@ -1,0 +1,12 @@
+{
+  "App": {
+    "Title": "CEDAR",
+    "NavTitle": "CEDAR Monitoring",
+    "WindowTitle": "CEDAR Monitoring"
+  },
+  "Generic": {
+    "Loading": "Adatbetöltés..."
+  },
+  "error": {
+  }
+}

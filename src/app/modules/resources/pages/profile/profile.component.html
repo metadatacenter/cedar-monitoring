@@ -1,0 +1,57 @@
+<app-header title="Profile"></app-header>
+
+<mat-card class="wrapper-card">
+
+  <mat-card class="profile-card" *ngIf="keycloakUserProfile">
+    <mat-card-header>
+      <mat-card-title>{{keycloakUserProfile.username}}</mat-card-title>
+      <mat-card-subtitle>
+        Profile data from Keycloak using
+        <code>this.keycloak.loadUserProfile()</code>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content style="margin-top:16px">
+
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Username:</mat-panel-title>
+            <mat-panel-description>{{keycloakUserProfile.username}}</mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>First name:</mat-panel-title>
+            <mat-panel-description>{{keycloakUserProfile.firstName}}</mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>Last name:</mat-panel-title>
+            <mat-panel-description>{{keycloakUserProfile.lastName}}</mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>Email:</mat-panel-title>
+            <mat-panel-description>{{keycloakUserProfile.email}}</mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>Email verified:</mat-panel-title>
+            <mat-panel-description>{{keycloakUserProfile.emailVerified}}</mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>Attributes:</mat-panel-title>
+            <mat-panel-description>{{keycloakUserProfile.attributes | json}}</mat-panel-description>
+          </mat-expansion-panel-header>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button routerLink="/">GO BACK</button>
+    </mat-card-actions>
+  </mat-card>
+
+</mat-card>

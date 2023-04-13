@@ -1,0 +1,11 @@
+.expansion-panel {
+  min-width:400px;
+  max-width: 100%;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 8px;
+}
+
+.expansion-panel.mat-expanded {
+  margin-top: 24px;
+}

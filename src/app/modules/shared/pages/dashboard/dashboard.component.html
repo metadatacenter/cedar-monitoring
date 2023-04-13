@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<mat-card class="wrapper-card">
+  <mat-card-content class="flex-container">
+
+    <mat-card class="dash-card" [routerLink]="'/health-checks'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">health_and_safety</mat-icon>
+        </div>
+        <mat-card-title>
+          Health Checks
+        </mat-card-title>
+        <mat-card-subtitle>Health checks of all microservices</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/profile'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">account_circle</mat-icon>
+        </div>
+        <mat-card-title>
+          Profile
+        </mat-card-title>
+        <mat-card-subtitle>View own profile data. Lightweight data loaded from Keycloak</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/resource-info'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">radar</mat-icon>
+        </div>
+        <mat-card-title>
+          Resource Info
+        </mat-card-title>
+        <mat-card-subtitle>Detect resource type, then retrieve comprehensive info</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/queue-counts'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">filter_list</mat-icon>
+        </div>
+        <mat-card-title>
+          Queue Counts
+        </mat-card-title>
+        <mat-card-subtitle>Redis is used as message queue. Queue counts are loaded directly from Redis</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/resource-counts'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">dynamic_form</mat-icon>
+        </div>
+        <mat-card-title>
+          Resource Counts
+        </mat-card-title>
+        <mat-card-subtitle>Resource counts read from all the backends</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+  </mat-card-content>
+</mat-card>

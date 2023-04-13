@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.wrapper-card {
+  background-color: mat.get-color-from-palette(mat.$indigo-palette, 50) !important;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.flex-container {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+
+  .dash-card {
+    cursor: pointer;
+    margin: 5px;
+    width: 300px;
+    height: 120px;
+  }
+}
