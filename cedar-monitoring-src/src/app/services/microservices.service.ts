@@ -8,6 +8,7 @@ export class MicroservicesService {
   // keys
   private static SERVER_NAMES: string[] = [
     'artifact',
+    'bridge',
     'group',
     'impex',
     'messaging',
