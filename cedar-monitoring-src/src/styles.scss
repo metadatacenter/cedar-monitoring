@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 
+@import 'styles/roboto.scss';
+@import 'styles/material-icons.scss';
+
 html, body {
   height: 100%;
 }
