@@ -33,7 +33,11 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "base64-js",
+              "js-sha256"
+            ]
           },
           "configurations": {
             "production": {
