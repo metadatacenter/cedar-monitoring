@@ -27,7 +27,9 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets/data",
+              "src/assets/i18n",
+              "src/assets/silent-check-sso.html"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
