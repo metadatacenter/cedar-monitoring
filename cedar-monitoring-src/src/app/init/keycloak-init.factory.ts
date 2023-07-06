@@ -9,7 +9,7 @@ export function initializeKeycloak(
       config: {
         url: environment.keycloakUrl,
         realm: 'CEDAR',
-        clientId: 'cedar-angular-app',
+        clientId: 'cedar-frontend-monitoring',
       },
       initOptions: {
         onLoad: 'check-sso',
