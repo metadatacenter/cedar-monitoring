@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AppConfigService} from './app-config.service';
-import {environment} from "../../environments/environment";
+import {globalAppConfig} from "../../environments/global-app-config";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class RestApiUrlService {
 
   constructor(configService: AppConfigService) {
     this.configService = configService;
-    this.API_URL = environment.apiUrl;
+    this.API_URL = globalAppConfig.apiUrl;
   }
 
   private base() {

@@ -4,10 +4,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: '',
-  cedarUrl: '',
-  appUrl: '',
-  keycloakUrl: '',
   defaultLanguage: '',
   fallbackLanguage: ''
 };

@@ -1,13 +1,28 @@
 import {KeycloakService} from "keycloak-angular";
-import {environment} from "../../environments/environment";
+import {globalAppConfig} from "../../environments/global-app-config";
+
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function waitForGlobalConfig() {
+  while (true) {
+    if (!globalAppConfig.loaded) {
+      await delay(100);
+    } else {
+      break;
+    }
+  }
+}
 
 export function initializeKeycloak(
   keycloak: KeycloakService
 ) {
-  return () =>
-    keycloak.init({
+  return async () => {
+    await waitForGlobalConfig();
+    return keycloak.init({
       config: {
-        url: environment.keycloakUrl,
+        url: globalAppConfig.keycloakUrl,
         realm: 'CEDAR',
         clientId: 'cedar-frontend-monitoring',
       },
@@ -16,4 +31,5 @@ export function initializeKeycloak(
         silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html'
       }
     });
+  }
 }
