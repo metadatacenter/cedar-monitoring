@@ -1,6 +1,6 @@
 {
   "name": "cedar-monitoring",
-  "version": "2.6.35",
+  "version": "2.6.36",
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
   },
@@ -32,6 +32,7 @@
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "15.0.0",
     "@angular-devkit/build-angular": "^15.2.4",
     "@angular/cli": "~15.2.4",
     "@angular/compiler-cli": "^15.2.4",
