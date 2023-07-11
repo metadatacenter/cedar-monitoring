@@ -98,7 +98,7 @@
               "browserTarget": "cedar-monitoring:build:production"
             },
             "development": {
-              "browserTarget": "cedar-monitoring:build:development",
+              "browserTarget": "cedar-monitoring:build:development"
             }
           },
           "defaultConfiguration": "development"
