@@ -61,35 +61,35 @@ export class RestApiUrlService {
   }
 
   public resourceIdLookup(resourceId: string) {
-    return `${this.resourceIdLookups()}/${encodeURIComponent(resourceId)}`;
+    return `${this.resourceIdLookups()}?input=${encodeURIComponent(resourceId)}`;
   }
 
   public resourceReportUser(userId: string) {
-    return `${this.resourceReportUsers()}/${encodeURIComponent(userId)}`;
+    return `${this.resourceReportUsers()}?id=${encodeURIComponent(userId)}`;
   }
 
   public resourceReportGroup(groupId: string) {
-    return `${this.resourceReportGroups()}/${encodeURIComponent(groupId)}`;
+    return `${this.resourceReportGroups()}?id=${encodeURIComponent(groupId)}`;
   }
 
   public resourceReportFolder(folderId: string) {
-    return `${this.resourceReportFolders()}/${encodeURIComponent(folderId)}`;
+    return `${this.resourceReportFolders()}?id=${encodeURIComponent(folderId)}`;
   }
 
   resourceReportField(fieldId: string) {
-    return `${this.resourceReportFields()}/${encodeURIComponent(fieldId)}`;
+    return `${this.resourceReportFields()}?id=${encodeURIComponent(fieldId)}`;
   }
 
   resourceReportElement(elementId: string) {
-    return `${this.resourceReportElements()}/${encodeURIComponent(elementId)}`;
+    return `${this.resourceReportElements()}?id=${encodeURIComponent(elementId)}`;
   }
 
   resourceReportTemplate(templateId: string) {
-    return `${this.resourceReportTemplates()}/${encodeURIComponent(templateId)}`;
+    return `${this.resourceReportTemplates()}?id=${encodeURIComponent(templateId)}`;
   }
 
   resourceReportInstance(instanceId: string) {
-    return `${this.resourceReportInstances()}/${encodeURIComponent(instanceId)}`;
+    return `${this.resourceReportInstances()}?id=${encodeURIComponent(instanceId)}`;
   }
 
   redisQueueCounts() {
