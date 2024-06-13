@@ -7,6 +7,7 @@ import {ProfileComponent} from "./pages/profile/profile.component";
 import {ResourceInfoComponent} from "./pages/resource-info/resource-info.component";
 import {QueueCountsComponent} from "./pages/queue-counts/queue-counts.component";
 import {ResourceCountsComponent} from "./pages/resource-counts/resource-counts.component";
+import {ResourceCountsOpensearchComponent} from "./pages/resource-counts-opensearch/resource-counts-opensearch.component";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ResourceCountsComponent} from "./pages/resource-counts/resource-counts.c
     ProfileComponent,
     ResourceInfoComponent,
     QueueCountsComponent,
-    ResourceCountsComponent
+    ResourceCountsComponent,
+    ResourceCountsOpensearchComponent
   ],
   imports: [
     SharedModule,

@@ -99,4 +99,8 @@ export class RestApiUrlService {
   resourceCounts() {
     return `${this.base()}resources/counts`;
   }
+
+  resourceCountsOpensearch() {
+    return `${this.base()}resources/counts/opensearch`;
+  }
 }
