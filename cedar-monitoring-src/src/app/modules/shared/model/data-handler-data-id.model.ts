@@ -11,4 +11,5 @@ export enum DataHandlerDataId {
   RESOURCE_REPORT_INSTANCE = 'resource-report-instance',
   REDIS_QUEUE_COUNTS = 'redis-queue-counts',
   RESOURCE_COUNTS = 'resource-counts',
+  RESOURCE_COUNTS_OPENSEARCH = 'resource-counts-opensearch',
 }

@@ -1,0 +1,48 @@
+<app-header title="Resource Counts"></app-header>
+
+<mat-card class="wrapper-card">
+
+  <mat-card class="counts-card" *ngIf="resourceCounts">
+    <mat-card-header>
+      <mat-card-title>Opensearch Document Counts</mat-card-title>
+      <mat-card-subtitle>
+        Loaded from two indices
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content style="margin-top:16px">
+
+      <table mat-table [dataSource]="dataSource">
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let element">{{element.position}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Resource Type</th>
+          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="searchIndex">
+          <th mat-header-cell *matHeaderCellDef>Search Index</th>
+          <td mat-cell *matCellDef="let element">{{element.searchIndex}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="recommenderIndex">
+          <th mat-header-cell *matHeaderCellDef>Recommender Index</th>
+          <td mat-cell *matCellDef="let element">{{element.recommenderIndex}}</td>
+        </ng-container>
+
+      </table>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button routerLink="/">GO BACK</button>
+    </mat-card-actions>
+  </mat-card>
+
+</mat-card>

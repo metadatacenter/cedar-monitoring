@@ -7,6 +7,7 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {TranslateService} from '@ngx-translate/core';
 import {GenericSingleLoaderService} from "./generic-single-loader";
 import {ResourceCounts} from "../../shared/model/resource-counts.model";
+import {ResourceCountsOpensearchIndex} from "../../shared/model/resource-counts-opensearch-index.model";
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class ResourceCountsService extends GenericSingleLoaderService<ResourceCo
 
   getResourceCounts(): Observable<ResourceCounts | null> | null {
     return this.getData(this.restApiUrl.resourceCounts());
+  }
+
+  getResourceCountsOpensearch(): Observable<ResourceCountsOpensearchIndex | null> | null {
+    return this.getData(this.restApiUrl.resourceCountsOpensearch());
   }
 }

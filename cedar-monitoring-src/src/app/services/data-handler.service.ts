@@ -26,6 +26,7 @@ import {RedisQueueCountsService} from "./load-data/redis-queue-counts.service";
 import {RedisQueueCounts} from "../shared/model/redis-queue-counts.model";
 import {ResourceCounts} from "../shared/model/resource-counts.model";
 import {ResourceCountsService} from "./load-data/resource-counts.service";
+import {ResourceCountsOpensearchIndex} from "../shared/model/resource-counts-opensearch-index.model";
 
 @Injectable({
   providedIn: 'root'
@@ -144,6 +145,9 @@ export class DataHandlerService {
         break;
       case DataHandlerDataId.RESOURCE_COUNTS:
         this.loadResourceCounts(dataStatus);
+        break;
+      case DataHandlerDataId.RESOURCE_COUNTS_OPENSEARCH:
+        this.loadResourceCountsOpensearch(dataStatus);
         break;
     }
   }
@@ -270,6 +274,17 @@ export class DataHandlerService {
     this.resourceCountsService.getResourceCounts()
       ?.subscribe(resourceCounts => {
           this.dataStore.setResourceCounts(Object.assign(new ResourceCounts(), resourceCounts));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadResourceCountsOpensearch(dataStatus: DataHandlerDataStatus) {
+    this.resourceCountsService.getResourceCountsOpensearch()
+      ?.subscribe(resourceCounts => {
+          this.dataStore.setResourceCountsOpensearch(Object.assign(new ResourceCountsOpensearchIndex(), resourceCounts));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {
