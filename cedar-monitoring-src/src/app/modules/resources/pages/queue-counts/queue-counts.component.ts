@@ -24,6 +24,7 @@ const REPORT: ReportRow[] = [
   {position: 2, name: 'Search Permission', value: 0},
   {position: 3, name: 'NCBI Submission', value: 0},
   {position: 4, name: 'Value Recommender', value: 0},
+  {position: 5, name: 'Clone Instances', value: 0},
 ];
 
 @Component({
@@ -79,6 +80,7 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
       REPORT[1].value = this.redisQueueCounts.searchPermission;
       REPORT[2].value = this.redisQueueCounts.ncbiSubmission;
       REPORT[3].value = this.redisQueueCounts.valuerecommender;
+      REPORT[4].value = this.redisQueueCounts.cloneInstances;
     }
     this.uiService.redisQueueCountTimeout = setTimeout(() => {
       this.ngOnInit();

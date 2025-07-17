@@ -5,4 +5,5 @@ export class RedisQueueCounts extends CedarMonitoring {
   ncbiSubmission: number= -1;
   appLog: number = -1;
   searchPermission: number = -1;
+  cloneInstances: number = -1;
 }
