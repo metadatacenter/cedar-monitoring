@@ -52,4 +52,9 @@ export class LogQueryService {
   trace(globalRequestId: string): Observable<TraceResult> {
     return this.http.get<TraceResult>(this.restApiUrl.logsTrace(globalRequestId));
   }
+
+  /** Same QueryResult shape as query(), for boards that declare their own endpoint. */
+  boardEndpoint(endpoint: string, from: string, to: string, limit: number): Observable<QueryResult> {
+    return this.http.get<QueryResult>(this.restApiUrl.logsBoardEndpoint(endpoint, from, to, limit));
+  }
 }

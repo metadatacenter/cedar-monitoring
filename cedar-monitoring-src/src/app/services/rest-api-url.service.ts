@@ -176,4 +176,9 @@ export class RestApiUrlService {
   logsTrace(globalRequestId: string) {
     return `${this.base()}logs/trace/${encodeURIComponent(globalRequestId)}`;
   }
+
+  /** A board that declares its own endpoint (the cross-table ones), with the page's range applied. */
+  logsBoardEndpoint(endpoint: string, from: string, to: string, limit: number) {
+    return `${this.base()}${endpoint}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&limit=${limit}`;
+  }
 }

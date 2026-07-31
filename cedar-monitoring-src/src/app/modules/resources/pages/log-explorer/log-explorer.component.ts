@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {LogQueryService} from '../../../../services/load-data/log-query.service';
 import {
   Board,
@@ -102,19 +103,95 @@ export class LogExplorerComponent implements OnInit {
     ]
   };
 
-  constructor(private svc: LogQueryService) {
+  constructor(private svc: LogQueryService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.restoreFromUrl();
     this.svc.coverage().subscribe({next: (c) => this.coverage = c, error: () => this.coverage = null});
     this.svc.boards().subscribe({
       next: (b) => {
         this.boards = b || [];
         this.boardGroups = this.boards.map(x => x.group).filter((g, i, a) => a.indexOf(g) === i);
+        // a board id in the URL can only be resolved once the catalog has arrived
+        const wanted = this.route.snapshot.queryParamMap.get('board');
+        if (wanted) {
+          const board = this.boards.find(x => x.id === wanted);
+          if (board && this.activeBoard?.id !== board.id) {
+            this.activeBoard = board;
+            this.table = (board.spec?.table || this.table) as LogTable;
+            this.load();
+          }
+        }
       },
       error: () => this.boards = []
     });
     this.resetAndLoad();
+  }
+
+  // ---- URL state ---------------------------------------------------------------------------------
+
+  /**
+   * The page's state lives in the route, so a board or a filter set is a link you can send someone.
+   * replaceUrl keeps paging and reloads out of the browser history.
+   */
+  private syncUrl(): void {
+    const q: any = {};
+    if (this.activeBoard) {
+      q.board = this.activeBoard.id;
+    }
+    if (this.table !== 'request') {
+      q.table = this.table;
+    }
+    if (this.rangeMinutes !== 60 * 24) {
+      q.range = this.rangeMinutes;
+    }
+    if (this.pageSize !== 100) {
+      q.rows = this.pageSize;
+    }
+    if (this.contains.trim()) {
+      q.q = this.contains.trim();
+    }
+    if (this.minDurationMs > 0) {
+      q.minMs = this.minDurationMs;
+    }
+    const active = [...this.filters, ...this.facets.filter(f => f.selected)
+      .map(f => ({col: f.col, op: 'eq' as const, val: f.selected}))];
+    if (active.length) {
+      q.f = JSON.stringify(active);
+    }
+    this.router.navigate([], {relativeTo: this.route, queryParams: q, replaceUrl: true});
+  }
+
+  private restoreFromUrl(): void {
+    const p = this.route.snapshot.queryParamMap;
+    const table = p.get('table');
+    if (table === 'cypher' || table === 'request') {
+      this.table = table;
+    }
+    const range = Number(p.get('range'));
+    if (range > 0) {
+      this.rangeMinutes = range;
+    }
+    const rows = Number(p.get('rows'));
+    if (this.pageSizes.includes(rows)) {
+      this.pageSize = rows;
+    }
+    this.contains = p.get('q') || '';
+    this.minDurationMs = Number(p.get('minMs')) || 0;
+    const f = p.get('f');
+    if (f) {
+      try {
+        const parsed = JSON.parse(f);
+        if (Array.isArray(parsed)) {
+          this.filters = parsed.filter(x => x && x.col && x.op);
+        }
+      } catch {
+        // a hand-edited link should not break the page — fall back to no filters
+      }
+    }
   }
 
   // ---- boards ------------------------------------------------------------------------------------
@@ -130,7 +207,8 @@ export class LogExplorerComponent implements OnInit {
    */
   openBoard(b: Board): void {
     this.activeBoard = b;
-    this.table = (b.spec.table || 'request') as LogTable;
+    // cross-table boards have no spec — they carry an endpoint instead
+    this.table = (b.spec?.table || 'request') as LogTable;
     this.rangeMinutes = b.defaultRangeMinutes || this.rangeMinutes;
     this.filters = [];
     this.contains = '';
@@ -315,8 +393,17 @@ export class LogExplorerComponent implements OnInit {
     this.loading = true;
     this.error = null;
     this.expanded.clear();
+    this.syncUrl();
 
-    this.svc.query(this.buildSpec()).subscribe({
+    // Cross-table boards declare their own endpoint but return the same shape, so everything below
+    // this point — rendering, copy, export — is identical either way.
+    const to = new Date();
+    const from = new Date(to.getTime() - this.rangeMinutes * 60_000);
+    const request$ = this.activeBoard?.endpoint
+      ? this.svc.boardEndpoint(this.activeBoard.endpoint, from.toISOString(), to.toISOString(), this.pageSize)
+      : this.svc.query(this.buildSpec());
+
+    request$.subscribe({
       next: (r: QueryResult) => {
         this.columns = (r.columns || []).filter(c => c.key !== '_id');
         this.rows = r.rows || [];

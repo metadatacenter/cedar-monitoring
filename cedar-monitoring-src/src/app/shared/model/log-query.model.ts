@@ -145,4 +145,10 @@ export interface Board {
   defaultRangeMinutes: number;
   spec: LogQuerySpec;
   note?: string;
+  /**
+   * Set only for questions that join both log tables and therefore cannot be a spec. The page GETs
+   * this path with the current range instead of POSTing spec; the response shape is identical, so
+   * the same table renders it.
+   */
+  endpoint?: string;
 }
