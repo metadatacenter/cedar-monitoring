@@ -103,4 +103,51 @@ export class RestApiUrlService {
   resourceCountsOpensearch() {
     return `${this.base()}resources/counts/opensearch`;
   }
+
+  private logsRange(path: string, from: string, to: string, limit?: number) {
+    let url = `${this.base()}logs/usage/${path}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
+    if (limit != null) {
+      url += `&limit=${limit}`;
+    }
+    return url;
+  }
+
+  logsUsageSummary(from: string, to: string) {
+    return this.logsRange('summary', from, to);
+  }
+
+  logsUsageEndpoints(from: string, to: string, limit: number) {
+    return this.logsRange('endpoints', from, to, limit);
+  }
+
+  logsUsageCypher(from: string, to: string, limit: number) {
+    return this.logsRange('cypher', from, to, limit);
+  }
+
+  logsUsageUsers(from: string, to: string, limit: number) {
+    return this.logsRange('users', from, to, limit);
+  }
+
+  logsUsageInsights(from: string, to: string) {
+    return this.logsRange('insights', from, to);
+  }
+
+  private logsExplorer(path: string, q: string, minDurationMs: number, limit: number) {
+    let url = `${this.base()}logs/explorer/${path}?limit=${limit}`;
+    if (q) {
+      url += `&q=${encodeURIComponent(q)}`;
+    }
+    if (minDurationMs > 0) {
+      url += `&minDurationMs=${minDurationMs}`;
+    }
+    return url;
+  }
+
+  logsExplorerRequests(q: string, minDurationMs: number, limit: number) {
+    return this.logsExplorer('requests', q, minDurationMs, limit);
+  }
+
+  logsExplorerCypher(q: string, minDurationMs: number, limit: number) {
+    return this.logsExplorer('cypher', q, minDurationMs, limit);
+  }
 }

@@ -1,0 +1,112 @@
+<app-header title="Live Log Explorer"></app-header>
+
+<mat-card class="wrapper-card">
+
+  <mat-card-header>
+    <mat-card-title>Live Log Explorer</mat-card-title>
+    <mat-card-subtitle>
+      Row-level detail over the raw log_request / log_cypher tables (last 30 days, before the prune) —
+      actual recent traffic. Click a row to expand.
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <div class="controls">
+      <div class="tabs">
+        <button mat-raised-button [color]="tab === 'requests' ? 'primary' : ''" (click)="setTab('requests')">Requests</button>
+        <button mat-raised-button [color]="tab === 'cypher' ? 'primary' : ''" (click)="setTab('cypher')">Cypher</button>
+      </div>
+      <input class="txt" [(ngModel)]="q" (keyup.enter)="reload()" placeholder="filter: path, user, class, request-id…">
+      <label class="dur">Min duration
+        <select [(ngModel)]="minDurationMs" (change)="reload()">
+          <option [ngValue]="0">any</option>
+          <option [ngValue]="100">≥100ms</option>
+          <option [ngValue]="500">≥500ms</option>
+          <option [ngValue]="1000">≥1s</option>
+        </select>
+      </label>
+      <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
+      <span class="spacer"></span>
+      <span class="live"><span class="dot"></span>raw · newest first</span>
+    </div>
+
+    <div class="banner loading" *ngIf="loading">Loading…</div>
+    <div class="banner error" *ngIf="error">{{ error }} — the log API must be reachable and you need MONITOR_READ.</div>
+
+    <!-- REQUESTS -->
+    <div class="tblwrap" *ngIf="tab === 'requests' && !loading && !error">
+      <div class="count">{{ requests.length }} rows</div>
+      <table class="data">
+        <thead><tr><th style="width:22px"></th><th>Time</th><th>Method</th><th>Path</th><th>Component</th><th>User</th><th>Status</th><th class="num">Duration</th></tr></thead>
+        <tbody>
+          <ng-container *ngFor="let r of requests; let i = index">
+            <tr class="main" (click)="toggle(i)">
+              <td><span class="caret" [class.open]="isOpen(i)">▸</span></td>
+              <td [title]="r.requestTime">{{ ago(r.requestTime) }}</td>
+              <td><span class="method">{{ r.httpMethod }}</span></td>
+              <td class="mono path">{{ r.path }}</td>
+              <td>{{ r.component }}</td>
+              <td class="mono" [title]="r.userId">{{ shortUser(r.userId) }} <span class="tag">{{ r.authSource }}</span></td>
+              <td><span class="stat" [ngClass]="statusClass(r.status)">{{ r.status == null ? '—' : r.status }}</span></td>
+              <td class="num mono">{{ fmtMs(r.durationNanos) }}</td>
+            </tr>
+            <tr class="detail" *ngIf="isOpen(i)">
+              <td colspan="8">
+                <div class="kv">
+                  <span class="k">globalRequestId</span><span class="v mono">{{ r.globalRequestId }}</span>
+                  <span class="k">handler</span><span class="v mono">{{ r.handler }}</span>
+                  <span class="k">authSource</span><span class="v mono">{{ r.authSource }}<ng-container *ngIf="r.apiKeyHash"> · apiKeyHash {{ shortHash(r.apiKeyHash) }}</ng-container></span>
+                </div>
+                <div *ngIf="r.errorPack" class="block">
+                  <div class="dlabel">errorPack</div>
+                  <pre class="code">{{ pretty(r.errorPack) }}</pre>
+                </div>
+                <div *ngIf="!r.errorPack" class="ok">✓ completed without error</div>
+              </td>
+            </tr>
+          </ng-container>
+          <tr *ngIf="!requests.length"><td colspan="8" class="empty">No matching requests.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CYPHER -->
+    <div class="tblwrap" *ngIf="tab === 'cypher' && !loading && !error">
+      <div class="count">{{ cypher.length }} rows</div>
+      <table class="data">
+        <thead><tr><th style="width:22px"></th><th>Time</th><th>Operation</th><th>Hash</th><th>Component</th><th>Query</th><th class="num">Duration</th></tr></thead>
+        <tbody>
+          <ng-container *ngFor="let c of cypher; let i = index">
+            <tr class="main" (click)="toggle(i)">
+              <td><span class="caret" [class.open]="isOpen(i)">▸</span></td>
+              <td [title]="c.logTime">{{ ago(c.logTime) }}</td>
+              <td class="mono">{{ c.operation }}</td>
+              <td class="mono muted">{{ shortHash(c.runnableHash) }}</td>
+              <td>{{ c.component }}</td>
+              <td class="mono path">{{ c.runnable }}</td>
+              <td class="num mono">{{ fmtMs(c.durationNanos) }}</td>
+            </tr>
+            <tr class="detail" *ngIf="isOpen(i)">
+              <td colspan="7">
+                <div class="block">
+                  <div class="dlabel">runnable · {{ c.runnableHash }}</div>
+                  <pre class="code">{{ c.runnable }}</pre>
+                </div>
+                <div class="block" *ngIf="c.parameters">
+                  <div class="dlabel">parameters</div>
+                  <pre class="code">{{ pretty(c.parameters) }}</pre>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+          <tr *ngIf="!cypher.length"><td colspan="7" class="empty">No matching Cypher rows (Cypher logging may be off).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button routerLink="/">GO BACK</button>
+  </mat-card-actions>
+</mat-card>
