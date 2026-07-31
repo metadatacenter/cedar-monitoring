@@ -473,6 +473,11 @@ export class LogExplorerComponent implements OnInit {
     return 's' + Math.floor(Number(status) / 100);
   }
 
+  /** Colour the method typographically (m-get, m-post, …) rather than filling a pastel chip. */
+  methodClass(method: any): string {
+    return method ? 'm-' + String(method).toLowerCase() : '';
+  }
+
   shortUser(userId: string): string {
     if (!userId) {
       return 'anonymous';

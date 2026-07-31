@@ -28,18 +28,18 @@
     </div>
 
     <div class="controls">
-      <div class="tabs">
-        <button mat-raised-button [color]="table === 'request' ? 'primary' : ''" (click)="setTable('request')">Requests</button>
-        <button mat-raised-button [color]="table === 'cypher' ? 'primary' : ''" (click)="setTable('cypher')">Cypher</button>
+      <div class="seg">
+        <button [class.on]="table === 'request'" (click)="setTable('request')">Requests</button>
+        <button [class.on]="table === 'cypher'" (click)="setTable('cypher')">Cypher</button>
       </div>
-      <div class="tabs">
-        <button *ngFor="let r of ranges" mat-stroked-button class="rng"
-                [class.on]="rangeMinutes === r.minutes" (click)="setRange(r.minutes)">{{ r.label }}</button>
+      <div class="seg">
+        <button *ngFor="let r of ranges" [class.on]="rangeMinutes === r.minutes"
+                (click)="setRange(r.minutes)">{{ r.label }}</button>
       </div>
       <ng-container *ngIf="!activeBoard">
         <input class="txt" [(ngModel)]="contains" (keyup.enter)="resetAndLoad()"
                [placeholder]="table === 'request' ? 'path contains…' : 'query contains…'">
-        <label class="dur">Min duration
+        <label class="fld">Min duration
           <select [(ngModel)]="minDurationMs" (change)="resetAndLoad()">
             <option [ngValue]="0">any</option>
             <option [ngValue]="100">≥100ms</option>
@@ -47,19 +47,20 @@
             <option [ngValue]="1000">≥1s</option>
           </select>
         </label>
-        <label class="dur" *ngFor="let f of facets">{{ f.label }}
+        <label class="fld" *ngFor="let f of facets">{{ f.label }}
           <select [(ngModel)]="f.selected" (change)="resetAndLoad()">
             <option value="">any</option>
             <option *ngFor="let v of f.values" [value]="v.value">{{ v.value }} ({{ v.count }})</option>
           </select>
         </label>
-        <label class="dur">Rows
+        <label class="fld">Rows
           <select [ngModel]="pageSize" (ngModelChange)="setPageSize($event)">
             <option *ngFor="let s of pageSizes" [ngValue]="s">{{ s }}</option>
           </select>
         </label>
       </ng-container>
-      <button mat-button (click)="resetAndLoad()"><mat-icon>refresh</mat-icon> Reload</button>
+      <span class="spacer"></span>
+      <button class="link" (click)="resetAndLoad()">Reload</button>
     </div>
 
     <div class="chips" *ngIf="filters.length">
@@ -102,7 +103,8 @@
             <td><span class="caret" [class.open]="isOpen(i)">▸</span></td>
             <td *ngFor="let c of mainColumns" [ngClass]="cellClass(c)"
                 [attr.data-copy]="raw(row, c)" [attr.data-copy-key]="c.key" [title]="raw(row, c)">
-              <span *ngIf="c.key === 'httpMethod'" class="method">{{ display(row, c) }}</span>
+              <span *ngIf="c.key === 'httpMethod'" class="method"
+                    [ngClass]="methodClass(row[c.key])">{{ display(row, c) }}</span>
               <span *ngIf="c.key === 'status'" class="stat" [ngClass]="statusClass(row[c.key])">{{ display(row, c) }}</span>
               <ng-container *ngIf="c.key !== 'httpMethod' && c.key !== 'status'">{{ display(row, c) }}</ng-container>
             </td>
