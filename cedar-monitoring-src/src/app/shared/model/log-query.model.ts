@@ -1,0 +1,100 @@
+// DTOs for the structured query engine — cedar-monitor-server /logs/{query,facets,coverage}.
+// Mirrors LogQuerySpec / LogQueryResults on the Java side. Durations are nanos; timestamps are ISO-8601.
+// Design: cedar-development/ops/LOG-EXPLORER-UI-PLAN.md
+
+export type LogTable = 'request' | 'cypher';
+
+export type FilterOp =
+  'eq' | 'ne' | 'in' | 'notin' | 'like' | 'notlike' | 'startswith'
+  | 'gte' | 'lte' | 'between' | 'isnull' | 'notnull';
+
+export interface QueryFilter {
+  col: string;
+  op: FilterOp;
+  val?: string;
+  vals?: string[];
+}
+
+export interface QuerySort {
+  key: string;
+  dir: 'asc' | 'desc';
+}
+
+export interface QueryHaving {
+  key: string;
+  op: 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte';
+  val: string;
+}
+
+/** The request body of POST /logs/query. groupBy empty ⇒ raw rows (keyset-paged). */
+export interface LogQuerySpec {
+  table: LogTable;
+  from?: string;
+  to?: string;
+  filters?: QueryFilter[];
+  groupBy?: string[];
+  metrics?: string[];
+  having?: QueryHaving[];
+  orderBy?: QuerySort[];
+  limit?: number;
+  cursor?: string | null;
+}
+
+export type ColumnType = 'STRING' | 'NUMBER' | 'NANOS' | 'TIMESTAMP' | 'TEXT';
+
+export interface ColumnMeta {
+  key: string;
+  label: string;
+  type: ColumnType;
+  note?: string;
+}
+
+/** Results carry their own provenance so the page can state precision and caps honestly. */
+export interface QueryResult {
+  columns: ColumnMeta[];
+  rows: Array<Record<string, any>>;
+  rowCount: number;
+  truncated: boolean;
+  nextCursor: string | null;
+  elapsedMs: number;
+  exact: boolean;
+  source: string;
+  notes: string[];
+}
+
+export interface FacetValue {
+  value: string;
+  count: number;
+}
+
+export interface FacetResult {
+  table: string;
+  column: string;
+  values: FacetValue[];
+  truncated: boolean;
+  elapsedMs: number;
+  note?: string;
+}
+
+export interface ColumnInfo {
+  key: string;
+  label: string;
+  kind: string;
+  groupable: boolean;
+  aggregatable: boolean;
+  note?: string;
+}
+
+export interface TableCoverage {
+  table: string;
+  sqlTable: string;
+  rowCount: number;
+  oldest: string;
+  newest: string;
+  columns: ColumnInfo[];
+}
+
+export interface CoverageResult {
+  tables: TableCoverage[];
+  notes: string[];
+}

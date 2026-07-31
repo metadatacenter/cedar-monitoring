@@ -5,8 +5,8 @@
   <mat-card-header>
     <mat-card-title>Live Log Explorer</mat-card-title>
     <mat-card-subtitle>
-      Row-level detail over the raw log_request / log_cypher tables (last 30 days, before the prune) —
-      actual recent traffic. Click a row to expand.
+      Row-level detail over the raw log_request / log_cypher tables — actual recent traffic.
+      Click a row to expand, click any cell to copy its full value.
     </mat-card-subtitle>
   </mat-card-header>
 
@@ -14,95 +14,129 @@
 
     <div class="controls">
       <div class="tabs">
-        <button mat-raised-button [color]="tab === 'requests' ? 'primary' : ''" (click)="setTab('requests')">Requests</button>
-        <button mat-raised-button [color]="tab === 'cypher' ? 'primary' : ''" (click)="setTab('cypher')">Cypher</button>
+        <button mat-raised-button [color]="table === 'request' ? 'primary' : ''" (click)="setTable('request')">Requests</button>
+        <button mat-raised-button [color]="table === 'cypher' ? 'primary' : ''" (click)="setTable('cypher')">Cypher</button>
       </div>
-      <input class="txt" [(ngModel)]="q" (keyup.enter)="reload()" placeholder="filter: path, user, class, request-id…">
+      <div class="tabs">
+        <button *ngFor="let r of ranges" mat-stroked-button class="rng"
+                [class.on]="rangeMinutes === r.minutes" (click)="setRange(r.minutes)">{{ r.label }}</button>
+      </div>
+      <input class="txt" [(ngModel)]="contains" (keyup.enter)="resetAndLoad()"
+             [placeholder]="table === 'request' ? 'path contains…' : 'query contains…'">
       <label class="dur">Min duration
-        <select [(ngModel)]="minDurationMs" (change)="reload()">
+        <select [(ngModel)]="minDurationMs" (change)="resetAndLoad()">
           <option [ngValue]="0">any</option>
           <option [ngValue]="100">≥100ms</option>
           <option [ngValue]="500">≥500ms</option>
           <option [ngValue]="1000">≥1s</option>
         </select>
       </label>
-      <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
-      <span class="spacer"></span>
-      <span class="live"><span class="dot"></span>raw · newest first</span>
+      <label class="dur" *ngFor="let f of facets">{{ f.label }}
+        <select [(ngModel)]="f.selected" (change)="resetAndLoad()">
+          <option value="">any</option>
+          <option *ngFor="let v of f.values" [value]="v.value">{{ v.value }} ({{ v.count }})</option>
+        </select>
+      </label>
+      <label class="dur">Rows
+        <select [ngModel]="pageSize" (ngModelChange)="setPageSize($event)">
+          <option *ngFor="let s of pageSizes" [ngValue]="s">{{ s }}</option>
+        </select>
+      </label>
+      <button mat-button (click)="resetAndLoad()"><mat-icon>refresh</mat-icon> Reload</button>
+    </div>
+
+    <div class="chips" *ngIf="filters.length">
+      <span class="chip" *ngFor="let f of filters; let i = index">
+        {{ f.col }} {{ f.op }} {{ f.val }}
+        <span class="x" (click)="removeFilter(i)">×</span>
+      </span>
+      <button class="link" (click)="clearAll()">clear all</button>
     </div>
 
     <div class="banner loading" *ngIf="loading">Loading…</div>
-    <div class="banner error" *ngIf="error">{{ error }} — the log API must be reachable and you need MONITOR_READ.</div>
+    <div class="banner error" *ngIf="error">{{ error }}</div>
+    <div class="banner note" *ngFor="let n of notes">{{ n }}</div>
 
-    <!-- REQUESTS -->
-    <div class="tblwrap" *ngIf="tab === 'requests' && !loading && !error">
-      <div class="count">{{ requests.length }} rows</div>
+    <div class="tblwrap" *ngIf="!loading && !error">
+
+      <div class="bar">
+        <span class="count">
+          {{ rows.length }} rows · {{ elapsedMs }}ms
+          <ng-container *ngIf="pageIndex > 0"> · page {{ pageIndex + 1 }}</ng-container>
+          <ng-container *ngIf="truncated"> · more available</ng-container>
+        </span>
+        <span class="spacer"></span>
+        <button class="link" (click)="copyTsv()">copy TSV</button>
+        <button class="link" (click)="downloadCsv()">download CSV</button>
+        <button class="link" [disabled]="!pageIndex" (click)="prevPage()">← newer</button>
+        <button class="link" [disabled]="!nextCursor" (click)="nextPage()">older →</button>
+      </div>
+
       <table class="data">
-        <thead><tr><th style="width:22px"></th><th>Time</th><th>Method</th><th>Path</th><th>Component</th><th>User</th><th>Status</th><th class="num">Duration</th></tr></thead>
-        <tbody>
-          <ng-container *ngFor="let r of requests; let i = index">
-            <tr class="main" (click)="toggle(i)">
-              <td><span class="caret" [class.open]="isOpen(i)">▸</span></td>
-              <td [title]="r.requestTime">{{ ago(r.requestTime) }}</td>
-              <td><span class="method">{{ r.httpMethod }}</span></td>
-              <td class="mono path">{{ r.path }}</td>
-              <td>{{ r.component }}</td>
-              <td class="mono" [title]="r.userId">{{ shortUser(r.userId) }} <span class="tag">{{ r.authSource }}</span></td>
-              <td><span class="stat" [ngClass]="statusClass(r.status)">{{ r.status == null ? '—' : r.status }}</span></td>
-              <td class="num mono">{{ fmtMs(r.durationNanos) }}</td>
-            </tr>
-            <tr class="detail" *ngIf="isOpen(i)">
-              <td colspan="8">
-                <div class="kv">
-                  <span class="k">globalRequestId</span><span class="v mono">{{ r.globalRequestId }}</span>
-                  <span class="k">handler</span><span class="v mono">{{ r.handler }}</span>
-                  <span class="k">authSource</span><span class="v mono">{{ r.authSource }}<ng-container *ngIf="r.apiKeyHash"> · apiKeyHash {{ shortHash(r.apiKeyHash) }}</ng-container></span>
-                </div>
-                <div *ngIf="r.errorPack" class="block">
-                  <div class="dlabel">errorPack</div>
-                  <pre class="code">{{ pretty(r.errorPack) }}</pre>
-                </div>
-                <div *ngIf="!r.errorPack" class="ok">✓ completed without error</div>
-              </td>
-            </tr>
-          </ng-container>
-          <tr *ngIf="!requests.length"><td colspan="8" class="empty">No matching requests.</td></tr>
+        <thead>
+        <tr>
+          <th style="width:22px"></th>
+          <th *ngFor="let c of mainColumns" [class.num]="c.type === 'NANOS'" [title]="c.note || c.key">{{ c.label }}</th>
+        </tr>
+        </thead>
+        <tbody (click)="onTableClick($event)">
+        <ng-container *ngFor="let row of rows; let i = index">
+          <tr class="main" [attr.data-row]="i">
+            <td><span class="caret" [class.open]="isOpen(i)">▸</span></td>
+            <td *ngFor="let c of mainColumns" [ngClass]="cellClass(c)"
+                [attr.data-copy]="raw(row, c)" [attr.data-copy-key]="c.key" [title]="raw(row, c)">
+              <span *ngIf="c.key === 'httpMethod'" class="method">{{ display(row, c) }}</span>
+              <span *ngIf="c.key === 'status'" class="stat" [ngClass]="statusClass(row[c.key])">{{ display(row, c) }}</span>
+              <ng-container *ngIf="c.key !== 'httpMethod' && c.key !== 'status'">{{ display(row, c) }}</ng-container>
+            </td>
+          </tr>
+          <tr class="detail" *ngIf="isOpen(i)">
+            <td [attr.colspan]="mainColumns.length + 1">
+              <div class="kv">
+                <ng-container *ngFor="let c of columns">
+                  <span class="k">{{ c.key }}</span>
+                  <span class="v mono">
+                    {{ raw(row, c) || '—' }}
+                    <button class="link sm" *ngIf="isFacetColumn(c.key) && row[c.key]"
+                            (click)="filterBy(c.key, row[c.key])">filter</button>
+                  </span>
+                </ng-container>
+              </div>
+              <div class="block" *ngIf="row['errorPack']">
+                <div class="dlabel">errorPack</div>
+                <pre class="code">{{ pretty(row['errorPack']) }}</pre>
+              </div>
+              <div class="block" *ngIf="row['parameters']">
+                <div class="dlabel">parameters</div>
+                <pre class="code">{{ pretty(row['parameters']) }}</pre>
+              </div>
+              <div class="block">
+                <button class="link" (click)="copyRowJson(row, i)">copy row as JSON</button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+        <tr *ngIf="!rows.length">
+          <td [attr.colspan]="mainColumns.length + 1" class="empty">
+            No matching rows in this range.
+            <ng-container *ngIf="hasActiveFilters()"> Try widening the range or clearing filters.</ng-container>
+          </td>
+        </tr>
         </tbody>
       </table>
-    </div>
 
-    <!-- CYPHER -->
-    <div class="tblwrap" *ngIf="tab === 'cypher' && !loading && !error">
-      <div class="count">{{ cypher.length }} rows</div>
-      <table class="data">
-        <thead><tr><th style="width:22px"></th><th>Time</th><th>Operation</th><th>Hash</th><th>Component</th><th>Query</th><th class="num">Duration</th></tr></thead>
-        <tbody>
-          <ng-container *ngFor="let c of cypher; let i = index">
-            <tr class="main" (click)="toggle(i)">
-              <td><span class="caret" [class.open]="isOpen(i)">▸</span></td>
-              <td [title]="c.logTime">{{ ago(c.logTime) }}</td>
-              <td class="mono">{{ c.operation }}</td>
-              <td class="mono muted">{{ shortHash(c.runnableHash) }}</td>
-              <td>{{ c.component }}</td>
-              <td class="mono path">{{ c.runnable }}</td>
-              <td class="num mono">{{ fmtMs(c.durationNanos) }}</td>
-            </tr>
-            <tr class="detail" *ngIf="isOpen(i)">
-              <td colspan="7">
-                <div class="block">
-                  <div class="dlabel">runnable · {{ c.runnableHash }}</div>
-                  <pre class="code">{{ c.runnable }}</pre>
-                </div>
-                <div class="block" *ngIf="c.parameters">
-                  <div class="dlabel">parameters</div>
-                  <pre class="code">{{ pretty(c.parameters) }}</pre>
-                </div>
-              </td>
-            </tr>
-          </ng-container>
-          <tr *ngIf="!cypher.length"><td colspan="7" class="empty">No matching Cypher rows (Cypher logging may be off).</td></tr>
-        </tbody>
-      </table>
+      <div class="bar">
+        <span class="count" *ngIf="coverage">
+          raw tables: <ng-container *ngFor="let t of coverage.tables">{{ t.sqlTable }} {{ t.rowCount }} rows ({{ t.oldest | slice:0:10 }} → {{ t.newest | slice:0:10 }}) </ng-container>
+        </span>
+        <span class="spacer"></span>
+        <button class="link" [disabled]="!pageIndex" (click)="prevPage()">← newer</button>
+        <button class="link" [disabled]="!nextCursor" (click)="nextPage()">older →</button>
+      </div>
+
+      <div class="caveat" *ngIf="coverage">
+        <span *ngFor="let n of coverage.notes">{{ n }} </span>
+      </div>
     </div>
 
   </mat-card-content>
@@ -110,3 +144,5 @@
     <button mat-button routerLink="/">GO BACK</button>
   </mat-card-actions>
 </mat-card>
+
+<div class="toast" *ngIf="copied">Copied {{ copied }}</div>

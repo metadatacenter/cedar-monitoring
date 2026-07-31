@@ -150,4 +150,22 @@ export class RestApiUrlService {
   logsExplorerCypher(q: string, minDurationMs: number, limit: number) {
     return this.logsExplorer('cypher', q, minDurationMs, limit);
   }
+
+  /**
+   * Structured query engine. POST because a spec with several filters plus a metric list exceeds a
+   * sane URL length — the shareable state lives in the Angular route, not here.
+   */
+  logsQuery() {
+    return `${this.base()}logs/query`;
+  }
+
+  logsFacet(table: string, column: string, from: string, to: string) {
+    return `${this.base()}logs/facets/${encodeURIComponent(column)}`
+      + `?table=${encodeURIComponent(table)}`
+      + `&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
+  }
+
+  logsCoverage() {
+    return `${this.base()}logs/coverage`;
+  }
 }
