@@ -8,7 +8,9 @@ import {
   LogQuerySpec,
   LogTable,
   QueryFilter,
-  QueryResult
+  QueryResult,
+  TraceResult,
+  TraceSpan
 } from '../../../../shared/model/log-query.model';
 
 interface FacetDef {
@@ -74,6 +76,11 @@ export class LogExplorerComponent implements OnInit {
   boardGroups: string[] = [];
   activeBoard: Board | null = null;
 
+  /** Trace overlay: one globalRequestId across every component that handled it. */
+  trace: TraceResult | null = null;
+  traceLoading = false;
+  traceError: string | null = null;
+
   pageIndex = 0;
   private cursor: string | null = null;
   private cursorStack: Array<string | null> = [];
@@ -135,6 +142,55 @@ export class LogExplorerComponent implements OnInit {
   closeBoard(): void {
     this.activeBoard = null;
     this.resetAndLoad();
+  }
+
+  // ---- trace -------------------------------------------------------------------------------------
+
+  /**
+   * Follow one request across the fleet. Opens as an overlay rather than navigating, so the row you
+   * came from is still there when you close it.
+   */
+  openTrace(globalRequestId: string): void {
+    if (!globalRequestId) {
+      return;
+    }
+    this.trace = null;
+    this.traceError = null;
+    this.traceLoading = true;
+    this.svc.trace(globalRequestId).subscribe({
+      next: (t) => {
+        this.trace = t;
+        this.traceLoading = false;
+      },
+      error: (e) => {
+        this.traceError = e?.error?.error || 'Could not load the trace.';
+        this.traceLoading = false;
+      }
+    });
+  }
+
+  closeTrace(): void {
+    this.trace = null;
+    this.traceError = null;
+  }
+
+  /** Same package-prefix trim as the table, so a span label reads the same as its row. */
+  spanLabel(s: TraceSpan): string {
+    return s.kind === 'request' ? this.shortHandler(s.label || '') : (s.label || '');
+  }
+
+  /** Waterfall geometry as percentages of the trace's wall time. */
+  spanLeft(s: TraceSpan): string {
+    const total = this.trace?.spanMs || 0;
+    return total > 0 ? (s.offsetMs / total) * 100 + '%' : '0';
+  }
+
+  spanWidth(s: TraceSpan): string {
+    const total = this.trace?.spanMs || 0;
+    if (total <= 0) {
+      return '1px';
+    }
+    return Math.max((s.durationMs / total) * 100, 0.4) + '%';   // keep sub-millisecond spans visible
   }
 
   // ---- controls ----------------------------------------------------------------------------------

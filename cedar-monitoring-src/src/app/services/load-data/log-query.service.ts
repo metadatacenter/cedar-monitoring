@@ -2,7 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {RestApiUrlService} from '../rest-api-url.service';
-import {Board, CoverageResult, FacetResult, LogQuerySpec, QueryResult} from '../../shared/model/log-query.model';
+import {
+  Board,
+  CoverageResult,
+  FacetResult,
+  LogQuerySpec,
+  QueryResult,
+  TraceResult
+} from '../../shared/model/log-query.model';
 
 /**
  * The structured query engine — cedar-monitor-server /logs/{query,facets,coverage}, MONITOR_READ-gated
@@ -36,5 +43,13 @@ export class LogQueryService {
   /** The pre-defined questions. Server-owned so this list cannot drift from what the engine supports. */
   boards(): Observable<Board[]> {
     return this.http.get<Board[]>(this.restApiUrl.logsBoards());
+  }
+
+  /**
+   * One request across every component that handled it, plus the Cypher underneath. The only question
+   * that is not a LogQuerySpec — it spans both tables.
+   */
+  trace(globalRequestId: string): Observable<TraceResult> {
+    return this.http.get<TraceResult>(this.restApiUrl.logsTrace(globalRequestId));
   }
 }

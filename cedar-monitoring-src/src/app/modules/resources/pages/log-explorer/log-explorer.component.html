@@ -131,6 +131,8 @@
               </div>
               <div class="block">
                 <button class="link" (click)="copyRowJson(row, i)">copy row as JSON</button>
+                <button class="link" *ngIf="row['globalRequestId']"
+                        (click)="openTrace(row['globalRequestId'])">open trace →</button>
               </div>
             </td>
           </tr>
@@ -165,3 +167,49 @@
 </mat-card>
 
 <div class="toast" *ngIf="copied">Copied {{ copied }}</div>
+
+<!-- Trace overlay: one request across every component that handled it, plus its Cypher. -->
+<div class="scrim" *ngIf="trace || traceLoading || traceError" (click)="closeTrace()">
+  <div class="tracepane" (click)="$event.stopPropagation()">
+
+    <div class="tracehead">
+      <div>
+        <div class="tracetitle">Request trace</div>
+        <div class="mono muted" *ngIf="trace">{{ trace.globalRequestId }}</div>
+      </div>
+      <span class="spacer"></span>
+      <button class="link" *ngIf="trace" (click)="copyText(trace.globalRequestId, 'request id')">copy id</button>
+      <button class="link" (click)="closeTrace()">close ✕</button>
+    </div>
+
+    <div class="banner loading" *ngIf="traceLoading">Loading trace…</div>
+    <div class="banner error" *ngIf="traceError">{{ traceError }}</div>
+
+    <ng-container *ngIf="trace">
+      <div class="tiles">
+        <div class="tile"><span class="tv">{{ trace.componentCount }}</span><span class="tl">components</span></div>
+        <div class="tile"><span class="tv">{{ trace.requestCount }}</span><span class="tl">request rows</span></div>
+        <div class="tile"><span class="tv">{{ trace.cypherCount }}</span><span class="tl">queries</span></div>
+        <div class="tile"><span class="tv">{{ trace.spanMs | number:'1.0-0' }}ms</span><span class="tl">wall time</span></div>
+        <div class="tile"><span class="tv">{{ trace.dbMs | number:'1.0-0' }}ms</span><span class="tl">database</span></div>
+        <div class="tile"><span class="tv">{{ trace.dbSharePct | number:'1.0-1' }}%</span><span class="tl">time in Neo4j</span></div>
+      </div>
+
+      <div class="waterfall">
+        <div class="wrow" *ngFor="let s of trace.spans" [title]="s.detail">
+          <span class="wkind" [class.k-cypher]="s.kind === 'cypher'">{{ s.kind === 'cypher' ? 'DB' : 'REQ' }}</span>
+          <span class="wcomp">{{ s.component }}</span>
+          <span class="wlabel mono ell">{{ spanLabel(s) }}</span>
+          <span class="wtrack">
+            <span class="wbar" [class.b-cypher]="s.kind === 'cypher'"
+                  [style.left]="spanLeft(s)" [style.width]="spanWidth(s)"></span>
+          </span>
+          <span class="wms mono">{{ s.durationMs | number:'1.0-2' }}ms</span>
+        </div>
+        <div class="empty" *ngIf="!trace.spans.length">No spans — the rows may have been pruned.</div>
+      </div>
+
+      <div class="caveat"><span *ngFor="let n of trace.notes">{{ n }} </span></div>
+    </ng-container>
+  </div>
+</div>

@@ -99,6 +99,39 @@ export interface CoverageResult {
   notes: string[];
 }
 
+/** One span in a trace: a component handling the request, or a single Cypher query underneath it. */
+export interface TraceSpan {
+  kind: 'request' | 'cypher';
+  component: string;
+  label: string;
+  detail: string;
+  status: number | null;
+  startedAt: string;
+  offsetMs: number;
+  durationMs: number;
+  localRequestId: string;
+}
+
+/**
+ * One globalRequestId across the whole fleet. handlerMs sums overlapping component spans so it
+ * exceeds spanMs (wall time) by design; dbSharePct is what says whether a slow request is actually
+ * database-bound.
+ */
+export interface TraceResult {
+  globalRequestId: string;
+  spans: TraceSpan[];
+  requestCount: number;
+  cypherCount: number;
+  componentCount: number;
+  handlerMs: number;
+  dbMs: number;
+  dbSharePct: number;
+  spanMs: number;
+  truncated: boolean;
+  elapsedMs: number;
+  notes: string[];
+}
+
 /**
  * A pre-defined question. A board IS a saved LogQuerySpec — no bespoke endpoint — so opening one
  * loads its spec into the same controls and stays editable. The spec carries no from/to; the page

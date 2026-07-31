@@ -172,4 +172,8 @@ export class RestApiUrlService {
   logsBoards() {
     return `${this.base()}logs/boards`;
   }
+
+  logsTrace(globalRequestId: string) {
+    return `${this.base()}logs/trace/${encodeURIComponent(globalRequestId)}`;
+  }
 }
