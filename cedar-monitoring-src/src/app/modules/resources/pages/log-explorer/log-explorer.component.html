@@ -12,6 +12,21 @@
 
   <mat-card-content>
 
+    <div class="rail" *ngIf="boards.length">
+      <ng-container *ngFor="let g of boardGroups">
+        <span class="railgrp">{{ g }}</span>
+        <button class="board" *ngFor="let b of boardsIn(g)"
+                [class.on]="activeBoard?.id === b.id" [title]="b.question"
+                (click)="openBoard(b)">{{ b.title }}</button>
+      </ng-container>
+      <button class="board" [class.on]="!activeBoard" (click)="closeBoard()">Browse rows</button>
+    </div>
+
+    <div class="boardhead" *ngIf="activeBoard">
+      <b>{{ activeBoard.title }}</b> — {{ activeBoard.question }}
+      <div class="bnote" *ngIf="activeBoard.note">{{ activeBoard.note }}</div>
+    </div>
+
     <div class="controls">
       <div class="tabs">
         <button mat-raised-button [color]="table === 'request' ? 'primary' : ''" (click)="setTable('request')">Requests</button>
@@ -21,27 +36,29 @@
         <button *ngFor="let r of ranges" mat-stroked-button class="rng"
                 [class.on]="rangeMinutes === r.minutes" (click)="setRange(r.minutes)">{{ r.label }}</button>
       </div>
-      <input class="txt" [(ngModel)]="contains" (keyup.enter)="resetAndLoad()"
-             [placeholder]="table === 'request' ? 'path contains…' : 'query contains…'">
-      <label class="dur">Min duration
-        <select [(ngModel)]="minDurationMs" (change)="resetAndLoad()">
-          <option [ngValue]="0">any</option>
-          <option [ngValue]="100">≥100ms</option>
-          <option [ngValue]="500">≥500ms</option>
-          <option [ngValue]="1000">≥1s</option>
-        </select>
-      </label>
-      <label class="dur" *ngFor="let f of facets">{{ f.label }}
-        <select [(ngModel)]="f.selected" (change)="resetAndLoad()">
-          <option value="">any</option>
-          <option *ngFor="let v of f.values" [value]="v.value">{{ v.value }} ({{ v.count }})</option>
-        </select>
-      </label>
-      <label class="dur">Rows
-        <select [ngModel]="pageSize" (ngModelChange)="setPageSize($event)">
-          <option *ngFor="let s of pageSizes" [ngValue]="s">{{ s }}</option>
-        </select>
-      </label>
+      <ng-container *ngIf="!activeBoard">
+        <input class="txt" [(ngModel)]="contains" (keyup.enter)="resetAndLoad()"
+               [placeholder]="table === 'request' ? 'path contains…' : 'query contains…'">
+        <label class="dur">Min duration
+          <select [(ngModel)]="minDurationMs" (change)="resetAndLoad()">
+            <option [ngValue]="0">any</option>
+            <option [ngValue]="100">≥100ms</option>
+            <option [ngValue]="500">≥500ms</option>
+            <option [ngValue]="1000">≥1s</option>
+          </select>
+        </label>
+        <label class="dur" *ngFor="let f of facets">{{ f.label }}
+          <select [(ngModel)]="f.selected" (change)="resetAndLoad()">
+            <option value="">any</option>
+            <option *ngFor="let v of f.values" [value]="v.value">{{ v.value }} ({{ v.count }})</option>
+          </select>
+        </label>
+        <label class="dur">Rows
+          <select [ngModel]="pageSize" (ngModelChange)="setPageSize($event)">
+            <option *ngFor="let s of pageSizes" [ngValue]="s">{{ s }}</option>
+          </select>
+        </label>
+      </ng-container>
       <button mat-button (click)="resetAndLoad()"><mat-icon>refresh</mat-icon> Reload</button>
     </div>
 

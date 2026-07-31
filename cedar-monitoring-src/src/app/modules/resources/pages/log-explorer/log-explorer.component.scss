@@ -95,6 +95,62 @@
   }
 }
 
+// Board rail: the pre-defined questions. Each is a saved query spec loaded into the same controls.
+.rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 0 2px;
+  border-bottom: 1px solid #eef1f5;
+}
+
+.railgrp {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: #98a2b3;
+  font-weight: 700;
+  margin: 0 2px 0 10px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.board {
+  font: inherit;
+  font-size: 12px;
+  background: #f4f6f9;
+  border: 1px solid #e3e8ee;
+  border-radius: 14px;
+  padding: 4px 11px;
+  color: #44546a;
+  cursor: pointer;
+
+  &:hover {
+    background: #eaeff5;
+  }
+
+  &.on {
+    background: #0e8ba3;
+    border-color: #0e8ba3;
+    color: #fff;
+  }
+}
+
+.boardhead {
+  font-size: 13px;
+  color: #44546a;
+  margin: 12px 2px 0;
+
+  .bnote {
+    font-size: 11.5px;
+    color: #98a2b3;
+    margin-top: 3px;
+  }
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -226,15 +282,32 @@ table.data {
   // Click-to-copy affordance. Rendered with ::after on hover only, so the 6 columns x up to 2,000
   // rows cost zero extra DOM nodes and zero listeners — one delegated handler on <tbody> does the
   // work (see LogExplorerComponent.onTableClick).
+  //
+  // cursor is `pointer`, NOT `copy`: the native copy cursor draws an arrow with a large green plus
+  // badge, which looks like a 1990s drag-and-drop affordance.
   td[data-copy] {
-    cursor: copy;
+    cursor: pointer;
+    position: relative;
   }
 
+  td[data-copy]:hover {
+    background: #f4f8fa;
+    box-shadow: inset 0 0 0 1px #e1eaef;
+    border-radius: 4px;
+  }
+
+  // A quiet glyph pinned to the cell's right edge, so it never reflows the text it belongs to.
   td[data-copy]:hover::after {
     content: '⧉';
-    margin-left: 6px;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
     font-size: 11px;
-    color: #0e8ba3;
+    line-height: 1;
+    color: #9aa8b5;
+    background: #f4f8fa;
+    padding-left: 4px;
   }
 
   tr.detail td {
@@ -313,6 +386,15 @@ table.data {
 
 .path {
   max-width: 420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Wide columns (path, handler, query text) get clipped so the columns to their right stay on screen.
+// The full value is still in the title tooltip, in data-copy, and in the expanded detail.
+.ell {
+  max-width: 260px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

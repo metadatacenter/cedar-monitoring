@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {RestApiUrlService} from '../rest-api-url.service';
-import {CoverageResult, FacetResult, LogQuerySpec, QueryResult} from '../../shared/model/log-query.model';
+import {Board, CoverageResult, FacetResult, LogQuerySpec, QueryResult} from '../../shared/model/log-query.model';
 
 /**
  * The structured query engine — cedar-monitor-server /logs/{query,facets,coverage}, MONITOR_READ-gated
@@ -31,5 +31,10 @@ export class LogQueryService {
   /** What is queryable and what is actually present — drives the caveat line under the controls. */
   coverage(): Observable<CoverageResult> {
     return this.http.get<CoverageResult>(this.restApiUrl.logsCoverage());
+  }
+
+  /** The pre-defined questions. Server-owned so this list cannot drift from what the engine supports. */
+  boards(): Observable<Board[]> {
+    return this.http.get<Board[]>(this.restApiUrl.logsBoards());
   }
 }

@@ -98,3 +98,18 @@ export interface CoverageResult {
   tables: TableCoverage[];
   notes: string[];
 }
+
+/**
+ * A pre-defined question. A board IS a saved LogQuerySpec — no bespoke endpoint — so opening one
+ * loads its spec into the same controls and stays editable. The spec carries no from/to; the page
+ * supplies the range, and defaultRangeMinutes is the suggested starting window.
+ */
+export interface Board {
+  id: string;
+  title: string;
+  question: string;
+  group: string;
+  defaultRangeMinutes: number;
+  spec: LogQuerySpec;
+  note?: string;
+}

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LogQueryService} from '../../../../services/load-data/log-query.service';
 import {
+  Board,
   ColumnMeta,
   CoverageResult,
   FacetValue,
@@ -68,6 +69,11 @@ export class LogExplorerComponent implements OnInit {
   expanded = new Set<number>();
   copied: string | null = null;
 
+  /** Board mode: the same table renders the grouped result; null means raw-row mode. */
+  boards: Board[] = [];
+  boardGroups: string[] = [];
+  activeBoard: Board | null = null;
+
   pageIndex = 0;
   private cursor: string | null = null;
   private cursorStack: Array<string | null> = [];
@@ -94,6 +100,40 @@ export class LogExplorerComponent implements OnInit {
 
   ngOnInit(): void {
     this.svc.coverage().subscribe({next: (c) => this.coverage = c, error: () => this.coverage = null});
+    this.svc.boards().subscribe({
+      next: (b) => {
+        this.boards = b || [];
+        this.boardGroups = this.boards.map(x => x.group).filter((g, i, a) => a.indexOf(g) === i);
+      },
+      error: () => this.boards = []
+    });
+    this.resetAndLoad();
+  }
+
+  // ---- boards ------------------------------------------------------------------------------------
+
+  boardsIn(group: string): Board[] {
+    return this.boards.filter(b => b.group === group);
+  }
+
+  /**
+   * Open a pre-defined question. The board's spec replaces the ad-hoc filters, the table follows the
+   * board, and the range jumps to the board's suggested window — but the range and page size stay
+   * editable, so a board is a starting point rather than a dead end.
+   */
+  openBoard(b: Board): void {
+    this.activeBoard = b;
+    this.table = (b.spec.table || 'request') as LogTable;
+    this.rangeMinutes = b.defaultRangeMinutes || this.rangeMinutes;
+    this.filters = [];
+    this.contains = '';
+    this.minDurationMs = 0;
+    this.facets = [];
+    this.resetAndLoad();
+  }
+
+  closeBoard(): void {
+    this.activeBoard = null;
     this.resetAndLoad();
   }
 
@@ -103,8 +143,9 @@ export class LogExplorerComponent implements OnInit {
     if (this.table !== t) {
       this.table = t;
       this.contains = '';
-      this.filters = [];
+      this.filters = [];       // column names differ between the tables
       this.facets = [];
+      this.activeBoard = null; // a board is bound to its own table
       this.resetAndLoad();
     }
   }
@@ -181,6 +222,17 @@ export class LogExplorerComponent implements OnInit {
     const to = new Date();
     const from = new Date(to.getTime() - this.rangeMinutes * 60_000);
 
+    // A board is just a saved spec — take it verbatim and supply the range the page is showing.
+    if (this.activeBoard) {
+      return {
+        ...this.activeBoard.spec,
+        table: this.table,
+        from: from.toISOString(),
+        to: to.toISOString(),
+        cursor: null
+      };
+    }
+
     const filters: QueryFilter[] = [...this.filters];
     for (const f of this.facets) {
       if (f.selected) {
@@ -230,8 +282,8 @@ export class LogExplorerComponent implements OnInit {
 
   /** Facet values are fetched once per (table, range) and reused across filter changes. */
   private loadFacets(): void {
-    if (this.facets.length) {
-      return;
+    if (this.facets.length || this.activeBoard) {
+      return;                  // board mode has no ad-hoc filter row, so don't spend 4 requests on it
     }
     const to = new Date();
     const from = new Date(to.getTime() - this.rangeMinutes * 60_000);
@@ -354,16 +406,29 @@ export class LogExplorerComponent implements OnInit {
     if (col.key === 'userId') {
       return this.shortUser(String(v));
     }
+    if (col.key === 'handler') {
+      return this.shortHandler(String(v));
+    }
     if (col.key === 'runnableHash' || col.key === 'apiKeyHash' || col.key === 'globalRequestId') {
       return this.shortHash(String(v));
     }
     return String(v);
   }
 
+  /**
+   * Every CEDAR handler starts with the same package, which just eats width — drop it. The untruncated
+   * value stays in the title and in data-copy, so the copy still yields the fully-qualified name.
+   */
+  shortHandler(h: string): string {
+    return h.replace(/^org\.metadatacenter\.cedar\./, '').replace(/^org\.metadatacenter\./, '');
+  }
+
   cellClass(col: ColumnMeta): string {
     const mono = col.type === 'NANOS' || col.type === 'TEXT'
       || ['userId', 'runnableHash', 'apiKeyHash', 'globalRequestId', 'operation'].includes(col.key);
-    return (mono ? 'mono ' : '') + (col.type === 'NANOS' ? 'num ' : '') + (col.type === 'TEXT' ? 'path' : '');
+    // ellipsise the two columns that would otherwise push everything else off-screen
+    const wide = col.type === 'TEXT' || col.key === 'handler' || col.key === 'path';
+    return (mono ? 'mono ' : '') + (col.type === 'NANOS' ? 'num ' : '') + (wide ? 'ell' : '');
   }
 
   isFacetColumn(key: string): boolean {

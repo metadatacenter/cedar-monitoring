@@ -168,4 +168,8 @@ export class RestApiUrlService {
   logsCoverage() {
     return `${this.base()}logs/coverage`;
   }
+
+  logsBoards() {
+    return `${this.base()}logs/boards`;
+  }
 }
