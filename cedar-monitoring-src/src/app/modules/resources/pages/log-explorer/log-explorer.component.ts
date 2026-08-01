@@ -394,14 +394,18 @@ export class LogExplorerComponent implements OnInit {
     const to = new Date();
     const from = new Date(to.getTime() - this.rangeMinutes * 60_000);
 
-    // A board is just a saved spec — take it verbatim and supply the range the page is showing.
+    // A board is just a saved spec — take it verbatim and supply what the page controls: the range,
+    // and the source. `source` must be applied here and not only in the ad-hoc branch below, because
+    // the exact/rollup toggle is shown ONLY in board mode; leaving it off made the toggle a silent
+    // no-op that re-ran the same raw query.
     if (this.activeBoard) {
       return {
         ...this.activeBoard.spec,
         table: this.table,
         from: from.toISOString(),
         to: to.toISOString(),
-        cursor: null
+        cursor: null,
+        source: this.source
       };
     }
 
