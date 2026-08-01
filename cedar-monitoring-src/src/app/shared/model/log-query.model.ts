@@ -4,6 +4,13 @@
 
 export type LogTable = 'request' | 'cypher';
 
+/**
+ * Which store answers the query. 'raw' is the log tables — exact and row-level, but only as far
+ * back as the retention window. 'rollup' is the hourly agg_* tables — cheap, kept forever,
+ * hourly grain, and percentiles interpolated from histograms (so QueryResult.exact is false).
+ */
+export type LogSource = 'raw' | 'rollup';
+
 export type FilterOp =
   'eq' | 'ne' | 'in' | 'notin' | 'like' | 'notlike' | 'startswith'
   | 'gte' | 'lte' | 'between' | 'isnull' | 'notnull';
@@ -38,6 +45,7 @@ export interface LogQuerySpec {
   orderBy?: QuerySort[];
   limit?: number;
   cursor?: string | null;
+  source?: LogSource;
 }
 
 export type ColumnType = 'STRING' | 'NUMBER' | 'NANOS' | 'TIMESTAMP' | 'TEXT';

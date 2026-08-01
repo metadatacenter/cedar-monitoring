@@ -36,6 +36,11 @@
         <button *ngFor="let r of ranges" [class.on]="rangeMinutes === r.minutes"
                 (click)="setRange(r.minutes)">{{ r.label }}</button>
       </div>
+      <div class="seg" *ngIf="canUseRollup()"
+           title="Rollups answer ranges beyond raw retention: hourly grain, percentiles interpolated from histograms">
+        <button [class.on]="source === 'raw'" (click)="setSource('raw')">exact</button>
+        <button [class.on]="source === 'rollup'" (click)="setSource('rollup')">rollup ~</button>
+      </div>
       <ng-container *ngIf="!activeBoard">
         <input class="txt" [(ngModel)]="contains" (keyup.enter)="resetAndLoad()"
                [placeholder]="table === 'request' ? 'path contains…' : 'query contains…'">
@@ -82,6 +87,7 @@
           {{ rows.length }} rows · {{ elapsedMs }}ms
           <ng-container *ngIf="pageIndex > 0"> · page {{ pageIndex + 1 }}</ng-container>
           <ng-container *ngIf="truncated"> · more available</ng-container>
+          <span class="approx" *ngIf="!exact"> · approximate (rollup histogram)</span>
         </span>
         <span class="spacer"></span>
         <button class="link" (click)="copyTsv()">copy TSV</button>
@@ -106,7 +112,8 @@
               <span *ngIf="c.key === 'httpMethod'" class="method"
                     [ngClass]="methodClass(row[c.key])">{{ display(row, c) }}</span>
               <span *ngIf="c.key === 'status'" class="stat" [ngClass]="statusClass(row[c.key])">{{ display(row, c) }}</span>
-              <ng-container *ngIf="c.key !== 'httpMethod' && c.key !== 'status'">{{ display(row, c) }}</ng-container>
+              <ng-container *ngIf="c.key !== 'httpMethod' && c.key !== 'status'"><span
+                *ngIf="isApproximate(c)" class="tilde">~</span>{{ display(row, c) }}</ng-container>
             </td>
           </tr>
           <tr class="detail" *ngIf="isOpen(i)">

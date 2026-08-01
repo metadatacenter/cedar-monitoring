@@ -628,3 +628,15 @@ pre.code {
   box-shadow: 0 4px 14px rgba(0, 0, 0, .22);
   z-index: 1000;
 }
+
+// Rollup-sourced values are histogram estimates. They are marked in two places — a badge on the
+// result bar and a tilde on each percentile cell — so a number can never be quoted as exact once it
+// has been copied out of the table.
+.approx {
+  color: #8a5a08;
+}
+
+.tilde {
+  color: #98a2b3;
+  margin-right: 1px;
+}

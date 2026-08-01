@@ -7,6 +7,7 @@ import {
   CoverageResult,
   FacetValue,
   LogQuerySpec,
+  LogSource,
   LogTable,
   QueryFilter,
   QueryResult,
@@ -51,6 +52,8 @@ export class LogExplorerComponent implements OnInit {
   readonly pageSizes = [100, 500, 2000];
 
   table: LogTable = 'request';
+  source: LogSource = 'raw';
+  exact = true;
   rangeMinutes = 60 * 24;
   pageSize = 100;
   contains = '';
@@ -145,6 +148,9 @@ export class LogExplorerComponent implements OnInit {
     if (this.table !== 'request') {
       q.table = this.table;
     }
+    if (this.source !== 'raw') {
+      q.source = this.source;
+    }
     if (this.rangeMinutes !== 60 * 24) {
       q.range = this.rangeMinutes;
     }
@@ -170,6 +176,10 @@ export class LogExplorerComponent implements OnInit {
     const table = p.get('table');
     if (table === 'cypher' || table === 'request') {
       this.table = table;
+    }
+    const src = p.get('source');
+    if (src === 'rollup' || src === 'raw') {
+      this.source = src;
     }
     const range = Number(p.get('range'));
     if (range > 0) {
@@ -207,6 +217,7 @@ export class LogExplorerComponent implements OnInit {
    */
   openBoard(b: Board): void {
     this.activeBoard = b;
+    this.source = 'raw';        // opt in per board; the rollup answers a different-precision question
     // cross-table boards have no spec — they carry an endpoint instead
     this.table = (b.spec?.table || 'request') as LogTable;
     this.rangeMinutes = b.defaultRangeMinutes || this.rangeMinutes;
@@ -219,6 +230,7 @@ export class LogExplorerComponent implements OnInit {
 
   closeBoard(): void {
     this.activeBoard = null;
+    this.source = 'raw';        // row mode has no rollup equivalent
     this.resetAndLoad();
   }
 
@@ -282,6 +294,32 @@ export class LogExplorerComponent implements OnInit {
       this.activeBoard = null; // a board is bound to its own table
       this.resetAndLoad();
     }
+  }
+
+  /**
+   * Rollups store hourly aggregates, so they cannot answer a raw-row query. The toggle is therefore
+   * only meaningful once a board (an aggregate question) is open — enforced here rather than letting
+   * the engine return a 400 the operator has to interpret.
+   */
+  canUseRollup(): boolean {
+    return !!this.activeBoard && !this.activeBoard.endpoint;
+  }
+
+  setSource(s: LogSource): void {
+    if (this.source === s) {
+      return;
+    }
+    if (s === 'rollup' && !this.canUseRollup()) {
+      this.error = 'The rollup source answers aggregate questions — open a board first.';
+      return;
+    }
+    this.source = s;
+    this.resetAndLoad();
+  }
+
+  /** Percentiles read out of the rollup histogram are estimates; mark them so nobody quotes them as exact. */
+  isApproximate(col: ColumnMeta): boolean {
+    return !this.exact && /^p\d+:/.test(col.key);
   }
 
   setRange(minutes: number): void {
@@ -385,7 +423,8 @@ export class LogExplorerComponent implements OnInit {
       to: to.toISOString(),
       filters,
       limit: this.pageSize,
-      cursor: this.cursor
+      cursor: this.cursor,
+      source: this.source
     };
   }
 
@@ -410,6 +449,7 @@ export class LogExplorerComponent implements OnInit {
         this.notes = r.notes || [];
         this.elapsedMs = r.elapsedMs;
         this.truncated = r.truncated;
+        this.exact = r.exact !== false;
         this.nextCursor = r.nextCursor;
         this.loading = false;
         this.loadFacets();
