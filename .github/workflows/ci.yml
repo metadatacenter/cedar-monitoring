@@ -1,0 +1,43 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NPM_CONFIG_STRICT_ALLOW_SCRIPTS: "true"
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: cedar-monitoring-src
+
+    steps:
+      - name: Check out Monitoring
+        uses: actions/checkout@v7
+
+      - name: Use Node 24.19.0
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.19.0
+          cache: npm
+          cache-dependency-path: cedar-monitoring-src/package-lock.json
+
+      - name: Install the release dependency graph
+        run: npm ci --legacy-peer-deps
+
+      - name: Build the production distribution
+        run: npm run build -- --configuration=production
