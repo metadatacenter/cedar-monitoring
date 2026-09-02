@@ -14,6 +14,9 @@ concurrency:
   group: build-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  NPM_CONFIG_STRICT_ALLOW_SCRIPTS: "true"
+
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -34,7 +37,7 @@ jobs:
           cache-dependency-path: cedar-monitoring-src/package-lock.json
 
       - name: Install the release dependency graph
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Build the production distribution
         run: npm run build -- --configuration=production
