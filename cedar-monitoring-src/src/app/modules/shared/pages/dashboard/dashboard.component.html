@@ -75,5 +75,17 @@
       </mat-card-header>
     </mat-card>
 
+    <mat-card class="dash-card" [routerLink]="'/mysql-counts'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">storage</mat-icon>
+        </div>
+        <mat-card-title>
+          MySQL Counts
+        </mat-card-title>
+        <mat-card-subtitle>Row counts and storage per table, for every MySQL database CEDAR is configured to reach</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
   </mat-card-content>
 </mat-card>

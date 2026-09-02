@@ -27,6 +27,8 @@ import {RedisQueueCounts} from "../shared/model/redis-queue-counts.model";
 import {ResourceCounts} from "../shared/model/resource-counts.model";
 import {ResourceCountsService} from "./load-data/resource-counts.service";
 import {ResourceCountsOpensearchIndex} from "../shared/model/resource-counts-opensearch-index.model";
+import {MySqlCounts} from "../shared/model/mysql-counts.model";
+import {MySqlCountsService} from "./load-data/mysql-counts.service";
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +55,8 @@ export class DataHandlerService {
     private resourceReportTemplateService: ResourceReportTemplateService,
     private resourceReportInstanceService: ResourceReportInstanceService,
     private redisQueueCountsService: RedisQueueCountsService,
-    private resourceCountsService: ResourceCountsService
+    private resourceCountsService: ResourceCountsService,
+    private mySqlCountsService: MySqlCountsService
   ) {
     this.dataIdMap = new Map<string, DataHandlerDataStatus>();
     this.dataAvailable = false;
@@ -78,6 +81,7 @@ export class DataHandlerService {
     this.resourceReportTemplateService.reset();
     this.resourceReportInstanceService.reset();
     this.redisQueueCountsService.reset();
+    this.mySqlCountsService.reset();
     this.resourceCountsService.reset();
     return this;
   }
@@ -148,6 +152,9 @@ export class DataHandlerService {
         break;
       case DataHandlerDataId.RESOURCE_COUNTS_OPENSEARCH:
         this.loadResourceCountsOpensearch(dataStatus);
+        break;
+      case DataHandlerDataId.MYSQL_COUNTS:
+        this.loadMySqlCounts(dataStatus);
         break;
     }
   }
@@ -285,6 +292,22 @@ export class DataHandlerService {
     this.resourceCountsService.getResourceCountsOpensearch()
       ?.subscribe(resourceCounts => {
           this.dataStore.setResourceCountsOpensearch(Object.assign(new ResourceCountsOpensearchIndex(), resourceCounts));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  /**
+   * The report carries nested databases and tables, so Object.assign onto the model would leave
+   * those as plain objects. The template reads them by name and the classes add no behavior, so
+   * the response is stored as it arrived, typed by the class rather than rebuilt into it.
+   */
+  private loadMySqlCounts(dataStatus: DataHandlerDataStatus) {
+    this.mySqlCountsService.getMySqlCounts(dataStatus.id === 'exact')
+      ?.subscribe(mySqlCounts => {
+          this.dataStore.setMySqlCounts(mySqlCounts as MySqlCounts);
           this.dataWasLoaded(dataStatus);
         },
         (error) => {

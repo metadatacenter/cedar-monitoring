@@ -103,4 +103,8 @@ export class RestApiUrlService {
   resourceCountsOpensearch() {
     return `${this.base()}resources/counts/opensearch`;
   }
+
+  mysqlCounts(exact: boolean = false) {
+    return `${this.base()}mysql/counts${exact ? '?exact=true' : ''}`;
+  }
 }

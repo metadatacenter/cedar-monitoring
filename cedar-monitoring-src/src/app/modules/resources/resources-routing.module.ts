@@ -7,6 +7,7 @@ import {ResourceInfoComponent} from "./pages/resource-info/resource-info.compone
 import {QueueCountsComponent} from "./pages/queue-counts/queue-counts.component";
 import {ResourceCountsComponent} from "./pages/resource-counts/resource-counts.component";
 import {ResourceCountsOpensearchComponent} from "./pages/resource-counts-opensearch/resource-counts-opensearch.component";
+import {MySqlCountsComponent} from "./pages/mysql-counts/mysql-counts.component";
 
 export const routes: Routes = [
   {
@@ -37,6 +38,11 @@ export const routes: Routes = [
   {
     path: 'resource-counts/opensearch',
     component: ResourceCountsOpensearchComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'mysql-counts',
+    component: MySqlCountsComponent,
     canActivate: [AuthGuard]
   }
 ];
