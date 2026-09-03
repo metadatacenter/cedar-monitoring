@@ -1,0 +1,222 @@
+<app-header title="Live Log Explorer"></app-header>
+
+<mat-card class="wrapper-card">
+
+  <mat-card-header>
+    <mat-card-title>Live Log Explorer</mat-card-title>
+    <mat-card-subtitle>
+      Row-level detail over the raw log_request / log_cypher tables — actual recent traffic.
+      Click a row to expand, click any cell to copy its full value.
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <div class="rail" *ngIf="boards.length">
+      <ng-container *ngFor="let g of boardGroups">
+        <span class="railgrp">{{ g }}</span>
+        <button class="board" *ngFor="let b of boardsIn(g)"
+                [class.on]="activeBoard?.id === b.id" [title]="b.question"
+                (click)="openBoard(b)">{{ b.title }}</button>
+      </ng-container>
+      <button class="board" [class.on]="!activeBoard" (click)="closeBoard()">Browse rows</button>
+    </div>
+
+    <div class="boardhead" *ngIf="activeBoard">
+      <b>{{ activeBoard.title }}</b> — {{ activeBoard.question }}
+      <div class="bnote" *ngIf="activeBoard.note">{{ activeBoard.note }}</div>
+    </div>
+
+    <div class="controls">
+      <div class="seg">
+        <button [class.on]="table === 'request'" (click)="setTable('request')">Requests</button>
+        <button [class.on]="table === 'cypher'" (click)="setTable('cypher')">Cypher</button>
+      </div>
+      <div class="seg">
+        <button *ngFor="let r of ranges" [class.on]="rangeMinutes === r.minutes"
+                (click)="setRange(r.minutes)">{{ r.label }}</button>
+      </div>
+      <div class="seg" *ngIf="canUseRollup()"
+           title="Rollups answer ranges beyond raw retention: hourly grain, percentiles interpolated from histograms">
+        <button [class.on]="source === 'raw'" (click)="setSource('raw')">exact</button>
+        <button [class.on]="source === 'rollup'" (click)="setSource('rollup')">rollup ~</button>
+      </div>
+      <ng-container *ngIf="!activeBoard">
+        <input class="txt" [(ngModel)]="contains" (keyup.enter)="resetAndLoad()"
+               [placeholder]="table === 'request' ? 'path contains…' : 'query contains…'">
+        <label class="fld">Min duration
+          <select [(ngModel)]="minDurationMs" (change)="resetAndLoad()">
+            <option [ngValue]="0">any</option>
+            <option [ngValue]="100">≥100ms</option>
+            <option [ngValue]="500">≥500ms</option>
+            <option [ngValue]="1000">≥1s</option>
+          </select>
+        </label>
+        <label class="fld" *ngFor="let f of facets">{{ f.label }}
+          <select [(ngModel)]="f.selected" (change)="resetAndLoad()">
+            <option value="">any</option>
+            <option *ngFor="let v of f.values" [value]="v.value">{{ v.value }} ({{ v.count }})</option>
+          </select>
+        </label>
+        <label class="fld">Rows
+          <select [ngModel]="pageSize" (ngModelChange)="setPageSize($event)">
+            <option *ngFor="let s of pageSizes" [ngValue]="s">{{ s }}</option>
+          </select>
+        </label>
+      </ng-container>
+      <span class="spacer"></span>
+      <button class="link" (click)="resetAndLoad()">Reload</button>
+    </div>
+
+    <div class="chips" *ngIf="filters.length">
+      <span class="chip" *ngFor="let f of filters; let i = index">
+        {{ f.col }} {{ f.op }} {{ f.val }}
+        <span class="x" (click)="removeFilter(i)">×</span>
+      </span>
+      <button class="link" (click)="clearAll()">clear all</button>
+    </div>
+
+    <div class="banner loading" *ngIf="loading">Loading…</div>
+    <div class="banner error" *ngIf="error">{{ error }}</div>
+    <div class="banner note" *ngFor="let n of notes">{{ n }}</div>
+
+    <div class="tblwrap" *ngIf="!loading && !error">
+
+      <div class="bar">
+        <span class="count">
+          {{ rows.length }} rows · {{ elapsedMs }}ms
+          <ng-container *ngIf="pageIndex > 0"> · page {{ pageIndex + 1 }}</ng-container>
+          <ng-container *ngIf="truncated"> · more available</ng-container>
+          <span class="approx" *ngIf="!exact"> · approximate (rollup histogram)</span>
+        </span>
+        <span class="spacer"></span>
+        <button class="link" (click)="copyTsv()">copy TSV</button>
+        <button class="link" (click)="downloadCsv()">download CSV</button>
+        <button class="link" [disabled]="!pageIndex" (click)="prevPage()">← newer</button>
+        <button class="link" [disabled]="!nextCursor" (click)="nextPage()">older →</button>
+      </div>
+
+      <table class="data">
+        <thead>
+        <tr>
+          <th style="width:22px"></th>
+          <th *ngFor="let c of mainColumns" [class.num]="c.type === 'NANOS'" [title]="c.note || c.key">{{ c.label }}</th>
+        </tr>
+        </thead>
+        <tbody (click)="onTableClick($event)">
+        <ng-container *ngFor="let row of rows; let i = index">
+          <tr class="main" [attr.data-row]="i">
+            <td><span class="caret" [class.open]="isOpen(i)">▸</span></td>
+            <td *ngFor="let c of mainColumns" [ngClass]="cellClass(c)"
+                [attr.data-copy]="raw(row, c)" [attr.data-copy-key]="c.key" [title]="raw(row, c)">
+              <span *ngIf="c.key === 'httpMethod'" class="method"
+                    [ngClass]="methodClass(row[c.key])">{{ display(row, c) }}</span>
+              <span *ngIf="c.key === 'status'" class="stat" [ngClass]="statusClass(row[c.key])">{{ display(row, c) }}</span>
+              <ng-container *ngIf="c.key !== 'httpMethod' && c.key !== 'status'"><span
+                *ngIf="isApproximate(c)" class="tilde">~</span>{{ display(row, c) }}</ng-container>
+            </td>
+          </tr>
+          <tr class="detail" *ngIf="isOpen(i)">
+            <td [attr.colspan]="mainColumns.length + 1">
+              <div class="kv">
+                <ng-container *ngFor="let c of columns">
+                  <span class="k">{{ c.key }}</span>
+                  <span class="v mono">
+                    {{ raw(row, c) || '—' }}
+                    <button class="link sm" *ngIf="isFacetColumn(c.key) && row[c.key]"
+                            (click)="filterBy(c.key, row[c.key])">filter</button>
+                  </span>
+                </ng-container>
+              </div>
+              <div class="block" *ngIf="row['errorPack']">
+                <div class="dlabel">errorPack</div>
+                <pre class="code">{{ pretty(row['errorPack']) }}</pre>
+              </div>
+              <div class="block" *ngIf="row['parameters']">
+                <div class="dlabel">parameters</div>
+                <pre class="code">{{ pretty(row['parameters']) }}</pre>
+              </div>
+              <div class="block">
+                <button class="link" (click)="copyRowJson(row, i)">copy row as JSON</button>
+                <button class="link" *ngIf="row['globalRequestId']"
+                        (click)="openTrace(row['globalRequestId'])">open trace →</button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+        <tr *ngIf="!rows.length">
+          <td [attr.colspan]="mainColumns.length + 1" class="empty">
+            No matching rows in this range.
+            <ng-container *ngIf="hasActiveFilters()"> Try widening the range or clearing filters.</ng-container>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div class="bar">
+        <span class="count" *ngIf="coverage">
+          raw tables: <ng-container *ngFor="let t of coverage.tables">{{ t.sqlTable }} {{ t.rowCount }} rows ({{ t.oldest | slice:0:10 }} → {{ t.newest | slice:0:10 }}) </ng-container>
+        </span>
+        <span class="spacer"></span>
+        <button class="link" [disabled]="!pageIndex" (click)="prevPage()">← newer</button>
+        <button class="link" [disabled]="!nextCursor" (click)="nextPage()">older →</button>
+      </div>
+
+      <div class="caveat" *ngIf="coverage">
+        <span *ngFor="let n of coverage.notes">{{ n }} </span>
+      </div>
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button routerLink="/">GO BACK</button>
+  </mat-card-actions>
+</mat-card>
+
+<div class="toast" *ngIf="copied">Copied {{ copied }}</div>
+
+<!-- Trace overlay: one request across every component that handled it, plus its Cypher. -->
+<div class="scrim" *ngIf="trace || traceLoading || traceError" (click)="closeTrace()">
+  <div class="tracepane" (click)="$event.stopPropagation()">
+
+    <div class="tracehead">
+      <div>
+        <div class="tracetitle">Request trace</div>
+        <div class="mono muted" *ngIf="trace">{{ trace.globalRequestId }}</div>
+      </div>
+      <span class="spacer"></span>
+      <button class="link" *ngIf="trace" (click)="copyText(trace.globalRequestId, 'request id')">copy id</button>
+      <button class="link" (click)="closeTrace()">close ✕</button>
+    </div>
+
+    <div class="banner loading" *ngIf="traceLoading">Loading trace…</div>
+    <div class="banner error" *ngIf="traceError">{{ traceError }}</div>
+
+    <ng-container *ngIf="trace">
+      <div class="tiles">
+        <div class="tile"><span class="tv">{{ trace.componentCount }}</span><span class="tl">components</span></div>
+        <div class="tile"><span class="tv">{{ trace.requestCount }}</span><span class="tl">request rows</span></div>
+        <div class="tile"><span class="tv">{{ trace.cypherCount }}</span><span class="tl">queries</span></div>
+        <div class="tile"><span class="tv">{{ trace.spanMs | number:'1.0-0' }}ms</span><span class="tl">wall time</span></div>
+        <div class="tile"><span class="tv">{{ trace.dbMs | number:'1.0-0' }}ms</span><span class="tl">database</span></div>
+        <div class="tile"><span class="tv">{{ trace.dbSharePct | number:'1.0-1' }}%</span><span class="tl">time in Neo4j</span></div>
+      </div>
+
+      <div class="waterfall">
+        <div class="wrow" *ngFor="let s of trace.spans" [title]="s.detail">
+          <span class="wkind" [class.k-cypher]="s.kind === 'cypher'">{{ s.kind === 'cypher' ? 'DB' : 'REQ' }}</span>
+          <span class="wcomp">{{ s.component }}</span>
+          <span class="wlabel mono ell">{{ spanLabel(s) }}</span>
+          <span class="wtrack">
+            <span class="wbar" [class.b-cypher]="s.kind === 'cypher'"
+                  [style.left]="spanLeft(s)" [style.width]="spanWidth(s)"></span>
+          </span>
+          <span class="wms mono">{{ s.durationMs | number:'1.0-2' }}ms</span>
+        </div>
+        <div class="empty" *ngIf="!trace.spans.length">No spans — the rows may have been pruned.</div>
+      </div>
+
+      <div class="caveat"><span *ngFor="let n of trace.notes">{{ n }} </span></div>
+    </ng-container>
+  </div>
+</div>

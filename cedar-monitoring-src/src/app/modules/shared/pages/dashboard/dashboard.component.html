@@ -87,5 +87,29 @@
       </mat-card-header>
     </mat-card>
 
+    <mat-card class="dash-card" [routerLink]="'/logs-usage'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">insights</mat-icon>
+        </div>
+        <mat-card-title>
+          Logs &amp; Usage
+        </mat-card-title>
+        <mat-card-subtitle>Aggregated request/Cypher analytics + patterns from the log rollups</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/logs-explorer'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">travel_explore</mat-icon>
+        </div>
+        <mat-card-title>
+          Live Log Explorer
+        </mat-card-title>
+        <mat-card-subtitle>Row-level raw request/Cypher logs (last 30 days) — actual recent traffic</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
   </mat-card-content>
 </mat-card>

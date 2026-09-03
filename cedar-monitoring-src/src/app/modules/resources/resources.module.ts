@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {SharedModule} from '../shared';
 import {ResourcesRoutingModule} from './resources-routing.module';
 import {MaterialModule} from '../material-module';
@@ -9,6 +10,8 @@ import {QueueCountsComponent} from "./pages/queue-counts/queue-counts.component"
 import {ResourceCountsComponent} from "./pages/resource-counts/resource-counts.component";
 import {ResourceCountsOpensearchComponent} from "./pages/resource-counts-opensearch/resource-counts-opensearch.component";
 import {MySqlCountsComponent} from "./pages/mysql-counts/mysql-counts.component";
+import {LogUsageComponent} from "./pages/log-usage/log-usage.component";
+import {LogExplorerComponent} from "./pages/log-explorer/log-explorer.component";
 
 
 @NgModule({
@@ -19,12 +22,15 @@ import {MySqlCountsComponent} from "./pages/mysql-counts/mysql-counts.component"
     QueueCountsComponent,
     ResourceCountsComponent,
     ResourceCountsOpensearchComponent,
-    MySqlCountsComponent
+    MySqlCountsComponent,
+    LogUsageComponent,
+    LogExplorerComponent
   ],
   imports: [
     SharedModule,
     ResourcesRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   exports: [],
   providers: [],

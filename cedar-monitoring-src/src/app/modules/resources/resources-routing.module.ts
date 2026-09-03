@@ -8,8 +8,20 @@ import {QueueCountsComponent} from "./pages/queue-counts/queue-counts.component"
 import {ResourceCountsComponent} from "./pages/resource-counts/resource-counts.component";
 import {ResourceCountsOpensearchComponent} from "./pages/resource-counts-opensearch/resource-counts-opensearch.component";
 import {MySqlCountsComponent} from "./pages/mysql-counts/mysql-counts.component";
+import {LogUsageComponent} from "./pages/log-usage/log-usage.component";
+import {LogExplorerComponent} from "./pages/log-explorer/log-explorer.component";
 
 export const routes: Routes = [
+  {
+    path: 'logs-usage',
+    component: LogUsageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'logs-explorer',
+    component: LogExplorerComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'health-checks',
     component: HealthChecksComponent,

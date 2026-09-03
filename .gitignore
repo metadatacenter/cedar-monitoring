@@ -7,7 +7,9 @@ dist/
 /bazel-out
 
 # Node
-node_modules/
+# No trailing slash: also ignores a node_modules *symlink*, which
+# "node_modules/" would not match (that pattern is directories only).
+node_modules
 npm-debug.log
 yarn-error.log
 
