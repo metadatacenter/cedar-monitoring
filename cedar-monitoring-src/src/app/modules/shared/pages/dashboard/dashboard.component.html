@@ -111,5 +111,77 @@
       </mat-card-header>
     </mat-card>
 
+    <mat-card class="dash-card" [routerLink]="'/deploy'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">rocket_launch</mat-icon>
+        </div>
+        <mat-card-title>
+          Deploy
+        </mat-card-title>
+        <mat-card-subtitle>Version and artifact per service, branch and uncommitted edits per repository — what is actually deployed</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/environment'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">tune</mat-icon>
+        </div>
+        <mat-card-title>
+          Environment
+        </mat-card-title>
+        <mat-card-subtitle>Every environment variable across every service, secrets masked — shows which service is missing which</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/configuration'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">settings</mat-icon>
+        </div>
+        <mat-card-title>
+          Configuration
+        </mat-card-title>
+        <mat-card-subtitle>cedar-main.yml as one service resolved it, secrets masked, unresolved placeholders called out</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/jvm'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">memory</mat-icon>
+        </div>
+        <mat-card-title>
+          JVM
+        </mat-card-title>
+        <mat-card-subtitle>Heap, threads and garbage collection for every service</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/worker-lag'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">hourglass_bottom</mat-icon>
+        </div>
+        <mat-card-title>
+          Worker Lag
+        </mat-card-title>
+        <mat-card-subtitle>Queue depth beside write lag — whether the log pipeline is keeping up or has quietly stopped</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card" [routerLink]="'/host-disk'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">hard_drive</mat-icon>
+        </div>
+        <mat-card-title>
+          Disk &amp; Logs
+        </mat-card-title>
+        <mat-card-subtitle>Room left on the host's filesystems, and the log files that are eating it</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
   </mat-card-content>
 </mat-card>

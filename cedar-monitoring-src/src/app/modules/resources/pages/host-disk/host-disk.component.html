@@ -1,0 +1,83 @@
+<app-header title="Disk &amp; Logs"></app-header>
+
+<mat-card class="wrapper-card">
+
+  <mat-card-header>
+    <mat-card-title>Disk &amp; Logs</mat-card-title>
+    <mat-card-subtitle>
+      Room left on the filesystems CEDAR writes to, and the largest files in its log directory. Unlike
+      every other page here this describes a <em>host</em> rather than a service — the one the monitoring
+      server itself runs on, which the report names.
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <div class="controls">
+      <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
+      <span class="spacer"></span>
+      <span class="note" *ngIf="report">{{ report.scope }}<span *ngIf="report.cedarHome"> · {{ report.cedarHome }}</span></span>
+    </div>
+
+    <div class="banner loading" *ngIf="loading">Loading…</div>
+    <div class="banner error" *ngIf="error">{{ error }} — you need the MONITOR_READ capability.</div>
+
+    <ng-container *ngIf="report && !loading && !error">
+
+      <div class="banner warn" *ngIf="unrotated.length">
+        {{ unrotated.length }} log file{{ unrotated.length === 1 ? ' is' : 's are' }} over 512 MB and still
+        being written to. A file that large which is still live is a log nothing is rotating.
+      </div>
+
+      <h3 class="section">Filesystems</h3>
+
+      <div class="filesystems">
+        <div class="fs" *ngFor="let fs of filesystems">
+          <div class="fs-head">
+            <span class="fs-path">{{ fs.path }}</span>
+            <span class="fs-pct" [class.bad]="fs.usedPercent >= warningPercent">{{ fs.usedPercent | number:'1.0-1' }}%</span>
+          </div>
+          <div class="bar">
+            <div class="fill" [ngClass]="usageClass(fs.usedPercent)" [style.width.%]="fs.usedPercent"></div>
+          </div>
+          <div class="fs-foot">{{ bytes(fs.usableBytes) }} free of {{ bytes(fs.totalBytes) }}</div>
+        </div>
+      </div>
+      <div class="empty" *ngIf="!filesystems.length">No filesystems could be read.</div>
+
+      <h3 class="section">
+        Largest log files
+        <span class="sub" *ngIf="report.logs.readable">{{ report.logs.fileCount }} files,
+          {{ bytes(report.logs.totalBytes) }} total in {{ report.logs.directory }}</span>
+      </h3>
+
+      <div class="banner warn" *ngIf="!report.logs.readable">
+        The log directory could not be read<span *ngIf="report.logs.error">: {{ report.logs.error }}</span>.
+      </div>
+
+      <div class="table-scroll" *ngIf="report.logs.readable">
+        <table class="grid">
+          <thead>
+          <tr>
+            <th>File</th>
+            <th>Size</th>
+            <th>Last written</th>
+            <th>Age</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let file of logFiles" [class.bad-row]="isLarge(file)">
+            <th class="name" [title]="file.path">{{ relative(file.path) }}</th>
+            <td [class.bad]="isLarge(file)">{{ bytes(file.sizeBytes) }}</td>
+            <td class="dim">{{ file.modifiedAt | date:'yyyy-MM-dd HH:mm' }}</td>
+            <td class="dim">{{ file.ageDays === 0 ? 'today' : file.ageDays + 'd' }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="empty" *ngIf="!logFiles.length">The log directory is empty.</div>
+      </div>
+
+    </ng-container>
+
+  </mat-card-content>
+</mat-card>

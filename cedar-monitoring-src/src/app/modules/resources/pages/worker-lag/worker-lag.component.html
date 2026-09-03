@@ -1,0 +1,79 @@
+<app-header title="Worker Lag"></app-header>
+
+<mat-card class="wrapper-card">
+
+  <mat-card-header>
+    <mat-card-title>Worker Lag</mat-card-title>
+    <mat-card-subtitle>
+      How deep the application log queue is, beside how recent the newest row the worker actually wrote is.
+      Neither number means much alone — a deep queue that is draining fast is healthy, and an empty queue
+      means nothing if nothing is consuming it — so the verdict is drawn from both.
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <div class="controls">
+      <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
+      <mat-checkbox [checked]="autoRefresh" (change)="toggleAutoRefresh()">Refresh every 10s</mat-checkbox>
+      <span class="spacer"></span>
+      <span class="note" *ngIf="lag">observed {{ lag.observedAt | date:'HH:mm:ss' }}</span>
+    </div>
+
+    <div class="banner loading" *ngIf="loading && !lag">Loading…</div>
+    <div class="banner error" *ngIf="error">{{ error }} — you need the MONITOR_READ capability.</div>
+
+    <ng-container *ngIf="lag && !error">
+
+      <div class="verdict" [ngClass]="statusClass(lag.status)">
+        <div class="verdict-status">{{ lag.status }}</div>
+        <div class="verdict-text">{{ statusExplanation(lag) }}</div>
+      </div>
+
+      <div class="tiles">
+        <div class="tile">
+          <div class="tl">Queue depth</div>
+          <div class="tv">{{ lag.appLogQueueDepth }}</div>
+          <div class="td">entries waiting in Redis</div>
+        </div>
+        <div class="tile">
+          <div class="tl">Write lag</div>
+          <div class="tv">{{ duration(lag.worstLagSeconds) }}</div>
+          <div class="td">since the newest row</div>
+        </div>
+        <div class="tile">
+          <div class="tl">Thresholds</div>
+          <div class="tv small">{{ duration(lag.laggingAfterSeconds) }} / {{ duration(lag.stalledAfterSeconds) }}</div>
+          <div class="td">lagging / stalled</div>
+        </div>
+      </div>
+
+      <h3 class="section">Log tables</h3>
+
+      <div class="table-scroll">
+        <table class="grid">
+          <thead>
+          <tr>
+            <th>Table</th>
+            <th>Newest row</th>
+            <th>Lag</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let table of lag.tables">
+            <th class="name">{{ table.sqlTable }}</th>
+            <td>{{ table.newestAt ? (table.newestAt | date:'yyyy-MM-dd HH:mm:ss') : 'never written' }}</td>
+            <td [class.bad]="(table.lagSeconds || 0) >= lag.stalledAfterSeconds"
+                [class.warn]="(table.lagSeconds || 0) >= lag.laggingAfterSeconds
+                              && (table.lagSeconds || 0) < lag.stalledAfterSeconds">
+              {{ duration(table.lagSeconds) }}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </ng-container>
+
+  </mat-card-content>
+</mat-card>

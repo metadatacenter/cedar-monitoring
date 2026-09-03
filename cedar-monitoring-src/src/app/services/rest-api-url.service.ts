@@ -24,6 +24,14 @@ export class RestApiUrlService {
     return `${this.base()}health-check`;
   }
 
+  /**
+   * Per-server report routes. One server per call by design: the monitor proxies these, and fanning
+   * out here rather than in the browser would serialize fifteen network calls behind one request.
+   */
+  private serverReports(server: string) {
+    return `${this.base()}server-report/${encodeURIComponent(server)}`;
+  }
+
   private resourceIdLookups() {
     return `${this.base()}command/resource-id-lookup`;
   }
@@ -58,6 +66,42 @@ export class RestApiUrlService {
 
   public healthCheck(server: string) {
     return `${this.healthChecks()}/${encodeURIComponent(server)}`;
+  }
+
+  serverEnvironment(server: string) {
+    return `${this.serverReports(server)}/environment`;
+  }
+
+  serverConfiguration(server: string) {
+    return `${this.serverReports(server)}/configuration`;
+  }
+
+  serverBuild(server: string) {
+    return `${this.serverReports(server)}/build`;
+  }
+
+  serverInsight(server: string) {
+    return `${this.serverReports(server)}/insight`;
+  }
+
+  environmentDeclarations() {
+    return `${this.base()}environment-model/declarations`;
+  }
+
+  environmentUnmodelled() {
+    return `${this.base()}environment-model/unmodelled`;
+  }
+
+  hostGit() {
+    return `${this.base()}host/git`;
+  }
+
+  hostDisk() {
+    return `${this.base()}host/disk`;
+  }
+
+  workerLag() {
+    return `${this.base()}worker/lag`;
   }
 
   public resourceIdLookup(resourceId: string) {

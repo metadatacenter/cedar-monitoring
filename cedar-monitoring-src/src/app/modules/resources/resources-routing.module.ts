@@ -10,6 +10,12 @@ import {ResourceCountsOpensearchComponent} from "./pages/resource-counts-opensea
 import {MySqlCountsComponent} from "./pages/mysql-counts/mysql-counts.component";
 import {LogUsageComponent} from "./pages/log-usage/log-usage.component";
 import {LogExplorerComponent} from "./pages/log-explorer/log-explorer.component";
+import {EnvironmentMatrixComponent} from "./pages/environment-matrix/environment-matrix.component";
+import {DeployMatrixComponent} from "./pages/deploy-matrix/deploy-matrix.component";
+import {JvmInsightComponent} from "./pages/jvm-insight/jvm-insight.component";
+import {ServerConfigurationComponent} from "./pages/server-configuration/server-configuration.component";
+import {HostDiskComponent} from "./pages/host-disk/host-disk.component";
+import {WorkerLagComponent} from "./pages/worker-lag/worker-lag.component";
 
 export const routes: Routes = [
   {
@@ -20,6 +26,36 @@ export const routes: Routes = [
   {
     path: 'logs-explorer',
     component: LogExplorerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'environment',
+    component: EnvironmentMatrixComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'deploy',
+    component: DeployMatrixComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'jvm',
+    component: JvmInsightComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'configuration',
+    component: ServerConfigurationComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'host-disk',
+    component: HostDiskComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'worker-lag',
+    component: WorkerLagComponent,
     canActivate: [AuthGuard]
   },
   {

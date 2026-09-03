@@ -12,6 +12,12 @@ import {ResourceCountsOpensearchComponent} from "./pages/resource-counts-opensea
 import {MySqlCountsComponent} from "./pages/mysql-counts/mysql-counts.component";
 import {LogUsageComponent} from "./pages/log-usage/log-usage.component";
 import {LogExplorerComponent} from "./pages/log-explorer/log-explorer.component";
+import {EnvironmentMatrixComponent} from "./pages/environment-matrix/environment-matrix.component";
+import {DeployMatrixComponent} from "./pages/deploy-matrix/deploy-matrix.component";
+import {JvmInsightComponent} from "./pages/jvm-insight/jvm-insight.component";
+import {ServerConfigurationComponent} from "./pages/server-configuration/server-configuration.component";
+import {HostDiskComponent} from "./pages/host-disk/host-disk.component";
+import {WorkerLagComponent} from "./pages/worker-lag/worker-lag.component";
 
 
 @NgModule({
@@ -24,7 +30,13 @@ import {LogExplorerComponent} from "./pages/log-explorer/log-explorer.component"
     ResourceCountsOpensearchComponent,
     MySqlCountsComponent,
     LogUsageComponent,
-    LogExplorerComponent
+    LogExplorerComponent,
+    EnvironmentMatrixComponent,
+    DeployMatrixComponent,
+    JvmInsightComponent,
+    ServerConfigurationComponent,
+    HostDiskComponent,
+    WorkerLagComponent
   ],
   imports: [
     SharedModule,
