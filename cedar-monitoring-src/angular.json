@@ -15,11 +15,13 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/cedar-monitoring",
+            "outputPath": {
+              "base": "dist/cedar-monitoring",
+              "browser": ""
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -40,7 +42,7 @@
               "base64-js",
               "js-sha256"
             ],
-            "indexTransform": "./index-html-transform.ts"
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -71,23 +73,20 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ],
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
             "buildTarget": "cedar-monitoring:build",
             "port": 4300,
-            "disableHostCheck": true,
-            "host": "0.0.0.0"
+            "host": "0.0.0.0",
+            "allowedHosts": true
           },
           "configurations": {
             "production": {
@@ -100,7 +99,7 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "cedar-monitoring:build"
           }

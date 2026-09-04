@@ -1,3 +1,5 @@
+import {environment} from '../../../../environments/environment';
+
 export class AppConfig {
   appUrl: string = '';
   apiUrl: string = '';
@@ -6,7 +8,7 @@ export class AppConfig {
   loaded: boolean = false;
 
   init(appConfig: AppConfig) {
-    const domain = (window as any).cedarDomain;
+    const domain = environment.cedarDomain;
     this.keycloakUrl = appConfig.keycloakUrl.replace('{{cedarDomain}}', domain);
     this.appUrl = appConfig.appUrl.replace('{{cedarDomain}}', domain);
     this.apiUrl = appConfig.apiUrl.replace('{{cedarDomain}}', domain);
