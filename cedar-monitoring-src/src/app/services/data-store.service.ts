@@ -12,6 +12,7 @@ import {ResourceReportFolder} from "../shared/model/resource-report-folder.model
 import {RedisQueueCounts} from "../shared/model/redis-queue-counts.model";
 import {ResourceCounts} from "../shared/model/resource-counts.model";
 import {ResourceCountsOpensearchIndex} from "../shared/model/resource-counts-opensearch-index.model";
+import {MySqlCounts} from "../shared/model/mysql-counts.model";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,7 @@ export class DataStoreService {
   private redisQueueCounts: RedisQueueCounts;
   private resourceCounts: ResourceCounts;
   private resourceCountsOpensearch: ResourceCountsOpensearchIndex;
+  private mySqlCounts: MySqlCounts;
 
     constructor(
     private localSettings: LocalSettingsService
@@ -46,6 +48,7 @@ export class DataStoreService {
     this.redisQueueCounts = new RedisQueueCounts();
     this.resourceCounts = new ResourceCounts();
     this.resourceCountsOpensearch = new ResourceCountsOpensearchIndex();
+    this.mySqlCounts = new MySqlCounts();
   }
 
   setHealthCheck(server: string, healthCheck: HealthCheck) {
@@ -142,6 +145,14 @@ export class DataStoreService {
 
   getResourceCountsOpensearch(): ResourceCountsOpensearchIndex | undefined {
     return this.resourceCountsOpensearch;
+  }
+
+  setMySqlCounts(counts: MySqlCounts) {
+    this.mySqlCounts = counts;
+  }
+
+  getMySqlCounts(): MySqlCounts | undefined {
+    return this.mySqlCounts;
   }
 
 }

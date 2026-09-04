@@ -1,0 +1,89 @@
+<app-header title="JVM"></app-header>
+
+<mat-card class="wrapper-card">
+
+  <mat-card-header>
+    <mat-card-title>JVM</mat-card-title>
+    <mat-card-subtitle>
+      Heap, threads and garbage collection for every service, read from each one's own <code>/insight</code>
+      report. Thread stack traces are deliberately left out: the full dump is around half a megabyte per
+      service, and each service still serves its own at <code>/insight/thread-details</code> when a
+      particular one needs looking at.
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <div class="controls">
+      <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
+      <mat-checkbox [checked]="autoRefresh" (change)="toggleAutoRefresh()">Refresh every 10s</mat-checkbox>
+      <span class="spacer"></span>
+      <span class="note" *ngIf="loadAverage !== null">host load average {{ loadAverage | number:'1.2-2' }}</span>
+    </div>
+
+    <div class="banner loading" *ngIf="loading && !rows.length">Loading…</div>
+    <div class="banner error" *ngIf="error">{{ error }} — you need the MONITOR_READ capability.</div>
+
+    <ng-container *ngIf="rows.length && !error">
+
+      <div class="tiles">
+        <div class="tile" [class.bad]="hotHeaps.length > 0">
+          <div class="tl">Heap above {{ heapWarningPercent }}%</div>
+          <div class="tv">{{ hotHeaps.length }}</div>
+          <div class="td">services</div>
+        </div>
+        <div class="tile">
+          <div class="tl">Threads</div>
+          <div class="tv">{{ totalThreads }}</div>
+          <div class="td">across all services</div>
+        </div>
+        <div class="tile" [class.warn]="unreachableCount > 0">
+          <div class="tl">Did not answer</div>
+          <div class="tv">{{ unreachableCount }}</div>
+          <div class="td">services</div>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="grid">
+          <thead>
+          <tr>
+            <th>Service</th>
+            <th class="heap-col">Heap</th>
+            <th>Used</th>
+            <th>Max</th>
+            <th>Non-heap</th>
+            <th>Threads</th>
+            <th>Daemon</th>
+            <th>GC runs</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of rows" [class.absent-row]="row.error">
+            <th class="name">{{ row.server }}</th>
+            <ng-container *ngIf="!row.error; else noAnswer">
+              <td class="heap-col">
+                <div class="bar" [title]="(row.heapPercent || 0) + '% of the maximum heap'">
+                  <div class="fill" [ngClass]="heapClass(row)" [style.width.%]="row.heapPercent || 0"></div>
+                </div>
+                <span class="pct">{{ row.heapPercent === null ? '—' : (row.heapPercent | number:'1.0-1') + '%' }}</span>
+              </td>
+              <td>{{ bytes(row.heapUsed) }}</td>
+              <td class="dim">{{ bytes(row.heapMax) }}</td>
+              <td class="dim">{{ bytes(row.nonHeapUsed) }}</td>
+              <td>{{ row.threads === null ? '—' : row.threads }}</td>
+              <td class="dim">{{ row.daemonThreads === null ? '—' : row.daemonThreads }}</td>
+              <td class="dim">{{ row.gcCollections === null ? '—' : row.gcCollections }}</td>
+            </ng-container>
+            <ng-template #noAnswer>
+              <td colspan="7" class="dim">{{ row.error }}</td>
+            </ng-template>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </ng-container>
+
+  </mat-card-content>
+</mat-card>

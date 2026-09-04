@@ -24,6 +24,14 @@ export class RestApiUrlService {
     return `${this.base()}health-check`;
   }
 
+  /**
+   * Per-server report routes. One server per call by design: the monitor proxies these, and fanning
+   * out here rather than in the browser would serialize fifteen network calls behind one request.
+   */
+  private serverReports(server: string) {
+    return `${this.base()}server-report/${encodeURIComponent(server)}`;
+  }
+
   private resourceIdLookups() {
     return `${this.base()}command/resource-id-lookup`;
   }
@@ -58,6 +66,42 @@ export class RestApiUrlService {
 
   public healthCheck(server: string) {
     return `${this.healthChecks()}/${encodeURIComponent(server)}`;
+  }
+
+  serverEnvironment(server: string) {
+    return `${this.serverReports(server)}/environment`;
+  }
+
+  serverConfiguration(server: string) {
+    return `${this.serverReports(server)}/configuration`;
+  }
+
+  serverBuild(server: string) {
+    return `${this.serverReports(server)}/build`;
+  }
+
+  serverInsight(server: string) {
+    return `${this.serverReports(server)}/insight`;
+  }
+
+  environmentDeclarations() {
+    return `${this.base()}environment-model/declarations`;
+  }
+
+  environmentUnmodelled() {
+    return `${this.base()}environment-model/unmodelled`;
+  }
+
+  hostGit() {
+    return `${this.base()}host/git`;
+  }
+
+  hostDisk() {
+    return `${this.base()}host/disk`;
+  }
+
+  workerLag() {
+    return `${this.base()}worker/lag`;
   }
 
   public resourceIdLookup(resourceId: string) {
@@ -102,5 +146,87 @@ export class RestApiUrlService {
 
   resourceCountsOpensearch() {
     return `${this.base()}resources/counts/opensearch`;
+  }
+
+  mysqlCounts(exact: boolean = false) {
+    return `${this.base()}mysql/counts${exact ? '?exact=true' : ''}`;
+  }
+
+  private logsRange(path: string, from: string, to: string, limit?: number) {
+    let url = `${this.base()}logs/usage/${path}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
+    if (limit != null) {
+      url += `&limit=${limit}`;
+    }
+    return url;
+  }
+
+  logsUsageSummary(from: string, to: string) {
+    return this.logsRange('summary', from, to);
+  }
+
+  logsUsageEndpoints(from: string, to: string, limit: number) {
+    return this.logsRange('endpoints', from, to, limit);
+  }
+
+  logsUsageCypher(from: string, to: string, limit: number) {
+    return this.logsRange('cypher', from, to, limit);
+  }
+
+  logsUsageUsers(from: string, to: string, limit: number) {
+    return this.logsRange('users', from, to, limit);
+  }
+
+  logsUsageInsights(from: string, to: string) {
+    return this.logsRange('insights', from, to);
+  }
+
+  private logsExplorer(path: string, q: string, minDurationMs: number, limit: number) {
+    let url = `${this.base()}logs/explorer/${path}?limit=${limit}`;
+    if (q) {
+      url += `&q=${encodeURIComponent(q)}`;
+    }
+    if (minDurationMs > 0) {
+      url += `&minDurationMs=${minDurationMs}`;
+    }
+    return url;
+  }
+
+  logsExplorerRequests(q: string, minDurationMs: number, limit: number) {
+    return this.logsExplorer('requests', q, minDurationMs, limit);
+  }
+
+  logsExplorerCypher(q: string, minDurationMs: number, limit: number) {
+    return this.logsExplorer('cypher', q, minDurationMs, limit);
+  }
+
+  /**
+   * Structured query engine. POST because a spec with several filters plus a metric list exceeds a
+   * sane URL length — the shareable state lives in the Angular route, not here.
+   */
+  logsQuery() {
+    return `${this.base()}logs/query`;
+  }
+
+  logsFacet(table: string, column: string, from: string, to: string) {
+    return `${this.base()}logs/facets/${encodeURIComponent(column)}`
+      + `?table=${encodeURIComponent(table)}`
+      + `&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
+  }
+
+  logsCoverage() {
+    return `${this.base()}logs/coverage`;
+  }
+
+  logsBoards() {
+    return `${this.base()}logs/boards`;
+  }
+
+  logsTrace(globalRequestId: string) {
+    return `${this.base()}logs/trace/${encodeURIComponent(globalRequestId)}`;
+  }
+
+  /** A board that declares its own endpoint (the cross-table ones), with the page's range applied. */
+  logsBoardEndpoint(endpoint: string, from: string, to: string, limit: number) {
+    return `${this.base()}${endpoint}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&limit=${limit}`;
   }
 }

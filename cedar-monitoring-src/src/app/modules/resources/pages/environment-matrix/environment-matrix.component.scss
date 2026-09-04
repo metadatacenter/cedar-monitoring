@@ -1,0 +1,395 @@
+.wrapper-card {
+  margin: 16px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 16px 0 4px;
+
+  .search {
+    width: 260px;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+}
+
+.banner {
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-size: 13px;
+
+  &.loading {
+    background: rgba(14, 139, 163, .1);
+    color: #0e6b80;
+  }
+
+  &.error {
+    background: rgba(211, 47, 47, .1);
+    color: #b3261e;
+  }
+
+  &.warn {
+    background: rgba(245, 158, 11, .12);
+    color: #92400e;
+  }
+}
+
+.tiles {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+
+  .tile {
+    border: 1px solid #e4e7ec;
+    border-radius: 10px;
+    padding: 10px 14px;
+    min-width: 150px;
+
+    &.bad {
+      border-color: #f3b0ab;
+      background: rgba(211, 47, 47, .05);
+    }
+
+    &.warn {
+      border-color: #f5cf94;
+      background: rgba(245, 158, 11, .06);
+    }
+
+    .tl {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      color: #667085;
+      font-weight: 600;
+    }
+
+    .tv {
+      font-size: 24px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .td {
+      font-size: 11px;
+      color: #667085;
+    }
+  }
+}
+
+// The matrix is fifteen columns wide by design, so it scrolls inside its own box rather than
+// widening the page. The variable name stays pinned: a cell in the middle of the grid is
+// meaningless without it.
+.matrix-scroll {
+  overflow-x: auto;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+}
+
+table.matrix {
+  border-collapse: collapse;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  width: max-content;
+  min-width: 100%;
+
+  th, td {
+    border-bottom: 1px solid #f0f1f4;
+    padding: 3px 4px;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  // Column headers turned on their side. Thirty-one components across the top is only readable if the
+  // columns are as narrow as the glyph they carry, and a horizontal label cannot be.
+  th.rot {
+    height: 150px;
+    padding: 4px 0;
+    vertical-align: bottom;
+    background: #fafbfc;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+
+    > div {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2px;
+      color: #475467;
+      text-align: left;
+      margin: 0 auto;
+    }
+  }
+
+  th.name-col {
+    position: sticky;
+    left: 0;
+    background: #fff;
+    z-index: 1;
+    font-weight: 500;
+    border-right: 1px solid #e4e7ec;
+    padding-right: 10px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  thead th.name-col {
+    background: #fafbfc;
+    z-index: 3;
+    height: auto;
+    vertical-align: bottom;
+  }
+
+  tr.drift th.name-col {
+    background: #fff8ec;
+  }
+
+  tr.hole th.name-col {
+    background: #fdf0ef;
+  }
+
+  // One glyph, centred, in a column just wide enough to hold it.
+  td.mark {
+    width: 26px;
+    min-width: 26px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  td.first-decl, th.first-decl {
+    border-left: 2px solid #c7cbd4;
+  }
+
+  td.decl-cell {
+    background: #fcfcfd;
+    color: #d0d5dd;
+  }
+
+  td.decl-cell.declared {
+    color: #05603a;
+  }
+
+  .vname {
+    vertical-align: middle;
+  }
+
+  .flag {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    color: #98a2b3;
+
+    &.warn {
+      color: #b45309;
+    }
+
+    &.bad {
+      color: #b3261e;
+    }
+  }
+}
+
+.cell-set {
+  color: #12b76a;
+}
+
+.cell-secure {
+  color: #6941c6;
+}
+
+.cell-unset {
+  color: #b3261e;
+  font-weight: 700;
+  background: rgba(211, 47, 47, .06);
+}
+
+.cell-default {
+  color: #98a2b3;
+}
+
+.cell-undeclared {
+  color: #e4e7ec;
+}
+
+.cell-noanswer {
+  background: repeating-linear-gradient(45deg, #fbfbfc, #fbfbfc 4px, #f4f5f7 4px, #f4f5f7 8px);
+}
+
+// The legend in the note above the grid, so the glyphs are explained in the words that use them.
+.k-default {
+  color: #98a2b3;
+  font-weight: 700;
+}
+
+.k-unset {
+  color: #b3261e;
+  font-weight: 700;
+}
+
+table.values {
+  border-collapse: collapse;
+  font-size: 12.5px;
+  width: 100%;
+
+  th, td {
+    border-bottom: 1px solid #f0f1f4;
+    padding: 5px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  thead th {
+    background: #fafbfc;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    color: #475467;
+    position: sticky;
+    top: 0;
+  }
+
+  th.vname {
+    font-weight: 500;
+    white-space: nowrap;
+    width: 1%;
+  }
+
+  td.vval {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    word-break: break-all;
+
+    &.secret {
+      color: #6941c6;
+    }
+  }
+
+  td.vsrv {
+    color: #667085;
+    white-space: normal;
+  }
+
+  tr.drift th.vname, tr.drift td.vval {
+    background: #fff8ec;
+  }
+}
+
+.empty {
+  padding: 16px;
+  color: #667085;
+  font-size: 13px;
+}
+
+// Spans the container, like the table and the chip list it introduces. A reading-width cap left the
+// prose ending at about a third of the page while everything it describes ran edge to edge, which
+// read as a column that had failed to fill rather than as a deliberate measure.
+.col-note {
+  font-size: 12.5px;
+  color: #475467;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+h3.section {
+  margin: 26px 0 4px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: #475467;
+  font-weight: 600;
+}
+
+// Declaration columns say something different from the value columns beside them, so the boundary
+// between the two is drawn rather than left to the reader to infer from the header.
+table.matrix {
+  th.decl-col, td.decl-cell {
+    text-align: center;
+    color: #667085;
+  }
+
+  th.first-decl, td.first-decl {
+    border-left: 2px solid #c7cbd4;
+  }
+
+  td.decl-cell {
+    background: #fcfcfd;
+  }
+
+  td.decl-cell.declared {
+    color: #05603a;
+    font-weight: 700;
+  }
+}
+
+.unmodelled {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 4px;
+
+  .chip {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba(245, 158, 11, .12);
+    color: #92400e;
+    border: 1px solid #f5cf94;
+
+    &.empty-value {
+      opacity: .6;
+      font-style: italic;
+    }
+  }
+}
+
+// Optional and unset: the component is on its own default. Muted, because it is a normal state and
+// must not compete with cell-unset, which is a service that could not start.
+.cell-default {
+  color: #667085;
+  font-style: italic;
+}
+
+// A value long enough to be a list of its own gets a preview and a count. Opened, it is bounded and
+// scrolls inside its own cell rather than growing the row past the height of the screen.
+table.values {
+  .long {
+    white-space: pre-wrap;
+    word-break: break-all;
+
+    &.open {
+      max-height: 220px;
+      overflow: auto;
+      padding: 6px 8px;
+      background: #fafbfc;
+      border: 1px solid #e4e7ec;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+  }
+
+  .more {
+    border: 0;
+    background: none;
+    padding: 2px 0;
+    font-size: 11.5px;
+    font-family: inherit;
+    color: #0e6b80;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      color: #0a4f5e;
+    }
+  }
+}

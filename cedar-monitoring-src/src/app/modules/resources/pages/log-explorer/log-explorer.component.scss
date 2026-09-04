@@ -1,0 +1,642 @@
+// Visual language for the explorer. Deliberately quiet: the page is dense data, so the chrome should
+// recede. Three rules drive most of this:
+//   1. no ruled grid — per-row borders read as a 1990s analytics ledger; separation comes from
+//      whitespace and a hover tint instead;
+//   2. state is typographic or a small dot, not a filled pastel pill;
+//   3. one accent colour, one radius scale, three type sizes.
+:host {
+  --ink: #1c2430;
+  --ink-2: #5a6673;
+  --ink-3: #8b96a3;
+  --hair: #edf0f3;
+  --accent: #0f7c91;
+  --accent-soft: #eaf4f6;
+  --ok: #1a7f4b;
+  --warn: #a8710b;
+  --err: #c23b3b;
+}
+
+// styles.scss paints every .wrapper-card with indigo-50 !important — a tinted panel behind dense
+// data is most of what reads as "1990s analytics". Overridden here only: the component-scoped
+// selector is more specific than the global one, so this stays local to the explorer rather than
+// restyling every monitoring page.
+.wrapper-card {
+  margin: 18px;
+  background-color: #fff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 8px 24px -12px rgba(16, 24, 40, .12) !important;
+  padding: 6px 10px 12px;
+}
+
+// ---- board rail --------------------------------------------------------------------------------
+
+.rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 0 16px;
+}
+
+.railgrp {
+  font-size: 11px;
+  color: var(--ink-3);
+  font-weight: 600;
+  margin: 0 4px 0 12px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.board {
+  font: inherit;
+  font-size: 12.5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--hair);
+  background: #fff;
+  color: var(--ink-2);
+  cursor: pointer;
+
+  &:hover {
+    background: #f4f6f8;
+    color: var(--ink);
+  }
+
+  &.on {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+}
+
+.boardhead {
+  font-size: 13px;
+  color: var(--ink-2);
+  padding: 2px 2px 0;
+
+  .bnote {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    margin-top: 3px;
+  }
+}
+
+// ---- controls ----------------------------------------------------------------------------------
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 14px 0;
+  border-top: 1px solid var(--hair);
+}
+
+// Segmented control instead of a row of raised Material buttons — less visual weight, and it reads
+// as one choice rather than several unrelated actions.
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  overflow: hidden;
+
+  button {
+    font: inherit;
+    font-size: 12.5px;
+    padding: 6px 13px;
+    border: 0;
+    border-right: 1px solid var(--hair);
+    background: #fff;
+    color: var(--ink-2);
+    cursor: pointer;
+
+    &:last-child {
+      border-right: 0;
+    }
+
+    &:hover {
+      background: #f7f9fa;
+    }
+
+    &.on {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+  }
+}
+
+.txt,
+select {
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 10px;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.txt {
+  min-width: 210px;
+
+  &::placeholder {
+    color: var(--ink-3);
+  }
+}
+
+.fld {
+  font-size: 12px;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+// ---- chips, bars, links ------------------------------------------------------------------------
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+}
+
+.chip {
+  font-size: 11.5px;
+  font-family: ui-monospace, Menlo, monospace;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 3px 6px 3px 10px;
+
+  .x {
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0 5px;
+    opacity: .55;
+  }
+
+  .x:hover {
+    opacity: 1;
+  }
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 2px 6px;
+
+  .spacer {
+    flex: 1;
+  }
+}
+
+.link {
+  background: none;
+  border: 0;
+  padding: 3px 2px;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--accent);
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    color: #c9d0d8;
+    cursor: default;
+  }
+
+  &.sm {
+    font-size: 10.5px;
+  }
+}
+
+.count {
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+.caveat {
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.5;
+  margin: 10px 2px 2px;
+}
+
+.banner {
+  padding: 9px 13px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-size: 12.5px;
+
+  &.loading {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  &.error {
+    background: rgba(194, 59, 59, .08);
+    color: var(--err);
+  }
+
+  &.note {
+    background: rgba(168, 113, 11, .08);
+    color: var(--warn);
+    font-size: 12px;
+  }
+}
+
+// ---- table -------------------------------------------------------------------------------------
+
+.tblwrap {
+  overflow-x: auto;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #fff;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-3);
+    padding: 0 12px 9px;
+    border-bottom: 1px solid var(--hair);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 11px 12px;
+    font-size: 13px;
+    vertical-align: middle;
+    border: 0;                 // no ruled grid; see the note at the top of this file
+  }
+
+  tr.main {
+    cursor: pointer;
+  }
+
+  tr.main:hover td {
+    background: #fafbfc;
+  }
+
+  tr.main:hover td:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+
+  tr.main:hover td:last-child {
+    border-radius: 0 8px 8px 0;
+  }
+
+  tr.detail td {
+    background: #fafbfc;
+    border-radius: 8px;
+  }
+
+  .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: var(--ink-2);
+  }
+
+  // Click-to-copy affordance: one delegated handler on <tbody> does the work, and the glyph is a
+  // hover-only ::after, so 6 columns x up to 2,000 rows cost zero extra nodes and zero listeners.
+  // cursor is `pointer`, never `copy` — the native copy cursor draws an arrow with a big green plus.
+  td[data-copy] {
+    cursor: pointer;
+    position: relative;
+  }
+
+  td[data-copy]:hover {
+    background: #f2f7f8;
+  }
+
+  td[data-copy]:hover::after {
+    content: '⧉';
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    line-height: 1;
+    color: #9fb0b6;
+  }
+}
+
+.caret {
+  display: inline-block;
+  color: #c2cad3;
+  font-size: 11px;
+  transition: transform .15s;
+
+  &.open {
+    transform: rotate(90deg);
+  }
+}
+
+// HTTP method: coloured text, not a filled chip.
+.method {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--ink-2);
+
+  &.m-get {
+    color: var(--accent);
+  }
+
+  &.m-post {
+    color: #6b4fc4;
+  }
+
+  &.m-put,
+  &.m-patch {
+    color: var(--warn);
+  }
+
+  &.m-delete {
+    color: var(--err);
+  }
+}
+
+// Status: a small dot carries the colour, the number stays plain and legible.
+.stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ink-3);
+  }
+
+  &.s2::before {
+    background: var(--ok);
+  }
+
+  &.s3::before {
+    background: var(--ink-3);
+  }
+
+  &.s4::before {
+    background: var(--warn);
+  }
+
+  &.s5::before {
+    background: var(--err);
+  }
+}
+
+.tag {
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.mono {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12.5px;
+}
+
+.muted {
+  color: var(--ink-3);
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+// Wide columns (path, handler, query text) are clipped so the columns to their right stay on screen.
+// The full value is still in the title tooltip, in data-copy, and in the expanded detail.
+.ell {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ---- expanded detail ---------------------------------------------------------------------------
+
+.kv {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px 16px;
+  font-size: 12px;
+  padding: 6px 0 10px 30px;
+
+  .k {
+    color: var(--ink-3);
+  }
+
+  .v {
+    word-break: break-all;
+  }
+}
+
+.block {
+  padding: 4px 0 10px 30px;
+}
+
+.dlabel {
+  font-size: 11px;
+  color: var(--ink-3);
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+pre.code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11.5px;
+  background: #fff;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.5;
+  max-height: 320px;
+  overflow: auto;
+}
+
+.empty {
+  text-align: center;
+  color: var(--ink-3);
+  padding: 28px;
+}
+
+// ---- trace overlay -----------------------------------------------------------------------------
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 28, 38, .38);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 24px;
+  z-index: 900;
+}
+
+.tracepane {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 18px 50px -12px rgba(16, 24, 40, .35);
+  width: min(1100px, 100%);
+  max-height: calc(100vh - 80px);
+  overflow: auto;
+  padding: 18px 22px 20px;
+}
+
+.tracehead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+
+  .tracetitle {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 104px;
+  padding: 10px 14px;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+
+  .tv {
+    font-size: 17px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tl {
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+}
+
+// Waterfall: bars are positioned as a percentage of the trace's wall time, so overlap between
+// components is visible — that overlap is why summed handler time exceeds wall time.
+.waterfall {
+  .wrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 3px 0;
+    font-size: 12px;
+
+    &:hover {
+      background: #fafbfc;
+    }
+  }
+
+  .wkind {
+    flex: 0 0 30px;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--accent);
+
+    &.k-cypher {
+      color: #6b4fc4;
+    }
+  }
+
+  .wcomp {
+    flex: 0 0 84px;
+    color: var(--ink-2);
+  }
+
+  .wlabel {
+    flex: 0 0 260px;
+    color: var(--ink-3);
+    font-size: 11.5px;
+  }
+
+  .wtrack {
+    flex: 1;
+    position: relative;
+    height: 12px;
+    background: #f4f6f8;
+    border-radius: 3px;
+  }
+
+  .wbar {
+    position: absolute;
+    top: 0;
+    height: 12px;
+    border-radius: 3px;
+    background: var(--accent);
+
+    &.b-cypher {
+      background: #8c74d8;
+    }
+  }
+
+  .wms {
+    flex: 0 0 74px;
+    text-align: right;
+    color: var(--ink-2);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  background: #21303f;
+  color: #fff;
+  font-size: 12.5px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .22);
+  z-index: 1000;
+}
+
+// Rollup-sourced values are histogram estimates. They are marked in two places — a badge on the
+// result bar and a tilde on each percentile cell — so a number can never be quoted as exact once it
+// has been copied out of the table.
+.approx {
+  color: #8a5a08;
+}
+
+.tilde {
+  color: #98a2b3;
+  margin-right: 1px;
+}

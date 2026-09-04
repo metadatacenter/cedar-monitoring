@@ -7,8 +7,57 @@ import {ResourceInfoComponent} from "./pages/resource-info/resource-info.compone
 import {QueueCountsComponent} from "./pages/queue-counts/queue-counts.component";
 import {ResourceCountsComponent} from "./pages/resource-counts/resource-counts.component";
 import {ResourceCountsOpensearchComponent} from "./pages/resource-counts-opensearch/resource-counts-opensearch.component";
+import {MySqlCountsComponent} from "./pages/mysql-counts/mysql-counts.component";
+import {LogUsageComponent} from "./pages/log-usage/log-usage.component";
+import {LogExplorerComponent} from "./pages/log-explorer/log-explorer.component";
+import {EnvironmentMatrixComponent} from "./pages/environment-matrix/environment-matrix.component";
+import {DeployMatrixComponent} from "./pages/deploy-matrix/deploy-matrix.component";
+import {JvmInsightComponent} from "./pages/jvm-insight/jvm-insight.component";
+import {ServerConfigurationComponent} from "./pages/server-configuration/server-configuration.component";
+import {HostDiskComponent} from "./pages/host-disk/host-disk.component";
+import {WorkerLagComponent} from "./pages/worker-lag/worker-lag.component";
 
 export const routes: Routes = [
+  {
+    path: 'logs-usage',
+    component: LogUsageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'logs-explorer',
+    component: LogExplorerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'environment',
+    component: EnvironmentMatrixComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'deploy',
+    component: DeployMatrixComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'jvm',
+    component: JvmInsightComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'configuration',
+    component: ServerConfigurationComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'host-disk',
+    component: HostDiskComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'worker-lag',
+    component: WorkerLagComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'health-checks',
     component: HealthChecksComponent,
@@ -37,6 +86,11 @@ export const routes: Routes = [
   {
     path: 'resource-counts/opensearch',
     component: ResourceCountsOpensearchComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'mysql-counts',
+    component: MySqlCountsComponent,
     canActivate: [AuthGuard]
   }
 ];

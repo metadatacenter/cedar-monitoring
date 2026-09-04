@@ -1,0 +1,188 @@
+<app-header title="Environment"></app-header>
+
+<mat-card class="wrapper-card">
+
+  <mat-card-header>
+    <mat-card-title>Environment</mat-card-title>
+    <mat-card-subtitle>
+      Every CEDAR environment variable, as each service resolved it. Each service is built from its own
+      sandbox of variables, so a cell is blank when that service does not read the variable — which is
+      by design — and <strong>UNSET</strong> only when it does read it and got nothing. Secret values
+      arrive masked from the service; the first and last two characters are kept so two services can be
+      compared without the value being shown.
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <div class="controls">
+      <mat-form-field appearance="outline" class="search">
+        <mat-label>Filter by name</mat-label>
+        <input matInput [(ngModel)]="filter" placeholder="MYSQL">
+      </mat-form-field>
+      <mat-checkbox [(ngModel)]="onlyFindings">Only findings</mat-checkbox>
+      <mat-checkbox [(ngModel)]="hideUndeclared">Hide variables nothing declares</mat-checkbox>
+      <span class="spacer"></span>
+      <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
+    </div>
+
+    <div class="banner loading" *ngIf="loading">Loading…</div>
+    <div class="banner error" *ngIf="error">{{ error }} — you need the MONITOR_READ capability.</div>
+
+    <div class="banner warn" *ngIf="unreachable.length && !loading">
+      Did not answer:
+      <span *ngFor="let u of unreachable; let last = last">{{ u.server }} ({{ u.error }}){{ last ? '' : ', ' }}</span>.
+      Those columns are blank, which is not the same as the variable being absent.
+    </div>
+
+    <div class="tiles" *ngIf="!loading && !error">
+      <div class="tile" [class.bad]="driftCount > 0">
+        <div class="tl">Values that differ</div>
+        <div class="tv">{{ driftCount }}</div>
+        <div class="td">across the services that read them</div>
+      </div>
+      <div class="tile" [class.bad]="missingCount > 0">
+        <div class="tl">Declared but unset</div>
+        <div class="tv">{{ missingCount }}</div>
+        <div class="td">a service reads it and got nothing</div>
+      </div>
+      <div class="tile" [class.warn]="unusedCount > 0">
+        <div class="tl">Set but unread</div>
+        <div class="tv">{{ unusedCount }}</div>
+        <div class="td">on the host, declared by no component at all</div>
+      </div>
+      <div class="tile">
+        <div class="tl">Variables</div>
+        <div class="tv">{{ rows.length }}</div>
+        <div class="td">{{ visibleRows.length }} shown</div>
+      </div>
+    </div>
+
+    <p class="col-note" *ngIf="declarationComponents.length && !loading && !error">
+      Which components hold each variable, not what they hold — the values are in the table below.
+      A tick is a value the component resolved; <span class="k-default">·</span> is optional and unset,
+      so it is running on its own default; <span class="k-unset">✗</span> is declared and supplied with
+      nothing, which breaks a boot. The first {{ servers.length }} columns are running services and were
+      asked. The rest are builds, scripts and infrastructure — nothing is running there to ask, so a tick
+      there means the component <em>declares</em> the variable.
+    </p>
+
+    <div class="matrix-scroll" *ngIf="!loading && !error">
+      <table class="matrix">
+        <thead>
+        <tr>
+          <th class="name-col">Variable</th>
+          <th class="rot" *ngFor="let server of servers"><div>{{ server }}</div></th>
+          <th class="rot" *ngFor="let component of declarationComponents; let first = first"
+              [class.first-decl]="first"><div>{{ component }}</div></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of visibleRows" [class.drift]="row.drifts" [class.hole]="row.missing">
+          <th class="name-col">
+            <span class="vname">{{ row.name }}</span>
+            <mat-icon class="flag" *ngIf="row.secure" title="Flagged secret — values are masked">lock</mat-icon>
+            <mat-icon class="flag warn" *ngIf="row.drifts" title="The services that read this do not agree on its value">call_split</mat-icon>
+            <mat-icon class="flag bad" *ngIf="row.missing" title="Read by a service and supplied by nothing">error_outline</mat-icon>
+            <mat-icon class="flag warn" *ngIf="row.unused"
+                      title="Set on the host and declared by nothing — no service, build or script reads it">visibility_off</mat-icon>
+          </th>
+          <td class="mark" *ngFor="let cell of row.cells; let i = index"
+              [ngClass]="cellClass(cell)"
+              [title]="cellTitle(cell, servers[i])">
+            {{ stateGlyph(cell) }}
+          </td>
+          <td class="mark decl-cell" *ngFor="let component of declarationComponents; let first = first"
+              [class.first-decl]="first"
+              [class.declared]="declares(component, row.name)"
+              [title]="declares(component, row.name)
+                         ? component + ' declares ' + row.name
+                         : component + ' does not declare ' + row.name">
+            {{ declares(component, row.name) ? '✓' : '' }}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="empty" *ngIf="!visibleRows.length">Nothing matches this filter.</div>
+    </div>
+
+    <ng-container *ngIf="!loading && !error">
+      <h3 class="section">Values</h3>
+      <p class="col-note">
+        What the running services actually resolved. One row per distinct value: the fifteen services
+        almost always agree, so agreement collapses to a single row and a variable that appears twice is
+        one they disagree about. Secret values arrive masked from the service that holds them.
+      </p>
+
+      <div class="table-scroll">
+        <table class="values">
+          <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Value</th>
+            <th>Services</th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let row of visibleValueRows">
+            <tr *ngFor="let group of row.groups; let first = first; let gi = index" [class.drift]="row.drifts">
+              <th class="vname">
+                <span *ngIf="first">{{ row.name }}</span>
+                <mat-icon class="flag" *ngIf="first && row.secure" title="Flagged secret — the value is masked">lock</mat-icon>
+                <mat-icon class="flag warn" *ngIf="first && row.drifts"
+                          title="The services do not agree on this value">call_split</mat-icon>
+              </th>
+              <td class="vval" [class.secret]="row.secure">
+                <ng-container *ngIf="!isLong(group.value)">
+                  {{ group.value === '' ? '(empty)' : group.value }}
+                </ng-container>
+                <ng-container *ngIf="isLong(group.value)">
+                  <div class="long" [class.open]="isOpen(valueKey(row.name, gi))">{{
+                    isOpen(valueKey(row.name, gi)) ? group.value : preview(group.value) + '…'
+                  }}</div>
+                  <button class="more" type="button" (click)="toggleValue(valueKey(row.name, gi))">
+                    {{ isOpen(valueKey(row.name, gi))
+                        ? 'Collapse'
+                        : 'Show all ' + itemCount(group.value) + ' items' }}
+                  </button>
+                </ng-container>
+              </td>
+              <td class="vsrv">
+                <span *ngIf="group.servers.length === servers.length">all {{ servers.length }}</span>
+                <span *ngIf="group.servers.length !== servers.length">{{ group.servers.join(', ') }}</span>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+        <div class="empty" *ngIf="!visibleValueRows.length">No resolved values match this filter.</div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="unmodelled && unmodelled.count && !loading && !error">
+      <h3 class="section">Set on the host, outside the Java configuration model</h3>
+      <p class="col-note">
+        Set on this host and absent from <code>CedarEnvironmentVariable</code>, so they cannot appear in
+        the matrix above or in any service's report. <strong>This does not mean nothing reads them.</strong>
+        Most are consumed by the infrastructure layer, which never passes through the Java model and has
+        no reason to — nginx config generation, <code>docker-compose</code>, container init scripts such
+        as Mongo's user setup, and the shell profiles themselves.
+      </p>
+      <p class="col-note">
+        What the list is good for is the exceptions: a variable read by Java through
+        <code>System.getenv</code>, which belongs in the model and is invisible until it is added — the
+        worker's log aggregation settings were exactly that — and a variable that outlived whatever used
+        to read it and is now exported for nothing. Neither can be told apart from an ordinary infrastructure
+        variable without going and looking; this page can only say which names the model does not account for.
+      </p>
+      <div class="unmodelled">
+        <span class="chip" *ngFor="let name of unmodelledNames"
+              [class.empty-value]="!unmodelled.variables[name].hasValue"
+              [title]="unmodelled.variables[name].hasValue ? 'Set on the host' : 'Present but empty'">
+          {{ name }}
+        </span>
+      </div>
+    </ng-container>
+
+  </mat-card-content>
+</mat-card>

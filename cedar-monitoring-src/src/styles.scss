@@ -8,15 +8,24 @@ html, body {
   height: 100%;
 }
 
+// The tint the cards sit on. It belonged to the wrapper card alone, so the page below the last row
+// stayed white and the background looked like it stopped short of the bottom of the window.
+$page-background: mat.get-color-from-palette(mat.$indigo-palette, 50);
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $page-background;
 }
 
 .wrapper-card {
-  background-color: mat.get-color-from-palette(mat.$indigo-palette, 50) !important;
+  background-color: $page-background !important;
   padding-top: 16px;
   padding-bottom: 16px;
+  // A mat-card carries an elevation shadow. It drew an edge when the card was a lighter panel on a
+  // white page; now that the card and the page are the same colour, all it leaves is a stray
+  // horizontal rule under the last row of content.
+  box-shadow: none !important;
 }
 
 .flex-container {
@@ -24,11 +33,50 @@ body {
   flex-direction: row;
   justify-content: left;
   flex-wrap: wrap;
+  // Cards on one line match the tallest of that line. They carried a fixed height instead, so the
+  // longest subtitle — Deploy's — ran past the bottom edge of its own card.
+  align-items: stretch;
 
   .dash-card {
     cursor: pointer;
-    margin: 5px;
-    width: 300px;
-    height: 120px;
+    margin: 8px;
+    width: 340px;
+    min-height: 150px;
+    box-sizing: border-box;
+    padding-bottom: 8px;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+
+    // Enough movement to answer the pointer, not enough to shift what is being read beside it.
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .16);
+    }
+
+    &:active {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, .18);
+    }
+
+    // These are links, so they answer the keyboard the way they answer the mouse.
+    &:focus-visible {
+      outline: 2px solid mat.get-color-from-palette(mat.$indigo-palette, 400);
+      outline-offset: 2px;
+    }
+
+    // A card is one target; the subtitle should not look separately clickable inside it.
+    mat-card-subtitle {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Motion is decoration here, and the hover state still reads without it.
+@media (prefers-reduced-motion: reduce) {
+  .flex-container .dash-card {
+    transition: none;
+
+    &:hover, &:active {
+      transform: none;
+    }
   }
 }

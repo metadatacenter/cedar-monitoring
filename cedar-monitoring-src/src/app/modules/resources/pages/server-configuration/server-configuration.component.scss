@@ -1,0 +1,60 @@
+.wrapper-card {
+  margin: 16px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 16px 0 8px;
+
+  .lbl {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #667085;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+}
+
+.banner {
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-size: 13px;
+
+  &.loading {
+    background: rgba(14, 139, 163, .1);
+    color: #0e6b80;
+  }
+
+  &.error {
+    background: rgba(211, 47, 47, .1);
+    color: #b3261e;
+  }
+
+  &.warn {
+    background: rgba(245, 158, 11, .12);
+    color: #92400e;
+  }
+
+  &.ok {
+    background: rgba(18, 183, 106, .1);
+    color: #05603a;
+  }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+}
+
+.placeholders {
+  margin: 6px 0 0;
+  padding-left: 20px;
+}

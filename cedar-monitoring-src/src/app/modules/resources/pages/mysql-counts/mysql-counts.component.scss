@@ -1,0 +1,45 @@
+.counts-card {
+  min-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+// A log database's table names and byte figures overflow a narrow window rather than wrapping into
+// an unreadable column, so the table scrolls inside the card instead of stretching the page.
+.table-scroll {
+  overflow-x: auto;
+}
+
+.numeric {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.source-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  padding: 2px 0;
+}
+
+.unreachable {
+  color: #b00020;
+}
+
+.source-error {
+  font-family: monospace;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.totals-row td {
+  font-weight: 600;
+}
+
+.count-note {
+  font-size: 12px;
+  opacity: 0.75;
+  margin-top: 4px;
+}
