@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-alt-snotify";
 import {SharedModule} from "./modules/shared";
 import {ResourcesModule} from "./modules/resources/resources.module";
@@ -29,7 +28,6 @@ const appInitializerFn = (appConfig: AppConfigService) => {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     SnotifyModule,
     SharedModule,
     ResourcesModule,
