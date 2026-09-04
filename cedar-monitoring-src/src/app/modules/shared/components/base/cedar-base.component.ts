@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {DatePipe} from '@angular/common';
@@ -10,7 +10,9 @@ import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 
 @Component({
-  template: ''
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export abstract class CedarBase implements OnInit {
 

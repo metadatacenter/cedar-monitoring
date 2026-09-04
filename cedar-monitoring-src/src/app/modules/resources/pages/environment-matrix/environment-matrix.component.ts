@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {forkJoin, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {ServerReportService} from '../../../../services/load-data/server-report.service';
@@ -30,7 +30,9 @@ interface MatrixRow {
 @Component({
   selector: 'app-environment-matrix',
   templateUrl: './environment-matrix.component.html',
-  styleUrls: ['./environment-matrix.component.scss']
+  styleUrls: ['./environment-matrix.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class EnvironmentMatrixComponent implements OnInit {
 

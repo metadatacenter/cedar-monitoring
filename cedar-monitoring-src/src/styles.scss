@@ -10,7 +10,7 @@ html, body {
 
 // The tint the cards sit on. It belonged to the wrapper card alone, so the page below the last row
 // stayed white and the background looked like it stopped short of the bottom of the window.
-$page-background: mat.get-color-from-palette(mat.$indigo-palette, 50);
+$page-background: mat.m2-get-color-from-palette(mat.$m2-indigo-palette, 50);
 
 body {
   margin: 0;
@@ -59,7 +59,7 @@ body {
 
     // These are links, so they answer the keyboard the way they answer the mouse.
     &:focus-visible {
-      outline: 2px solid mat.get-color-from-palette(mat.$indigo-palette, 400);
+      outline: 2px solid mat.m2-get-color-from-palette(mat.$m2-indigo-palette, 400);
       outline-offset: 2px;
     }
 

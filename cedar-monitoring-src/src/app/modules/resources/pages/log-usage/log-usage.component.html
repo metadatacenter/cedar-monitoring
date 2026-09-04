@@ -20,14 +20,19 @@
       <button mat-raised-button [color]="rangeDays === 90 ? 'primary' : ''" (click)="setRange(90)">90d</button>
       <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
       <span class="spacer"></span>
-      <span class="range-note" *ngIf="summary">{{ summary.from | slice:0:10 }} → {{ summary.to | slice:0:10 }} · UTC</span>
+      @if (summary) {
+        <span class="range-note">{{ summary.from | slice:0:10 }} → {{ summary.to | slice:0:10 }} · UTC</span>
+      }
     </div>
 
-    <div class="banner loading" *ngIf="loading">Loading…</div>
-    <div class="banner error" *ngIf="error">{{ error }} — the aggregation API must be reachable and you need the MONITOR_READ capability.</div>
+    @if (loading) {
+      <div class="banner loading">Loading…</div>
+    }
+    @if (error) {
+      <div class="banner error">{{ error }} — the aggregation API must be reachable and you need the MONITOR_READ capability.</div>
+    }
 
-    <ng-container *ngIf="summary && !loading && !error">
-
+    @if (summary && !loading && !error) {
       <!-- tiles -->
       <div class="tiles">
         <div class="tile">
@@ -50,98 +55,123 @@
           <div class="td">distinct query shapes in range</div>
         </div>
       </div>
-
       <!-- insights -->
-      <div class="insights" *ngIf="insights">
-        <div class="ins-card">
-          <h3>🐢 Slowest endpoints</h3>
-          <div class="ins-row" *ngFor="let e of insights.slowestEndpoints">
-            <span class="ins-name mono">{{ endpointLabel(e) }}</span>
-            <span class="ins-val">{{ fmtMs(e.p95Nanos) }}</span>
+      @if (insights) {
+        <div class="insights">
+          <div class="ins-card">
+            <h3>🐢 Slowest endpoints</h3>
+            @for (e of insights.slowestEndpoints; track e) {
+              <div class="ins-row">
+                <span class="ins-name mono">{{ endpointLabel(e) }}</span>
+                <span class="ins-val">{{ fmtMs(e.p95Nanos) }}</span>
+              </div>
+            }
+            @if (!insights.slowestEndpoints.length) {
+              <div class="ins-empty">no data</div>
+            }
           </div>
-          <div class="ins-empty" *ngIf="!insights.slowestEndpoints.length">no data</div>
-        </div>
-        <div class="ins-card">
-          <h3>⛓ Slowest Cypher</h3>
-          <div class="ins-row" *ngFor="let c of insights.slowestCypher">
-            <span class="ins-name mono">{{ c.operation }} · {{ shortHash(c.runnableHash) }}</span>
-            <span class="ins-val">{{ fmtMs(c.p95Nanos) }}</span>
+          <div class="ins-card">
+            <h3>⛓ Slowest Cypher</h3>
+            @for (c of insights.slowestCypher; track c) {
+              <div class="ins-row">
+                <span class="ins-name mono">{{ c.operation }} · {{ shortHash(c.runnableHash) }}</span>
+                <span class="ins-val">{{ fmtMs(c.p95Nanos) }}</span>
+              </div>
+            }
+            @if (!insights.slowestCypher.length) {
+              <div class="ins-empty">no data</div>
+            }
           </div>
-          <div class="ins-empty" *ngIf="!insights.slowestCypher.length">no data</div>
-        </div>
-        <div class="ins-card">
-          <h3>🔥 Heaviest callers</h3>
-          <div class="ins-row" *ngFor="let u of insights.heaviestUsers">
-            <span class="ins-name">{{ u.userId }} <em>{{ authLabel(u) }}</em></span>
-            <span class="ins-val">{{ fmtN(u.reqCount) }}</span>
+          <div class="ins-card">
+            <h3>🔥 Heaviest callers</h3>
+            @for (u of insights.heaviestUsers; track u) {
+              <div class="ins-row">
+                <span class="ins-name">{{ u.userId }} <em>{{ authLabel(u) }}</em></span>
+                <span class="ins-val">{{ fmtN(u.reqCount) }}</span>
+              </div>
+            }
+            @if (!insights.heaviestUsers.length) {
+              <div class="ins-empty">no data</div>
+            }
           </div>
-          <div class="ins-empty" *ngIf="!insights.heaviestUsers.length">no data</div>
-        </div>
-        <div class="ins-card">
-          <h3>⚠ Error hotspots</h3>
-          <div class="ins-row" *ngFor="let e of insights.errorHotspots">
-            <span class="ins-name mono">{{ endpointLabel(e) }}</span>
-            <span class="ins-val" [ngClass]="errClass(e.errorCount, e.reqCount)">{{ errPct(e.errorCount, e.reqCount) | number:'1.1-1' }}%</span>
+          <div class="ins-card">
+            <h3>⚠ Error hotspots</h3>
+            @for (e of insights.errorHotspots; track e) {
+              <div class="ins-row">
+                <span class="ins-name mono">{{ endpointLabel(e) }}</span>
+                <span class="ins-val" [ngClass]="errClass(e.errorCount, e.reqCount)">{{ errPct(e.errorCount, e.reqCount) | number:'1.1-1' }}%</span>
+              </div>
+            }
+            @if (!insights.errorHotspots.length) {
+              <div class="ins-empty">no data</div>
+            }
           </div>
-          <div class="ins-empty" *ngIf="!insights.errorHotspots.length">no data</div>
         </div>
-      </div>
-
+      }
       <!-- endpoints table -->
       <h3 class="section">Endpoints</h3>
       <div class="tblwrap">
         <table class="data">
           <thead><tr><th>Endpoint</th><th class="num">Requests</th><th class="num">Err %</th><th class="num">p50</th><th class="num">p95</th><th class="num">max</th></tr></thead>
           <tbody>
-            <tr *ngFor="let e of endpoints">
-              <td><span class="comp">{{ e.component }}</span> <span class="mono">{{ endpointLabel(e) }}</span></td>
-              <td class="num">{{ fmtN(e.reqCount) }}</td>
-              <td class="num" [ngClass]="errClass(e.errorCount, e.reqCount)">{{ errPct(e.errorCount, e.reqCount) | number:'1.2-2' }}%</td>
-              <td class="num mono">{{ fmtMs(e.p50Nanos) }}</td>
-              <td class="num mono">{{ fmtMs(e.p95Nanos) }}</td>
-              <td class="num mono">{{ fmtMs(e.maxNanos) }}</td>
-            </tr>
-            <tr *ngIf="!endpoints.length"><td colspan="6" class="empty">No endpoint data in this range.</td></tr>
+            @for (e of endpoints; track e) {
+              <tr>
+                <td><span class="comp">{{ e.component }}</span> <span class="mono">{{ endpointLabel(e) }}</span></td>
+                <td class="num">{{ fmtN(e.reqCount) }}</td>
+                <td class="num" [ngClass]="errClass(e.errorCount, e.reqCount)">{{ errPct(e.errorCount, e.reqCount) | number:'1.2-2' }}%</td>
+                <td class="num mono">{{ fmtMs(e.p50Nanos) }}</td>
+                <td class="num mono">{{ fmtMs(e.p95Nanos) }}</td>
+                <td class="num mono">{{ fmtMs(e.maxNanos) }}</td>
+              </tr>
+            }
+            @if (!endpoints.length) {
+              <tr><td colspan="6" class="empty">No endpoint data in this range.</td></tr>
+            }
           </tbody>
         </table>
       </div>
-
       <!-- cypher table -->
       <h3 class="section">Cypher shapes</h3>
       <div class="tblwrap">
         <table class="data">
           <thead><tr><th>Operation · hash</th><th>Query</th><th class="num">Execs</th><th class="num">p95</th><th class="num">max</th></tr></thead>
           <tbody>
-            <tr *ngFor="let c of cypher">
-              <td class="mono">{{ c.operation }} <span class="muted">{{ shortHash(c.runnableHash) }}</span></td>
-              <td class="mono query">{{ c.sample }}</td>
-              <td class="num">{{ fmtN(c.execCount) }}</td>
-              <td class="num mono">{{ fmtMs(c.p95Nanos) }}</td>
-              <td class="num mono">{{ fmtMs(c.maxNanos) }}</td>
-            </tr>
-            <tr *ngIf="!cypher.length"><td colspan="5" class="empty">No Cypher data in this range (or Cypher logging is off).</td></tr>
+            @for (c of cypher; track c) {
+              <tr>
+                <td class="mono">{{ c.operation }} <span class="muted">{{ shortHash(c.runnableHash) }}</span></td>
+                <td class="mono query">{{ c.sample }}</td>
+                <td class="num">{{ fmtN(c.execCount) }}</td>
+                <td class="num mono">{{ fmtMs(c.p95Nanos) }}</td>
+                <td class="num mono">{{ fmtMs(c.maxNanos) }}</td>
+              </tr>
+            }
+            @if (!cypher.length) {
+              <tr><td colspan="5" class="empty">No Cypher data in this range (or Cypher logging is off).</td></tr>
+            }
           </tbody>
         </table>
       </div>
-
       <!-- users table -->
       <h3 class="section">Users &amp; API keys</h3>
       <div class="tblwrap">
         <table class="data">
           <thead><tr><th>User</th><th>Auth</th><th class="num">Requests</th><th class="num">Err %</th></tr></thead>
           <tbody>
-            <tr *ngFor="let u of users">
-              <td>{{ u.userId }}</td>
-              <td class="mono">{{ authLabel(u) }}</td>
-              <td class="num">{{ fmtN(u.reqCount) }}</td>
-              <td class="num" [ngClass]="errClass(u.errorCount, u.reqCount)">{{ errPct(u.errorCount, u.reqCount) | number:'1.2-2' }}%</td>
-            </tr>
-            <tr *ngIf="!users.length"><td colspan="4" class="empty">No user data in this range.</td></tr>
+            @for (u of users; track u) {
+              <tr>
+                <td>{{ u.userId }}</td>
+                <td class="mono">{{ authLabel(u) }}</td>
+                <td class="num">{{ fmtN(u.reqCount) }}</td>
+                <td class="num" [ngClass]="errClass(u.errorCount, u.reqCount)">{{ errPct(u.errorCount, u.reqCount) | number:'1.2-2' }}%</td>
+              </tr>
+            }
+            @if (!users.length) {
+              <tr><td colspan="4" class="empty">No user data in this range.</td></tr>
+            }
           </tbody>
         </table>
       </div>
-
-    </ng-container>
+    }
 
   </mat-card-content>
   <mat-card-actions>

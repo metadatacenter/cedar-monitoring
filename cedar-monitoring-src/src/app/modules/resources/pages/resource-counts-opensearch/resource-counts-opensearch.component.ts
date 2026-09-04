@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
@@ -32,7 +32,9 @@ const REPORT: ReportRow[] = [
 @Component({
   selector: 'app-resource-counts-opensearch',
   templateUrl: './resource-counts-opensearch.component.html',
-  styleUrls: ['./resource-counts-opensearch.component.scss']
+  styleUrls: ['./resource-counts-opensearch.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class ResourceCountsOpensearchComponent extends CedarPageComponent implements OnInit {
 

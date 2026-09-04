@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {forkJoin} from 'rxjs';
 import {ServerReportService} from '../../../../services/load-data/server-report.service';
 import {HostReportService} from '../../../../services/load-data/host-report.service';
@@ -19,7 +19,9 @@ interface ServiceRow {
 @Component({
   selector: 'app-deploy-matrix',
   templateUrl: './deploy-matrix.component.html',
-  styleUrls: ['./deploy-matrix.component.scss']
+  styleUrls: ['./deploy-matrix.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class DeployMatrixComponent implements OnInit {
 

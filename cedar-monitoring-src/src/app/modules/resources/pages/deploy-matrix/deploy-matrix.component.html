@@ -17,14 +17,19 @@
     <div class="controls">
       <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
       <span class="spacer"></span>
-      <span class="note" *ngIf="git?.cedarHome">CEDAR_HOME {{ git?.cedarHome }}</span>
+      @if (git?.cedarHome) {
+        <span class="note">CEDAR_HOME {{ git?.cedarHome }}</span>
+      }
     </div>
 
-    <div class="banner loading" *ngIf="loading">Loading…</div>
-    <div class="banner error" *ngIf="error">{{ error }} — you need the MONITOR_READ capability.</div>
+    @if (loading) {
+      <div class="banner loading">Loading…</div>
+    }
+    @if (error) {
+      <div class="banner error">{{ error }} — you need the MONITOR_READ capability.</div>
+    }
 
-    <ng-container *ngIf="!loading && !error">
-
+    @if (!loading && !error) {
       <div class="tiles">
         <div class="tile">
           <div class="tl">Version</div>
@@ -52,111 +57,135 @@
           <div class="td">services</div>
         </div>
       </div>
-
       <h3 class="section">Services</h3>
-
       <div class="table-scroll">
         <table class="grid">
           <thead>
-          <tr>
-            <th>Service</th>
-            <th>Version</th>
-            <th>Artifact written</th>
-            <th>Started</th>
-            <th>Uptime</th>
-            <th>Host</th>
-            <th>Artifact</th>
-          </tr>
+            <tr>
+              <th>Service</th>
+              <th>Version</th>
+              <th>Artifact written</th>
+              <th>Started</th>
+              <th>Uptime</th>
+              <th>Host</th>
+              <th>Artifact</th>
+            </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let row of rows" [class.bad-row]="row.staleProcess || row.versionDrift"
-              [class.absent-row]="!row.build">
-            <th class="name">{{ row.server }}</th>
-
-            <ng-container *ngIf="row.build; else noAnswer">
-              <td [class.bad]="row.versionDrift">
-                {{ row.build.version || '—' }}<span class="modifier"
-                  *ngIf="row.build.versionModifier">·{{ row.build.versionModifier }}</span>
-                <mat-icon class="flag bad" *ngIf="row.versionDrift"
-                          [title]="'Most services report ' + (expectedVersion || 'no version')">call_split</mat-icon>
-              </td>
-              <td>{{ row.build.artifactBuiltAt | date:'yyyy-MM-dd HH:mm' }}</td>
-              <td [class.bad]="row.staleProcess">
-                {{ row.build.startedAt | date:'yyyy-MM-dd HH:mm' }}
-                <mat-icon class="flag bad" *ngIf="row.staleProcess"
-                          title="This JVM started before the artifact it loaded was written — it is running the previous build">
-                  warning
-                </mat-icon>
-              </td>
-              <td>{{ uptime(row.build.uptimeMs) }}</td>
-              <td class="dim">{{ row.build.host || '—' }}<span class="pid" *ngIf="row.build.pid"> · pid {{ row.build.pid }}</span></td>
-              <td class="dim" [title]="row.build.artifactPath || ''">
-                {{ fileName(row.build.artifactPath) }}
-                <span class="kind" *ngIf="row.build.artifactType === 'classes'">(classes)</span>
-              </td>
-            </ng-container>
-
-            <ng-template #noAnswer>
-              <td colspan="6" class="dim">{{ row.error || 'did not answer' }}</td>
-            </ng-template>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="section">
-        Repositories on this host
-        <span class="sub" *ngIf="majorityBranchName">most are on <code>{{ majorityBranchName }}</code></span>
-      </h3>
-
-      <div class="banner warn" *ngIf="gitError">{{ gitError }} Under Docker the monitoring container has no
-        CEDAR checkout, so there is nothing here to read.</div>
-
-      <div class="table-scroll" *ngIf="!gitError">
+            @for (row of rows; track row) {
+              <tr [class.bad-row]="row.staleProcess || row.versionDrift"
+                [class.absent-row]="!row.build">
+                <th class="name">{{ row.server }}</th>
+                @if (row.build) {
+                  <td [class.bad]="row.versionDrift">
+                    {{ row.build.version || '—' }}@if (row.build.versionModifier) {
+                    <span class="modifier"
+                    >·{{ row.build.versionModifier }}</span>
+                  }
+                  @if (row.versionDrift) {
+                    <mat-icon class="flag bad"
+                    [title]="'Most services report ' + (expectedVersion || 'no version')">call_split</mat-icon>
+                  }
+                </td>
+                <td>{{ row.build.artifactBuiltAt | date:'yyyy-MM-dd HH:mm' }}</td>
+                <td [class.bad]="row.staleProcess">
+                  {{ row.build.startedAt | date:'yyyy-MM-dd HH:mm' }}
+                  @if (row.staleProcess) {
+                    <mat-icon class="flag bad"
+                      title="This JVM started before the artifact it loaded was written — it is running the previous build">
+                      warning
+                    </mat-icon>
+                  }
+                </td>
+                <td>{{ uptime(row.build.uptimeMs) }}</td>
+                <td class="dim">{{ row.build.host || '—' }}@if (row.build.pid) {
+                  <span class="pid"> · pid {{ row.build.pid }}</span>
+                }</td>
+                <td class="dim" [title]="row.build.artifactPath || ''">
+                  {{ fileName(row.build.artifactPath) }}
+                  @if (row.build.artifactType === 'classes') {
+                    <span class="kind">(classes)</span>
+                  }
+                </td>
+              } @else {
+                <td colspan="6" class="dim">{{ row.error || 'did not answer' }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <h3 class="section">
+      Repositories on this host
+      @if (majorityBranchName) {
+        <span class="sub">most are on <code>{{ majorityBranchName }}</code></span>
+      }
+    </h3>
+    @if (gitError) {
+      <div class="banner warn">{{ gitError }} Under Docker the monitoring container has no
+      CEDAR checkout, so there is nothing here to read.</div>
+    }
+    @if (!gitError) {
+      <div class="table-scroll">
         <table class="grid">
           <thead>
-          <tr>
-            <th>Repository</th>
-            <th>Branch</th>
-            <th>Commit</th>
-            <th>Committed</th>
-            <th>Uncommitted</th>
-            <th>vs upstream</th>
-          </tr>
+            <tr>
+              <th>Repository</th>
+              <th>Branch</th>
+              <th>Commit</th>
+              <th>Committed</th>
+              <th>Uncommitted</th>
+              <th>vs upstream</th>
+            </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let repository of repositories"
-              [class.bad-row]="(repository.uncommittedFiles || 0) > 0"
-              [class.warn-row]="repository.branch && majorityBranchName && repository.branch !== majorityBranchName">
-            <th class="name">{{ repository.repository }}</th>
-            <ng-container *ngIf="!repository.error; else repoError">
-              <td><code>{{ repository.branch || '—' }}</code></td>
-              <td class="mono dim" [title]="repository.commit || ''">{{ shortCommit(repository.commit) }}</td>
-              <td>{{ repository.committedAt | date:'yyyy-MM-dd HH:mm' }}</td>
-              <td [class.bad]="(repository.uncommittedFiles || 0) > 0">
-                {{ repository.uncommittedFiles === null ? '—' : repository.uncommittedFiles }}
-                <mat-icon class="flag bad" *ngIf="(repository.uncommittedFiles || 0) > 0"
-                          title="Tracked files differ from HEAD — a pull would overwrite them">edit</mat-icon>
-              </td>
-              <td class="dim">
-                <span *ngIf="repository.upstream">
-                  <span *ngIf="repository.ahead">↑{{ repository.ahead }}</span>
-                  <span *ngIf="repository.behind">↓{{ repository.behind }}</span>
-                  <span *ngIf="!repository.ahead && !repository.behind">in sync</span>
-                </span>
-                <span *ngIf="!repository.upstream">no upstream</span>
-              </td>
-            </ng-container>
-            <ng-template #repoError>
-              <td colspan="5" class="dim">{{ repository.error }}</td>
-            </ng-template>
-          </tr>
+            @for (repository of repositories; track repository) {
+              <tr
+                [class.bad-row]="(repository.uncommittedFiles || 0) > 0"
+                [class.warn-row]="repository.branch && majorityBranchName && repository.branch !== majorityBranchName">
+                <th class="name">{{ repository.repository }}</th>
+                @if (!repository.error) {
+                  <td><code>{{ repository.branch || '—' }}</code></td>
+                  <td class="mono dim" [title]="repository.commit || ''">{{ shortCommit(repository.commit) }}</td>
+                  <td>{{ repository.committedAt | date:'yyyy-MM-dd HH:mm' }}</td>
+                  <td [class.bad]="(repository.uncommittedFiles || 0) > 0">
+                    {{ repository.uncommittedFiles === null ? '—' : repository.uncommittedFiles }}
+                    @if ((repository.uncommittedFiles || 0) > 0) {
+                      <mat-icon class="flag bad"
+                      title="Tracked files differ from HEAD — a pull would overwrite them">edit</mat-icon>
+                    }
+                  </td>
+                  <td class="dim">
+                    @if (repository.upstream) {
+                      <span>
+                        @if (repository.ahead) {
+                          <span>↑{{ repository.ahead }}</span>
+                        }
+                        @if (repository.behind) {
+                          <span>↓{{ repository.behind }}</span>
+                        }
+                        @if (!repository.ahead && !repository.behind) {
+                          <span>in sync</span>
+                        }
+                      </span>
+                    }
+                    @if (!repository.upstream) {
+                      <span>no upstream</span>
+                    }
+                  </td>
+                } @else {
+                  <td colspan="5" class="dim">{{ repository.error }}</td>
+                }
+              </tr>
+            }
           </tbody>
         </table>
-        <div class="empty" *ngIf="!repositories.length">No repositories found under CEDAR_HOME.</div>
+        @if (!repositories.length) {
+          <div class="empty">No repositories found under CEDAR_HOME.</div>
+        }
       </div>
+    }
+  }
 
-    </ng-container>
-
-  </mat-card-content>
+</mat-card-content>
 </mat-card>

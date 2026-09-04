@@ -18,7 +18,7 @@
 <mat-card class="wrapper-card">
   <mat-card-content class="flex-container">
 
-    <ng-container *ngFor="let serverName of serverNames">
+    @for (serverName of serverNames; track serverName) {
       <mat-card class="dash-card" [routerLink]="'/health-checks'">
         <mat-card-header>
           <div mat-card-avatar>
@@ -30,7 +30,7 @@
           <mat-card-subtitle>{{getStatus(serverName)}}</mat-card-subtitle>
         </mat-card-header>
       </mat-card>
-    </ng-container>
+    }
 
   </mat-card-content>
 </mat-card>

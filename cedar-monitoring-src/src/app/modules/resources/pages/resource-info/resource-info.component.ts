@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
@@ -36,7 +36,9 @@ const ID_PARSING_REPORT: ReportRow[] = [
 @Component({
   selector: 'app-resource-info',
   templateUrl: './resource-info.component.html',
-  styleUrls: ['./resource-info.component.scss']
+  styleUrls: ['./resource-info.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class ResourceInfoComponent extends CedarPageComponent implements OnInit {
 

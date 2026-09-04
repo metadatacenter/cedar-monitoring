@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/index';
+import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {RestApiUrlService} from '../rest-api-url.service';
 import {Router} from '@angular/router';

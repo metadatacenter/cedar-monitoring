@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ServerReportService} from '../../../../services/load-data/server-report.service';
 import {ConfigurationReport} from '../../../../shared/model/server-report.model';
 
@@ -11,7 +11,9 @@ interface UnresolvedPlaceholder {
 @Component({
   selector: 'app-server-configuration',
   templateUrl: './server-configuration.component.html',
-  styleUrls: ['./server-configuration.component.scss']
+  styleUrls: ['./server-configuration.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class ServerConfigurationComponent implements OnInit {
 

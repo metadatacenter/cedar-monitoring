@@ -16,38 +16,46 @@
 
     <div class="controls">
       <span class="lbl">Service</span>
-      <button mat-raised-button *ngFor="let s of servers"
-              [color]="s === server ? 'primary' : ''"
-              (click)="selectServer(s)">{{ s }}</button>
+      @for (s of servers; track s) {
+        <button mat-raised-button
+          [color]="s === server ? 'primary' : ''"
+        (click)="selectServer(s)">{{ s }}</button>
+      }
       <span class="spacer"></span>
       <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
     </div>
 
-    <div class="banner loading" *ngIf="loading">Loading…</div>
-    <div class="banner error" *ngIf="error">{{ error }}</div>
+    @if (loading) {
+      <div class="banner loading">Loading…</div>
+    }
+    @if (error) {
+      <div class="banner error">{{ error }}</div>
+    }
 
-    <ng-container *ngIf="report && !loading && !error">
-
-      <div class="banner warn" *ngIf="unresolved.length">
-        {{ unresolved.length }} placeholder{{ unresolved.length === 1 ? '' : 's' }} did not resolve —
-        the variable named is not in this service's sandbox:
-        <ul class="placeholders">
-          <li *ngFor="let p of unresolved"><code>{{ p.path }}</code> = <code>{{ p.value }}</code></li>
-        </ul>
-      </div>
-
-      <div class="banner ok" *ngIf="!unresolved.length">
-        Every placeholder resolved.
-      </div>
-
+    @if (report && !loading && !error) {
+      @if (unresolved.length) {
+        <div class="banner warn">
+          {{ unresolved.length }} placeholder{{ unresolved.length === 1 ? '' : 's' }} did not resolve —
+          the variable named is not in this service's sandbox:
+          <ul class="placeholders">
+            @for (p of unresolved; track p) {
+              <li><code>{{ p.path }}</code> = <code>{{ p.value }}</code></li>
+            }
+          </ul>
+        </div>
+      }
+      @if (!unresolved.length) {
+        <div class="banner ok">
+          Every placeholder resolved.
+        </div>
+      }
       <app-json-view
         [inputObject]="report.configuration"
         icon="settings"
         [title]="report.application + ' — resolved configuration'"
         subtitle="Secrets are masked. Values shown as ab****yz keep their first and last two characters so two services can be compared without the value being revealed.">
       </app-json-view>
-
-    </ng-container>
+    }
 
   </mat-card-content>
 </mat-card>

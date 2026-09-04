@@ -1,11 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {WorkerLagService} from '../../../../services/load-data/worker-lag.service';
 import {WorkerLag, WorkerLagStatus} from '../../../../shared/model/worker-lag.model';
 
 @Component({
   selector: 'app-worker-lag',
   templateUrl: './worker-lag.component.html',
-  styleUrls: ['./worker-lag.component.scss']
+  styleUrls: ['./worker-lag.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class WorkerLagComponent implements OnInit, OnDestroy {
 

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ServerReportService} from '../../../../services/load-data/server-report.service';
 import {JvmInsight, ServerResult} from '../../../../shared/model/server-report.model';
 
@@ -24,7 +24,9 @@ const HEAP_WARNING_PERCENT = 85;
 @Component({
   selector: 'app-jvm-insight',
   templateUrl: './jvm-insight.component.html',
-  styleUrls: ['./jvm-insight.component.scss']
+  styleUrls: ['./jvm-insight.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class JvmInsightComponent implements OnInit, OnDestroy {
 
