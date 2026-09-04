@@ -17,8 +17,8 @@
     <div class="controls">
       <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
       <span class="spacer"></span>
-      @if (git?.cedarHome) {
-        <span class="note">CEDAR_HOME {{ git?.cedarHome }}</span>
+      @if (git?.cedarHome; as cedarHome) {
+        <span class="note">CEDAR_HOME {{ cedarHome }}</span>
       }
     </div>
 
