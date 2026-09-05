@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
@@ -30,7 +30,9 @@ const REPORT: ReportRow[] = [
 @Component({
   selector: 'app-queue-counts',
   templateUrl: './queue-counts.component.html',
-  styleUrls: ['./queue-counts.component.scss']
+  styleUrls: ['./queue-counts.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class QueueCountsComponent extends CedarPageComponent implements OnInit {
 

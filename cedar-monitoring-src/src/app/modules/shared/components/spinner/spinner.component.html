@@ -1,3 +1,5 @@
-<div class="loading-spinner" *ngIf="spinnerService.active">
-  <div class="loader float-left mr-2"></div>
-</div>
+@if (spinnerService.active) {
+  <div class="loading-spinner">
+    <div class="loader float-left mr-2"></div>
+  </div>
+}

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LogQueryService} from '../../../../services/load-data/log-query.service';
 import {
@@ -38,7 +38,9 @@ interface FacetDef {
 @Component({
   selector: 'app-log-explorer',
   templateUrl: './log-explorer.component.html',
-  styleUrls: ['./log-explorer.component.scss']
+  styleUrls: ['./log-explorer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class LogExplorerComponent implements OnInit {
 

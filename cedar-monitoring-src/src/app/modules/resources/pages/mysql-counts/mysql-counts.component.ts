@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
@@ -17,7 +17,9 @@ import {MySqlTable} from "../../../../shared/model/mysql-table.model";
 @Component({
   selector: 'app-mysql-counts',
   templateUrl: './mysql-counts.component.html',
-  styleUrls: ['./mysql-counts.component.scss']
+  styleUrls: ['./mysql-counts.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class MySqlCountsComponent extends CedarPageComponent implements OnInit {
 

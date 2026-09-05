@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
@@ -36,7 +36,9 @@ const REPORT: ReportRow[] = [
 @Component({
   selector: 'app-resource-counts',
   templateUrl: './resource-counts.component.html',
-  styleUrls: ['./resource-counts.component.scss']
+  styleUrls: ['./resource-counts.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class ResourceCountsComponent extends CedarPageComponent implements OnInit {
 

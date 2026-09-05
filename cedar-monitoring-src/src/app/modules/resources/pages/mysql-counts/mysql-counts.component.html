@@ -13,110 +13,127 @@
     <mat-card-content style="margin-top:16px">
 
       <!-- Which datasources answered. One database being unreachable is the thing worth seeing,
-           so it is reported here rather than leaving its section silently absent below. -->
-      <div *ngIf="mySqlCounts">
-        <div class="source-line" *ngFor="let source of mySqlCounts.sources">
-          <strong>{{source.configKey}}</strong>
-          <span *ngIf="source.configured && source.reachable">
-            {{source.server}} &middot; {{source.schema}}
-          </span>
-          <span class="unreachable" *ngIf="!source.reachable">
-            unreachable
-            <span class="source-error" *ngIf="source.error"> — {{source.error}}</span>
-          </span>
-          <span *ngIf="!source.configured" class="unreachable">not configured</span>
+      so it is reported here rather than leaving its section silently absent below. -->
+      @if (mySqlCounts) {
+        <div>
+          @for (source of mySqlCounts.sources; track source) {
+            <div class="source-line">
+              <strong>{{source.configKey}}</strong>
+              @if (source.configured && source.reachable) {
+                <span>
+                  {{source.server}} &middot; {{source.schema}}
+                </span>
+              }
+              @if (!source.reachable) {
+                <span class="unreachable">
+                  unreachable
+                  @if (source.error) {
+                    <span class="source-error"> — {{source.error}}</span>
+                  }
+                </span>
+              }
+              @if (!source.configured) {
+                <span class="unreachable">not configured</span>
+              }
+            </div>
+          }
         </div>
-      </div>
+      }
 
-      <div class="count-note" *ngIf="mySqlCounts">
-        <span *ngIf="!mySqlCounts.exactCounts">
-          Row counts marked ~ are the optimizer's estimate and can differ from the real count by a
-          wide margin on a large InnoDB table.
-        </span>
-        <span *ngIf="mySqlCounts.exactCounts">
-          Row counts were gathered with COUNT(*).
-        </span>
-      </div>
+      @if (mySqlCounts) {
+        <div class="count-note">
+          @if (!mySqlCounts.exactCounts) {
+            <span>
+              Row counts marked ~ are the optimizer's estimate and can differ from the real count by a
+              wide margin on a large InnoDB table.
+            </span>
+          }
+          @if (mySqlCounts.exactCounts) {
+            <span>
+              Row counts were gathered with COUNT(*).
+            </span>
+          }
+        </div>
+      }
 
-      <p *ngIf="loadStatus">
-        <span class="unreachable">The report could not be loaded (HTTP {{loadStatus}}).</span>
-      </p>
+      @if (loadStatus) {
+        <p>
+          <span class="unreachable">The report could not be loaded (HTTP {{loadStatus}}).</span>
+        </p>
+      }
 
       <!-- One section per schema, largest table first. -->
-      <div *ngFor="let database of mySqlCounts?.databases">
-
-        <h3>
-          {{database.name}}
-          <small>
-            &middot; {{database.tableCount}} tables
-            &middot; {{database.rowsExact !== null ? formatNumber(database.rowsExact) : '~' + formatNumber(database.rowsApproximate)}} rows
-            &middot; {{formatBytes(database.totalBytes)}}
-          </small>
-        </h3>
-
-        <div class="table-scroll">
-          <table mat-table [dataSource]="database.tables">
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef>Table</th>
-              <td mat-cell *matCellDef="let table">
-                {{table.name}}
-                <span class="unreachable" *ngIf="table.countError" [title]="table.countError">!</span>
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="rows">
-              <th mat-header-cell *matHeaderCellDef class="numeric">Rows</th>
-              <td mat-cell *matCellDef="let table" class="numeric">{{rowsOf(table)}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="data">
-              <th mat-header-cell *matHeaderCellDef class="numeric">Data</th>
-              <td mat-cell *matCellDef="let table" class="numeric">{{formatBytes(table.dataBytes)}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="index">
-              <th mat-header-cell *matHeaderCellDef class="numeric">Index</th>
-              <td mat-cell *matCellDef="let table" class="numeric">{{formatBytes(table.indexBytes)}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="total">
-              <th mat-header-cell *matHeaderCellDef class="numeric">Total</th>
-              <td mat-cell *matCellDef="let table" class="numeric">{{formatBytes(table.totalBytes)}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="free">
-              <th mat-header-cell *matHeaderCellDef class="numeric">Free</th>
-              <td mat-cell *matCellDef="let table" class="numeric">{{formatBytes(table.freeBytes)}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="engine">
-              <th mat-header-cell *matHeaderCellDef>Engine</th>
-              <td mat-cell *matCellDef="let table">{{table.engine}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="updated">
-              <th mat-header-cell *matHeaderCellDef>Updated (UTC)</th>
-              <td mat-cell *matCellDef="let table">{{formatTimestamp(table.updatedAt)}}</td>
-            </ng-container>
-
-          </table>
+      @for (database of mySqlCounts?.databases; track database) {
+        <div>
+          <h3>
+            {{database.name}}
+            <small>
+              &middot; {{database.tableCount}} tables
+              &middot; {{database.rowsExact !== null ? formatNumber(database.rowsExact) : '~' + formatNumber(database.rowsApproximate)}} rows
+              &middot; {{formatBytes(database.totalBytes)}}
+            </small>
+          </h3>
+          <div class="table-scroll">
+            <table mat-table [dataSource]="database.tables">
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Table</th>
+                <td mat-cell *matCellDef="let table">
+                  {{table.name}}
+                  @if (table.countError) {
+                    <span class="unreachable" [title]="table.countError">!</span>
+                  }
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="rows">
+                <th mat-header-cell *matHeaderCellDef class="numeric">Rows</th>
+                <td mat-cell *matCellDef="let table" class="numeric">{{rowsOf(table)}}</td>
+              </ng-container>
+              <ng-container matColumnDef="data">
+                <th mat-header-cell *matHeaderCellDef class="numeric">Data</th>
+                <td mat-cell *matCellDef="let table" class="numeric">{{formatBytes(table.dataBytes)}}</td>
+              </ng-container>
+              <ng-container matColumnDef="index">
+                <th mat-header-cell *matHeaderCellDef class="numeric">Index</th>
+                <td mat-cell *matCellDef="let table" class="numeric">{{formatBytes(table.indexBytes)}}</td>
+              </ng-container>
+              <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef class="numeric">Total</th>
+                <td mat-cell *matCellDef="let table" class="numeric">{{formatBytes(table.totalBytes)}}</td>
+              </ng-container>
+              <ng-container matColumnDef="free">
+                <th mat-header-cell *matHeaderCellDef class="numeric">Free</th>
+                <td mat-cell *matCellDef="let table" class="numeric">{{formatBytes(table.freeBytes)}}</td>
+              </ng-container>
+              <ng-container matColumnDef="engine">
+                <th mat-header-cell *matHeaderCellDef>Engine</th>
+                <td mat-cell *matCellDef="let table">{{table.engine}}</td>
+              </ng-container>
+              <ng-container matColumnDef="updated">
+                <th mat-header-cell *matHeaderCellDef>Updated (UTC)</th>
+                <td mat-cell *matCellDef="let table">{{formatTimestamp(table.updatedAt)}}</td>
+              </ng-container>
+            </table>
+          </div>
         </div>
+      }
 
-      </div>
-
-      <p *ngIf="mySqlCounts && mySqlCounts.databases.length === 0">
-        No MySQL schema was readable through any configured datasource.
-      </p>
+      @if (mySqlCounts && mySqlCounts.databases.length === 0) {
+        <p>
+          No MySQL schema was readable through any configured datasource.
+        </p>
+      }
 
     </mat-card-content>
     <mat-card-actions>
       <button mat-button routerLink="/">GO BACK</button>
-      <button mat-button (click)="load(false)" *ngIf="exact">ESTIMATED COUNTS</button>
-      <button mat-button (click)="load(true)" *ngIf="!exact">COUNT EXACTLY</button>
+      @if (exact) {
+        <button mat-button (click)="load(false)">ESTIMATED COUNTS</button>
+      }
+      @if (!exact) {
+        <button mat-button (click)="load(true)">COUNT EXACTLY</button>
+      }
     </mat-card-actions>
   </mat-card>
 

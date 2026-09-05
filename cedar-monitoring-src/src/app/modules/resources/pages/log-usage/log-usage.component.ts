@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {forkJoin} from 'rxjs';
 import {LogUsageService} from '../../../../services/load-data/log-usage.service';
 import {
@@ -12,7 +12,9 @@ import {
 @Component({
   selector: 'app-log-usage',
   templateUrl: './log-usage.component.html',
-  styleUrls: ['./log-usage.component.scss']
+  styleUrls: ['./log-usage.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class LogUsageComponent implements OnInit {
 

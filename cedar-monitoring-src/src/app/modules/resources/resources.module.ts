@@ -45,8 +45,7 @@ import {WorkerLagComponent} from "./pages/worker-lag/worker-lag.component";
     FormsModule
   ],
   exports: [],
-  providers: [],
-  entryComponents: []
+  providers: []
 })
 export class ResourcesModule {
 }

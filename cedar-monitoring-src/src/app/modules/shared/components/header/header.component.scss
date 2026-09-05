@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 
 a {
-  color: mat.get-color-from-palette(mat.$indigo-palette, 50);
+  color: mat.m2-get-color-from-palette(mat.$m2-indigo-palette, 50);
   text-decoration: none;
 }

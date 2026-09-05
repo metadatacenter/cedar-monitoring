@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -18,7 +18,9 @@ import {KeycloakService} from "keycloak-angular";
 @Component({
   selector: 'app-health-checks',
   templateUrl: './health-checks.component.html',
-  styleUrls: ['./health-checks.component.scss']
+  styleUrls: ['./health-checks.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class HealthChecksComponent extends CedarPageComponent implements OnInit {
 

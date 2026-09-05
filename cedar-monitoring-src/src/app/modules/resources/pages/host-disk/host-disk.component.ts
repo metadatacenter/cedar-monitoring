@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {HostReportService} from '../../../../services/load-data/host-report.service';
 import {FilesystemUsage, HostDiskReport, LogFile} from '../../../../shared/model/host-report.model';
 
@@ -15,7 +15,9 @@ const LARGE_LOG_BYTES = 512 * 1024 * 1024;
 @Component({
   selector: 'app-host-disk',
   templateUrl: './host-disk.component.html',
-  styleUrls: ['./host-disk.component.scss']
+  styleUrls: ['./host-disk.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class HostDiskComponent implements OnInit {
 
