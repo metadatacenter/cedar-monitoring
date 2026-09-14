@@ -4,6 +4,7 @@ import {HealthChecksComponent} from "./pages/health-checks/health-checks.compone
 import {AuthGuard} from "../../guard/auth.guard";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {ResourceInfoComponent} from "./pages/resource-info/resource-info.component";
+import {SearchIndexComponent} from "./pages/search-index/search-index.component";
 import {QueueCountsComponent} from "./pages/queue-counts/queue-counts.component";
 import {ResourceCountsComponent} from "./pages/resource-counts/resource-counts.component";
 import {ResourceCountsOpensearchComponent} from "./pages/resource-counts-opensearch/resource-counts-opensearch.component";
@@ -71,6 +72,11 @@ export const routes: Routes = [
   {
     path: 'resource-info',
     component: ResourceInfoComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'search-index',
+    component: SearchIndexComponent,
     canActivate: [AuthGuard]
   },
   {

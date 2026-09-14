@@ -1,0 +1,106 @@
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  h2 { margin: 0; }
+}
+
+.page-note {
+  max-width: 70ch;
+  color: rgba(0, 0, 0, .6);
+}
+
+.status-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 8px;
+  flex-wrap: wrap;
+}
+
+// The state is the first thing read, so it carries colour rather than the rows beneath it.
+.state-chip {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: #fff;
+
+  &.state-idle { background: #9e9e9e; }
+  &.state-running { background: #1976d2; }
+  &.state-complete { background: #2e7d32; }
+  &.state-failed { background: #c62828; }
+  &.state-interrupted { background: #ef6c00; }
+}
+
+.muted { color: rgba(0, 0, 0, .6); }
+
+.overdue {
+  color: #c62828;
+  font-weight: 600;
+}
+
+.error-box {
+  margin: 12px 0;
+  padding: 10px 14px;
+  border-left: 4px solid #c62828;
+  background: #fdecea;
+}
+
+.kv {
+  border-collapse: collapse;
+  margin: 8px 0 16px;
+
+  th, td {
+    text-align: left;
+    padding: 4px 24px 4px 0;
+    vertical-align: top;
+  }
+
+  th {
+    font-weight: 600;
+    color: rgba(0, 0, 0, .6);
+    white-space: nowrap;
+  }
+}
+
+.progress-block {
+  margin-top: 8px;
+
+  h3 { margin-bottom: 0; }
+}
+
+.bar {
+  height: 12px;
+  width: 100%;
+  max-width: 640px;
+  background: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #1976d2;
+  transition: width 400ms ease;
+}
+
+.bar-label { margin-top: 6px; }
+
+.by-type {
+  border-collapse: collapse;
+
+  th, td {
+    text-align: left;
+    padding: 4px 24px 4px 0;
+  }
+
+  th {
+    font-weight: 600;
+    color: rgba(0, 0, 0, .6);
+    border-bottom: 1px solid #e0e0e0;
+  }
+}

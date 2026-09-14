@@ -29,6 +29,8 @@ import {ResourceCountsService} from "./load-data/resource-counts.service";
 import {ResourceCountsOpensearchIndex} from "../shared/model/resource-counts-opensearch-index.model";
 import {MySqlCounts} from "../shared/model/mysql-counts.model";
 import {MySqlCountsService} from "./load-data/mysql-counts.service";
+import {SearchIndexService} from "./load-data/search-index.service";
+import {SearchIndexJobStatus} from "../shared/model/search-index-job-status.model";
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +57,7 @@ export class DataHandlerService {
     private resourceReportTemplateService: ResourceReportTemplateService,
     private resourceReportInstanceService: ResourceReportInstanceService,
     private redisQueueCountsService: RedisQueueCountsService,
+    private searchIndexService: SearchIndexService,
     private resourceCountsService: ResourceCountsService,
     private mySqlCountsService: MySqlCountsService
   ) {
@@ -155,6 +158,9 @@ export class DataHandlerService {
         break;
       case DataHandlerDataId.MYSQL_COUNTS:
         this.loadMySqlCounts(dataStatus);
+        break;
+      case DataHandlerDataId.SEARCH_INDEX_JOB_STATUS:
+        this.loadSearchIndexJobStatus(dataStatus);
         break;
     }
   }
@@ -259,6 +265,17 @@ export class DataHandlerService {
     this.resourceReportInstanceService.getResourceReportInstance(dataStatus.id)
       ?.subscribe(resourceReportInstance => {
           this.dataStore.setResourceReportInstance(dataStatus.id, Object.assign(new ResourceReportInstance(), resourceReportInstance));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadSearchIndexJobStatus(dataStatus: DataHandlerDataStatus) {
+    this.searchIndexService.getSearchIndexJobStatus()
+      ?.subscribe(searchIndexJobStatus => {
+          this.dataStore.setSearchIndexJobStatus(Object.assign(new SearchIndexJobStatus(), searchIndexJobStatus));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {

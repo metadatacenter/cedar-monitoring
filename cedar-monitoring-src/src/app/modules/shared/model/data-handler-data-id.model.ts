@@ -10,6 +10,7 @@ export enum DataHandlerDataId {
   RESOURCE_REPORT_TEMPLATE = 'resource-report-template',
   RESOURCE_REPORT_INSTANCE = 'resource-report-instance',
   REDIS_QUEUE_COUNTS = 'redis-queue-counts',
+  SEARCH_INDEX_JOB_STATUS = 'search-index-job-status',
   RESOURCE_COUNTS = 'resource-counts',
   RESOURCE_COUNTS_OPENSEARCH = 'resource-counts-opensearch',
   MYSQL_COUNTS = 'mysql-counts',
