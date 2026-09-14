@@ -73,6 +73,12 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
   }
 
   private load() {
+    // A click and a due poll can both arrive here. Cancelling first keeps one chain running rather
+    // than one per click, which is what made repeated clicks appear to "fix" the refresh.
+    if (this.pollTimeout) {
+      clearTimeout(this.pollTimeout);
+      this.pollTimeout = null;
+    }
     this.dataHandler.reset();
     this.dataHandler
       .require(DataHandlerDataId.SEARCH_INDEX_JOB_STATUS)
@@ -81,10 +87,15 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
 
   private statusCallback() {
     this.jobStatus = this.dataStore.getSearchIndexJobStatus();
+    // Released only now. Clearing it when the POST returned left a gap in which the button was
+    // enabled again while the status still said IDLE, so a second click was possible before the
+    // first rebuild had been reported as running.
+    this.starting = false;
     this.scheduleNextPoll();
   }
 
   private statusErrorCallback(_error: any, _dataStatus: DataHandlerDataStatus) {
+    this.starting = false;
     this.scheduleNextPoll();
   }
 
@@ -119,7 +130,7 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
     this.startError = null;
     this.searchIndexService.regenerate().subscribe({
       next: () => {
-        this.starting = false;
+        // Stays disabled until the refreshed status arrives and says what is running.
         this.load();
       },
       error: (error: any) => {

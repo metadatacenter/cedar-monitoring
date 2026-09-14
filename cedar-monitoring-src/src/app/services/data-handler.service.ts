@@ -83,6 +83,7 @@ export class DataHandlerService {
     this.resourceReportElementService.reset();
     this.resourceReportTemplateService.reset();
     this.resourceReportInstanceService.reset();
+    this.searchIndexService.reset();
     this.redisQueueCountsService.reset();
     this.mySqlCountsService.reset();
     this.resourceCountsService.reset();
