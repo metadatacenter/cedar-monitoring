@@ -1,0 +1,74 @@
+<app-header></app-header>
+
+<mat-card class="wrapper-card">
+  <mat-card-content>
+
+    <div class="page-head">
+      <h2>Search Index</h2>
+      <button mat-raised-button color="primary" [disabled]="!canStart" (click)="startRebuild()">
+        {{ starting ? 'Starting…' : 'Rebuild search index' }}
+      </button>
+    </div>
+
+    <p class="page-note">
+      A full rebuild reads every resource, recomputes its permissions and re-indexes it. It runs for
+      as long as the repository requires — hours, on a large one. Search keeps working against the
+      existing index throughout, and the new one replaces it only once it is complete and verified.
+    </p>
+
+    <div class="error-box" *ngIf="startError">{{ startError }}</div>
+
+    <div *ngIf="search">
+      <div class="status-line">
+        <span class="state-chip" [ngClass]="stateClass">{{ search.state }}</span>
+        <span *ngIf="search.command" class="muted">{{ search.command }}</span>
+        <span *ngIf="search.overdue" class="overdue">reported no progress for long enough to be believed stopped</span>
+      </div>
+
+      <div class="error-box" *ngIf="search.failure">{{ search.failure }}</div>
+
+      <table class="kv">
+        <tr><th>Job</th><td>{{ search.jobId || '—' }}</td></tr>
+        <tr><th>Started</th><td>{{ formatTimestamp(search.startedAt) }}</td></tr>
+        <tr *ngIf="search.finishedAt"><th>Finished</th><td>{{ formatTimestamp(search.finishedAt) }}</td></tr>
+        <tr *ngIf="isRunning"><th>Believed stopped after</th><td>{{ formatTimestamp(search.deadlineAt) }}</td></tr>
+      </table>
+
+      <div *ngIf="search.progress" class="progress-block">
+        <h3>{{ search.progress.phase }}</h3>
+        <p class="muted">{{ search.progress.phaseDescription }}</p>
+
+        <div class="bar" *ngIf="percent !== null">
+          <div class="bar-fill" [style.width.%]="percent"></div>
+        </div>
+        <p class="bar-label" *ngIf="percent !== null">
+          {{ search.progress.processed }} / {{ search.progress.total }} ({{ percent | number:'1.0-1' }}%)
+        </p>
+        <p class="bar-label muted" *ngIf="percent === null">
+          {{ search.progress.processed }} done — this phase does not know its total yet
+        </p>
+
+        <table class="kv">
+          <tr><th>Rate</th><td>{{ rateText }}</td></tr>
+          <tr><th>Remaining</th><td>{{ formatDuration(search.progress.secondsRemaining) }}</td></tr>
+          <tr><th>Estimated finish</th><td>{{ formatTimestamp(search.progress.estimatedFinishAt) }}</td></tr>
+          <tr><th>Last reported</th><td>{{ formatTimestamp(search.progress.lastUpdatedAt) }}</td></tr>
+        </table>
+
+        <table class="by-type" *ngIf="progressTypes.length">
+          <tr><th>Type</th><th>Done</th><th>Total</th></tr>
+          <tr *ngFor="let type of progressTypes">
+            <td>{{ type }}</td>
+            <td>{{ processedOfType(type) }}</td>
+            <td>{{ totalOfType(type) }}</td>
+          </tr>
+        </table>
+      </div>
+
+      <p class="muted" *ngIf="!search.progress">
+        No rebuild has run since this server started.
+      </p>
+    </div>
+
+  </mat-card-content>
+</mat-card>
