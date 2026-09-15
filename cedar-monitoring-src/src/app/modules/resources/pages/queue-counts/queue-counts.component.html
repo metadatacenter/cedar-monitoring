@@ -7,7 +7,8 @@
       <mat-card-header>
         <mat-card-title>Queue Counts</mat-card-title>
         <mat-card-subtitle>
-          Loaded directly from Redis
+          Loaded directly from Redis. Pending is waiting to be claimed; processing is claimed and
+          unacknowledged; dead-letter is parked after repeated failures.
         </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content style="margin-top:16px">
@@ -23,8 +24,18 @@
             <td mat-cell *matCellDef="let element">{{element.name}}</td>
           </ng-container>
           <ng-container matColumnDef="value">
-            <th mat-header-cell *matHeaderCellDef>Message Count</th>
+            <th mat-header-cell *matHeaderCellDef>Pending</th>
             <td mat-cell *matCellDef="let element">{{element.value}}</td>
+          </ng-container>
+          <ng-container matColumnDef="processing">
+            <th mat-header-cell *matHeaderCellDef
+                matTooltip="Claimed by a consumer and not yet acknowledged. Stuck at 1 means one message is not finishing.">Processing</th>
+            <td mat-cell *matCellDef="let element" [class.queue-attention]="element.processing > 0">{{element.processing}}</td>
+          </ng-container>
+          <ng-container matColumnDef="deadLetter">
+            <th mat-header-cell *matHeaderCellDef
+                matTooltip="Parked after repeated handling failures. The server keeps serving; read one before clearing them.">Dead-letter</th>
+            <td mat-cell *matCellDef="let element" [class.queue-attention]="element.deadLetter > 0">{{element.deadLetter}}</td>
           </ng-container>
         </table>
       </mat-card-content>
