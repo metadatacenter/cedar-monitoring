@@ -17,14 +17,16 @@ export interface ReportRow {
   position: number;
   name: string;
   value: number;
+  processing: number;
+  deadLetter: number;
 }
 
 const REPORT: ReportRow[] = [
-  {position: 1, name: 'App Log', value: 0},
-  {position: 2, name: 'Search Permission', value: 0},
-  {position: 3, name: 'NCBI Submission', value: 0},
-  {position: 4, name: 'Value Recommender', value: 0},
-  {position: 5, name: 'Clone Instances', value: 0},
+  {position: 1, name: 'App Log', value: 0, processing: 0, deadLetter: 0},
+  {position: 2, name: 'Search Permission', value: 0, processing: 0, deadLetter: 0},
+  {position: 3, name: 'NCBI Submission', value: 0, processing: 0, deadLetter: 0},
+  {position: 4, name: 'Value Recommender', value: 0, processing: 0, deadLetter: 0},
+  {position: 5, name: 'Clone Instances', value: 0, processing: 0, deadLetter: 0},
 ];
 
 @Component({
@@ -39,7 +41,7 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
   public redisQueueCounts: RedisQueueCounts | undefined;
   private redisQueueCountsStatus: number = 0;
 
-  displayedColumns: string[] = ['position', 'name', 'value'];
+  displayedColumns: string[] = ['position', 'name', 'value', 'processing', 'deadLetter'];
   dataSource = REPORT;
 
   constructor(
@@ -78,11 +80,22 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
 
   private updateIdReportTable() {
     if (this.redisQueueCounts) {
-      REPORT[0].value = this.redisQueueCounts.appLog;
-      REPORT[1].value = this.redisQueueCounts.searchPermission;
-      REPORT[2].value = this.redisQueueCounts.ncbiSubmission;
-      REPORT[3].value = this.redisQueueCounts.valuerecommender;
-      REPORT[4].value = this.redisQueueCounts.cloneInstances;
+      const counts = this.redisQueueCounts;
+      REPORT[0].value = counts.appLog;
+      REPORT[0].processing = counts.appLogProcessing;
+      REPORT[0].deadLetter = counts.appLogDeadLetter;
+      REPORT[1].value = counts.searchPermission;
+      REPORT[1].processing = counts.searchPermissionProcessing;
+      REPORT[1].deadLetter = counts.searchPermissionDeadLetter;
+      REPORT[2].value = counts.ncbiSubmission;
+      REPORT[2].processing = counts.ncbiSubmissionProcessing;
+      REPORT[2].deadLetter = counts.ncbiSubmissionDeadLetter;
+      REPORT[3].value = counts.valuerecommender;
+      REPORT[3].processing = counts.valuerecommenderProcessing;
+      REPORT[3].deadLetter = counts.valuerecommenderDeadLetter;
+      REPORT[4].value = counts.cloneInstances;
+      REPORT[4].processing = counts.cloneInstancesProcessing;
+      REPORT[4].deadLetter = counts.cloneInstancesDeadLetter;
     }
     this.uiService.redisQueueCountTimeout = setTimeout(() => {
       this.ngOnInit();

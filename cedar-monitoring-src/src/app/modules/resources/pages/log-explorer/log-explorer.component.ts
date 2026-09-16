@@ -255,7 +255,7 @@ export class LogExplorerComponent implements OnInit {
         this.traceLoading = false;
       },
       error: (e) => {
-        this.traceError = e?.error?.error || 'Could not load the trace.';
+        this.traceError = LogExplorerComponent.apiError(e, 'Could not load the trace.');
         this.traceLoading = false;
       }
     });
@@ -461,12 +461,25 @@ export class LogExplorerComponent implements OnInit {
         this.loadFacets();
       },
       error: (e) => {
-        // the engine returns {"error": "..."} naming the offending field — show that, not "HTTP 400"
-        this.error = e?.error?.error ? e.error.error
-          : (e?.status ? `Request failed (HTTP ${e.status}).` : 'Could not reach the log API.');
+        this.error = LogExplorerComponent.apiError(e, 'Could not reach the log API.');
         this.loading = false;
       }
     });
+  }
+
+  /**
+   * The message out of a failed CEDAR API call.
+   *
+   * <p>The engine validates a spec and returns the reason in the error body, naming the offending
+   * field — but the body is a CedarError, whose field is `message`. This read was `e.error.error`,
+   * which is never set, so every rejected query rendered as a bare "Request failed (HTTP 400)" and
+   * the one piece of information worth showing was discarded. `errorKey` is the machine-readable
+   * companion and is a better last resort than the status code alone.
+   */
+  private static apiError(e: any, fallback: string): string {
+    const body = e?.error;
+    return body?.message || body?.errorKey
+      || (e?.status ? `Request failed (HTTP ${e.status}).` : fallback);
   }
 
   /** Facet values are fetched once per (table, range) and reused across filter changes. */
