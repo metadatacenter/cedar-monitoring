@@ -80,3 +80,13 @@ body {
     }
   }
 }
+
+// A drift chip's tooltip carries the rule and, where there is one, the reading of the result -
+// three short paragraphs rather than a label. Material renders tooltips in an overlay outside the
+// component, so this cannot live in resource-counts.component.scss.
+.drift-tooltip .mdc-tooltip__surface {
+  white-space: pre-line;
+  max-width: 420px;
+  text-align: left;
+  line-height: 1.45;
+}

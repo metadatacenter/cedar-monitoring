@@ -16,7 +16,8 @@
 
     <div class="controls">
       <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
-      <mat-checkbox [checked]="autoRefresh" (change)="toggleAutoRefresh()">Refresh every 10s</mat-checkbox>
+      <mat-checkbox [checked]="autoRefresh" (change)="toggleAutoRefresh()"
+                    matTooltip="One refresh is fifteen requests from here plus fifteen the monitor makes on your behalf, and each is logged like any other request. Left on, this page is a sizeable share of the log pipeline, so it starts off.">Refresh every {{ refreshIntervalLabel }}</mat-checkbox>
       <span class="spacer"></span>
       @if (loadAverage !== null) {
         <span class="note">host load average {{ loadAverage | number:'1.2-2' }}</span>

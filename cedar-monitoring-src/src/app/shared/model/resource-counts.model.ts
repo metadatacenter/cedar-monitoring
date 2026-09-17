@@ -3,10 +3,12 @@ import {ResourceCountsNeo4j} from "./resource-counts-neo4j.model";
 import {ResourceCountsMongo} from "./resource-counts-mongo.model";
 import {ResourceCountsOpensearch} from "./resource-counts-opensearch.model";
 import {ResourceCountsKeycloak} from "./resource-counts-keycloak.model";
+import {StoreCountDriftReport} from "./store-count-drift.model";
 
 export class ResourceCounts extends CedarMonitoring {
   neo4j: ResourceCountsNeo4j = new ResourceCountsNeo4j();
   mongo: ResourceCountsMongo = new ResourceCountsMongo();
   opensearch: ResourceCountsOpensearch = new ResourceCountsOpensearch();
   keycloak: ResourceCountsKeycloak = new ResourceCountsKeycloak();
+  drift: StoreCountDriftReport = new StoreCountDriftReport();
 }

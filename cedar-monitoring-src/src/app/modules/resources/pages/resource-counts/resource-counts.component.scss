@@ -1,7 +1,146 @@
+// Material sizes a card header's text block to its content, so the subtitle wrapped at roughly
+// three quarters of the card and left a ragged column of white space beside it. The subtitle is a
+// paragraph here rather than a few words, so it should use the width the card already has.
+.counts-card {
+  mat-card-header {
+    width: 100%;
+  }
+
+  .mat-mdc-card-header-text {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  mat-card-subtitle {
+    max-width: none;
+  }
+}
+
 .counts-card {
   min-width: 400px;
-  max-width: 600px;
+  // A drift column since 2026-09-16: each row can carry two checks (artifact store and search
+  // index), so the table needs room for them beside the four store columns.
+  max-width: 980px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
 }
+
+// The page's own verdict, so that "nothing to act on here" is something it says rather than
+// something the reader has to work out from eight rows of numbers.
+.drift-summary {
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin: 0 0 12px;
+  font-size: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+
+  &.ok {
+    background: rgba(16, 137, 62, .08);
+    color: #0f7a38;
+  }
+
+  &.unverified {
+    background: rgba(245, 158, 11, .1);
+    color: #92610a;
+  }
+
+  &.drift {
+    background: rgba(211, 47, 47, .1);
+    color: #b3261e;
+  }
+}
+
+.drift-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+// A chip and, where the figure needs one, the word that says how to read it.
+.drift-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.drift-caption {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: #98a2b3;
+  padding-left: 8px;
+}
+
+// One chip per check rather than a single number per row: a row can be in step with the search
+// index and out of step with the artifact store at the same time, and collapsing the two into one
+// figure would hide whichever was smaller.
+.drift-chip {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  cursor: help;
+
+  &.ok {
+    background: rgba(16, 137, 62, .1);
+    color: #0f7a38;
+  }
+
+  &.drift {
+    background: rgba(211, 47, 47, .12);
+    color: #b3261e;
+    font-weight: 600;
+  }
+
+  &.unverified {
+    background: rgba(245, 158, 11, .14);
+    color: #92610a;
+  }
+
+  &.unavailable {
+    background: rgba(102, 112, 133, .14);
+    color: #667085;
+  }
+}
+
+// "not stored" / "not indexed" in a store column. Same grey as an unavailable drift chip, because
+// it is the same kind of statement: there is no number here, and that is not a failure.
+.absent-chip {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
+  background: rgba(102, 112, 133, .1);
+  color: #98a2b3;
+  cursor: help;
+}
+
+.drift-none {
+  color: #98a2b3;
+  cursor: help;
+}
+
+// User home folders and system folders are subsets of the Folders row, not resource types beside
+// it. Indented and unnumbered so the Neo4j column is not read as a sum.
+.sub-row {
+  padding-left: 20px;
+  color: #475467;
+}
+
+.sub-marker {
+  color: #98a2b3;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  margin-right: 6px;
+}
+
