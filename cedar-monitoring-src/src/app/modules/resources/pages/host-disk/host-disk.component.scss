@@ -13,7 +13,7 @@
   }
 
   .note {
-    font-size: 12px;
+    font-size: var(--cedar-font-size-small);
     color: #667085;
   }
 }
@@ -22,7 +22,7 @@
   padding: 10px 14px;
   border-radius: 8px;
   margin: 10px 0;
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
 
   &.loading {
     background: rgba(14, 139, 163, .1);
@@ -42,16 +42,16 @@
 
 h3.section {
   margin: 22px 0 8px;
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
   text-transform: uppercase;
   letter-spacing: .4px;
   color: #475467;
-  font-weight: 600;
+  font-weight: var(--cedar-font-weight-medium, 500);
 
   .sub {
     text-transform: none;
     letter-spacing: 0;
-    font-weight: 400;
+    font-weight: var(--cedar-font-weight-regular, 400);
     color: #667085;
     margin-left: 8px;
   }
@@ -78,8 +78,8 @@ h3.section {
   }
 
   .fs-path {
-    font-size: 12.5px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--cedar-font-size-small);
+    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -87,7 +87,7 @@ h3.section {
 
   .fs-pct {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: var(--cedar-font-weight-medium, 500);
     font-variant-numeric: tabular-nums;
 
     &.bad {
@@ -96,7 +96,7 @@ h3.section {
   }
 
   .fs-foot {
-    font-size: 11px;
+    font-size: var(--cedar-font-size-small);
     color: #667085;
     margin-top: 6px;
   }
@@ -135,7 +135,7 @@ h3.section {
 
 table.grid {
   border-collapse: collapse;
-  font-size: 12.5px;
+  font-size: var(--cedar-font-size-small);
   width: 100%;
   min-width: 640px;
   font-variant-numeric: tabular-nums;
@@ -149,15 +149,15 @@ table.grid {
 
   thead th {
     background: #fafbfc;
-    font-size: 11px;
+    font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
     letter-spacing: .3px;
     color: #475467;
   }
 
   th.name {
-    font-weight: 500;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: var(--cedar-font-weight-medium, 500);
+    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
     max-width: 460px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -169,7 +169,7 @@ table.grid {
 
   td.bad {
     color: #b3261e;
-    font-weight: 600;
+    font-weight: var(--cedar-font-weight-medium, 500);
   }
 
   .dim {
@@ -180,5 +180,5 @@ table.grid {
 .empty {
   padding: 16px;
   color: #667085;
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
 }

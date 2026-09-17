@@ -29,17 +29,17 @@
 }
 
 .source-error {
-  font-family: monospace;
-  font-size: 12px;
+  font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: var(--cedar-font-size-small);
   overflow-wrap: anywhere;
 }
 
 .totals-row td {
-  font-weight: 600;
+  font-weight: var(--cedar-font-weight-medium, 500);
 }
 
 .count-note {
-  font-size: 12px;
+  font-size: var(--cedar-font-size-small);
   opacity: 0.75;
   margin-top: 4px;
 }

@@ -10,11 +10,11 @@
   margin: 16px 0 8px;
 
   .lbl {
-    font-size: 12px;
+    font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
     letter-spacing: .4px;
     color: #667085;
-    font-weight: 600;
+    font-weight: var(--cedar-font-weight-medium, 500);
     margin-right: 4px;
   }
 
@@ -27,7 +27,7 @@
   padding: 10px 14px;
   border-radius: 8px;
   margin: 10px 0;
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
 
   &.loading {
     background: rgba(14, 139, 163, .1);
@@ -50,7 +50,7 @@
   }
 
   code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
   }
 }
 

@@ -22,7 +22,7 @@
   padding: 10px 14px;
   border-radius: 8px;
   margin: 10px 0;
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
 
   &.loading {
     background: rgba(14, 139, 163, .1);
@@ -63,21 +63,21 @@
     }
 
     .tl {
-      font-size: 11px;
+      font-size: var(--cedar-font-size-small);
       text-transform: uppercase;
       letter-spacing: .4px;
       color: #667085;
-      font-weight: 600;
+      font-weight: var(--cedar-font-weight-medium, 500);
     }
 
     .tv {
       font-size: 24px;
-      font-weight: 600;
+      font-weight: var(--cedar-font-weight-medium, 500);
       font-variant-numeric: tabular-nums;
     }
 
     .td {
-      font-size: 11px;
+      font-size: var(--cedar-font-size-small);
       color: #667085;
     }
   }
@@ -94,7 +94,7 @@
 
 table.matrix {
   border-collapse: collapse;
-  font-size: 12px;
+  font-size: var(--cedar-font-size-small);
   font-variant-numeric: tabular-nums;
   width: max-content;
   min-width: 100%;
@@ -120,8 +120,8 @@ table.matrix {
     > div {
       writing-mode: vertical-rl;
       transform: rotate(180deg);
-      font-size: 11px;
-      font-weight: 600;
+      font-size: var(--cedar-font-size-small);
+      font-weight: var(--cedar-font-weight-medium, 500);
       letter-spacing: .2px;
       color: #475467;
       text-align: left;
@@ -134,7 +134,7 @@ table.matrix {
     left: 0;
     background: #fff;
     z-index: 1;
-    font-weight: 500;
+    font-weight: var(--cedar-font-weight-medium, 500);
     border-right: 1px solid #e4e7ec;
     padding-right: 10px;
     max-width: 300px;
@@ -162,7 +162,7 @@ table.matrix {
     width: 26px;
     min-width: 26px;
     text-align: center;
-    font-size: 13px;
+    font-size: var(--cedar-font-size);
     line-height: 1.3;
   }
 
@@ -184,7 +184,7 @@ table.matrix {
   }
 
   .flag {
-    font-size: 14px;
+    font-size: var(--cedar-font-size);
     width: 14px;
     height: 14px;
     vertical-align: middle;
@@ -210,7 +210,7 @@ table.matrix {
 
 .cell-unset {
   color: #b3261e;
-  font-weight: 700;
+  font-weight: var(--cedar-font-weight-medium, 500);
   background: rgba(211, 47, 47, .06);
 }
 
@@ -229,17 +229,17 @@ table.matrix {
 // The legend in the note above the grid, so the glyphs are explained in the words that use them.
 .k-default {
   color: #98a2b3;
-  font-weight: 700;
+  font-weight: var(--cedar-font-weight-medium, 500);
 }
 
 .k-unset {
   color: #b3261e;
-  font-weight: 700;
+  font-weight: var(--cedar-font-weight-medium, 500);
 }
 
 table.values {
   border-collapse: collapse;
-  font-size: 12.5px;
+  font-size: var(--cedar-font-size-small);
   width: 100%;
 
   th, td {
@@ -251,7 +251,7 @@ table.values {
 
   thead th {
     background: #fafbfc;
-    font-size: 11px;
+    font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
     letter-spacing: .3px;
     color: #475467;
@@ -260,13 +260,13 @@ table.values {
   }
 
   th.vname {
-    font-weight: 500;
+    font-weight: var(--cedar-font-weight-medium, 500);
     white-space: nowrap;
     width: 1%;
   }
 
   td.vval {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
     word-break: break-all;
 
     &.secret {
@@ -287,14 +287,14 @@ table.values {
 .empty {
   padding: 16px;
   color: #667085;
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
 }
 
 // Spans the container, like the table and the chip list it introduces. A reading-width cap left the
 // prose ending at about a third of the page while everything it describes ran edge to edge, which
 // read as a column that had failed to fill rather than as a deliberate measure.
 .col-note {
-  font-size: 12.5px;
+  font-size: var(--cedar-font-size-small);
   color: #475467;
   margin: 10px 0;
   line-height: 1.5;
@@ -302,11 +302,11 @@ table.values {
 
 h3.section {
   margin: 26px 0 4px;
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
   text-transform: uppercase;
   letter-spacing: .4px;
   color: #475467;
-  font-weight: 600;
+  font-weight: var(--cedar-font-weight-medium, 500);
 }
 
 // Declaration columns say something different from the value columns beside them, so the boundary
@@ -327,7 +327,7 @@ table.matrix {
 
   td.decl-cell.declared {
     color: #05603a;
-    font-weight: 700;
+    font-weight: var(--cedar-font-weight-medium, 500);
   }
 }
 
@@ -338,8 +338,8 @@ table.matrix {
   margin: 8px 0 4px;
 
   .chip {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 12px;
+    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
+    font-size: var(--cedar-font-size-small);
     padding: 3px 8px;
     border-radius: 6px;
     background: rgba(245, 158, 11, .12);
@@ -382,7 +382,7 @@ table.values {
     border: 0;
     background: none;
     padding: 2px 0;
-    font-size: 11.5px;
+    font-size: var(--cedar-font-size-small);
     font-family: inherit;
     color: #0e6b80;
     cursor: pointer;

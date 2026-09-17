@@ -13,7 +13,7 @@
   }
 
   .note {
-    font-size: 12px;
+    font-size: var(--cedar-font-size-small);
     color: #667085;
     font-variant-numeric: tabular-nums;
   }
@@ -23,7 +23,7 @@
   padding: 10px 14px;
   border-radius: 8px;
   margin: 10px 0;
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
 
   &.loading {
     background: rgba(14, 139, 163, .1);
@@ -59,21 +59,21 @@
     }
 
     .tl {
-      font-size: 11px;
+      font-size: var(--cedar-font-size-small);
       text-transform: uppercase;
       letter-spacing: .4px;
       color: #667085;
-      font-weight: 600;
+      font-weight: var(--cedar-font-weight-medium, 500);
     }
 
     .tv {
       font-size: 22px;
-      font-weight: 600;
+      font-weight: var(--cedar-font-weight-medium, 500);
       font-variant-numeric: tabular-nums;
     }
 
     .td {
-      font-size: 11px;
+      font-size: var(--cedar-font-size-small);
       color: #667085;
     }
   }
@@ -87,7 +87,7 @@
 
 table.grid {
   border-collapse: collapse;
-  font-size: 12.5px;
+  font-size: var(--cedar-font-size-small);
   width: 100%;
   min-width: 760px;
   font-variant-numeric: tabular-nums;
@@ -101,14 +101,14 @@ table.grid {
 
   thead th {
     background: #fafbfc;
-    font-size: 11px;
+    font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
     letter-spacing: .3px;
     color: #475467;
   }
 
   th.name {
-    font-weight: 600;
+    font-weight: var(--cedar-font-weight-medium, 500);
   }
 
   tr.absent-row {
