@@ -1,3 +1,4 @@
+@use '@org.metadatacenter/cedar-design-tokens/motion';
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 @use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
@@ -50,7 +51,7 @@ body {
     min-height: 150px;
     box-sizing: border-box;
     padding-bottom: 8px;
-    transition: transform 150ms ease, box-shadow 150ms ease;
+    transition: transform tokens.$motion-duration-fast tokens.$motion-ease-standard, box-shadow tokens.$motion-duration-fast tokens.$motion-ease-standard;
 
     // Enough movement to answer the pointer, not enough to shift what is being read beside it.
     &:hover {
@@ -124,3 +125,5 @@ button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) s
   subtitle-text-color: tokens.$text-muted,
 ));
 @include mat.toolbar-overrides((title-text-size: tokens.$font-size-heading, title-text-weight: tokens.$font-weight-medium));
+
+@include motion.reduced-motion;
