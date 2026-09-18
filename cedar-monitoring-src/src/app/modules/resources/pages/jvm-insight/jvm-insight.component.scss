@@ -32,7 +32,7 @@
 
   &.error {
     background: rgba(211, 47, 47, .1);
-    color: #b3261e;
+    color: var(--cedar-status-error-text);
   }
 }
 

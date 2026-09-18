@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
+@use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
 
 @use 'styles/roboto';
+@include mat.core();
+@include mat.all-component-themes(mat.m2-define-light-theme((color: (primary: mat.m2-define-palette(tokens.$brand-primary), accent: mat.m2-define-palette(tokens.$brand-accent)), typography: mat.m2-define-typography-config($font-family: tokens.$font-family-string))));
 
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
 
@@ -11,11 +14,12 @@ html, body {
 
 // The tint the cards sit on. It belonged to the wrapper card alone, so the page below the last row
 // stayed white and the background looked like it stopped short of the bottom of the window.
-$page-background: mat.m2-get-color-from-palette(mat.$m2-indigo-palette, 50);
+$page-background: tokens.$surface-canvas;
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: var(--cedar-font-family);
+  color: var(--cedar-text-primary);
   font-size: var(--cedar-font-size);
   background-color: $page-background;
 }
@@ -108,3 +112,15 @@ mat-icon.cedar-icon {
   flex-shrink: 0;
 }
 mat-icon.cedar-icon > svg { display: block; }
+
+button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) solid var(--cedar-focus-ring-color); outline-offset: var(--cedar-focus-ring-offset); }
+
+.mat-toolbar.mat-primary :focus-visible { outline-color: var(--cedar-color-on-primary); }
+
+@include mat.card-overrides((
+  title-text-size: tokens.$font-size-heading,
+  title-text-weight: tokens.$font-weight-medium,
+  subtitle-text-size: tokens.$font-size,
+  subtitle-text-color: tokens.$text-muted,
+));
+@include mat.toolbar-overrides((title-text-size: tokens.$font-size-heading, title-text-weight: tokens.$font-weight-medium));

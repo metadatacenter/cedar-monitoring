@@ -50,7 +50,7 @@
 
   &.drift {
     background: rgba(211, 47, 47, .1);
-    color: #b3261e;
+    color: var(--cedar-status-error-text);
   }
 }
 
@@ -96,7 +96,7 @@
 
   &.drift {
     background: rgba(211, 47, 47, .12);
-    color: #b3261e;
+    color: var(--cedar-status-error-text);
     font-weight: 600;
   }
 
