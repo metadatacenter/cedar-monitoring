@@ -346,7 +346,7 @@ table.data {
   display: inline-block;
   color: #c2cad3;
   font-size: var(--cedar-font-size-small);
-  transition: transform .15s;
+  transition: transform var(--cedar-motion-duration-fast);
 
   &.open {
     transform: rotate(90deg);
