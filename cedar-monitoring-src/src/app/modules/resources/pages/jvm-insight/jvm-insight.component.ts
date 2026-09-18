@@ -21,6 +21,26 @@ interface JvmRow {
 /** Heap above this share of its maximum is worth looking at before it becomes an outage. */
 const HEAP_WARNING_PERCENT = 85;
 
+/**
+ * How often the page reloads itself while auto-refresh is on, and why it is off until asked for.
+ *
+ * <p>This page is the most expensive read in the Monitor. It fans out to every service, so one
+ * cycle is fifteen requests from the browser to the monitor and fifteen more from the monitor to
+ * the services it proxies - and `/insight` is served on the application connector, so every one of
+ * those thirty is a row in `log_request` like any other request. The app-log consumer drains at
+ * roughly six messages a second. At the ten-second default this page was leaving on by itself,
+ * an open tab produced about three rows a second: half the pipeline, indefinitely, for a page
+ * nobody was necessarily still looking at.
+ *
+ * <p>So the default is off and the interval is thirty seconds. Someone watching a restart can
+ * still turn it on, which is the case it was built for; a tab left open on another monitor no
+ * longer competes with the logging of real traffic.
+ */
+const REFRESH_INTERVAL_MS = 30_000;
+
+/** The interval as the checkbox says it, so the two cannot drift apart. */
+const REFRESH_INTERVAL_LABEL = `${REFRESH_INTERVAL_MS / 1000}s`;
+
 @Component({
   selector: 'app-jvm-insight',
   templateUrl: './jvm-insight.component.html',
@@ -34,8 +54,9 @@ export class JvmInsightComponent implements OnInit, OnDestroy {
   loading = false;
   error: string | null = null;
 
-  autoRefresh = true;
+  autoRefresh = false;
   readonly heapWarningPercent = HEAP_WARNING_PERCENT;
+  readonly refreshIntervalLabel = REFRESH_INTERVAL_LABEL;
 
   private timer: ReturnType<typeof setTimeout> | null = null;
 
@@ -118,7 +139,7 @@ export class JvmInsightComponent implements OnInit, OnDestroy {
   private scheduleReload(): void {
     this.stopTimer();
     if (this.autoRefresh) {
-      this.timer = setTimeout(() => this.reload(), 10_000);
+      this.timer = setTimeout(() => this.reload(), REFRESH_INTERVAL_MS);
     }
   }
 

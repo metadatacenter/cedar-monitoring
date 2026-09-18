@@ -13,7 +13,7 @@
   }
 
   .note {
-    font-size: 12px;
+    font-size: var(--cedar-font-size-small);
     color: #667085;
     font-variant-numeric: tabular-nums;
   }
@@ -23,7 +23,7 @@
   padding: 10px 14px;
   border-radius: 8px;
   margin: 10px 0;
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
 
   &.loading {
     background: rgba(14, 139, 163, .1);
@@ -47,12 +47,12 @@
 
   .verdict-status {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: var(--cedar-font-weight-medium, 500);
     letter-spacing: .5px;
   }
 
   .verdict-text {
-    font-size: 13px;
+    font-size: var(--cedar-font-size);
   }
 
   &.status-ok {
@@ -93,25 +93,25 @@
     min-width: 160px;
 
     .tl {
-      font-size: 11px;
+      font-size: var(--cedar-font-size-small);
       text-transform: uppercase;
       letter-spacing: .4px;
       color: #667085;
-      font-weight: 600;
+      font-weight: var(--cedar-font-weight-medium, 500);
     }
 
     .tv {
       font-size: 22px;
-      font-weight: 600;
+      font-weight: var(--cedar-font-weight-medium, 500);
       font-variant-numeric: tabular-nums;
 
       &.small {
-        font-size: 15px;
+        font-size: var(--cedar-font-size-lead);
       }
     }
 
     .td {
-      font-size: 11px;
+      font-size: var(--cedar-font-size-small);
       color: #667085;
     }
   }
@@ -119,11 +119,11 @@
 
 h3.section {
   margin: 22px 0 8px;
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
   text-transform: uppercase;
   letter-spacing: .4px;
   color: #475467;
-  font-weight: 600;
+  font-weight: var(--cedar-font-weight-medium, 500);
 }
 
 .table-scroll {
@@ -134,7 +134,7 @@ h3.section {
 
 table.grid {
   border-collapse: collapse;
-  font-size: 12.5px;
+  font-size: var(--cedar-font-size-small);
   width: 100%;
   min-width: 480px;
   font-variant-numeric: tabular-nums;
@@ -148,24 +148,24 @@ table.grid {
 
   thead th {
     background: #fafbfc;
-    font-size: 11px;
+    font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
     letter-spacing: .3px;
     color: #475467;
   }
 
   th.name {
-    font-weight: 600;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: var(--cedar-font-weight-medium, 500);
+    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
   }
 
   td.bad {
     color: #b3261e;
-    font-weight: 600;
+    font-weight: var(--cedar-font-weight-medium, 500);
   }
 
   td.warn {
     color: #b45309;
-    font-weight: 600;
+    font-weight: var(--cedar-font-weight-medium, 500);
   }
 }

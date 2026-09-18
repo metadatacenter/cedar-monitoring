@@ -1,6 +1,6 @@
 {
   "name": "cedar-monitoring",
-  "version": "2.9.16",
+  "version": "2.9.17",
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
   },
@@ -41,7 +41,8 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20260917.4bbf1832"
   },
   "allowScripts": {
     "@parcel/watcher@2.6.0": true,

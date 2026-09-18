@@ -4,6 +4,8 @@
 @use 'styles/roboto';
 @use 'styles/material-icons';
 
+@import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
+
 html, body {
   height: 100%;
 }
@@ -15,6 +17,7 @@ $page-background: mat.m2-get-color-from-palette(mat.$m2-indigo-palette, 50);
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: var(--cedar-font-size);
   background-color: $page-background;
 }
 
@@ -79,4 +82,18 @@ body {
       transform: none;
     }
   }
+}
+
+// A drift chip's tooltip carries the rule and, where there is one, the reading of the result -
+// three short paragraphs rather than a label. Material renders tooltips in an overlay outside the
+// component, so this cannot live in resource-counts.component.scss.
+.drift-tooltip .mdc-tooltip__surface {
+  white-space: pre-line;
+  max-width: 420px;
+  text-align: left;
+  line-height: 1.45;
+}
+
+strong, b {
+  font-weight: var(--cedar-font-weight-medium, 500);
 }

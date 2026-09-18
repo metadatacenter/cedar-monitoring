@@ -11,6 +11,6 @@
 // but it is the number an operator came to this page to find, so it should not read like the zeros
 // beside it.
 .queue-attention {
-  font-weight: 600;
+  font-weight: var(--cedar-font-weight-medium, 500);
   color: var(--cedar-warn-text, #b26a00);
 }
