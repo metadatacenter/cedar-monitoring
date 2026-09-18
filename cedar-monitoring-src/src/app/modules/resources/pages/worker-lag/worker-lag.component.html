@@ -14,7 +14,7 @@
   <mat-card-content>
 
     <div class="controls">
-      <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
+      <button mat-button (click)="reload()"><mat-icon cedarIcon="refresh"></mat-icon> Reload</button>
       <mat-checkbox [checked]="autoRefresh" (change)="toggleAutoRefresh()">Refresh every 10s</mat-checkbox>
       <span class="spacer"></span>
       @if (lag) {

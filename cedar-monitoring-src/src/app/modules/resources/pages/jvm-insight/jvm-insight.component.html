@@ -15,7 +15,7 @@
   <mat-card-content>
 
     <div class="controls">
-      <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
+      <button mat-button (click)="reload()"><mat-icon cedarIcon="refresh"></mat-icon> Reload</button>
       <mat-checkbox [checked]="autoRefresh" (change)="toggleAutoRefresh()"
                     matTooltip="One refresh is fifteen requests from here plus fifteen the monitor makes on your behalf, and each is logged like any other request. Left on, this page is a sizeable share of the log pipeline, so it starts off.">Refresh every {{ refreshIntervalLabel }}</mat-checkbox>
       <span class="spacer"></span>

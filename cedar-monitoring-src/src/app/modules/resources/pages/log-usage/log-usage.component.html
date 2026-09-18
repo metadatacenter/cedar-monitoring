@@ -18,7 +18,7 @@
       <button mat-raised-button [color]="rangeDays === 7 ? 'primary' : ''" (click)="setRange(7)">7d</button>
       <button mat-raised-button [color]="rangeDays === 30 ? 'primary' : ''" (click)="setRange(30)">30d</button>
       <button mat-raised-button [color]="rangeDays === 90 ? 'primary' : ''" (click)="setRange(90)">90d</button>
-      <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
+      <button mat-button (click)="reload()"><mat-icon cedarIcon="refresh"></mat-icon> Reload</button>
       <span class="spacer"></span>
       @if (summary) {
         <span class="range-note">{{ summary.from | slice:0:10 }} → {{ summary.to | slice:0:10 }} · UTC</span>

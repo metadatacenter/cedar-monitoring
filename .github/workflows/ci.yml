@@ -41,3 +41,16 @@ jobs:
 
       - name: Build the production distribution
         run: npm run build -- --configuration=production
+
+      - name: Test shared icons and application rendering
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+
+      - uses: actions/checkout@v4
+        with:
+          repository: metadatacenter/cedar-design-tokens
+          ref: develop
+          path: shared-design-checks
+
+      - name: Reject independent icon sources
+        working-directory: .
+        run: python3 shared-design-checks/tools/check_icons.py --repo .

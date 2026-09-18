@@ -23,7 +23,7 @@
       <mat-checkbox [(ngModel)]="onlyFindings">Only findings</mat-checkbox>
       <mat-checkbox [(ngModel)]="hideUndeclared">Hide variables nothing declares</mat-checkbox>
       <span class="spacer"></span>
-      <button mat-button (click)="reload()"><mat-icon>refresh</mat-icon> Reload</button>
+      <button mat-button (click)="reload()"><mat-icon cedarIcon="refresh"></mat-icon> Reload</button>
     </div>
 
     @if (loading) {
@@ -100,24 +100,24 @@
                     <th class="name-col">
                       <span class="vname">{{ row.name }}</span>
                       @if (row.secure) {
-                        <mat-icon class="flag" title="Flagged secret — values are masked">lock</mat-icon>
+                        <mat-icon class="flag" title="Flagged secret — values are masked" cedarIcon="lock"></mat-icon>
                       }
                       @if (row.drifts) {
-                        <mat-icon class="flag warn" title="The services that read this do not agree on its value">call_split</mat-icon>
+                        <mat-icon class="flag warn" title="The services that read this do not agree on its value" cedarIcon="diverge"></mat-icon>
                       }
                       @if (row.missing) {
-                        <mat-icon class="flag bad" title="Read by a service and supplied by nothing">error_outline</mat-icon>
+                        <mat-icon class="flag bad" title="Read by a service and supplied by nothing" cedarIcon="error"></mat-icon>
                       }
                       @if (row.unused) {
                         <mat-icon class="flag warn"
-                        title="Set on the host and declared by nothing — no service, build or script reads it">visibility_off</mat-icon>
+                        title="Set on the host and declared by nothing — no service, build or script reads it" cedarIcon="hidden"></mat-icon>
                       }
                     </th>
                     @for (cell of row.cells; track cell; let i = $index) {
                       <td class="mark"
                         [ngClass]="cellClass(cell)"
                         [title]="cellTitle(cell, servers[i])">
-                        {{ stateGlyph(cell) }}
+                        @if (stateGlyph(cell); as icon) { <mat-icon [cedarIcon]="icon"></mat-icon> }
                       </td>
                     }
                     @for (component of declarationComponents; track component; let first = $first) {
@@ -127,7 +127,7 @@
               [title]="declares(component, row.name)
                          ? component + ' declares ' + row.name
                          : component + ' does not declare ' + row.name">
-                        {{ declares(component, row.name) ? '✓' : '' }}
+                        @if (declares(component, row.name)) { <mat-icon cedarIcon="check"></mat-icon> }
                       </td>
                     }
                   </tr>
@@ -165,11 +165,11 @@
                           <span>{{ row.name }}</span>
                         }
                         @if (first && row.secure) {
-                          <mat-icon class="flag" title="Flagged secret — the value is masked">lock</mat-icon>
+                          <mat-icon class="flag" title="Flagged secret — the value is masked" cedarIcon="lock"></mat-icon>
                         }
                         @if (first && row.drifts) {
                           <mat-icon class="flag warn"
-                          title="The services do not agree on this value">call_split</mat-icon>
+                          title="The services do not agree on this value" cedarIcon="diverge"></mat-icon>
                         }
                       </th>
                       <td class="vval" [class.secret]="row.secure">

@@ -2,7 +2,6 @@
 @use '@angular/material' as mat;
 
 @use 'styles/roboto';
-@use 'styles/material-icons';
 
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
 
@@ -97,3 +96,15 @@ body {
 strong, b {
   font-weight: var(--cedar-font-weight-medium, 500);
 }
+
+/* Shared SVG geometry and size; the surrounding control supplies its accessible name. */
+mat-icon.cedar-icon {
+  width: var(--cedar-icon-size-default);
+  height: var(--cedar-icon-size-default);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+mat-icon.cedar-icon > svg { display: block; }

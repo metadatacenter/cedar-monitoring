@@ -19,7 +19,7 @@ import {UiService} from "../../../../services/ui.service";
 export class JsonViewComponent extends CedarBase implements OnInit {
 
   @Input() inputObject: any;
-  @Input() icon: string = '';
+  @Input() icon: string = 'document';
   @Input() title: string = '';
   @Input() subtitle: string = '';
 
