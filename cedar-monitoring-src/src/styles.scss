@@ -127,3 +127,9 @@ button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) s
 @include mat.toolbar-overrides((title-text-size: tokens.$font-size-heading, title-text-weight: tokens.$font-weight-medium));
 
 @include motion.reduced-motion;
+
+/* Manual field resizing is forbidden; automatic content sizing remains available. */
+textarea,
+textarea.mat-mdc-input-element {
+  resize: none;
+}
