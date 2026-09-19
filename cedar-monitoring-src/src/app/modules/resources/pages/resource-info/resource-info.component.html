@@ -13,7 +13,7 @@
 
       <mat-form-field class="resource-id-form-field">
         <mat-label>Resource id</mat-label>
-        <textarea matInput type="text" [(ngModel)]="resourceIdFromPage"></textarea>
+        <textarea spellcheck="false" matInput type="text" [(ngModel)]="resourceIdFromPage"></textarea>
         @if (resourceIdFromPage) {
           <button matSuffix mat-icon-button aria-label="Clear" (click)="resourceIdFromPage=''">
             <mat-icon cedarIcon="close"></mat-icon>

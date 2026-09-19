@@ -54,7 +54,7 @@
         </div>
       }
       @if (!activeBoard) {
-        <input class="txt" [(ngModel)]="contains" (keyup.enter)="resetAndLoad()"
+        <input spellcheck="false" class="txt" [(ngModel)]="contains" (keyup.enter)="resetAndLoad()"
           [placeholder]="table === 'request' ? 'path contains…' : 'query contains…'">
         <label class="fld">Min duration
           <select [(ngModel)]="minDurationMs" (change)="resetAndLoad()">

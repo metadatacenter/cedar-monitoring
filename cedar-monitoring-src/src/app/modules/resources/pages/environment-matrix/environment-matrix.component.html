@@ -18,7 +18,7 @@
     <div class="controls">
       <mat-form-field appearance="outline" class="search">
         <mat-label>Filter by name</mat-label>
-        <input matInput [(ngModel)]="filter" placeholder="MYSQL">
+        <input spellcheck="false" matInput [(ngModel)]="filter" placeholder="MYSQL">
       </mat-form-field>
       <mat-checkbox [(ngModel)]="onlyFindings">Only findings</mat-checkbox>
       <mat-checkbox [(ngModel)]="hideUndeclared">Hide variables nothing declares</mat-checkbox>
