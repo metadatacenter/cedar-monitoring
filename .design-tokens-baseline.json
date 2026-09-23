@@ -1,0 +1,3024 @@
+{
+  "schema": 1,
+  "findings": {
+    "00b94171688987c64178": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 14px",
+      "count": 2
+    },
+    "010d5dc1962f1a9a2482": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .1)",
+      "count": 1
+    },
+    "027bcd242ddd40a539ef": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#c9d0d8",
+      "count": 1
+    },
+    "0331e1aacdf6e939afe9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .1)",
+      "count": 1
+    },
+    "0402bd0a7ef4ca14d8ea": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#0e6b80",
+      "count": 1
+    },
+    "043fc5ef9280585cf9a0": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "8px",
+      "count": 1
+    },
+    "05fd63d140d1544195c9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin-left",
+      "value": "8px",
+      "count": 1
+    },
+    "066896cf1786a5e30a30": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "0 0 8px",
+      "count": 1
+    },
+    "067bf70578bc9161cf85": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .1)",
+      "count": 1
+    },
+    "0687b2d033b01e15f70c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#8a5a08",
+      "count": 1
+    },
+    "069afc793a003d89e3bb": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(16, 137, 62, .1)",
+      "count": 1
+    },
+    "06a06545d94f73fb0d33": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".4px",
+      "count": 2
+    },
+    "08a77cc1acfd0c1e6717": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .12)",
+      "count": 1
+    },
+    "094f73bffa8caf3337ae": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "8px",
+      "count": 2
+    },
+    "09d43b00b7a14ccff224": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "border-bottom",
+      "value": "1px solid #f0f1f4",
+      "count": 1
+    },
+    "0b038b1638968725405d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "12px 14px",
+      "count": 1
+    },
+    "0c263cfc89b910e2e7e0": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "4px 10px",
+      "count": 1
+    },
+    "0c970789317d0e6b700b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#f7f9fa",
+      "count": 1
+    },
+    "0d366502c2bf64c65958": {
+      "file": "cedar-monitoring-src/src/app/modules/shared/components/spinner/spinner.component.scss",
+      "rule": "color",
+      "property": "border-top",
+      "value": "4px solid #555555",
+      "count": 1
+    },
+    "0de0a918eff95ca4a726": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "border",
+      "value": "1px solid #e4e7ec",
+      "count": 2
+    },
+    "0e89bee1e01f52bf6712": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "border-color",
+      "value": "#f3b0ab",
+      "count": 1
+    },
+    "0eb82080be34c1eb2927": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(245, 158, 11, .06)",
+      "count": 1
+    },
+    "0ecc13bfbad8f024f342": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "12px",
+      "count": 1
+    },
+    "0f446aabc74ed6b8b89f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "8px 0 16px",
+      "count": 1
+    },
+    "0f7d108d762c3000f55b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "17px",
+      "count": 1
+    },
+    "1016e01ce15b0b049efa": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "26px 0 4px",
+      "count": 1
+    },
+    "117f048aba1e031a9fa6": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(245, 158, 11, .12)",
+      "count": 1
+    },
+    "11c6cfa5c34401677be3": {
+      "file": "cedar-monitoring-src/src/app/modules/shared/components/spinner/spinner.component.scss",
+      "rule": "geometry",
+      "property": "z-index",
+      "value": "9010",
+      "count": 1
+    },
+    "122fecc7acceac19c18a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px 0 4px",
+      "count": 1
+    },
+    "1230e87654d6f776d161": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "10px 2px 2px",
+      "count": 1
+    },
+    "129d2f05a4d70a1fff7d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "18px 22px 20px",
+      "count": 1
+    },
+    "12e19fbe85425446b265": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "22px 0 8px",
+      "count": 1
+    },
+    "13343343c292710abc10": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#c62828",
+      "count": 1
+    },
+    "13807bcd4e0e254db09c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "6px 10px",
+      "count": 1
+    },
+    "14adba70c543fd8b8cda": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(20, 28, 38, .38)",
+      "count": 1
+    },
+    "14cea738d7d532829746": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "28px",
+      "count": 1
+    },
+    "1561af12e379d7738676": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "border-bottom",
+      "value": "1px solid #f0f1f4",
+      "count": 1
+    },
+    "1630b0ae832e060fb604": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px",
+      "count": 1
+    },
+    "165c53402b74c47c8f79": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#667085",
+      "count": 5
+    },
+    "170adb7b80c18a06646b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .05)",
+      "count": 1
+    },
+    "17ccbec2f15b6990aad4": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "spacing",
+      "property": "margin-left",
+      "value": "8px",
+      "count": 1
+    },
+    "17e3418d28260421bc50": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(14, 139, 163, .1)",
+      "count": 1
+    },
+    "18c9f90dd84987954240": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#475467",
+      "count": 2
+    },
+    "1938cae362287f328c2a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(245, 158, 11, .1)",
+      "count": 1
+    },
+    "1add5fce4fc90740c95a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "6px 0 0",
+      "count": 1
+    },
+    "1b026e59a893dcd2627c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "10px",
+      "count": 1
+    },
+    "1bf8e8434b9c3c5dad3a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "--hair",
+      "value": "#edf0f3",
+      "count": 1
+    },
+    "1c4e7a319b4ad0f06c69": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "z-index",
+      "value": "1000",
+      "count": 1
+    },
+    "1dd1b14b7a12dc855a6a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "6px",
+      "count": 1
+    },
+    "1e25cd32282667a16084": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": "0",
+      "count": 1
+    },
+    "2003508a8bba70d61bfa": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "margin-bottom",
+      "value": "16px",
+      "count": 1
+    },
+    "204ef5f946ca833e69f2": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/mysql-counts/mysql-counts.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#b00020",
+      "count": 1
+    },
+    "20846891d34ae090096a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "6px",
+      "count": 4
+    },
+    "20dae4b8415318a84148": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "--ok",
+      "value": "#1a7f4b",
+      "count": 1
+    },
+    "21c56c6943730d1dcad0": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "border-color",
+      "value": "#f3b0ab",
+      "count": 1
+    },
+    "21f47ef9dc576d086d52": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "6px",
+      "count": 1
+    },
+    "227d3bf0e167a7dc7674": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "10px",
+      "count": 2
+    },
+    "228961475bfb5e2177a7": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#6b4fc4",
+      "count": 2
+    },
+    "2329b29d6f636a191e5a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "14px 16px",
+      "count": 1
+    },
+    "24988da58bf70ca7468a": {
+      "file": "cedar-monitoring-src/src/app/modules/shared/components/json-view/json-view.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "24px",
+      "count": 1
+    },
+    "24a5b137f4a560ad10d9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "14px 0",
+      "count": 1
+    },
+    "25571e3eea9b80e75a3c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#667085",
+      "count": 1
+    },
+    "26267395a094a07508b3": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "22px 0 8px",
+      "count": 1
+    },
+    "273239be37bf6d261fb5": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "4px",
+      "count": 1
+    },
+    "27ac5b8c725daae9b091": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "6px 10px",
+      "count": 1
+    },
+    "2853830f43547bed15dc": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(14, 139, 163, .1)",
+      "count": 1
+    },
+    "28bf3a3971eeb3a3dc9d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "14px",
+      "count": 2
+    },
+    "28e7f2d9ed116e71d159": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px 0 4px",
+      "count": 1
+    },
+    "29786227ac192b4d9518": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#0e6b80",
+      "count": 1
+    },
+    "29e4656fc1c3158df86c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "10px",
+      "count": 1
+    },
+    "2a614264944549030e1d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(102, 112, 133, .14)",
+      "count": 1
+    },
+    "2a9deef377ea7365162a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "22px",
+      "count": 1
+    },
+    "2aabcf40c0ca350492a0": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#eef0f3",
+      "count": 1
+    },
+    "2ab37ab761d54ef1ed61": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "border",
+      "value": "1px solid #e4e7ec",
+      "count": 2
+    },
+    "2abb2f27064d69c623c9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(245, 158, 11, .06)",
+      "count": 1
+    },
+    "2bcc268008a056f69b8f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "1px 6px",
+      "count": 1
+    },
+    "2c2924b194fae24a8234": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#475467",
+      "count": 3
+    },
+    "2cdc06d10a36ca789384": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/profile/profile.component.html",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "16px",
+      "count": 1
+    },
+    "2dac96a53bb1e7653f1b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "geometry",
+      "property": "z-index",
+      "value": "2",
+      "count": 1
+    },
+    "2e5da8ea8ebc6c8c6c02": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px",
+      "count": 1
+    },
+    "2ed52c7826b6d654254c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .1)",
+      "count": 1
+    },
+    "2f7f450f3c0907aa5e3c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding-right",
+      "value": "10px",
+      "count": 1
+    },
+    "300d2045be04d8cc1e18": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "0 0 12px",
+      "count": 1
+    },
+    "303e5646a4b5ece9922c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "4px 0 10px 30px",
+      "count": 1
+    },
+    "31515b8b00a5c0415053": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "8px 12px",
+      "count": 2
+    },
+    "316f58dd32dfb49fd96c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#8c74d8",
+      "count": 1
+    },
+    "31b7a916c649f6584c5e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .05)",
+      "count": 1
+    },
+    "329d3cb32e9c573c1f6b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .05)",
+      "count": 1
+    },
+    "3370271e84c990a25027": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "10px",
+      "count": 2
+    },
+    "34b4d1db7da875cec806": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "16px",
+      "count": 1
+    },
+    "350457184f06e65028ce": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "6px 10px",
+      "count": 1
+    },
+    "35050fa2c2f206d67457": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts-opensearch/resource-counts-opensearch.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "20px",
+      "count": 1
+    },
+    "3534bfd4106d97237b63": {
+      "file": "cedar-monitoring-src/src/styles/roboto.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "400",
+      "count": 7
+    },
+    "36c938810795bae558d8": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#98a2b3",
+      "count": 3
+    },
+    "36d208f254c8d9e8b684": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "8px",
+      "count": 1
+    },
+    "3738b18967f742c42053": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fff",
+      "count": 6
+    },
+    "37ec9a9535021d8a849c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "--accent-soft",
+      "value": "#eaf4f6",
+      "count": 1
+    },
+    "3878d94e8e367353a9c7": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#0a4f5e",
+      "count": 1
+    },
+    "38e2aba3f33c6c0c65a9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "4px",
+      "count": 1
+    },
+    "398949bc3a8775105885": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "3px 4px",
+      "count": 1
+    },
+    "3a0bb6ee171cc433b990": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 14px",
+      "count": 2
+    },
+    "3bc371822aafefc06764": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "8px",
+      "count": 1
+    },
+    "3bcc77d7e89435d3996c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".02em",
+      "count": 1
+    },
+    "3ca79311466237f36bf3": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "12px 14px",
+      "count": 1
+    },
+    "3cd387c41f9ab94c7c52": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "border-left",
+      "value": "4px solid #c62828",
+      "count": 1
+    },
+    "3e58d0b358393de85c08": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "4px",
+      "count": 1
+    },
+    "3e7a1c12397329c97b15": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#667085",
+      "count": 1
+    },
+    "3e9d386acfe2f0cfe345": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/queue-counts/queue-counts.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "20px",
+      "count": 1
+    },
+    "4015b471924cc552a25d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".3px",
+      "count": 1
+    },
+    "406d0aac491e3ce1f592": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#98a2b3",
+      "count": 1
+    },
+    "40c8fbffd65fdb677e15": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#f59e0b",
+      "count": 1
+    },
+    "41070665bb403f2a9768": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-info/resource-info.component.scss",
+      "rule": "spacing",
+      "property": "margin-bottom",
+      "value": "16px",
+      "count": 1
+    },
+    "420fddb78c4c5a0362be": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "8px 0 24px",
+      "count": 1
+    },
+    "427d5f7b420fb1eab428": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#12b76a",
+      "count": 1
+    },
+    "430cd820defac18de2f0": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "geometry",
+      "property": "z-index",
+      "value": "1",
+      "count": 1
+    },
+    "4380f50414b165e7e04c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": "0",
+      "count": 1
+    },
+    "438addf1f36179dbaa40": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "border",
+      "value": "1px solid #e4e7ec",
+      "count": 2
+    },
+    "443684f9f9124dd628f3": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "3px 2px",
+      "count": 1
+    },
+    "44490591ede8694c00e3": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#f2f7f8",
+      "count": 1
+    },
+    "44772c83bb47c4313c1d": {
+      "file": "cedar-monitoring-src/src/styles.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "8px",
+      "count": 1
+    },
+    "46a2fe59ea1c906923b4": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#ef6c00",
+      "count": 1
+    },
+    "471893e7b192f81aa320": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fafbfc",
+      "count": 1
+    },
+    "47793184ad62304bcddd": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "--ink-3",
+      "value": "#8b96a3",
+      "count": 1
+    },
+    "47c229c16f45b21903e1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "border-bottom",
+      "value": "1px solid #f0f1f4",
+      "count": 1
+    },
+    "48144434b863e26e9565": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#667085",
+      "count": 7
+    },
+    "4897bea61e907ece5b33": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "4px",
+      "count": 1
+    },
+    "498c41cdb4f19646a440": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-info/resource-info.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "16px",
+      "count": 2
+    },
+    "49d8bbb5bf87cc80fd2f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .1)",
+      "count": 1
+    },
+    "4b1993ad8e74dcfa1c19": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "6px 10px 12px",
+      "count": 1
+    },
+    "4b4ab1ba747d79c81f26": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "10px 0",
+      "count": 1
+    },
+    "4d046e4320fd50be9bfc": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "1px 8px",
+      "count": 2
+    },
+    "4d52ac2e96bb2f5613dc": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "typography",
+      "property": "line-height",
+      "value": "1.3",
+      "count": 1
+    },
+    "4d8da35b85bac0439d6f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "margin-left",
+      "value": "8px",
+      "count": 1
+    },
+    "4f81c36e9ba00f99aa88": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".4px",
+      "count": 2
+    },
+    "4fee6bb012ca6542336e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "border",
+      "value": "1px solid #f5cf94",
+      "count": 1
+    },
+    "5015a9b88d967e382e32": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".3px",
+      "count": 1
+    },
+    "503b483226cac343102d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "14px",
+      "count": 1
+    },
+    "5074eff16d0734b870f1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "border-bottom",
+      "value": "1px solid #f0f1f4",
+      "count": 1
+    },
+    "50e59120e70f01fd5252": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "geometry",
+      "property": "z-index",
+      "value": "3",
+      "count": 1
+    },
+    "50ebb919176100712c60": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#9e9e9e",
+      "count": 1
+    },
+    "5286255c220ce9b790ff": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px 0 4px",
+      "count": 1
+    },
+    "52982d37556de565e2e7": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "6px 0 10px 30px",
+      "count": 1
+    },
+    "52f38607d18556399f8f": {
+      "file": "cedar-monitoring-src/src/app/modules/shared/components/json-view/json-view.component.scss",
+      "rule": "spacing",
+      "property": "margin-left",
+      "value": "16px",
+      "count": 1
+    },
+    "53b943359fa9a01777f8": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "22px 0 8px",
+      "count": 1
+    },
+    "546e718d43cc263d5042": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "22px 0 8px",
+      "count": 1
+    },
+    "54a0d302b3c3e7b3f514": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px 0",
+      "count": 1
+    },
+    "551a7b0d541289c66fca": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "12px",
+      "count": 2
+    },
+    "55bb3014026f68d5b99f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "6px",
+      "count": 1
+    },
+    "57191ff4b2055807b82e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "6px",
+      "count": 1
+    },
+    "578562f36a32f86c430e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "--warn",
+      "value": "#a8710b",
+      "count": 1
+    },
+    "57a0b713a0440c07e116": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#cf3a3a",
+      "count": 2
+    },
+    "57f967b961e943ac55f1": {
+      "file": "cedar-monitoring-src/src/styles.scss",
+      "rule": "color",
+      "property": "box-shadow",
+      "value": "0 8px 20px rgba(0, 0, 0, .16)",
+      "count": 1
+    },
+    "5a2a195c7a6c0def5b86": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#eef0f3",
+      "count": 1
+    },
+    "5a5e43ae8ce0254fa738": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 14px",
+      "count": 1
+    },
+    "5a7f83a393144ae7c1d5": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px",
+      "count": 1
+    },
+    "5ab8a478b553be0896df": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .1)",
+      "count": 1
+    },
+    "5b5b1230fe84507f7f62": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "14px !important",
+      "count": 1
+    },
+    "5c04e0b85f553ecc2fc3": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "1px",
+      "count": 1
+    },
+    "5cdcd747df5cc126614f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".4px",
+      "count": 1
+    },
+    "5db1bd4ae199b2fb9759": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fdf0ef",
+      "count": 1
+    },
+    "5de7f77aef32a04a743a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#0e6b80",
+      "count": 1
+    },
+    "5f019d027e7a0dd7560a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/mysql-counts/mysql-counts.component.html",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "16px",
+      "count": 1
+    },
+    "5f01bc25eba650551159": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".4px",
+      "count": 2
+    },
+    "605329b3e0ef57c4b7e1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "4px",
+      "count": 2
+    },
+    "623d00304901157690d1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fafbfc",
+      "count": 1
+    },
+    "625a8fcf5d1bab83803b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#d32f2f",
+      "count": 1
+    },
+    "6270fe909fb9b21dbe63": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "6px",
+      "count": 1
+    },
+    "62c2d499286f7bd4ef19": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/profile/profile.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "20px",
+      "count": 1
+    },
+    "62d8a266a94aa74d787c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "2px 10px",
+      "count": 1
+    },
+    "62dfae780ef838bdb0e7": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "border",
+      "value": "1px solid #e4e7ec",
+      "count": 2
+    },
+    "63696cc99f66a1e60467": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "8px 0 4px",
+      "count": 1
+    },
+    "63723c621db8c9d31e02": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "0 0 8px",
+      "count": 1
+    },
+    "641a31791a6ec059b19f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "border-left",
+      "value": "2px solid #c7cbd4",
+      "count": 2
+    },
+    "6493a8ef77f0334d8fb3": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#475467",
+      "count": 2
+    },
+    "6544624ee7061bb5bd69": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "12px 0",
+      "count": 1
+    },
+    "6544bcb04df62ab2a929": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "150px",
+      "count": 1
+    },
+    "671b92e9f90fc0929c13": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/mysql-counts/mysql-counts.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "20px",
+      "count": 1
+    },
+    "67765b54cced8bf47731": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin-bottom",
+      "value": "4px",
+      "count": 1
+    },
+    "677a15bffaad33750443": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px 0 4px",
+      "count": 1
+    },
+    "690830a9ee8f790dbc08": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "999px",
+      "count": 2
+    },
+    "6b5db1114f0f04eb8da0": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "typography",
+      "property": "line-height",
+      "value": "1",
+      "count": 1
+    },
+    "6c22f82d64c9e440723b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "box-shadow",
+      "value": "0 1px 2px rgba(16, 24, 40, .04), 0 8px 24px -12px rgba(16, 24, 40, .12) !important",
+      "count": 1
+    },
+    "6c89f11d12ecbe3ddc1b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "border-bottom",
+      "value": "1px solid #e5e9ee",
+      "count": 1
+    },
+    "6cf6dc6e946e49102fe2": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "rgba(0, 0, 0, .6)",
+      "count": 4
+    },
+    "6e51e3678ff57a093a7c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 14px",
+      "count": 1
+    },
+    "6f88464618e925b44437": {
+      "file": "cedar-monitoring-src/src/styles/roboto.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "300",
+      "count": 7
+    },
+    "70241f492533f9649693": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(245, 158, 11, .1)",
+      "count": 1
+    },
+    "7189e4e0825c0009d5cf": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "26px",
+      "count": 1
+    },
+    "71a69b267e8e7a232b90": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "2px 2px 0",
+      "count": 1
+    },
+    "71ce2304064408f97926": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/queue-counts/queue-counts.component.html",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "16px",
+      "count": 1
+    },
+    "721f75a92aa0796e3475": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "3px",
+      "count": 1
+    },
+    "72244aee97cb3d3ca229": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "margin-bottom",
+      "value": "14px",
+      "count": 1
+    },
+    "722b2065456fec6cf3b5": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "border-bottom",
+      "value": "1px solid #e0e0e0",
+      "count": 1
+    },
+    "723181ce46fa1c333860": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "12px 0",
+      "count": 2
+    },
+    "727c36efbb4110e6a052": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".4px",
+      "count": 2
+    },
+    "72b9fab33159abf68372": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 14px",
+      "count": 1
+    },
+    "734a36967389a3201471": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "10px",
+      "count": 2
+    },
+    "7350f9336370fd29621f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "13px",
+      "count": 1
+    },
+    "738539a06a237d9535b7": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/mysql-counts/mysql-counts.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "8px",
+      "count": 1
+    },
+    "74ee713fd52df15dfe82": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(245, 158, 11, .12)",
+      "count": 1
+    },
+    "75457cb06ab9b7b33b29": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(14, 139, 163, .1)",
+      "count": 1
+    },
+    "75a283dbf434a9c55692": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "8px",
+      "count": 1
+    },
+    "75cec4445a7b1c22b3a1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "12px",
+      "count": 1
+    },
+    "75ee5978cd4c14c3cb9c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/mysql-counts/mysql-counts.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "4px",
+      "count": 1
+    },
+    "75f464263d0c98e58010": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 14px",
+      "count": 1
+    },
+    "76562beceb1ae96e2c21": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "16px",
+      "count": 1
+    },
+    "7797cc9877603692f403": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "border-color",
+      "value": "#a9e2c4",
+      "count": 1
+    },
+    "781abd66bdd7d7a325a9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "8px",
+      "count": 1
+    },
+    "7859d7ded863674537b9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "14px",
+      "count": 1
+    },
+    "7879690178e1debca3a8": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "8px 0 0 8px",
+      "count": 1
+    },
+    "787a63594b0679555da7": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#92610a",
+      "count": 2
+    },
+    "792b52169b54434c2bfc": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#667085",
+      "count": 3
+    },
+    "79947c3981677f4d7574": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fafbfc",
+      "count": 1
+    },
+    "79d6ff83dcf1cc465804": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#98a2b3",
+      "count": 5
+    },
+    "7a9c8ad0ba1143ff445a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.html",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "16px",
+      "count": 1
+    },
+    "7ce9a0a62cfc138c1f53": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(245, 158, 11, .12)",
+      "count": 1
+    },
+    "7d6212cc1a40f2185478": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".4px",
+      "count": 1
+    },
+    "7dc5c6564044b5376c5b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "12px 0",
+      "count": 1
+    },
+    "7e8baecc4d830fc6ceb6": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "10px 0",
+      "count": 1
+    },
+    "7fdc40894a6e3430d17d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "border-color",
+      "value": "#f5cf94",
+      "count": 1
+    },
+    "805bc7b974e18da5506d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "2px 0",
+      "count": 1
+    },
+    "8067d74a36316852c69b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "12px",
+      "count": 1
+    },
+    "80bd30b0808d6c7f62d5": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "5px 10px",
+      "count": 1
+    },
+    "812e3877d81472d69ad4": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "8px",
+      "count": 1
+    },
+    "84769a7a3029f3dd1e16": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "0 8px 8px 0",
+      "count": 1
+    },
+    "84dfce7f30d906117511": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(245, 158, 11, .06)",
+      "count": 1
+    },
+    "8507d8536f98c58ad7dd": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "10px 0",
+      "count": 1
+    },
+    "85461ef89577e302668e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(194, 59, 59, .08)",
+      "count": 1
+    },
+    "8717ff515d7f7f9d428e": {
+      "file": "cedar-monitoring-src/src/styles.scss",
+      "rule": "typography",
+      "property": "line-height",
+      "value": "1.45",
+      "count": 1
+    },
+    "878c53ee3549b4a101f1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "border-right",
+      "value": "1px solid #e4e7ec",
+      "count": 1
+    },
+    "87d10700c680efef5c23": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "6px",
+      "count": 1
+    },
+    "87d76085d9b840b7e0b8": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "border",
+      "value": "1px solid #e4e7ec",
+      "count": 3
+    },
+    "88541f3f75410864bc1d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "border-color",
+      "value": "#e4e7ec",
+      "count": 1
+    },
+    "889a5605d18f87620821": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#0f7a38",
+      "count": 2
+    },
+    "8944f0fe68a91697bf9f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 14px",
+      "count": 1
+    },
+    "8a37204bfe0a67a26f47": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(102, 112, 133, .1)",
+      "count": 1
+    },
+    "8b95479aebece020c598": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .06)",
+      "count": 1
+    },
+    "8c2168b594f99f1d0472": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px",
+      "count": 1
+    },
+    "8c3d5c17f51be02a3319": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#2e7d32",
+      "count": 1
+    },
+    "8cafb6b047d9a053e147": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "6px",
+      "count": 1
+    },
+    "8d600d2100f680be8278": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "z-index",
+      "value": "2",
+      "count": 1
+    },
+    "8db97f004f07ccbe7d19": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "border-top",
+      "value": "1px solid #f0f2f5",
+      "count": 1
+    },
+    "8ddf396d49be071886b9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(245, 158, 11, .14)",
+      "count": 1
+    },
+    "8e364b3c7a2501f477a2": {
+      "file": "cedar-monitoring-src/src/styles.scss",
+      "rule": "spacing",
+      "property": "padding-top",
+      "value": "16px",
+      "count": 1
+    },
+    "8efd87a898dbec608a0c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "10px",
+      "count": 2
+    },
+    "8ffa314b091871227072": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#b9750a",
+      "count": 2
+    },
+    "906f158a95b7598d0c7b": {
+      "file": "cedar-monitoring-src/src/styles/roboto.scss",
+      "rule": "typography",
+      "property": "font-family",
+      "value": "'Roboto'",
+      "count": 21
+    },
+    "90e84de7cd8b015d4aab": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .1)",
+      "count": 1
+    },
+    "90f750c5bb26debfa783": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "8px",
+      "count": 1
+    },
+    "919d8b84f5197253f289": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fafbfc",
+      "count": 3
+    },
+    "931dfad8faa3c99a1a6e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "8px",
+      "count": 6
+    },
+    "933a78700ecaf79601c2": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "spacing",
+      "property": "padding-left",
+      "value": "20px",
+      "count": 1
+    },
+    "93588d617bc4b34d5c32": {
+      "file": "cedar-monitoring-src/src/styles.scss",
+      "rule": "spacing",
+      "property": "padding-bottom",
+      "value": "16px",
+      "count": 1
+    },
+    "936fe7c0bc0f4c1138fd": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 12px",
+      "count": 1
+    },
+    "9385379ad7069e8dd009": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#6941c6",
+      "count": 2
+    },
+    "93e68c1512623c9e4d1a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "24px",
+      "count": 1
+    },
+    "9475f3932d138f5a65a2": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "0 4px 0 12px",
+      "count": 1
+    },
+    "94ce5667149d972b9f9e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "12px",
+      "count": 2
+    },
+    "94e0bc71b1a1b9dea494": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "12px",
+      "count": 1
+    },
+    "95315f285a0ec622a8fb": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#0e6b80",
+      "count": 2
+    },
+    "954f2f57ce0151f7f285": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fafbfc",
+      "count": 1
+    },
+    "95832fcb87b0d2228d29": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "--ink",
+      "value": "#1c2430",
+      "count": 1
+    },
+    "97481499da37ca6c4199": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "16px",
+      "count": 1
+    },
+    "977c3a7db8a050fb1600": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#c62828",
+      "count": 1
+    },
+    "9788ac055939df1ac388": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "z-index",
+      "value": "900",
+      "count": 1
+    },
+    "98440fe869093b8e675c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#0e6b80",
+      "count": 1
+    },
+    "9929169f6cf534023f68": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-info/resource-info.component.html",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "16px",
+      "count": 1
+    },
+    "9978feeebe0238f0b53d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#667085",
+      "count": 6
+    },
+    "99a839f4777f4985010e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "3px 6px 3px 10px",
+      "count": 1
+    },
+    "9a142197d9ce1fed0f8f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#98a2b3",
+      "count": 1
+    },
+    "9a2d283d717d746655d5": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "11px 12px",
+      "count": 1
+    },
+    "9a4735c8f515a088a522": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".2px",
+      "count": 1
+    },
+    "9b17fefcc7f8a55cd1b4": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "9px 14px",
+      "count": 1
+    },
+    "9c5efdb697e7816f8278": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "6px 0",
+      "count": 2
+    },
+    "9c666fb354386ff91cae": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fdecea",
+      "count": 1
+    },
+    "9df64a9602449b4bbad6": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#475467",
+      "count": 2
+    },
+    "9e10d311abff8a38847d": {
+      "file": "cedar-monitoring-src/src/styles.scss",
+      "rule": "spacing",
+      "property": "padding-bottom",
+      "value": "8px",
+      "count": 1
+    },
+    "a09d97ed9d5156f83e24": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(207, 58, 58, .1)",
+      "count": 1
+    },
+    "a10e93eff5aa8307ff5c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#9fb0b6",
+      "count": 1
+    },
+    "a135fcfddb54691882d0": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "6px",
+      "count": 1
+    },
+    "a1abb37c77e5bbceee0c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "12px 0 16px",
+      "count": 1
+    },
+    "a237c3c61ddd2f2dfc79": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#12b76a",
+      "count": 1
+    },
+    "a2409e90c8c4a122f907": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "10px",
+      "count": 2
+    },
+    "a2aab097a9a3dc72ea9a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "6px 10px",
+      "count": 1
+    },
+    "a2bb2483dc50c2f182d7": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "repeating-linear-gradient(45deg, #fbfbfc, #fbfbfc 4px, #f4f5f7 4px, #f4f5f7 8px)",
+      "count": 1
+    },
+    "a3bbaf5d2737fc9fcf42": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "0 12px 9px",
+      "count": 1
+    },
+    "a403899ae968b5ec5f8e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "border-bottom",
+      "value": "1px solid #f0f2f5",
+      "count": 1
+    },
+    "a49c37a22897b203da8c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(168, 113, 11, .08)",
+      "count": 1
+    },
+    "a53f09da289b7f6d22e5": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "18px",
+      "count": 1
+    },
+    "a68bd6ddcc5c7b1481fc": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/mysql-counts/mysql-counts.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "2px 0",
+      "count": 1
+    },
+    "a692a89e4c6c475f828d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".5px",
+      "count": 1
+    },
+    "a6a122dadb7081ec33b5": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#12b76a",
+      "count": 1
+    },
+    "a73ec632567722e97ae6": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "12px",
+      "count": 1
+    },
+    "aa1a28a3db76b1585654": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(18, 183, 106, .1)",
+      "count": 1
+    },
+    "aab88868667c8f8f2b10": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "999px",
+      "count": 2
+    },
+    "aac75f0246b5d0f668e6": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "6px 10px",
+      "count": 1
+    },
+    "aae9ecd9355f39bcdc37": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#e0e0e0",
+      "count": 1
+    },
+    "ac3ce9fa02f50e33544a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 14px",
+      "count": 1
+    },
+    "adefec5025be9c0584c4": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "border-color",
+      "value": "#f5cf94",
+      "count": 1
+    },
+    "af44ac9ddeadac366fba": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "8px",
+      "count": 1
+    },
+    "af553b27ee60ae8d801d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "5px 16px",
+      "count": 1
+    },
+    "af7ec1ab551683dec6e1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "0 5px",
+      "count": 1
+    },
+    "afa8f05377173424c7e6": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "40px 24px",
+      "count": 1
+    },
+    "b05e9f307b5caaa4f671": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "2px",
+      "count": 1
+    },
+    "b14f27e20527e2fefb4e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "border",
+      "value": "1px solid #e5e9ee",
+      "count": 2
+    },
+    "b16bc7f16f136645ed36": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts-opensearch/resource-counts-opensearch.component.html",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "16px",
+      "count": 1
+    },
+    "b2a9e9d469f38ac888f3": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "16px",
+      "count": 1
+    },
+    "b2f18c5a24aa55c54592": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "16px",
+      "count": 1
+    },
+    "b37aa30a84899485753a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#f7f8fa",
+      "count": 1
+    },
+    "b3ac076c3e706ff46dd1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "4px 24px 4px 0",
+      "count": 2
+    },
+    "b3f6a9973fd480d2f6c7": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".3px",
+      "count": 1
+    },
+    "b421f38e88123a971bf8": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/health-checks/health-checks.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "8px",
+      "count": 1
+    },
+    "b4287b7fff02b66df047": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "spacing",
+      "property": "padding-left",
+      "value": "8px",
+      "count": 1
+    },
+    "b4c3827262c3decf6213": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "20px",
+      "count": 1
+    },
+    "b4c9e51e65a728880802": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(14, 139, 163, .1)",
+      "count": 1
+    },
+    "b4de1208afccac71f571": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "typography",
+      "property": "line-height",
+      "value": "1.5",
+      "count": 1
+    },
+    "b50932a7ef047a9bcb3f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "12px",
+      "count": 1
+    },
+    "b78b3d61be742443ebee": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 2px 6px",
+      "count": 1
+    },
+    "b88ca67c4266eee8a201": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 14px",
+      "count": 2
+    },
+    "b93c3afbbc40f853615f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "3px 8px",
+      "count": 1
+    },
+    "b9663d6b08d8efce840c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fff",
+      "count": 2
+    },
+    "ba0cd236e38419b1a1f5": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "10px 0",
+      "count": 1
+    },
+    "ba772a80b8900f2cd2ef": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#c2cad3",
+      "count": 1
+    },
+    "bace2c54562e17573f3c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "spacing",
+      "property": "padding-left",
+      "value": "20px",
+      "count": 1
+    },
+    "bb02c8e5d0515500d041": {
+      "file": "cedar-monitoring-src/src/styles.scss",
+      "rule": "color",
+      "property": "box-shadow",
+      "value": "0 3px 8px rgba(0, 0, 0, .18)",
+      "count": 1
+    },
+    "bb1c472461ab69d33b24": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "4px",
+      "count": 1
+    },
+    "bbf0c0a2b136eef0a7fb": {
+      "file": "cedar-monitoring-src/src/app/modules/shared/components/spinner/spinner.component.html",
+      "rule": "utility-style",
+      "property": "utility-style",
+      "value": "mr-2",
+      "count": 1
+    },
+    "bcb0d7d3ad7e64e158f4": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "24px",
+      "count": 1
+    },
+    "be15f95dcecdaef6eefb": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#0e6b80",
+      "count": 1
+    },
+    "be27b4a2dfdb74e1fc5c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "border-color",
+      "value": "#f5cf94",
+      "count": 1
+    },
+    "bff753531d07b9461822": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#475467",
+      "count": 4
+    },
+    "c1dc02e81bbe1dad5e18": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#667085",
+      "count": 4
+    },
+    "c28ac65a580e03d72e5b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "10px",
+      "count": 3
+    },
+    "c2e6ecf921e0871b0ec9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(14, 139, 163, .1)",
+      "count": 1
+    },
+    "c3b9da194cb6650644cb": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "--err",
+      "value": "#c23b3b",
+      "count": 1
+    },
+    "c4f47ce1e04dfe3f02e2": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fafbfc",
+      "count": 1
+    },
+    "c51c7bc6b5a27a5e5c13": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(14, 139, 163, .1)",
+      "count": 1
+    },
+    "c5509aae83b9b1653fef": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "16px",
+      "count": 1
+    },
+    "c57d8b48fc46e104d3ce": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#1976d2",
+      "count": 2
+    },
+    "c5bc8d08b91b3a5ec448": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#667085",
+      "count": 4
+    },
+    "c60b500f0ab89251ddeb": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "10px 0",
+      "count": 2
+    },
+    "c767456d2ea8b1af4455": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#f59e0b",
+      "count": 1
+    },
+    "c778cabd5b423c702534": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#98a2b3",
+      "count": 4
+    },
+    "c84cc34bbb3c660c38a0": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "border-color",
+      "value": "#f3b0ab",
+      "count": 1
+    },
+    "c9f1ddbe15a39e053887": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "12px",
+      "count": 1
+    },
+    "cac7a8b8d0f5e36e0594": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(14, 139, 163, .1)",
+      "count": 1
+    },
+    "cb6903fcbe2463f8f570": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "6px",
+      "count": 1
+    },
+    "ccf9dd2b989eba852d8d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#0e6b80",
+      "count": 2
+    },
+    "cd0bb69b718e6adc0e6b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "8px",
+      "count": 1
+    },
+    "cdc6d9f77fb9280d5e43": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#fff",
+      "count": 2
+    },
+    "ce50efc13ee4fbdd3dfd": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "6px",
+      "count": 2
+    },
+    "cea3f548e0c2c9a9cb18": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "22px",
+      "count": 1
+    },
+    "cecfb411dfd6af025731": {
+      "file": "cedar-monitoring-src/src/app/modules/shared/components/spinner/spinner.component.scss",
+      "rule": "color",
+      "property": "border",
+      "value": "4px solid #f3f3f3",
+      "count": 1
+    },
+    "cedce7dc3512fedd6aa4": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "10px 0",
+      "count": 1
+    },
+    "cf57018e9a9adceb9f5a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#d0d5dd",
+      "count": 1
+    },
+    "cfbeee10d5168638464d": {
+      "file": "cedar-monitoring-src/src/app/modules/shared/components/json-view/json-view.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "8px",
+      "count": 1
+    },
+    "d026bf544cc37c1a1940": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#21303f",
+      "count": 1
+    },
+    "d16b60b29b41dc701788": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "10px 0",
+      "count": 1
+    },
+    "d1b348df946be2a130af": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "8px",
+      "count": 1
+    },
+    "d1c79622523910eea4e4": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px 0 8px",
+      "count": 1
+    },
+    "d2c4e7e95aa48c36436d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "border-color",
+      "value": "#f3b0ab",
+      "count": 1
+    },
+    "d3826d9b9b0eb2828bbd": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px",
+      "count": 1
+    },
+    "d38d8d98ded90613c00a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "11px",
+      "count": 1
+    },
+    "d3cd98dcce806be0763f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(14, 139, 163, .12)",
+      "count": 1
+    },
+    "d450ebbac4010788d9ed": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "10px 14px",
+      "count": 2
+    },
+    "d474151cc6144cea413b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#fff",
+      "count": 1
+    },
+    "d5a3dd4f85e7af677fbd": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "16px",
+      "count": 1
+    },
+    "d5d2daa038710cd74132": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "3px 0",
+      "count": 1
+    },
+    "d689d7b5f39a0498a833": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(245, 158, 11, .12)",
+      "count": 2
+    },
+    "d7483ad740c859c40461": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "20px",
+      "count": 1
+    },
+    "d7e16b1fab179da4ea72": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".4px",
+      "count": 2
+    },
+    "d8b48be1ecc1a6d09269": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fafbfc",
+      "count": 4
+    },
+    "d92d1a876763effefd93": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".3px",
+      "count": 1
+    },
+    "d97f9e2ef1122c1cc495": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "border-bottom",
+      "value": "1px solid #f0f1f4",
+      "count": 2
+    },
+    "dc1581051c1980ea077f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#12864b",
+      "count": 1
+    },
+    "dc5bc63df981e5b7324a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "3px",
+      "count": 2
+    },
+    "dc62066012c7451e989d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "8px",
+      "count": 1
+    },
+    "dc7dee9fcd5f70358f1f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "22px",
+      "count": 1
+    },
+    "dd866d04f656380be40a": {
+      "file": "cedar-monitoring-src/src/styles/roboto.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "500",
+      "count": 7
+    },
+    "ddf5267d0d4c611981ff": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "4px 0",
+      "count": 1
+    },
+    "de3177f7911712ef4b18": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "5px 12px",
+      "count": 1
+    },
+    "dec47c01181896f2d360": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "box-shadow",
+      "value": "0 18px 50px -12px rgba(16, 24, 40, .35)",
+      "count": 1
+    },
+    "dee303312152a616f01c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "--ink-2",
+      "value": "#5a6673",
+      "count": 1
+    },
+    "df50e09c2a85c99fc6fb": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "6px 13px",
+      "count": 1
+    },
+    "dfc84831f54b2fd00197": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "10px",
+      "count": 1
+    },
+    "e0e14a93b445320a7134": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".3px",
+      "count": 1
+    },
+    "e1124fcd108d50120400": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".3px",
+      "count": 1
+    },
+    "e151bd5bf937e35d3a5d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "12px 0",
+      "count": 1
+    },
+    "e306a3add3caaaa8f151": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "8px",
+      "count": 1
+    },
+    "e409714e9c9a0019fd00": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(18, 183, 106, .08)",
+      "count": 1
+    },
+    "e45ab7888b4851c8e211": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "margin-bottom",
+      "value": "5px",
+      "count": 1
+    },
+    "e53bf9571041d51ca614": {
+      "file": "cedar-monitoring-src/src/styles.scss",
+      "rule": "geometry",
+      "property": "min-height",
+      "value": "150px",
+      "count": 1
+    },
+    "e5ca54b66164091d5700": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "typography",
+      "property": "line-height",
+      "value": "1.5",
+      "count": 2
+    },
+    "e6bbab76c7e1388305ac": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px",
+      "count": 1
+    },
+    "e6e7c39d21a7c4b277dd": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "6px 8px",
+      "count": 1
+    },
+    "e787591c8526edd760e8": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px 0 4px",
+      "count": 1
+    },
+    "e85f80d742ec712c32c9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "8px",
+      "count": 1
+    },
+    "e92ef235d5450b1e166a": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "14px",
+      "count": 1
+    },
+    "ea2cae1853907de2c23f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "4px",
+      "count": 2
+    },
+    "eac5cc9159106f4a6719": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#f4f6f8",
+      "count": 2
+    },
+    "eafb78d6d29536465bed": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "12px 0 4px",
+      "count": 1
+    },
+    "ec223d1633cce4dfd0f2": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".4px",
+      "count": 1
+    },
+    "ec482ac9c92d3a3004e1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "12px",
+      "count": 2
+    },
+    "ed2e37a0fdf082a66b02": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "background-color",
+      "value": "#fff !important",
+      "count": 1
+    },
+    "ed46e2a06a7eb80a5435": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "10px 0",
+      "count": 1
+    },
+    "eda51a2a6ddce1a2677c": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px 0 8px",
+      "count": 1
+    },
+    "ef6b019d6fedd945acd0": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "--accent",
+      "value": "#0f7c91",
+      "count": 1
+    },
+    "ef92b473a0a42845ee2f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "12px",
+      "count": 2
+    },
+    "f000b69ad8ea5ef3dc1b": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "14px 16px",
+      "count": 1
+    },
+    "f0053b07830abdee7533": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(211, 47, 47, .08)",
+      "count": 1
+    },
+    "f256d85e2030279452fb": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "color",
+      "property": "box-shadow",
+      "value": "0 4px 14px rgba(0, 0, 0, .22)",
+      "count": 1
+    },
+    "f30dd6d87a17fe126586": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "600",
+      "count": 1
+    },
+    "f3dc197a3d16c1e1e447": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "8px",
+      "count": 1
+    },
+    "f46c0222c7334473da06": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#e4e7ec",
+      "count": 1
+    },
+    "f5067c4fef145c28f940": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "rgba(16, 137, 62, .08)",
+      "count": 1
+    },
+    "f549257ed93d5f78f10e": {
+      "file": "cedar-monitoring-src/src/app/modules/shared/components/spinner/spinner.component.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "24px",
+      "count": 1
+    },
+    "f66c0273a28d587f01dd": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#b02a2a",
+      "count": 1
+    },
+    "f6807235365165fccc2f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#d32f2f",
+      "count": 1
+    },
+    "f6e89472fa90f50df3e3": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "16px",
+      "count": 2
+    },
+    "f863bec61a5f144c1d7a": {
+      "file": "cedar-monitoring-src/src/app/modules/shared/components/json-view/json-view.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "16px",
+      "count": 1
+    },
+    "f869422a5bec79f3c45d": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "typography",
+      "property": "letter-spacing",
+      "value": ".04em",
+      "count": 1
+    },
+    "f892fcc18e9afef4ffa3": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "border-color",
+      "value": "#f5cf94",
+      "count": 1
+    },
+    "f8eaa5cd1b8e288f52c9": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px 0 8px",
+      "count": 1
+    },
+    "f923f1fe066ed8f1408f": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "10px",
+      "count": 1
+    },
+    "f97c983803a0dff35ce4": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fcfcfd",
+      "count": 2
+    },
+    "f97fb5998df37fb7b3a8": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "gap",
+      "value": "2px",
+      "count": 1
+    },
+    "fa4dbe8bcca66ad6a5b1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "9px 13px",
+      "count": 1
+    },
+    "fc66f4efc4608085c4d2": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "16px",
+      "count": 1
+    },
+    "fcf8fe7f4dc10b045aef": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "color",
+      "property": "background",
+      "value": "#fff",
+      "count": 1
+    },
+    "fe0a6adeff6c0ca06d99": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "8px",
+      "count": 1
+    },
+    "fe688be343dc3a370ef6": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#475467",
+      "count": 1
+    }
+  },
+  "exceptions": {},
+  "policy": 2
+}

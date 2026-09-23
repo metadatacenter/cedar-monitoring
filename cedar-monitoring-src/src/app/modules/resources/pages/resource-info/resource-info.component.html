@@ -13,10 +13,10 @@
 
       <mat-form-field class="resource-id-form-field">
         <mat-label>Resource id</mat-label>
-        <textarea matInput type="text" [(ngModel)]="resourceIdFromPage"></textarea>
+        <textarea spellcheck="false" matInput type="text" [(ngModel)]="resourceIdFromPage"></textarea>
         @if (resourceIdFromPage) {
           <button matSuffix mat-icon-button aria-label="Clear" (click)="resourceIdFromPage=''">
-            <mat-icon>close</mat-icon>
+            <mat-icon cedarIcon="close"></mat-icon>
           </button>
         }
       </mat-form-field>
@@ -60,7 +60,7 @@
     <app-json-view
       [inputObject]="reportDataUser.keycloak.user"
       title="Keycloak"
-      icon="key"
+      icon="identifier"
       subtitle="Data loaded from Keycloak using kc.realm().users().get() and userResource.roles().realmLevel().listEffective()"
     ></app-json-view>
   }
@@ -69,7 +69,7 @@
     <app-json-view
       [inputObject]="reportDataUser.neo4j.user"
       title="Neo4j - User"
-      icon="device_hub"
+      icon="property"
       subtitle="Data loaded from Neo4j using userSession.getUser();"
     ></app-json-view>
   }
@@ -78,7 +78,7 @@
     <app-json-view
       [inputObject]="reportDataUser.neo4j.extra"
       title="Neo4j - Extra"
-      icon="device_hub"
+      icon="property"
       subtitle="Data loaded from Neo4j using various helper methods"
     ></app-json-view>
   }
@@ -96,7 +96,7 @@
     <app-json-view
       [inputObject]="reportDataUser.cedarUser"
       title="CedarUser"
-      icon="person"
+      icon="user"
       subtitle="CedarUser object loaded using UserService.findUser(). It is an object-oriented view of the Neo4j data."
     ></app-json-view>
   }
@@ -107,7 +107,7 @@
     <app-json-view
       [inputObject]="reportDataGroup.neo4j"
       title="Neo4j - Group"
-      icon="device_hub"
+      icon="property"
       subtitle="Data loaded from Neo4j using groupSession.findGroupById();"
     ></app-json-view>
   }
@@ -116,7 +116,7 @@
     <app-json-view
       [inputObject]="reportDataGroup.groupUsers"
       title="Neo4j - Group Users"
-      icon="device_hub"
+      icon="property"
       subtitle="Data loaded from Neo4j using groupSession.findGroupUsers();"
     ></app-json-view>
   }
@@ -145,7 +145,7 @@
     <app-json-view
       [inputObject]="reportDataFolder.neo4j.folder"
       title="Neo4j - Folder"
-      icon="device_hub"
+      icon="property"
       subtitle="Data loaded from Neo4j using folderSession.findFolderById();"
     ></app-json-view>
   }
@@ -163,7 +163,7 @@
     <app-json-view
       [inputObject]="reportDataFolder.computed.permissions"
       title="Computed - Permissions"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using permissionSession.getResourcePermissions()"
     ></app-json-view>
   }
@@ -172,7 +172,7 @@
     <app-json-view
       [inputObject]="reportDataFolder.computed.materializedPermissions"
       title="Computed - Materialized Permissions"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
     ></app-json-view>
   }
@@ -183,7 +183,7 @@
     <app-json-view
       [inputObject]="reportDataField.neo4j.artifact"
       title="Neo4j - Template Field"
-      icon="device_hub"
+      icon="property"
       subtitle="Data loaded from Neo4j using folderSession.findArtifactById();"
     ></app-json-view>
   }
@@ -201,7 +201,7 @@
     <app-json-view
       [inputObject]="reportDataField.computed.report"
       title="Computed - Report"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using ArtifactReportUtil.getArtifactReport()"
     ></app-json-view>
   }
@@ -210,7 +210,7 @@
     <app-json-view
       [inputObject]="reportDataField.computed.permissions"
       title="Computed - Permissions"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using permissionSession.getResourcePermissions()"
     ></app-json-view>
   }
@@ -219,7 +219,7 @@
     <app-json-view
       [inputObject]="reportDataField.computed.materializedPermissions"
       title="Computed - Materialized Permissions"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
     ></app-json-view>
   }
@@ -230,7 +230,7 @@
     <app-json-view
       [inputObject]="reportDataElement.neo4j.artifact"
       title="Neo4j - Template Element"
-      icon="device_hub"
+      icon="property"
       subtitle="Data loaded from Neo4j using folderSession.findArtifactById();"
     ></app-json-view>
   }
@@ -248,7 +248,7 @@
     <app-json-view
       [inputObject]="reportDataElement.computed.report"
       title="Computed - Report"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using ArtifactReportUtil.getArtifactReport()"
     ></app-json-view>
   }
@@ -257,7 +257,7 @@
     <app-json-view
       [inputObject]="reportDataElement.computed.permissions"
       title="Computed - Permissions"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using permissionSession.getResourcePermissions()"
     ></app-json-view>
   }
@@ -266,7 +266,7 @@
     <app-json-view
       [inputObject]="reportDataElement.computed.materializedPermissions"
       title="Computed - Materialized Permissions"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
     ></app-json-view>
   }
@@ -277,7 +277,7 @@
     <app-json-view
       [inputObject]="reportDataTemplate.neo4j.artifact"
       title="Neo4j - Template"
-      icon="device_hub"
+      icon="property"
       subtitle="Data loaded from Neo4j using folderSession.findArtifactById();"
     ></app-json-view>
   }
@@ -295,7 +295,7 @@
     <app-json-view
       [inputObject]="reportDataTemplate.computed.report"
       title="Computed - Report"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using ArtifactReportUtil.getArtifactReport()"
     ></app-json-view>
   }
@@ -304,7 +304,7 @@
     <app-json-view
       [inputObject]="reportDataTemplate.computed.permissions"
       title="Computed - Permissions"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using permissionSession.getResourcePermissions()"
     ></app-json-view>
   }
@@ -313,7 +313,7 @@
     <app-json-view
       [inputObject]="reportDataTemplate.computed.materializedPermissions"
       title="Computed - Materialized Permissions"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
     ></app-json-view>
   }
@@ -324,7 +324,7 @@
     <app-json-view
       [inputObject]="reportDataInstance.neo4j.artifact"
       title="Neo4j - Template Instance"
-      icon="device_hub"
+      icon="property"
       subtitle="Data loaded from Neo4j using folderSession.findArtifactById();"
     ></app-json-view>
   }
@@ -342,7 +342,7 @@
     <app-json-view
       [inputObject]="reportDataInstance.computed.report"
       title="Computed - Report"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using ArtifactReportUtil.getArtifactReport()"
     ></app-json-view>
   }
@@ -351,7 +351,7 @@
     <app-json-view
       [inputObject]="reportDataInstance.computed.permissions"
       title="Computed - Permissions"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using permissionSession.getResourcePermissions()"
     ></app-json-view>
   }
@@ -360,7 +360,7 @@
     <app-json-view
       [inputObject]="reportDataInstance.computed.materializedPermissions"
       title="Computed - Materialized Permissions"
-      icon="description"
+      icon="document"
       subtitle="Data loaded using permissionSession.getResourceMaterializedPermission()"
     ></app-json-view>
   }

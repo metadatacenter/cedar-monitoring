@@ -255,11 +255,11 @@ export class EnvironmentMatrixComponent implements OnInit {
     }
     switch (cell.state) {
       case 'SET':
-        return '✓';
+        return 'check';
       case 'USING_DEFAULT':
-        return '·';
+        return 'info';
       case 'DECLARED_BUT_UNSET':
-        return '✗';
+        return 'close';
       default:
         return cell.presentInHostEnvironment ? '' : '';
     }

@@ -54,7 +54,7 @@
         </div>
       }
       @if (!activeBoard) {
-        <input class="txt" [(ngModel)]="contains" (keyup.enter)="resetAndLoad()"
+        <input spellcheck="false" class="txt" [(ngModel)]="contains" (keyup.enter)="resetAndLoad()"
           [placeholder]="table === 'request' ? 'path contains…' : 'query contains…'">
         <label class="fld">Min duration
           <select [(ngModel)]="minDurationMs" (change)="resetAndLoad()">
@@ -91,7 +91,7 @@
         @for (f of filters; track f; let i = $index) {
           <span class="chip">
             {{ f.col }} {{ f.op }} {{ f.val }}
-            <span class="x" (click)="removeFilter(i)">×</span>
+            <button class="x" type="button" aria-label="Remove filter" (click)="removeFilter(i)"><mat-icon cedarIcon="close"></mat-icon></button>
           </span>
         }
         <button class="link" (click)="clearAll()">clear all</button>
@@ -141,7 +141,7 @@
           <tbody (click)="onTableClick($event)">
             @for (row of rows; track row; let i = $index) {
               <tr class="main" [attr.data-row]="i">
-                <td><span class="caret" [class.open]="isOpen(i)">▸</span></td>
+                <td><mat-icon class="caret" [class.open]="isOpen(i)" cedarIcon="chevron-right"></mat-icon></td>
                 @for (c of mainColumns; track c) {
                   <td [ngClass]="cellClass(c)"
                     [attr.data-copy]="raw(row, c)" [attr.data-copy-key]="c.key" [title]="raw(row, c)">
@@ -258,7 +258,7 @@
         @if (trace) {
           <button class="link" (click)="copyText(trace.globalRequestId, 'request id')">copy id</button>
         }
-        <button class="link" (click)="closeTrace()">close ✕</button>
+        <button class="link" (click)="closeTrace()">close <mat-icon cedarIcon="close"></mat-icon></button>
       </div>
       @if (traceLoading) {
         <div class="banner loading">Loading trace…</div>

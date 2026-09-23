@@ -32,7 +32,7 @@
 
   &.error {
     background: rgba(211, 47, 47, .1);
-    color: #b3261e;
+    color: var(--cedar-status-error-text);
   }
 }
 
@@ -58,19 +58,19 @@
   &.status-ok {
     background: rgba(18, 183, 106, .08);
     border-color: #a9e2c4;
-    color: #05603a;
+    color: var(--cedar-status-success-text);
   }
 
   &.status-warn {
     background: rgba(245, 158, 11, .1);
     border-color: #f5cf94;
-    color: #92400e;
+    color: var(--cedar-status-warning-text);
   }
 
   &.status-bad {
     background: rgba(211, 47, 47, .08);
     border-color: #f3b0ab;
-    color: #b3261e;
+    color: var(--cedar-status-error-text);
   }
 
   &.status-unknown {
@@ -160,12 +160,12 @@ table.grid {
   }
 
   td.bad {
-    color: #b3261e;
+    color: var(--cedar-status-error-text);
     font-weight: var(--cedar-font-weight-medium, 500);
   }
 
   td.warn {
-    color: #b45309;
+    color: var(--cedar-status-warning-text);
     font-weight: var(--cedar-font-weight-medium, 500);
   }
 }

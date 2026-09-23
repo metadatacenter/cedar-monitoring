@@ -36,17 +36,17 @@
 
   &.error {
     background: rgba(211, 47, 47, .1);
-    color: #b3261e;
+    color: var(--cedar-status-error-text);
   }
 
   &.warn {
     background: rgba(245, 158, 11, .12);
-    color: #92400e;
+    color: var(--cedar-status-warning-text);
   }
 
   &.ok {
     background: rgba(18, 183, 106, .1);
-    color: #05603a;
+    color: var(--cedar-status-success-text);
   }
 
   code {

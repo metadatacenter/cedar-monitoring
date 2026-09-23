@@ -1,14 +1,13 @@
 <mat-expansion-panel expanded="false" class="expansion-panel">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <mat-icon>{{icon}}</mat-icon>
+      <mat-icon [cedarIcon]="icon"></mat-icon>
       &nbsp;
       {{title}}
     </mat-panel-title>
     <mat-panel-description>
       <div style="width:100%"></div>
-      <mat-icon matRipple [cdkCopyToClipboard]="inputObject | json" (click)="stopPropagation($event)">content_copy
-      </mat-icon>
+      <mat-icon matRipple [cdkCopyToClipboard]="inputObject | json" (click)="stopPropagation($event)" cedarIcon="copy"></mat-icon>
       <div style="width:24px"></div>
     </mat-panel-description>
   </mat-expansion-panel-header>

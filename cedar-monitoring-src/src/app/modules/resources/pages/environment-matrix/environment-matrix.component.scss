@@ -31,12 +31,12 @@
 
   &.error {
     background: rgba(211, 47, 47, .1);
-    color: #b3261e;
+    color: var(--cedar-status-error-text);
   }
 
   &.warn {
     background: rgba(245, 158, 11, .12);
-    color: #92400e;
+    color: var(--cedar-status-warning-text);
   }
 }
 
@@ -150,7 +150,7 @@ table.matrix {
   }
 
   tr.drift th.name-col {
-    background: #fff8ec;
+    background: var(--cedar-status-warning-surface);
   }
 
   tr.hole th.name-col {
@@ -176,7 +176,7 @@ table.matrix {
   }
 
   td.decl-cell.declared {
-    color: #05603a;
+    color: var(--cedar-status-success-text);
   }
 
   .vname {
@@ -191,11 +191,11 @@ table.matrix {
     color: #98a2b3;
 
     &.warn {
-      color: #b45309;
+      color: var(--cedar-status-warning-text);
     }
 
     &.bad {
-      color: #b3261e;
+      color: var(--cedar-status-error-text);
     }
   }
 }
@@ -209,7 +209,7 @@ table.matrix {
 }
 
 .cell-unset {
-  color: #b3261e;
+  color: var(--cedar-status-error-text);
   font-weight: var(--cedar-font-weight-medium, 500);
   background: rgba(211, 47, 47, .06);
 }
@@ -233,7 +233,7 @@ table.matrix {
 }
 
 .k-unset {
-  color: #b3261e;
+  color: var(--cedar-status-error-text);
   font-weight: var(--cedar-font-weight-medium, 500);
 }
 
@@ -280,7 +280,7 @@ table.values {
   }
 
   tr.drift th.vname, tr.drift td.vval {
-    background: #fff8ec;
+    background: var(--cedar-status-warning-surface);
   }
 }
 
@@ -326,7 +326,7 @@ table.matrix {
   }
 
   td.decl-cell.declared {
-    color: #05603a;
+    color: var(--cedar-status-success-text);
     font-weight: var(--cedar-font-weight-medium, 500);
   }
 }
@@ -343,7 +343,7 @@ table.matrix {
     padding: 3px 8px;
     border-radius: 6px;
     background: rgba(245, 158, 11, .12);
-    color: #92400e;
+    color: var(--cedar-status-warning-text);
     border: 1px solid #f5cf94;
 
     &.empty-value {

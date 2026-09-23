@@ -32,7 +32,7 @@
 
   &.error {
     background: rgba(211, 47, 47, .1);
-    color: #b3261e;
+    color: var(--cedar-status-error-text);
   }
 }
 
@@ -136,7 +136,7 @@ table.grid {
   .fill {
     height: 100%;
     border-radius: 4px;
-    transition: width .3s ease;
+    transition: width var(--cedar-motion-duration-normal) ease;
 
     &.bar-ok {
       background: #12b76a;

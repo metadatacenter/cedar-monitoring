@@ -1,3 +1,4 @@
+import {CedarIconDirective} from './directives/cedar-icon.directive';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -12,6 +13,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
 
 @NgModule({
   imports: [
+    CedarIconDirective,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -27,6 +29,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     JsonViewComponent
   ],
   exports: [
+    CedarIconDirective,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

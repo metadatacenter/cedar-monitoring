@@ -6,7 +6,7 @@
     <mat-card class="dash-card" [routerLink]="'/health-checks'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">health_and_safety</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="health"></mat-icon>
         </div>
         <mat-card-title>
           Health Checks
@@ -18,7 +18,7 @@
     <mat-card class="dash-card" [routerLink]="'/profile'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">account_circle</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="user"></mat-icon>
         </div>
         <mat-card-title>
           Profile
@@ -30,7 +30,7 @@
     <mat-card class="dash-card" [routerLink]="'/resource-info'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">radar</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="activity"></mat-icon>
         </div>
         <mat-card-title>
           Resource Info
@@ -42,7 +42,7 @@
     <mat-card class="dash-card" [routerLink]="'/search-index'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">manage_search</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="search"></mat-icon>
         </div>
         <mat-card-title>
           Search Index
@@ -54,7 +54,7 @@
     <mat-card class="dash-card" [routerLink]="'/queue-counts'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">filter_list</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="field-list"></mat-icon>
         </div>
         <mat-card-title>
           Queue Counts
@@ -66,7 +66,7 @@
     <mat-card class="dash-card" [routerLink]="'/resource-counts'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">dynamic_form</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="artifact-template"></mat-icon>
         </div>
         <mat-card-title>
           Resource Counts
@@ -78,7 +78,7 @@
     <mat-card class="dash-card" [routerLink]="'/resource-counts/opensearch'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">dynamic_form</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="artifact-template"></mat-icon>
         </div>
         <mat-card-title>
           OpenSearch Counts
@@ -90,7 +90,7 @@
     <mat-card class="dash-card" [routerLink]="'/mysql-counts'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">storage</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="database"></mat-icon>
         </div>
         <mat-card-title>
           MySQL Counts
@@ -102,7 +102,7 @@
     <mat-card class="dash-card" [routerLink]="'/logs-usage'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">insights</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="chart"></mat-icon>
         </div>
         <mat-card-title>
           Logs &amp; Usage
@@ -114,7 +114,7 @@
     <mat-card class="dash-card" [routerLink]="'/logs-explorer'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">travel_explore</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="globe"></mat-icon>
         </div>
         <mat-card-title>
           Live Log Explorer
@@ -126,7 +126,7 @@
     <mat-card class="dash-card" [routerLink]="'/deploy'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">rocket_launch</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="deployment"></mat-icon>
         </div>
         <mat-card-title>
           Deploy
@@ -138,7 +138,7 @@
     <mat-card class="dash-card" [routerLink]="'/environment'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">tune</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="tuning"></mat-icon>
         </div>
         <mat-card-title>
           Environment
@@ -150,7 +150,7 @@
     <mat-card class="dash-card" [routerLink]="'/configuration'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">settings</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="settings"></mat-icon>
         </div>
         <mat-card-title>
           Configuration
@@ -162,7 +162,7 @@
     <mat-card class="dash-card" [routerLink]="'/jvm'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">memory</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="memory"></mat-icon>
         </div>
         <mat-card-title>
           JVM
@@ -174,7 +174,7 @@
     <mat-card class="dash-card" [routerLink]="'/worker-lag'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">hourglass_bottom</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="waiting"></mat-icon>
         </div>
         <mat-card-title>
           Worker Lag
@@ -186,7 +186,7 @@
     <mat-card class="dash-card" [routerLink]="'/host-disk'">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon class="avatar-image" color="error">hard_drive</mat-icon>
+          <mat-icon class="avatar-image" color="error" cedarIcon="disk"></mat-icon>
         </div>
         <mat-card-title>
           Disk &amp; Logs
