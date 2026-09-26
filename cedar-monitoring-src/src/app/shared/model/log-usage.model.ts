@@ -1,5 +1,7 @@
 // Read-side DTOs from cedar-monitor-server /logs/usage/* (mirror AggQueryResults). Durations are nanos.
 
+import {PagedList} from './paged-list.model';
+
 export interface UsageTotals {
   reqCount: number;
   errorCount: number;
@@ -58,4 +60,16 @@ export interface UsageSummary {
   to: string;
   totals: UsageTotals;
   series: TimeBucket[];
+}
+
+export interface EndpointStatPage extends PagedList {
+  endpoints: EndpointStat[];
+}
+
+export interface CypherStatPage extends PagedList {
+  statements: CypherStat[];
+}
+
+export interface UserStatPage extends PagedList {
+  users: UserStat[];
 }
