@@ -62,9 +62,10 @@ export class LogUsageComponent implements OnInit {
     }).subscribe({
       next: (r) => {
         this.summary = r.summary;
-        this.endpoints = r.endpoints;
-        this.cypher = r.cypher;
-        this.users = r.users;
+        // The page shows each breakdown's busiest hundred: the first page of each listing.
+        this.endpoints = r.endpoints.endpoints;
+        this.cypher = r.cypher.statements;
+        this.users = r.users.users;
         this.insights = r.insights;
         this.loading = false;
       },

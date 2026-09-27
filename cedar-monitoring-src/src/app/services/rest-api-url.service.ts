@@ -152,10 +152,13 @@ export class RestApiUrlService {
     return `${this.base()}mysql/counts${exact ? '?exact=true' : ''}`;
   }
 
-  private logsRange(path: string, from: string, to: string, limit?: number) {
+  private logsRange(path: string, from: string, to: string, limit?: number, offset?: number) {
     let url = `${this.base()}logs/usage/${path}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
     if (limit != null) {
       url += `&limit=${limit}`;
+    }
+    if (offset) {
+      url += `&offset=${offset}`;
     }
     return url;
   }
@@ -164,24 +167,27 @@ export class RestApiUrlService {
     return this.logsRange('summary', from, to);
   }
 
-  logsUsageEndpoints(from: string, to: string, limit: number) {
-    return this.logsRange('endpoints', from, to, limit);
+  logsUsageEndpoints(from: string, to: string, limit: number, offset = 0) {
+    return this.logsRange('endpoints', from, to, limit, offset);
   }
 
-  logsUsageCypher(from: string, to: string, limit: number) {
-    return this.logsRange('cypher', from, to, limit);
+  logsUsageCypher(from: string, to: string, limit: number, offset = 0) {
+    return this.logsRange('cypher', from, to, limit, offset);
   }
 
-  logsUsageUsers(from: string, to: string, limit: number) {
-    return this.logsRange('users', from, to, limit);
+  logsUsageUsers(from: string, to: string, limit: number, offset = 0) {
+    return this.logsRange('users', from, to, limit, offset);
   }
 
   logsUsageInsights(from: string, to: string) {
     return this.logsRange('insights', from, to);
   }
 
-  private logsExplorer(path: string, q: string, minDurationMs: number, limit: number) {
+  private logsExplorer(path: string, q: string, minDurationMs: number, limit: number, offset: number) {
     let url = `${this.base()}logs/explorer/${path}?limit=${limit}`;
+    if (offset) {
+      url += `&offset=${offset}`;
+    }
     if (q) {
       url += `&q=${encodeURIComponent(q)}`;
     }
@@ -191,12 +197,12 @@ export class RestApiUrlService {
     return url;
   }
 
-  logsExplorerRequests(q: string, minDurationMs: number, limit: number) {
-    return this.logsExplorer('requests', q, minDurationMs, limit);
+  logsExplorerRequests(q: string, minDurationMs: number, limit: number, offset = 0) {
+    return this.logsExplorer('requests', q, minDurationMs, limit, offset);
   }
 
-  logsExplorerCypher(q: string, minDurationMs: number, limit: number) {
-    return this.logsExplorer('cypher', q, minDurationMs, limit);
+  logsExplorerCypher(q: string, minDurationMs: number, limit: number, offset = 0) {
+    return this.logsExplorer('cypher', q, minDurationMs, limit, offset);
   }
 
   /**
