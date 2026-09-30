@@ -133,3 +133,7 @@ textarea,
 textarea.mat-mdc-input-element {
   resize: none;
 }
+
+.mat-mdc-menu-item mat-icon {
+  color: var(--cedar-color-primary);
+}
