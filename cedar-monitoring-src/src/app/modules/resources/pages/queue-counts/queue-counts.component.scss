@@ -12,5 +12,6 @@
 // beside it.
 .queue-attention {
   font-weight: var(--cedar-font-weight-medium, 500);
+  --cedar-icon-color: var(--cedar-status-warning-text);
   color: var(--cedar-status-warning-text);
 }

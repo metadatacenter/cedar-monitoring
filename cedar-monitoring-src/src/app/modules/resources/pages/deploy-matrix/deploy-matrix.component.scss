@@ -32,11 +32,13 @@
 
   &.error {
     background: rgba(211, 47, 47, .1);
+    --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
   }
 
   &.warn {
     background: rgba(245, 158, 11, .12);
+    --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
   }
 }
@@ -134,10 +136,12 @@ table.grid {
   }
 
   tr.bad-row th.name {
+    --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
   }
 
   tr.warn-row th.name {
+    --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
   }
 
@@ -146,6 +150,7 @@ table.grid {
   }
 
   td.bad {
+    --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
     font-weight: var(--cedar-font-weight-medium, 500);
   }
@@ -173,6 +178,7 @@ table.grid {
     vertical-align: middle;
 
     &.bad {
+      --cedar-icon-color: var(--cedar-status-error-text);
       color: var(--cedar-status-error-text);
     }
   }

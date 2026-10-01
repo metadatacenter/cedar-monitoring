@@ -8,6 +8,7 @@
 @include mat.all-component-themes(mat.m2-define-light-theme((color: (primary: mat.m2-define-palette(tokens.$brand-primary), accent: mat.m2-define-palette(tokens.$brand-accent)), typography: mat.m2-define-typography-config($font-family: tokens.$font-family-string))));
 
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
+@import '@org.metadatacenter/cedar-design-tokens/icon-contract.css';
 
 html, body {
   height: 100%;
