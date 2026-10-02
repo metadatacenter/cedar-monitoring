@@ -32,6 +32,7 @@
 
   &.error {
     background: rgba(211, 47, 47, .1);
+    --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
   }
 }
@@ -58,18 +59,21 @@
   &.status-ok {
     background: rgba(18, 183, 106, .08);
     border-color: #a9e2c4;
+    --cedar-icon-color: var(--cedar-status-success-text);
     color: var(--cedar-status-success-text);
   }
 
   &.status-warn {
     background: rgba(245, 158, 11, .1);
     border-color: #f5cf94;
+    --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
   }
 
   &.status-bad {
     background: rgba(211, 47, 47, .08);
     border-color: #f3b0ab;
+    --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
   }
 
@@ -106,7 +110,7 @@
       font-variant-numeric: tabular-nums;
 
       &.small {
-        font-size: var(--cedar-font-size-lead);
+        font-size: var(--cedar-font-size);
       }
     }
 
@@ -160,11 +164,13 @@ table.grid {
   }
 
   td.bad {
+    --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
     font-weight: var(--cedar-font-weight-medium, 500);
   }
 
   td.warn {
+    --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
     font-weight: var(--cedar-font-weight-medium, 500);
   }

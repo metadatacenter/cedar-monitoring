@@ -31,11 +31,13 @@
 
   &.error {
     background: rgba(211, 47, 47, .1);
+    --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
   }
 
   &.warn {
     background: rgba(245, 158, 11, .12);
+    --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
   }
 }
@@ -91,6 +93,7 @@ h3.section {
     font-variant-numeric: tabular-nums;
 
     &.bad {
+      --cedar-icon-color: var(--cedar-status-error-text);
       color: var(--cedar-status-error-text);
     }
   }
@@ -164,10 +167,12 @@ table.grid {
   }
 
   tr.bad-row th.name {
+    --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
   }
 
   td.bad {
+    --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
     font-weight: var(--cedar-font-weight-medium, 500);
   }

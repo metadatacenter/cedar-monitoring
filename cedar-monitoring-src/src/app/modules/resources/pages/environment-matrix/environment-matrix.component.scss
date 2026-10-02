@@ -31,11 +31,13 @@
 
   &.error {
     background: rgba(211, 47, 47, .1);
+    --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
   }
 
   &.warn {
     background: rgba(245, 158, 11, .12);
+    --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
   }
 }
@@ -176,6 +178,7 @@ table.matrix {
   }
 
   td.decl-cell.declared {
+    --cedar-icon-color: var(--cedar-status-success-text);
     color: var(--cedar-status-success-text);
   }
 
@@ -191,10 +194,12 @@ table.matrix {
     color: #98a2b3;
 
     &.warn {
+      --cedar-icon-color: var(--cedar-status-warning-text);
       color: var(--cedar-status-warning-text);
     }
 
     &.bad {
+      --cedar-icon-color: var(--cedar-status-error-text);
       color: var(--cedar-status-error-text);
     }
   }
@@ -209,6 +214,7 @@ table.matrix {
 }
 
 .cell-unset {
+  --cedar-icon-color: var(--cedar-status-error-text);
   color: var(--cedar-status-error-text);
   font-weight: var(--cedar-font-weight-medium, 500);
   background: rgba(211, 47, 47, .06);
@@ -233,6 +239,7 @@ table.matrix {
 }
 
 .k-unset {
+  --cedar-icon-color: var(--cedar-status-error-text);
   color: var(--cedar-status-error-text);
   font-weight: var(--cedar-font-weight-medium, 500);
 }
@@ -326,6 +333,7 @@ table.matrix {
   }
 
   td.decl-cell.declared {
+    --cedar-icon-color: var(--cedar-status-success-text);
     color: var(--cedar-status-success-text);
     font-weight: var(--cedar-font-weight-medium, 500);
   }
@@ -343,6 +351,7 @@ table.matrix {
     padding: 3px 8px;
     border-radius: 6px;
     background: rgba(245, 158, 11, .12);
+    --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
     border: 1px solid #f5cf94;
 
