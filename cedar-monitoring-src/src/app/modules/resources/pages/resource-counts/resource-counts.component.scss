@@ -23,33 +23,33 @@
   max-width: 980px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: var(--cedar-space-6);
 }
 
 // The page's own verdict, so that "nothing to act on here" is something it says rather than
 // something the reader has to work out from eight rows of numbers.
 .drift-summary {
-  padding: 10px 14px;
-  border-radius: 8px;
+  padding: var(--cedar-space-2) var(--cedar-space-3);
+  border-radius: var(--cedar-radius);
   margin: 0 0 var(--cedar-space-3);
-  font-size: 13px;
+  font-size: var(--cedar-font-size);
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 10px;
+  gap: var(--cedar-space-1) var(--cedar-space-2);
   align-items: baseline;
 
   &.ok {
-    background: rgba(16, 137, 62, .08);
-    color: #0f7a38;
+    background: var(--cedar-status-success-surface);
+    color: var(--cedar-status-success-text);
   }
 
   &.unverified {
-    background: rgba(245, 158, 11, .1);
-    color: #92610a;
+    background: var(--cedar-status-warning-surface);
+    color: var(--cedar-status-warning-text);
   }
 
   &.drift {
-    background: rgba(211, 47, 47, .1);
+    background: var(--cedar-status-error-surface);
     --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
   }
@@ -67,14 +67,12 @@
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2px;
 }
 
 .drift-caption {
-  font-size: 10px;
+  font-size: var(--cedar-font-size-small);
   text-transform: uppercase;
-  letter-spacing: .4px;
-  color: #98a2b3;
+  color: var(--cedar-text-muted);
   padding-left: var(--cedar-space-2);
 }
 
@@ -83,7 +81,7 @@
 // figure would hide whichever was smaller.
 .drift-chip {
   display: inline-block;
-  padding: 1px 8px;
+  padding: 0 var(--cedar-space-2);
   border-radius: var(--cedar-radius-pill);
   font-size: var(--cedar-font-size-small);
   font-variant-numeric: tabular-nums;
@@ -91,25 +89,25 @@
   cursor: help;
 
   &.ok {
-    background: rgba(16, 137, 62, .1);
-    color: #0f7a38;
+    background: var(--cedar-status-success-surface);
+    color: var(--cedar-status-success-text);
   }
 
   &.drift {
-    background: rgba(211, 47, 47, .12);
+    background: var(--cedar-status-error-surface);
     --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
-    font-weight: 600;
+    font-weight: var(--cedar-font-weight-medium, 500);
   }
 
   &.unverified {
-    background: rgba(245, 158, 11, .14);
-    color: #92610a;
+    background: var(--cedar-status-warning-surface);
+    color: var(--cedar-status-warning-text);
   }
 
   &.unavailable {
-    background: rgba(102, 112, 133, .14);
-    color: #667085;
+    background: var(--cedar-surface-subtle);
+    color: var(--cedar-text-muted);
   }
 }
 
@@ -117,32 +115,31 @@
 // it is the same kind of statement: there is no number here, and that is not a failure.
 .absent-chip {
   display: inline-block;
-  padding: 1px 8px;
+  padding: 0 var(--cedar-space-2);
   border-radius: var(--cedar-radius-pill);
   font-size: var(--cedar-font-size-small);
   white-space: nowrap;
-  background: rgba(102, 112, 133, .1);
-  color: #98a2b3;
+  background: var(--cedar-surface-subtle);
+  color: var(--cedar-text-muted);
   cursor: help;
 }
 
 .drift-none {
-  color: #98a2b3;
+  color: var(--cedar-text-muted);
   cursor: help;
 }
 
 // User home folders and system folders are subsets of the Folders row, not resource types beside
 // it. Indented and unnumbered so the Neo4j column is not read as a sum.
 .sub-row {
-  padding-left: 20px;
-  color: #475467;
+  padding-left: var(--cedar-space-6);
+  color: var(--cedar-text-muted);
 }
 
 .sub-marker {
-  color: #98a2b3;
-  font-size: 11px;
+  color: var(--cedar-text-muted);
+  font-size: var(--cedar-font-size-small);
   text-transform: uppercase;
-  letter-spacing: .4px;
-  margin-right: 6px;
+  margin-right: var(--cedar-space-2);
 }
 

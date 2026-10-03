@@ -6,9 +6,9 @@
 }
 
 .loader {
-  border: 4px solid #f3f3f3;
+  border: 4px solid var(--cedar-surface-subtle);
   border-radius: 50%;
-  border-top: 4px solid #555555;
+  border-top: 4px solid var(--cedar-text-muted);
   width: 24px;
   height: 24px;
   -webkit-animation: spin var(--cedar-motion-duration-spinner) linear infinite; /* Safari */

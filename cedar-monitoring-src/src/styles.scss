@@ -2,6 +2,7 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 @use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
+@use '@org.metadatacenter/cedar-design-tokens/controls';
 
 @use '@org.metadatacenter/cedar-design-tokens/fonts/regular';
 @use '@org.metadatacenter/cedar-design-tokens/fonts/medium';
@@ -58,18 +59,18 @@ body {
     // Enough movement to answer the pointer, not enough to shift what is being read beside it.
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, .16);
+      box-shadow: tokens.$shadow-dialog;
     }
 
     &:active {
       transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(0, 0, 0, .18);
+      box-shadow: tokens.$shadow-overlay;
     }
 
-    // These are links, so they answer the keyboard the way they answer the mouse.
+    // These are links, so they answer the keyboard the way they answer the mouse. The cards sit on
+    // the page's subtle surface, so the shared ring takes the theme colour.
     &:focus-visible {
-      outline: 2px solid mat.m2-get-color-from-palette(mat.$m2-indigo-palette, 400);
-      outline-offset: tokens.$focus-ring-offset;
+      @include controls.focus-ring;
     }
 
     // A card is one target; the subtitle should not look separately clickable inside it.

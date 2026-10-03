@@ -2,7 +2,7 @@
   min-width: 400px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: var(--cedar-space-6);
 }
 
 // A log database's table names and byte figures overflow a narrow window rather than wrapping into
@@ -21,11 +21,10 @@
   flex-wrap: wrap;
   gap: var(--cedar-space-2);
   align-items: baseline;
-  padding: 2px 0;
 }
 
 .unreachable {
-  color: #b00020;
+  color: var(--cedar-status-error-text);
 }
 
 .source-error {

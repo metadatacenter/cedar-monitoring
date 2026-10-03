@@ -1,3 +1,5 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 .wrapper-card {
   margin: var(--cedar-space-4);
 }
@@ -5,15 +7,14 @@
 .controls {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--cedar-space-2);
   flex-wrap: wrap;
   margin: var(--cedar-space-4) 0 var(--cedar-space-2);
 
   .lbl {
     font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
-    letter-spacing: .4px;
-    color: #667085;
+    color: var(--cedar-text-muted);
     font-weight: var(--cedar-font-weight-medium, 500);
     margin-right: var(--cedar-space-1);
   }
@@ -24,32 +25,19 @@
 }
 
 .banner {
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin: 10px 0;
-  font-size: var(--cedar-font-size);
-
-  &.loading {
-    background: rgba(14, 139, 163, .1);
-    color: #0e6b80;
-  }
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
 
   &.error {
-    background: rgba(211, 47, 47, .1);
-    --cedar-icon-color: var(--cedar-status-error-text);
-    color: var(--cedar-status-error-text);
+    @include patterns.notice-tone(error);
   }
 
   &.warn {
-    background: rgba(245, 158, 11, .12);
-    --cedar-icon-color: var(--cedar-status-warning-text);
-    color: var(--cedar-status-warning-text);
+    @include patterns.notice-tone(warning);
   }
 
   &.ok {
-    background: rgba(18, 183, 106, .1);
-    --cedar-icon-color: var(--cedar-status-success-text);
-    color: var(--cedar-status-success-text);
+    @include patterns.notice-tone(success);
   }
 
   code {
@@ -58,6 +46,6 @@
 }
 
 .placeholders {
-  margin: 6px 0 0;
-  padding-left: 20px;
+  margin: var(--cedar-space-2) 0 0;
+  padding-left: var(--cedar-space-6);
 }
