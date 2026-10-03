@@ -189,13 +189,6 @@
       "property": "height",
       "value": "14px",
       "count": 1
-    },
-    "f549257ed93d5f78f10e": {
-      "file": "cedar-monitoring-src/src/app/modules/shared/components/spinner/spinner.component.scss",
-      "rule": "geometry",
-      "property": "height",
-      "value": "24px",
-      "count": 1
     }
   },
   "exceptions": {},
