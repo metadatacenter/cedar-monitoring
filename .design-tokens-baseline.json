@@ -190,6 +190,13 @@
       "value": "rgba(245, 158, 11, .12)",
       "count": 1
     },
+    "11a9a6330f6cf047c6e1": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "motion",
+      "property": "transition",
+      "value": "width var(--cedar-motion-duration-normal) ease",
+      "count": 1
+    },
     "11c6cfa5c34401677be3": {
       "file": "cedar-monitoring-src/src/app/modules/shared/components/spinner/spinner.component.scss",
       "rule": "geometry",
@@ -582,6 +589,13 @@
       "value": "0 0 12px",
       "count": 1
     },
+    "301bbbe9ccd2e4d1067e": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
+      "rule": "geometry",
+      "property": "opacity",
+      "value": ".55",
+      "count": 1
+    },
     "303e5646a4b5ece9922c": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
       "rule": "spacing",
@@ -629,6 +643,13 @@
       "rule": "typography",
       "property": "font-size",
       "value": "16px",
+      "count": 1
+    },
+    "34c977e9df6ed57bb720": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
+      "rule": "geometry",
+      "property": "opacity",
+      "value": ".6",
       "count": 1
     },
     "350457184f06e65028ce": {
@@ -792,6 +813,13 @@
       "value": "8px 0 24px",
       "count": 1
     },
+    "421406ae6f9fdab944a7": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
+      "rule": "geometry",
+      "property": "opacity",
+      "value": ".6",
+      "count": 1
+    },
     "427d5f7b420fb1eab428": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
       "rule": "color",
@@ -930,6 +958,13 @@
       "rule": "spacing",
       "property": "margin-left",
       "value": "8px",
+      "count": 1
+    },
+    "4f3b7884261a8611f9b4": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.scss",
+      "rule": "motion",
+      "property": "transition",
+      "value": "width var(--cedar-motion-duration-normal) ease",
       "count": 1
     },
     "4f81c36e9ba00f99aa88": {
@@ -1142,6 +1177,13 @@
       "value": ".4px",
       "count": 2
     },
+    "5f71c49576142f1a0060": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/mysql-counts/mysql-counts.component.scss",
+      "rule": "geometry",
+      "property": "opacity",
+      "value": "0.75",
+      "count": 1
+    },
     "605329b3e0ef57c4b7e1": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
       "rule": "geometry",
@@ -1218,6 +1260,13 @@
       "property": "color",
       "value": "#475467",
       "count": 2
+    },
+    "651816fbbbd9840b29fe": {
+      "file": "cedar-monitoring-src/src/styles.scss",
+      "rule": "geometry",
+      "property": "outline",
+      "value": "2px solid mat.m2-get-color-from-palette(mat.$m2-indigo-palette, 400)",
+      "count": 1
     },
     "6544624ee7061bb5bd69": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
@@ -1651,6 +1700,13 @@
       "rule": "color",
       "property": "background",
       "value": "rgba(102, 112, 133, .1)",
+      "count": 1
+    },
+    "8aa0a8b627e25cde95b2": {
+      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
+      "rule": "geometry",
+      "property": "opacity",
+      "value": ".6",
       "count": 1
     },
     "8b95479aebece020c598": {
@@ -2962,6 +3018,13 @@
       "value": "16px 0 8px",
       "count": 1
     },
+    "f91166e0cc20df18f302": {
+      "file": "cedar-monitoring-src/src/styles.scss",
+      "rule": "geometry",
+      "property": "outline-offset",
+      "value": "2px",
+      "count": 1
+    },
     "f923f1fe066ed8f1408f": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.scss",
       "rule": "typography",
@@ -3020,5 +3083,5 @@
     }
   },
   "exceptions": {},
-  "policy": 2
+  "policy": 3
 }
