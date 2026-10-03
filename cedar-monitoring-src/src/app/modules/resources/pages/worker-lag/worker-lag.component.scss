@@ -42,7 +42,7 @@
   border: 1px solid transparent;
 
   .verdict-status {
-    font-size: var(--cedar-font-size-heading);
+    font-size: var(--cedar-font-size-large);
     font-weight: var(--cedar-font-weight-medium, 500);
   }
 
@@ -98,7 +98,7 @@
     }
 
     .tv {
-      font-size: var(--cedar-font-size-heading);
+      font-size: var(--cedar-font-size-large);
       font-weight: var(--cedar-font-weight-medium, 500);
       font-variant-numeric: tabular-nums;
 

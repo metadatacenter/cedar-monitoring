@@ -29,7 +29,7 @@ $typography: mat.m2-define-typography-config(
   $headline-3: -on-scale(headline-3, tokens.$font-size-artifact-title, tokens.$font-weight-medium),
   $headline-4: -on-scale(headline-4, tokens.$font-size-artifact-title, tokens.$font-weight-medium),
   $headline-5: -on-scale(headline-5, tokens.$font-size-artifact-title, tokens.$font-weight-medium),
-  $headline-6: -on-scale(headline-6, tokens.$font-size-heading, tokens.$font-weight-medium),
+  $headline-6: -on-scale(headline-6, tokens.$font-size-large, tokens.$font-weight-medium),
   $subtitle-1: -on-scale(subtitle-1, tokens.$font-size),
   $subtitle-2: -on-scale(subtitle-2, tokens.$font-size, tokens.$font-weight-medium),
   $body-1: -on-scale(body-1, tokens.$font-size),
@@ -165,13 +165,13 @@ button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) s
 // labels and the expansion chevron take the muted text colour. Table dividers take the rule colour.
 // The fill field sits on the subtle surface above the outline of an editable control.
 @include mat.card-overrides((
-  title-text-size: tokens.$font-size-heading,
+  title-text-size: tokens.$font-size-large,
   title-text-weight: tokens.$font-weight-medium,
   subtitle-text-size: tokens.$font-size,
   subtitle-text-color: tokens.$text-muted,
   elevated-container-elevation: tokens.$shadow-overlay,
 ));
-@include mat.toolbar-overrides((title-text-size: tokens.$font-size-heading, title-text-weight: tokens.$font-weight-medium));
+@include mat.toolbar-overrides((title-text-size: tokens.$font-size-large, title-text-weight: tokens.$font-weight-medium));
 @include mat.expansion-overrides((
   container-elevation-shadow: tokens.$shadow-overlay,
   header-description-color: tokens.$text-muted,
