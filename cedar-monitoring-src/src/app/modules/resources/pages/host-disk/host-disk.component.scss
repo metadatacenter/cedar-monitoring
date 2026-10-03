@@ -36,11 +36,9 @@
 h3.section {
   @include patterns.section-heading;
   margin: var(--cedar-space-6) 0 var(--cedar-space-2);
-  text-transform: uppercase;
 
   // The note stays at body size beside the larger heading.
   .sub {
-    text-transform: none;
     font-size: var(--cedar-font-size);
     font-weight: var(--cedar-font-weight-regular, 400);
     color: var(--cedar-text-muted);

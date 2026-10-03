@@ -300,7 +300,6 @@ table.values {
 h3.section {
   @include patterns.section-heading;
   margin: var(--cedar-space-6) 0 var(--cedar-space-1);
-  text-transform: uppercase;
 }
 
 // Declaration columns say something different from the value columns beside them, so the boundary
