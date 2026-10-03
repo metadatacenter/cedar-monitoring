@@ -57,35 +57,13 @@
           "anchor": "<mat-menu #menu=\"matMenu\">"
         }
       ],
-      "contract": "page",
+      "contract": "menu",
       "scenario": "user-menu",
       "selector": ".mat-mdc-menu-panel",
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the menu panel"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the menu panel"
-        },
-        {
-          "property": "font-size",
-          "value": "16px",
-          "reason": "Material's M2 body-1 size on menu item labels"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.5px",
-          "reason": "Material's M2 body-1 tracking (0.5px at 16px) on menu item labels"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.health-checks",

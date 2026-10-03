@@ -3,6 +3,7 @@
 @use '@angular/material' as mat;
 @use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
 @use '@org.metadatacenter/cedar-design-tokens/controls';
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
 
 @use '@org.metadatacenter/cedar-design-tokens/fonts/regular';
 @use '@org.metadatacenter/cedar-design-tokens/fonts/medium';
@@ -137,6 +138,27 @@ textarea.mat-mdc-input-element {
   resize: none;
 }
 
-.mat-mdc-menu-item mat-icon {
-  color: var(--cedar-color-primary);
+// A Material menu takes the shared menu text: the shared family at body size, regular weight, on
+// the control line height, in the theme colour. The roles resolve on the panel, so a theme set on a
+// menu reaches its labels. Material types the labels through its item tokens, which point at the
+// same roles here. It leaves the item button's family and line height to the browser, which would
+// draw Arial, so the button takes the recipe as well. The panel is the raised surface with the
+// shared corner and the overlay shadow, and the icon contract colours the icons.
+.mat-mdc-menu-panel {
+  @include patterns.menu-text;
+  @include mat.menu-overrides((
+    container-color: tokens.$surface-raised,
+    container-shape: tokens.$radius,
+    container-elevation-shadow: tokens.$shadow-overlay,
+    item-label-text-color: var(--cedar-color-primary),
+    item-label-text-font: var(--cedar-font-family),
+    item-label-text-size: var(--cedar-font-size),
+    item-label-text-weight: var(--cedar-font-weight-regular),
+    item-label-text-line-height: var(--cedar-control-line-height-default),
+    item-label-text-tracking: normal,
+  ));
+
+  .mat-mdc-menu-item {
+    @include patterns.menu-text;
+  }
 }
