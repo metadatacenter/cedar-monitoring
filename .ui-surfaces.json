@@ -23,29 +23,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the dashboard cards"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the dashboard cards"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.user-menu",
@@ -85,39 +63,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "background-color",
-          "value": "rgb(244, 67, 54)",
-          "reason": "Material's default M2 warn palette (red 500) on the errored-count raised button; the theme defines no warn palette"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the summary and service cards and the raised count buttons"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the summary and service cards and the raised count buttons"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.profile",
@@ -142,39 +88,9 @@
       "test": "browser/tests/surfaces.spec.mjs",
       "scaleDebt": [
         {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the profile card and its expansion panel"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the profile card and its expansion panel"
-        },
-        {
-          "property": "color",
-          "value": "rgba(0, 0, 0, 0.54)",
-          "reason": "Material's M2 secondary text colour (54% black) on the expansion panel descriptions"
-        },
-        {
           "property": "font-family",
           "value": "monospace",
           "reason": "A <code> in the card subtitle sits outside the page's monospace rule and keeps the browser's default monospace family"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
         }
       ]
     },
@@ -198,64 +114,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "background-color",
-          "value": "rgb(246, 246, 246)",
-          "reason": "Material's M2 fill-appearance container behind the resource id field"
-        },
-        {
-          "property": "border-color",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's M2 table row divider (12% black)"
-        },
-        {
-          "property": "border-color",
-          "value": "rgba(0, 0, 0, 0.54)",
-          "reason": "Material's M2 bottom line of the fill-appearance resource id field"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the lookup and result cards and the expansion panels"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the lookup and result cards and the expansion panels"
-        },
-        {
-          "property": "color",
-          "value": "rgba(0, 0, 0, 0.54)",
-          "reason": "Material's M2 secondary text colour (54% black) on the form field label"
-        },
-        {
-          "property": "font-size",
-          "value": "16px",
-          "reason": "Material's M2 body-1 size on the form field label"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles and table header cells"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, card titles and table cells"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.5px",
-          "reason": "Material's M2 body-1 tracking (0.5px at 16px) on the form field label"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.search-index",
@@ -277,64 +136,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "background-color",
-          "value": "color(srgb 0 0 0 / 0.104471)",
-          "reason": "Material's disabled raised-button container (12% of 87% black) while a rebuild runs"
-        },
-        {
-          "property": "background-color",
-          "value": "rgba(0, 0, 0, 0.54)",
-          "reason": "Material's state-layer colour on the disabled rebuild button, drawn at zero opacity"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised rebuild button"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised rebuild button"
-        },
-        {
-          "property": "color",
-          "value": "color(srgb 0 0 0 / 0.330824)",
-          "reason": "Material's disabled button label (38% of 87% black) while a rebuild runs"
-        },
-        {
-          "property": "font-face",
-          "value": "CEE Roboto 700 has no loaded face",
-          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of the page and phase headings"
-        },
-        {
-          "property": "font-size",
-          "value": "16.38px",
-          "reason": "The browser's default h3 size (1.17em of the 14px body) on the phase heading"
-        },
-        {
-          "property": "font-size",
-          "value": "21px",
-          "reason": "The browser's default h2 size (1.5em of the 14px body) on the page heading"
-        },
-        {
-          "property": "font-weight",
-          "value": "700",
-          "reason": "The page and phase headings keep the browser's bold; the shared scale has regular and medium weights only"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.queue-counts",
@@ -356,39 +158,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "border-color",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's M2 table row divider (12% black)"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles and table header cells"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, card titles and table cells"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.resource-counts",
@@ -410,39 +180,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "border-color",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's M2 table row divider (12% black)"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles and table header cells"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, the card title, and the table cells and chips inside them"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.opensearch-counts",
@@ -464,39 +202,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "border-color",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's M2 table row divider (12% black)"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles and table header cells"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, card titles and table cells"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.mysql-counts",
@@ -518,59 +224,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "border-color",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's M2 table row divider (12% black)"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
-        },
-        {
-          "property": "font-face",
-          "value": "CEE Roboto 700 has no loaded face",
-          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of the database headings"
-        },
-        {
-          "property": "font-size",
-          "value": "13.65px",
-          "reason": "The browser's default <small> size inside the 16.38px database headings"
-        },
-        {
-          "property": "font-size",
-          "value": "16.38px",
-          "reason": "The browser's default h3 size (1.17em of the 14px body) on the database headings"
-        },
-        {
-          "property": "font-weight",
-          "value": "700",
-          "reason": "The database headings keep the browser's bold; the shared scale has regular and medium weights only"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles and table header cells"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, card titles and table cells"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.logs-usage",
@@ -592,44 +246,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised range buttons"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised range buttons"
-        },
-        {
-          "property": "font-face",
-          "value": "CEE Roboto 700 has no loaded face",
-          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of the insight card headings"
-        },
-        {
-          "property": "font-weight",
-          "value": "700",
-          "reason": "The insight card headings keep the browser's bold; the shared scale has regular and medium weights only"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.logs-explorer",
@@ -657,21 +274,6 @@
           "property": "color",
           "value": "rgb(107, 79, 196)",
           "reason": "#6b4fc4, a categorical chart purple Monitoring keeps by policy, on POST in the method column"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
         }
       ]
     },
@@ -755,34 +357,9 @@
       "test": "browser/tests/surfaces.spec.mjs",
       "scaleDebt": [
         {
-          "property": "font-face",
-          "value": "CEE Roboto 700 has no loaded face",
-          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of table header cells"
-        },
-        {
           "property": "font-family",
           "value": "monospace",
           "reason": "A <code> in the repositories heading sits outside the page's monospace rule and keeps the browser's default monospace family"
-        },
-        {
-          "property": "font-weight",
-          "value": "700",
-          "reason": "Table header cells keep the browser's bold; the shared scale has regular and medium weights only"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
         }
       ]
     },
@@ -814,49 +391,9 @@
           "reason": "#6941c6, a categorical chart purple Monitoring keeps by policy, on masked secret values"
         },
         {
-          "property": "color",
-          "value": "rgba(0, 0, 0, 0.54)",
-          "reason": "Material's M2 secondary text colour (54% black) on the form field label"
-        },
-        {
-          "property": "font-face",
-          "value": "CEE Roboto 700 has no loaded face",
-          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of table header cells"
-        },
-        {
           "property": "font-family",
           "value": "monospace",
           "reason": "A <code> in the column notes sits outside the page's monospace rule and keeps the browser's default monospace family"
-        },
-        {
-          "property": "font-size",
-          "value": "16px",
-          "reason": "Material's M2 body-1 size on the form field label"
-        },
-        {
-          "property": "font-weight",
-          "value": "700",
-          "reason": "Table header cells keep the browser's bold; the shared scale has regular and medium weights only"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, the card title and checkbox labels"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.5px",
-          "reason": "Material's M2 body-1 tracking (0.5px at 16px) on the form field label"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
         }
       ]
     },
@@ -883,39 +420,9 @@
       "test": "browser/tests/surfaces.spec.mjs",
       "scaleDebt": [
         {
-          "property": "border-color",
-          "value": "rgba(0, 0, 0, 0.54)",
-          "reason": "Material's M2 expansion panel chevron, drawn as a border in secondary text colour"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised service buttons and the expansion panel"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised service buttons and the expansion panel"
-        },
-        {
           "property": "font-family",
           "value": "monospace",
           "reason": "A <code> in the card subtitle sits outside the page's monospace rule and keeps the browser's default monospace family"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
         }
       ]
     },
@@ -942,34 +449,9 @@
       "test": "browser/tests/surfaces.spec.mjs",
       "scaleDebt": [
         {
-          "property": "font-face",
-          "value": "CEE Roboto 700 has no loaded face",
-          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of table header cells"
-        },
-        {
           "property": "font-family",
           "value": "monospace",
           "reason": "A <code> in the card subtitle sits outside the page's monospace rule and keeps the browser's default monospace family"
-        },
-        {
-          "property": "font-weight",
-          "value": "700",
-          "reason": "Table header cells keep the browser's bold; the shared scale has regular and medium weights only"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, the card title and checkbox labels"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
         }
       ]
     },
@@ -993,34 +475,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "font-face",
-          "value": "CEE Roboto 700 has no loaded face",
-          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of table header cells"
-        },
-        {
-          "property": "font-weight",
-          "value": "700",
-          "reason": "Table header cells keep the browser's bold; the shared scale has regular and medium weights only"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, the card title and checkbox labels"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.host-disk",
@@ -1042,34 +497,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "font-face",
-          "value": "CEE Roboto 700 has no loaded face",
-          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of table header cells"
-        },
-        {
-          "property": "font-weight",
-          "value": "700",
-          "reason": "Table header cells keep the browser's bold; the shared scale has regular and medium weights only"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     }
   ]
 }

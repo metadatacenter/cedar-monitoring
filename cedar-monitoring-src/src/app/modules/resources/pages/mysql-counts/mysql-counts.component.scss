@@ -1,3 +1,5 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 .counts-card {
   min-width: 400px;
   margin-left: auto;
@@ -37,4 +39,14 @@
   font-size: var(--cedar-font-size-small);
   opacity: 0.75;
   margin-top: var(--cedar-space-1);
+}
+
+// A database's section heading. Its counts stay at body size beside it, as the notes beside Disk &
+// Logs' section headings do.
+h3 {
+  @include patterns.section-heading;
+
+  small {
+    font-size: var(--cedar-font-size);
+  }
 }
