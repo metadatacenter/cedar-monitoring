@@ -16,7 +16,7 @@ import {
  * (the keycloak-angular bearer interceptor attaches the token).
  *
  * One endpoint answers raw rows, aggregates and pattern queries, so new questions do not need new
- * services. The older LogExplorerService/LogUsageService remain for the fixed-shape pages.
+ * services. The older LogUsageService remains for the fixed-shape usage page.
  */
 @Injectable({
   providedIn: 'root'
