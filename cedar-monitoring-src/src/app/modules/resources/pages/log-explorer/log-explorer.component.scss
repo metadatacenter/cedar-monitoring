@@ -315,7 +315,7 @@ table.data {
     top: 50%;
     transform: translateY(-50%);
     font-size: var(--cedar-font-size-small);
-    line-height: 1;
+    line-height: var(--cedar-line-height-tight);
     color: var(--cedar-text-muted);
   }
 }

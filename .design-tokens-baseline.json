@@ -92,13 +92,6 @@
       "value": "150px",
       "count": 1
     },
-    "6b5db1114f0f04eb8da0": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
-      "rule": "typography",
-      "property": "line-height",
-      "value": "1",
-      "count": 1
-    },
     "7859d7ded863674537b9": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
       "rule": "geometry",
