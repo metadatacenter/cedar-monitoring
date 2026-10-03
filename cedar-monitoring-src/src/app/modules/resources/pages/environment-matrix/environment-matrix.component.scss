@@ -46,12 +46,12 @@
     min-width: 150px;
 
     &.bad {
-      border-color: var(--cedar-status-error-surface);
+      border-color: transparent;
       background: var(--cedar-status-error-surface);
     }
 
     &.warn {
-      border-color: var(--cedar-status-warning-surface);
+      border-color: transparent;
       background: var(--cedar-status-warning-surface);
     }
 
@@ -213,9 +213,9 @@ table.matrix {
   color: var(--cedar-text-muted);
 }
 
-// Undeclared is the faintest mark in the grid: it is drawn in the rule colour, not as text.
+// An undeclared cell draws no glyph. A glyph added later takes the quietest text colour.
 .cell-undeclared {
-  color: var(--cedar-border-rule);
+  color: var(--cedar-text-muted);
 }
 
 .cell-noanswer {
@@ -339,7 +339,7 @@ table.matrix {
     background: var(--cedar-status-warning-surface);
     --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
-    border: 1px solid var(--cedar-status-warning-surface);
+    border: 1px solid transparent;
 
     &.empty-value {
       opacity: .6;

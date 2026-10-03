@@ -52,21 +52,21 @@
 
   &.status-ok {
     background: var(--cedar-status-success-surface);
-    border-color: var(--cedar-status-success-surface);
+    border-color: transparent;
     --cedar-icon-color: var(--cedar-status-success-text);
     color: var(--cedar-status-success-text);
   }
 
   &.status-warn {
     background: var(--cedar-status-warning-surface);
-    border-color: var(--cedar-status-warning-surface);
+    border-color: transparent;
     --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
   }
 
   &.status-bad {
     background: var(--cedar-status-error-surface);
-    border-color: var(--cedar-status-error-surface);
+    border-color: transparent;
     --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
   }
