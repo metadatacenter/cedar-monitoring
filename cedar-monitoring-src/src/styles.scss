@@ -91,7 +91,7 @@ body {
     // Enough movement to answer the pointer, not enough to shift what is being read beside it.
     &:hover {
       transform: translateY(-3px);
-      box-shadow: tokens.$shadow-dialog;
+      box-shadow: tokens.$shadow-overlay;
     }
 
     &:active {
@@ -204,9 +204,9 @@ code {
 }
 @include mat.button-overrides((
   protected-container-elevation-shadow: tokens.$shadow-overlay,
-  protected-hover-container-elevation-shadow: tokens.$shadow-dialog,
-  protected-focus-container-elevation-shadow: tokens.$shadow-dialog,
-  protected-pressed-container-elevation-shadow: tokens.$shadow-dialog,
+  protected-hover-container-elevation-shadow: tokens.$shadow-overlay,
+  protected-focus-container-elevation-shadow: tokens.$shadow-overlay,
+  protected-pressed-container-elevation-shadow: tokens.$shadow-overlay,
   protected-disabled-container-elevation-shadow: none,
 ));
 

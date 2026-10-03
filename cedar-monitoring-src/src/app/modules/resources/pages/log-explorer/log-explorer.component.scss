@@ -469,7 +469,7 @@ pre.code {
 .tracepane {
   background: var(--cedar-surface-raised);
   border-radius: var(--cedar-radius);
-  box-shadow: var(--cedar-shadow-dialog);
+  box-shadow: var(--cedar-shadow-overlay);
   width: min(1100px, 100%);
   max-height: calc(100vh - 80px);
   overflow: auto;
