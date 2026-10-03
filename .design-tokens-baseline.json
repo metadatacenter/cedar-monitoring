@@ -666,13 +666,6 @@
       "value": "20px",
       "count": 1
     },
-    "3534bfd4106d97237b63": {
-      "file": "cedar-monitoring-src/src/styles/roboto.scss",
-      "rule": "typography",
-      "property": "font-weight",
-      "value": "400",
-      "count": 7
-    },
     "36c938810795bae558d8": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
       "rule": "color",
@@ -1345,13 +1338,6 @@
       "value": "10px 14px",
       "count": 1
     },
-    "6f88464618e925b44437": {
-      "file": "cedar-monitoring-src/src/styles/roboto.scss",
-      "rule": "typography",
-      "property": "font-weight",
-      "value": "300",
-      "count": 7
-    },
     "70241f492533f9649693": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
       "rule": "color",
@@ -1778,13 +1764,6 @@
       "property": "color",
       "value": "#b9750a",
       "count": 2
-    },
-    "906f158a95b7598d0c7b": {
-      "file": "cedar-monitoring-src/src/styles/roboto.scss",
-      "rule": "typography",
-      "property": "font-family",
-      "value": "'Roboto'",
-      "count": 21
     },
     "90e84de7cd8b015d4aab": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.scss",
@@ -2702,13 +2681,6 @@
       "property": "font-size",
       "value": "22px",
       "count": 1
-    },
-    "dd866d04f656380be40a": {
-      "file": "cedar-monitoring-src/src/styles/roboto.scss",
-      "rule": "typography",
-      "property": "font-weight",
-      "value": "500",
-      "count": 7
     },
     "ddf5267d0d4c611981ff": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",

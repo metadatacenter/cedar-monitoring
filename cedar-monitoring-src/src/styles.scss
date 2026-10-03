@@ -3,7 +3,8 @@
 @use '@angular/material' as mat;
 @use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
 
-@use 'styles/roboto';
+@use '@org.metadatacenter/cedar-design-tokens/fonts/regular';
+@use '@org.metadatacenter/cedar-design-tokens/fonts/medium';
 @include mat.core();
 @include mat.all-component-themes(mat.m2-define-light-theme((color: (primary: mat.m2-define-palette(tokens.$brand-primary), accent: mat.m2-define-palette(tokens.$brand-accent)), typography: mat.m2-define-typography-config($font-family: tokens.$font-family-string))));
 
