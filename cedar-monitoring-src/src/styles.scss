@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:math';
 @use '@org.metadatacenter/cedar-design-tokens/motion';
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
@@ -186,6 +187,17 @@ button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) s
   outlined-label-text-color: tokens.$text-muted,
   outlined-input-text-placeholder-color: tokens.$text-muted,
 ));
+// A floated label shrinks by Material's own factor, 0.75, which takes the 14px label to 10.5px,
+// below the smallest step of the scale. It shrinks to the small size instead. An outlined field
+// reads the factor from Material's property; a filled one writes 0.75 into its transform, which
+// therefore takes the property too. Material's stylesheet loads after this one and sets both on
+// selectors of the same weight, hence the body qualifier.
+body .mat-mdc-form-field {
+  --mat-mdc-form-field-floating-label-scale: #{math.div(tokens.$font-size-small, tokens.$font-size)};
+}
+body .mdc-text-field--filled .mdc-floating-label--float-above {
+  transform: translateY(-106%) scale(var(--mat-mdc-form-field-floating-label-scale));
+}
 @include mat.button-overrides((
   protected-container-elevation-shadow: tokens.$shadow-overlay,
   protected-hover-container-elevation-shadow: tokens.$shadow-dialog,
