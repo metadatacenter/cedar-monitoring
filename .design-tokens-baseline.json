@@ -2318,13 +2318,6 @@
       "value": "4px",
       "count": 1
     },
-    "bbf0c0a2b136eef0a7fb": {
-      "file": "cedar-monitoring-src/src/app/modules/shared/components/spinner/spinner.component.html",
-      "rule": "utility-style",
-      "property": "utility-style",
-      "value": "mr-2",
-      "count": 1
-    },
     "bcb0d7d3ad7e64e158f4": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.scss",
       "rule": "spacing",
