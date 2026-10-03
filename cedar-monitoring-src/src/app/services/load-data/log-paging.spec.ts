@@ -72,7 +72,7 @@ describe('log listing services', () => {
       paging: {first: 'f', next: 'n'}, requests: []
     });
 
-    expect(received?.countCapped).toBeTrue();
+    expect(received?.countCapped).toBe(true);
     expect(received?.paging.last).toBeUndefined();
   });
 
