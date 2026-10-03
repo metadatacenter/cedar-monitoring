@@ -85,14 +85,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "font-family",
-          "value": "monospace",
-          "reason": "A <code> in the card subtitle sits outside the page's monospace rule and keeps the browser's default monospace family"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.resource-info",
@@ -354,14 +347,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "font-family",
-          "value": "monospace",
-          "reason": "A <code> in the repositories heading sits outside the page's monospace rule and keeps the browser's default monospace family"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.environment",
@@ -389,11 +375,6 @@
           "property": "color",
           "value": "rgb(105, 65, 198)",
           "reason": "#6941c6, a categorical chart purple Monitoring keeps by policy, on masked secret values"
-        },
-        {
-          "property": "font-family",
-          "value": "monospace",
-          "reason": "A <code> in the column notes sits outside the page's monospace rule and keeps the browser's default monospace family"
         }
       ]
     },
@@ -417,14 +398,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "font-family",
-          "value": "monospace",
-          "reason": "A <code> in the card subtitle sits outside the page's monospace rule and keeps the browser's default monospace family"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.jvm",
@@ -446,14 +420,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "font-family",
-          "value": "monospace",
-          "reason": "A <code> in the card subtitle sits outside the page's monospace rule and keeps the browser's default monospace family"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "monitoring.worker-lag",
