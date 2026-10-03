@@ -1,20 +1,6 @@
 {
   "schema": 1,
   "findings": {
-    "11c6cfa5c34401677be3": {
-      "file": "cedar-monitoring-src/src/app/modules/shared/components/spinner/spinner.component.scss",
-      "rule": "geometry",
-      "property": "z-index",
-      "value": "9010",
-      "count": 1
-    },
-    "1c4e7a319b4ad0f06c69": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
-      "rule": "geometry",
-      "property": "z-index",
-      "value": "1000",
-      "count": 1
-    },
     "228961475bfb5e2177a7": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
       "rule": "color",
@@ -133,13 +119,6 @@
       "property": "height",
       "value": "12px",
       "count": 2
-    },
-    "9788ac055939df1ac388": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
-      "rule": "geometry",
-      "property": "z-index",
-      "value": "900",
-      "count": 1
     },
     "a135fcfddb54691882d0": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",

@@ -462,7 +462,8 @@ pre.code {
   align-items: flex-start;
   justify-content: center;
   padding: var(--cedar-space-6);
-  z-index: 900;
+  // The trace overlay draws above the page and below the copy toast and Material's overlays.
+  z-index: var(--cedar-layer-menu);
 }
 
 .tracepane {
@@ -590,7 +591,7 @@ pre.code {
   padding: var(--cedar-space-2) var(--cedar-space-3);
   border-radius: var(--cedar-radius);
   box-shadow: var(--cedar-shadow-overlay);
-  z-index: 1000;
+  z-index: var(--cedar-layer-modal);
 }
 
 // Rollup-sourced values are histogram estimates. They are marked in two places — a badge on the
