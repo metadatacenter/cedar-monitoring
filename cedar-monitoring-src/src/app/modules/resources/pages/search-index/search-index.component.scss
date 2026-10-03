@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: var(--cedar-space-4);
 
   h2 { margin: 0; }
 }
@@ -15,8 +15,8 @@
 .status-line {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 16px 0 8px;
+  gap: var(--cedar-space-3);
+  margin: var(--cedar-space-4) 0 var(--cedar-space-2);
   flex-wrap: wrap;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .error-box {
-  margin: 12px 0;
+  margin: var(--cedar-space-3) 0;
   padding: 10px 14px;
   border-left: 4px solid #c62828;
   background: #fdecea;
@@ -52,11 +52,11 @@
 
 .kv {
   border-collapse: collapse;
-  margin: 8px 0 16px;
+  margin: var(--cedar-space-2) 0 var(--cedar-space-4);
 
   th, td {
     text-align: left;
-    padding: 4px 24px 4px 0;
+    padding: var(--cedar-space-1) var(--cedar-space-6) var(--cedar-space-1) 0;
     vertical-align: top;
   }
 
@@ -68,7 +68,7 @@
 }
 
 .progress-block {
-  margin-top: 8px;
+  margin-top: var(--cedar-space-2);
 
   h3 { margin-bottom: 0; }
 }
@@ -95,7 +95,7 @@
 
   th, td {
     text-align: left;
-    padding: 4px 24px 4px 0;
+    padding: var(--cedar-space-1) var(--cedar-space-6) var(--cedar-space-1) 0;
   }
 
   th {

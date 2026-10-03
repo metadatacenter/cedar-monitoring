@@ -1,13 +1,13 @@
 .wrapper-card {
-  margin: 16px;
+  margin: var(--cedar-space-4);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--cedar-space-4);
   flex-wrap: wrap;
-  margin: 16px 0 4px;
+  margin: var(--cedar-space-4) 0 var(--cedar-space-1);
 
   .search {
     width: 260px;
@@ -44,9 +44,9 @@
 
 .tiles {
   display: flex;
-  gap: 12px;
+  gap: var(--cedar-space-3);
   flex-wrap: wrap;
-  margin: 12px 0;
+  margin: var(--cedar-space-3) 0;
 
   .tile {
     border: 1px solid #e4e7ec;
@@ -112,7 +112,7 @@ table.matrix {
   // columns are as narrow as the glyph they carry, and a horizontal label cannot be.
   th.rot {
     height: 150px;
-    padding: 4px 0;
+    padding: var(--cedar-space-1) 0;
     vertical-align: bottom;
     background: #fafbfc;
     position: sticky;
@@ -134,7 +134,7 @@ table.matrix {
   th.name-col {
     position: sticky;
     left: 0;
-    background: #fff;
+    background: var(--cedar-surface-raised);
     z-index: 1;
     font-weight: var(--cedar-font-weight-medium, 500);
     border-right: 1px solid #e4e7ec;
@@ -292,7 +292,7 @@ table.values {
 }
 
 .empty {
-  padding: 16px;
+  padding: var(--cedar-space-4);
   color: #667085;
   font-size: var(--cedar-font-size);
 }
@@ -343,7 +343,7 @@ table.matrix {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 8px 0 4px;
+  margin: var(--cedar-space-2) 0 var(--cedar-space-1);
 
   .chip {
     font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
@@ -383,7 +383,7 @@ table.values {
       background: #fafbfc;
       border: 1px solid #e4e7ec;
       border-radius: 6px;
-      margin-bottom: 4px;
+      margin-bottom: var(--cedar-space-1);
     }
   }
 

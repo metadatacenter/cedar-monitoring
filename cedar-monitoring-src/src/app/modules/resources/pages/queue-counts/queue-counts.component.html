@@ -11,7 +11,7 @@
           unacknowledged; dead-letter is parked after repeated failures.
         </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content style="margin-top:16px">
+      <mat-card-content style="margin-top: var(--cedar-space-4)">
         <table mat-table [dataSource]="dataSource">
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

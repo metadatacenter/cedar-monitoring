@@ -1,12 +1,12 @@
 .wrapper-card {
-  margin: 16px;
+  margin: var(--cedar-space-4);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 16px 0 4px;
+  gap: var(--cedar-space-2);
+  margin: var(--cedar-space-4) 0 var(--cedar-space-1);
 
   .spacer {
     flex: 1;
@@ -45,9 +45,9 @@
 
 .tiles {
   display: flex;
-  gap: 12px;
+  gap: var(--cedar-space-3);
   flex-wrap: wrap;
-  margin: 12px 0 4px;
+  margin: var(--cedar-space-3) 0 var(--cedar-space-1);
 
   .tile {
     border: 1px solid #e4e7ec;
@@ -99,7 +99,7 @@ h3.section {
     letter-spacing: 0;
     font-weight: var(--cedar-font-weight-regular, 400);
     color: #667085;
-    margin-left: 8px;
+    margin-left: var(--cedar-space-2);
   }
 }
 
@@ -185,7 +185,7 @@ table.grid {
 }
 
 .empty {
-  padding: 16px;
+  padding: var(--cedar-space-4);
   color: #667085;
   font-size: var(--cedar-font-size);
 }

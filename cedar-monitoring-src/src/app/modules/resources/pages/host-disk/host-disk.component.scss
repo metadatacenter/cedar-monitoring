@@ -1,12 +1,12 @@
 .wrapper-card {
-  margin: 16px;
+  margin: var(--cedar-space-4);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 16px 0 4px;
+  gap: var(--cedar-space-2);
+  margin: var(--cedar-space-4) 0 var(--cedar-space-1);
 
   .spacer {
     flex: 1;
@@ -55,13 +55,13 @@ h3.section {
     letter-spacing: 0;
     font-weight: var(--cedar-font-weight-regular, 400);
     color: #667085;
-    margin-left: 8px;
+    margin-left: var(--cedar-space-2);
   }
 }
 
 .filesystems {
   display: flex;
-  gap: 12px;
+  gap: var(--cedar-space-3);
   flex-wrap: wrap;
 
   .fs {
@@ -76,7 +76,7 @@ h3.section {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 12px;
+    gap: var(--cedar-space-3);
   }
 
   .fs-path {
@@ -107,14 +107,14 @@ h3.section {
 
 .bar {
   height: 8px;
-  border-radius: 4px;
+  border-radius: var(--cedar-radius);
   background: #eef0f3;
   overflow: hidden;
-  margin-top: 8px;
+  margin-top: var(--cedar-space-2);
 
   .fill {
     height: 100%;
-    border-radius: 4px;
+    border-radius: var(--cedar-radius);
 
     &.bar-ok {
       background: #12b76a;
@@ -183,7 +183,7 @@ table.grid {
 }
 
 .empty {
-  padding: 16px;
+  padding: var(--cedar-space-4);
   color: #667085;
   font-size: var(--cedar-font-size);
 }

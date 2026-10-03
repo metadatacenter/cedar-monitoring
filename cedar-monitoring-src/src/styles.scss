@@ -29,8 +29,8 @@ body {
 
 .wrapper-card {
   background-color: $page-background !important;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: tokens.$space-4;
+  padding-bottom: tokens.$space-4;
   // A mat-card carries an elevation shadow. It drew an edge when the card was a lighter panel on a
   // white page; now that the card and the page are the same colour, all it leaves is a stray
   // horizontal rule under the last row of content.
@@ -48,11 +48,11 @@ body {
 
   .dash-card {
     cursor: pointer;
-    margin: 8px;
+    margin: tokens.$space-2;
     width: 340px;
     min-height: 150px;
     box-sizing: border-box;
-    padding-bottom: 8px;
+    padding-bottom: tokens.$space-2;
     transition: transform tokens.$motion-duration-fast tokens.$motion-ease-standard, box-shadow tokens.$motion-duration-fast tokens.$motion-ease-standard;
 
     // Enough movement to answer the pointer, not enough to shift what is being read beside it.
@@ -69,7 +69,7 @@ body {
     // These are links, so they answer the keyboard the way they answer the mouse.
     &:focus-visible {
       outline: 2px solid mat.m2-get-color-from-palette(mat.$m2-indigo-palette, 400);
-      outline-offset: 2px;
+      outline-offset: tokens.$focus-ring-offset;
     }
 
     // A card is one target; the subtitle should not look separately clickable inside it.

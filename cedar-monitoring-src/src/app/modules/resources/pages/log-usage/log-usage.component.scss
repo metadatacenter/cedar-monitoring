@@ -1,13 +1,13 @@
 .wrapper-card {
-  margin: 16px;
+  margin: var(--cedar-space-4);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--cedar-space-2);
   flex-wrap: wrap;
-  margin: 16px 0 8px;
+  margin: var(--cedar-space-4) 0 var(--cedar-space-2);
 
   .lbl {
     font-size: var(--cedar-font-size-small);
@@ -15,7 +15,7 @@
     letter-spacing: .4px;
     color: #667085;
     font-weight: var(--cedar-font-weight-medium, 500);
-    margin-right: 4px;
+    margin-right: var(--cedar-space-1);
   }
 
   .spacer {
@@ -50,13 +50,13 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
-  margin: 16px 0;
+  margin: var(--cedar-space-4) 0;
 
   .tile {
     border: 1px solid #e5e9ee;
     border-radius: 10px;
     padding: 14px 16px;
-    background: #fff;
+    background: var(--cedar-surface-raised);
 
     .tl {
       font-size: var(--cedar-font-size-small);
@@ -76,7 +76,7 @@
     .td {
       font-size: var(--cedar-font-size-small);
       color: #667085;
-      margin-top: 4px;
+      margin-top: var(--cedar-space-1);
     }
 
     &.err-warn .tv {
@@ -93,16 +93,16 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
-  margin: 8px 0 24px;
+  margin: var(--cedar-space-2) 0 var(--cedar-space-6);
 
   .ins-card {
     border: 1px solid #e5e9ee;
     border-radius: 10px;
     padding: 12px 14px;
-    background: #fff;
+    background: var(--cedar-surface-raised);
 
     h3 {
-      margin: 0 0 8px;
+      margin: 0 0 var(--cedar-space-2);
       font-size: var(--cedar-font-size);
     }
 
@@ -164,13 +164,13 @@ table.data {
     letter-spacing: .3px;
     color: #98a2b3;
     font-weight: var(--cedar-font-weight-medium, 500);
-    padding: 8px 12px;
+    padding: var(--cedar-space-2) var(--cedar-space-3);
     border-bottom: 1px solid #e5e9ee;
     white-space: nowrap;
   }
 
   td {
-    padding: 8px 12px;
+    padding: var(--cedar-space-2) var(--cedar-space-3);
     border-bottom: 1px solid #f0f2f5;
   }
 
@@ -187,7 +187,7 @@ table.data {
   .empty {
     text-align: center;
     color: #98a2b3;
-    padding: 24px;
+    padding: var(--cedar-space-6);
   }
 }
 
@@ -205,7 +205,7 @@ table.data {
   font-size: var(--cedar-font-size-small);
   background: rgba(14, 139, 163, .12);
   color: #0e6b80;
-  border-radius: 4px;
+  border-radius: var(--cedar-radius);
   padding: 1px 6px;
   margin-right: 6px;
 }

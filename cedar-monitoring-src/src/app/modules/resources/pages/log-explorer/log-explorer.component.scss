@@ -22,7 +22,7 @@
 // restyling every monitoring page.
 .wrapper-card {
   margin: 18px;
-  background-color: #fff !important;
+  background-color: var(--cedar-surface-raised) !important;
   border-radius: 14px !important;
   box-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 8px 24px -12px rgba(16, 24, 40, .12) !important;
   padding: 6px 10px 12px;
@@ -35,14 +35,14 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  padding: 12px 0 16px;
+  padding: var(--cedar-space-3) 0 var(--cedar-space-4);
 }
 
 .railgrp {
   font-size: var(--cedar-font-size-small);
   color: var(--ink-3);
   font-weight: var(--cedar-font-weight-medium, 500);
-  margin: 0 4px 0 12px;
+  margin: 0 var(--cedar-space-1) 0 var(--cedar-space-3);
 
   &:first-child {
     margin-left: 0;
@@ -53,9 +53,9 @@
   font: inherit;
   font-size: var(--cedar-font-size-small);
   padding: 5px 12px;
-  border-radius: 999px;
+  border-radius: var(--cedar-radius-pill);
   border: 1px solid var(--hair);
-  background: #fff;
+  background: var(--cedar-surface-raised);
   color: var(--ink-2);
   cursor: pointer;
 
@@ -67,7 +67,7 @@
   &.on {
     background: var(--accent);
     border-color: var(--accent);
-    color: #fff;
+    color: var(--cedar-color-on-primary);
   }
 }
 
@@ -88,7 +88,7 @@
 .controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--cedar-space-2);
   flex-wrap: wrap;
   padding: 14px 0;
   border-top: 1px solid var(--hair);
@@ -108,7 +108,7 @@
     padding: 6px 13px;
     border: 0;
     border-right: 1px solid var(--hair);
-    background: #fff;
+    background: var(--cedar-surface-raised);
     color: var(--ink-2);
     cursor: pointer;
 
@@ -135,7 +135,7 @@ select {
   padding: 6px 10px;
   border: 1px solid var(--hair);
   border-radius: 8px;
-  background: #fff;
+  background: var(--cedar-surface-raised);
   color: var(--ink);
 }
 
@@ -162,7 +162,7 @@ select {
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  margin: 0 0 8px;
+  margin: 0 0 var(--cedar-space-2);
 }
 
 .chip {
@@ -170,7 +170,7 @@ select {
   font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
   background: var(--accent-soft);
   color: var(--accent);
-  border-radius: 999px;
+  border-radius: var(--cedar-radius-pill);
   padding: 3px 6px 3px 10px;
 
   .x {
@@ -193,7 +193,7 @@ select {
 .bar {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--cedar-space-3);
   padding: 10px 2px 6px;
 
   .spacer {
@@ -273,7 +273,7 @@ table.data {
     position: sticky;
     top: 0;
     z-index: 2;
-    background: #fff;
+    background: var(--cedar-surface-raised);
     text-align: left;
     font-size: var(--cedar-font-size-small);
     font-weight: var(--cedar-font-weight-medium, 500);
@@ -471,7 +471,7 @@ table.data {
 pre.code {
   font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
   font-size: var(--cedar-font-size-small);
-  background: #fff;
+  background: var(--cedar-surface-raised);
   border: 1px solid var(--hair);
   border-radius: 8px;
   padding: 10px 12px;
@@ -503,7 +503,7 @@ pre.code {
 }
 
 .tracepane {
-  background: #fff;
+  background: var(--cedar-surface-raised);
   border-radius: 14px;
   box-shadow: 0 18px 50px -12px rgba(16, 24, 40, .35);
   width: min(1100px, 100%);
@@ -515,7 +515,7 @@ pre.code {
 .tracehead {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--cedar-space-3);
   margin-bottom: 14px;
 
   .tracetitle {
@@ -531,8 +531,8 @@ pre.code {
 .tiles {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: var(--cedar-space-2);
+  margin-bottom: var(--cedar-space-4);
 }
 
 .tile {

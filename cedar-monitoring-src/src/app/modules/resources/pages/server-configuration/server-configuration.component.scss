@@ -1,5 +1,5 @@
 .wrapper-card {
-  margin: 16px;
+  margin: var(--cedar-space-4);
 }
 
 .controls {
@@ -7,7 +7,7 @@
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
-  margin: 16px 0 8px;
+  margin: var(--cedar-space-4) 0 var(--cedar-space-2);
 
   .lbl {
     font-size: var(--cedar-font-size-small);
@@ -15,7 +15,7 @@
     letter-spacing: .4px;
     color: #667085;
     font-weight: var(--cedar-font-weight-medium, 500);
-    margin-right: 4px;
+    margin-right: var(--cedar-space-1);
   }
 
   .spacer {

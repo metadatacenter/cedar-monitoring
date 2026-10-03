@@ -31,7 +31,7 @@
 .drift-summary {
   padding: 10px 14px;
   border-radius: 8px;
-  margin: 0 0 12px;
+  margin: 0 0 var(--cedar-space-3);
   font-size: 13px;
   display: flex;
   flex-wrap: wrap;
@@ -58,7 +58,7 @@
 .drift-cell {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: var(--cedar-space-1);
   align-items: flex-start;
 }
 
@@ -75,7 +75,7 @@
   text-transform: uppercase;
   letter-spacing: .4px;
   color: #98a2b3;
-  padding-left: 8px;
+  padding-left: var(--cedar-space-2);
 }
 
 // One chip per check rather than a single number per row: a row can be in step with the search
@@ -84,8 +84,8 @@
 .drift-chip {
   display: inline-block;
   padding: 1px 8px;
-  border-radius: 999px;
-  font-size: 12px;
+  border-radius: var(--cedar-radius-pill);
+  font-size: var(--cedar-font-size-small);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
   cursor: help;
@@ -118,8 +118,8 @@
 .absent-chip {
   display: inline-block;
   padding: 1px 8px;
-  border-radius: 999px;
-  font-size: 12px;
+  border-radius: var(--cedar-radius-pill);
+  font-size: var(--cedar-font-size-small);
   white-space: nowrap;
   background: rgba(102, 112, 133, .1);
   color: #98a2b3;
