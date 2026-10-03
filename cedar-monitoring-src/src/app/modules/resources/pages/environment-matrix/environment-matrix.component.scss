@@ -319,7 +319,7 @@ h3.section {
 // Declaration columns say something different from the value columns beside them, so the boundary
 // between the two is drawn rather than left to the reader to infer from the header.
 table.matrix {
-  th.decl-col, td.decl-cell {
+  td.decl-cell {
     text-align: center;
     color: #667085;
   }

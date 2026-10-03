@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {DataHandlerDataStatus} from '../modules/shared/model/data-handler-data-status.model';
 import {DataStoreService} from './data-store.service';
-import {TranslateService} from '@ngx-translate/core';
 import {DataHandlerDataId} from '../modules/shared/model/data-handler-data-id.model';
 import {SpinnerService} from './spinner.service';
 import {HealthChecksService} from "./load-data/health-checks.service";
@@ -38,7 +37,6 @@ import {SearchIndexJobStatus} from "../shared/model/search-index-job-status.mode
 export class DataHandlerService {
 
   private dataIdMap: Map<string, DataHandlerDataStatus>;
-  private dataAvailable: boolean;
   private successCallback?: Function;
   private errorCallback?: Function;
   private preCallback: Function | null;
@@ -46,7 +44,6 @@ export class DataHandlerService {
   constructor(
     public dataStore: DataStoreService,
     public spinner: SpinnerService,
-    private translateService: TranslateService,
     private healthChecksService: HealthChecksService,
     private resourceIdLookupService: ResourceIdLookupService,
     private resourceReportUserService: ResourceReportUserService,
@@ -62,7 +59,6 @@ export class DataHandlerService {
     private mySqlCountsService: MySqlCountsService
   ) {
     this.dataIdMap = new Map<string, DataHandlerDataStatus>();
-    this.dataAvailable = false;
     this.successCallback = undefined;
     this.errorCallback = undefined;
     this.preCallback = null;
@@ -71,7 +67,6 @@ export class DataHandlerService {
   reset(): DataHandlerService {
     this.spinner.hide();
     this.dataIdMap.clear();
-    this.dataAvailable = false;
     this.successCallback = undefined;
     this.errorCallback = undefined;
     this.healthChecksService.reset();
@@ -104,7 +99,6 @@ export class DataHandlerService {
 
   load(successCallback?: Function, errorCallback?: Function) {
     this.spinner.show();
-    this.dataAvailable = false;
     this.successCallback = successCallback;
     this.errorCallback = errorCallback;
     this.dataIdMap.forEach((dataStatus: DataHandlerDataStatus) => {
@@ -353,12 +347,7 @@ export class DataHandlerService {
       if (this.successCallback != null) {
         this.successCallback();
       }
-      this.dataAvailable = true;
     }
-  }
-
-  public dataIsAvailable() {
-    return this.dataAvailable;
   }
 
 }

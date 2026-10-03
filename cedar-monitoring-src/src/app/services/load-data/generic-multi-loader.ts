@@ -36,7 +36,6 @@ export class GenericMultiLoaderService<T> extends AbstractDataLoaderService {
         .pipe(
           tap(data => {
             this.data.set(id, data);
-            return this.log('fetched data');
           })
         ));
       return this.observable.get(id) ?? null;

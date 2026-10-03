@@ -8,9 +8,7 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {HttpClient} from '@angular/common/http';
 import {UiService} from '../../../../services/ui.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {HealthCheck} from "../../../../shared/model/health-check.model";
 import {MicroservicesService} from "../../../../services/microservices.service";
 import {KeycloakService} from "keycloak-angular";
@@ -41,8 +39,6 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
     uiService: UiService,
-    private http: HttpClient,
-    private configService: AppConfigService,
     private microservicesService: MicroservicesService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);

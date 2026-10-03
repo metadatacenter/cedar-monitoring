@@ -16,7 +16,7 @@ export abstract class AbstractDataLoaderService {
   ) {
   }
 
-  protected handleError<T>(operation = 'operation', errorCallback?: Function, result?: T) {
+  protected handleError<T>(errorCallback?: Function, result?: T) {
     return (error: any): Observable<T> => {
 
       console.error(error);
@@ -28,17 +28,12 @@ export abstract class AbstractDataLoaderService {
         }
       }
 
-      this.log(`${operation} failed: ${error.message}`);
       if (errorCallback) {
         errorCallback(error);
       }
 
       return of(result as T);
     };
-  }
-
-  protected log(message: string) {
-    // console.log(this.constructor.name + `: ${message}`);
   }
 
   public notifyError(errorKey: string) {

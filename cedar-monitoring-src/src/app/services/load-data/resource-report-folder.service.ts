@@ -6,7 +6,6 @@ import {Router} from '@angular/router';
 import {SnotifyService} from 'ng-alt-snotify';
 import {TranslateService} from '@ngx-translate/core';
 import {GenericMultiLoaderService} from "./generic-multi-loader";
-import {ResourceReportUser} from "../../shared/model/resource-report-user.model";
 import {ResourceReportFolder} from "../../shared/model/resource-report-folder.model";
 
 @Injectable({

@@ -5,7 +5,6 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
@@ -52,8 +51,7 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
-    uiService: UiService,
-    private configService: AppConfigService
+    uiService: UiService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }

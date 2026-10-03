@@ -5,12 +5,10 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
 import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.model";
-import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-status.model";
 import {RedisQueueCounts} from "../../../../shared/model/redis-queue-counts.model";
 
 export interface ReportRow {
@@ -39,7 +37,6 @@ const REPORT: ReportRow[] = [
 export class QueueCountsComponent extends CedarPageComponent implements OnInit {
 
   public redisQueueCounts: RedisQueueCounts | undefined;
-  private redisQueueCountsStatus: number = 0;
 
   displayedColumns: string[] = ['position', 'name', 'value', 'processing', 'deadLetter'];
   dataSource = REPORT;
@@ -54,7 +51,6 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
     uiService: UiService,
-    private configService: AppConfigService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
@@ -65,7 +61,7 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
     this.dataHandler.reset();
     this.dataHandler
       .require(DataHandlerDataId.REDIS_QUEUE_COUNTS)
-      .load(() => this.queueCountsCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.queueCountsErrorCallback(error, dataStatus));
+      .load(() => this.queueCountsCallback(), () => this.queueCountsErrorCallback());
   }
 
   private queueCountsCallback() {
@@ -73,8 +69,7 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
     this.updateIdReportTable();
   }
 
-  private queueCountsErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
-    this.redisQueueCountsStatus = error.status;
+  private queueCountsErrorCallback() {
     this.updateIdReportTable();
   }
 

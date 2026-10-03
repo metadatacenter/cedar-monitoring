@@ -412,11 +412,6 @@ table.data {
   }
 }
 
-.tag {
-  font-size: var(--cedar-font-size-small);
-  color: var(--ink-3);
-}
-
 .mono {
   font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
   font-size: var(--cedar-font-size-small);
@@ -424,10 +419,6 @@ table.data {
 
 .muted {
   color: var(--ink-3);
-}
-
-.nowrap {
-  white-space: nowrap;
 }
 
 // Wide columns (path, handler, query text) are clipped so the columns to their right stay on screen.

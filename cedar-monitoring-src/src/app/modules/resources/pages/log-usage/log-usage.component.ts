@@ -31,10 +31,6 @@ export class LogUsageComponent implements OnInit {
   users: UserStat[] = [];
   insights?: Insights;
 
-  endpointColumns = ['endpoint', 'reqCount', 'errPct', 'p50', 'p95', 'max'];
-  cypherColumns = ['operation', 'execCount', 'p50', 'p95', 'max'];
-  userColumns = ['userId', 'auth', 'reqCount', 'errPct'];
-
   constructor(private svc: LogUsageService) {
   }
 

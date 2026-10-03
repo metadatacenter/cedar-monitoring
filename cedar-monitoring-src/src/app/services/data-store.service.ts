@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {LocalSettingsService} from './local-settings.service';
 import {HealthCheck} from "../shared/model/health-check.model";
 import {ResourceIdLookup} from "../shared/model/resource-id-lookup.model";
 import {ResourceReportUser} from "../shared/model/resource-report-user.model";
@@ -35,9 +34,7 @@ export class DataStoreService {
   private mySqlCounts: MySqlCounts;
   private searchIndexJobStatus: SearchIndexJobStatus;
 
-    constructor(
-    private localSettings: LocalSettingsService
-  ) {
+    constructor() {
     this.healthCheckMap = new Map<string, HealthCheck>();
     this.resourceIdLookupMap = new Map<string, ResourceIdLookup>();
     this.resourceReportUserMap = new Map<string, ResourceReportUser>();

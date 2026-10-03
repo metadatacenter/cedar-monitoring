@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {SpinnerService} from '../../../../services/spinner.service';
 
 @Component({
@@ -8,12 +8,9 @@ import {SpinnerService} from '../../../../services/spinner.service';
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class SpinnerComponent implements OnInit {
+export class SpinnerComponent {
 
   constructor(public spinnerService: SpinnerService) {
-  }
-
-  ngOnInit() {
   }
 
 }

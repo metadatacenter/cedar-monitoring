@@ -38,9 +38,8 @@ export class GenericSingleLoaderService<T> extends AbstractDataLoaderService {
         .pipe(
           tap(data => {
             this.data = data;
-            return this.log('fetched data');
           }),
-          catchError(this.handleError('getData', errorCallback, null))
+          catchError(this.handleError(errorCallback, null))
         );
       return this.observable;
     }

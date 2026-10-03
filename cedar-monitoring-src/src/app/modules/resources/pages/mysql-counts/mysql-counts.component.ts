@@ -5,12 +5,10 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
 import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.model";
-import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-status.model";
 import {MySqlCounts} from "../../../../shared/model/mysql-counts.model";
 import {MySqlTable} from "../../../../shared/model/mysql-table.model";
 
@@ -40,7 +38,6 @@ export class MySqlCountsComponent extends CedarPageComponent implements OnInit {
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
     uiService: UiService,
-    private configService: AppConfigService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
@@ -63,7 +60,7 @@ export class MySqlCountsComponent extends CedarPageComponent implements OnInit {
     this.dataHandler
       .requireId(DataHandlerDataId.MYSQL_COUNTS, exact ? 'exact' : 'approximate')
       .load(() => this.countsCallback(),
-        (error: any, dataStatus: DataHandlerDataStatus) => this.countsErrorCallback(error, dataStatus));
+        (error: any) => this.countsErrorCallback(error));
   }
 
   private countsCallback() {
@@ -71,7 +68,7 @@ export class MySqlCountsComponent extends CedarPageComponent implements OnInit {
     this.loadStatus = 0;
   }
 
-  private countsErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
+  private countsErrorCallback(error: any) {
     this.loadStatus = error.status;
   }
 

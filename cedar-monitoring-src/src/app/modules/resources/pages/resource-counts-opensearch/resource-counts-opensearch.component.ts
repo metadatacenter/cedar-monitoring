@@ -5,12 +5,10 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
 import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.model";
-import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-status.model";
 import {ResourceCountsOpensearchIndex} from "../../../../shared/model/resource-counts-opensearch-index.model";
 
 export interface ReportRow {
@@ -39,7 +37,6 @@ const REPORT: ReportRow[] = [
 export class ResourceCountsOpensearchComponent extends CedarPageComponent implements OnInit {
 
   public resourceCounts: ResourceCountsOpensearchIndex | undefined;
-  private resourceCountsStatus: number = 0;
 
   displayedColumns: string[] = ['position', 'name', 'searchIndex', 'recommenderIndex'];
   dataSource = REPORT;
@@ -54,7 +51,6 @@ export class ResourceCountsOpensearchComponent extends CedarPageComponent implem
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
     uiService: UiService,
-    private configService: AppConfigService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
@@ -65,7 +61,7 @@ export class ResourceCountsOpensearchComponent extends CedarPageComponent implem
     this.dataHandler.reset();
     this.dataHandler
       .require(DataHandlerDataId.RESOURCE_COUNTS_OPENSEARCH)
-      .load(() => this.resourceCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.resourceCountsErrorCallback(error, dataStatus));
+      .load(() => this.resourceCallback(), () => this.resourceCountsErrorCallback());
   }
 
   private resourceCallback() {
@@ -73,8 +69,7 @@ export class ResourceCountsOpensearchComponent extends CedarPageComponent implem
     this.updateIdReportTable();
   }
 
-  private resourceCountsErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
-    this.resourceCountsStatus = error.status;
+  private resourceCountsErrorCallback() {
     this.updateIdReportTable();
   }
 

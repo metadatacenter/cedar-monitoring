@@ -57,10 +57,6 @@ export class HostDiskComponent implements OnInit {
     return this.report?.logs?.files ?? [];
   }
 
-  get tightFilesystems(): FilesystemUsage[] {
-    return this.filesystems.filter(fs => fs.usedPercent >= DISK_WARNING_PERCENT);
-  }
-
   /**
    * Files large enough to be worth a look, and still being written to.
    *
