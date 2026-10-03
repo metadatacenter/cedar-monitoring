@@ -1,0 +1,34 @@
+{
+  "neo4j": {
+    "user": 3102,
+    "group": 41,
+    "category": 212,
+    "folder": 8035,
+    "userHomeFolder": 5659,
+    "systemFolder": 2,
+    "regularFolder": 2374,
+    "field": 20114,
+    "element": 9806,
+    "template": 4552,
+    "instance": 106423,
+    "all": 152285
+  },
+  "mongo": {
+    "field": 20114,
+    "element": 9806,
+    "template": 4552,
+    "instance": 106423
+  },
+  "keycloak": {
+    "user": 3388
+  },
+  "opensearch": {
+    "folder": 2374,
+    "field": 20114,
+    "element": 9806,
+    "template": 4552,
+    "instance": 106343,
+    "artifactTotal": 143189,
+    "recommenderTotal": 141233
+  }
+}

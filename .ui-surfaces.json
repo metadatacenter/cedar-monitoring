@@ -1,0 +1,1097 @@
+{
+  "schema": 1,
+  "repo": "cedar-monitoring",
+  "browserHelper": "browser/tests/surface-contracts.generated.mjs",
+  "surfaces": [
+    {
+      "id": "monitoring.dashboard",
+      "name": "Dashboard",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/app-routing.module.ts",
+          "anchor": "path: ''"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/shared/pages/dashboard/dashboard.component.ts",
+          "anchor": "export class DashboardComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "dashboard",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the dashboard cards"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the dashboard cards"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.user-menu",
+      "name": "User Menu",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/shared/components/header/header.component.html",
+          "anchor": "<mat-menu #menu=\"matMenu\">"
+        }
+      ],
+      "contract": "page",
+      "scenario": "user-menu",
+      "selector": ".mat-mdc-menu-panel",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the menu panel"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the menu panel"
+        },
+        {
+          "property": "font-size",
+          "value": "16px",
+          "reason": "Material's M2 body-1 size on menu item labels"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.5px",
+          "reason": "Material's M2 body-1 tracking (0.5px at 16px) on menu item labels"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.health-checks",
+      "name": "Health Checks",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'health-checks'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/health-checks/health-checks.component.ts",
+          "anchor": "export class HealthChecksComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "health-checks",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "background-color",
+          "value": "rgb(244, 67, 54)",
+          "reason": "Material's default M2 warn palette (red 500) on the errored-count raised button; the theme defines no warn palette"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the summary and service cards and the raised count buttons"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the summary and service cards and the raised count buttons"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.profile",
+      "name": "Profile",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'profile'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/profile/profile.component.ts",
+          "anchor": "export class ProfileComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "profile",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the profile card and its expansion panel"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the profile card and its expansion panel"
+        },
+        {
+          "property": "color",
+          "value": "rgba(0, 0, 0, 0.54)",
+          "reason": "Material's M2 secondary text colour (54% black) on the expansion panel descriptions"
+        },
+        {
+          "property": "font-family",
+          "value": "monospace",
+          "reason": "A <code> in the card subtitle sits outside the page's monospace rule and keeps the browser's default monospace family"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.resource-info",
+      "name": "Resource Info",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'resource-info'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-info/resource-info.component.ts",
+          "anchor": "export class ResourceInfoComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "resource-info",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "background-color",
+          "value": "rgb(246, 246, 246)",
+          "reason": "Material's M2 fill-appearance container behind the resource id field"
+        },
+        {
+          "property": "border-color",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "Material's M2 table row divider (12% black)"
+        },
+        {
+          "property": "border-color",
+          "value": "rgba(0, 0, 0, 0.54)",
+          "reason": "Material's M2 bottom line of the fill-appearance resource id field"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the lookup and result cards and the expansion panels"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the lookup and result cards and the expansion panels"
+        },
+        {
+          "property": "color",
+          "value": "rgba(0, 0, 0, 0.54)",
+          "reason": "Material's M2 secondary text colour (54% black) on the form field label"
+        },
+        {
+          "property": "font-size",
+          "value": "16px",
+          "reason": "Material's M2 body-1 size on the form field label"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles and table header cells"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, card titles and table cells"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.5px",
+          "reason": "Material's M2 body-1 tracking (0.5px at 16px) on the form field label"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.search-index",
+      "name": "Search Index",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'search-index'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.ts",
+          "anchor": "export class SearchIndexComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "search-index",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "background-color",
+          "value": "color(srgb 0 0 0 / 0.104471)",
+          "reason": "Material's disabled raised-button container (12% of 87% black) while a rebuild runs"
+        },
+        {
+          "property": "background-color",
+          "value": "rgba(0, 0, 0, 0.54)",
+          "reason": "Material's state-layer colour on the disabled rebuild button, drawn at zero opacity"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised rebuild button"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised rebuild button"
+        },
+        {
+          "property": "color",
+          "value": "color(srgb 0 0 0 / 0.330824)",
+          "reason": "Material's disabled button label (38% of 87% black) while a rebuild runs"
+        },
+        {
+          "property": "font-face",
+          "value": "CEE Roboto 700 has no loaded face",
+          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of the page and phase headings"
+        },
+        {
+          "property": "font-size",
+          "value": "16.38px",
+          "reason": "The browser's default h3 size (1.17em of the 14px body) on the phase heading"
+        },
+        {
+          "property": "font-size",
+          "value": "21px",
+          "reason": "The browser's default h2 size (1.5em of the 14px body) on the page heading"
+        },
+        {
+          "property": "font-weight",
+          "value": "700",
+          "reason": "The page and phase headings keep the browser's bold; the shared scale has regular and medium weights only"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.queue-counts",
+      "name": "Queue Counts",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'queue-counts'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/queue-counts/queue-counts.component.ts",
+          "anchor": "export class QueueCountsComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "queue-counts",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "border-color",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "Material's M2 table row divider (12% black)"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles and table header cells"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, card titles and table cells"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.resource-counts",
+      "name": "Resource Counts",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'resource-counts'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.ts",
+          "anchor": "export class ResourceCountsComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "resource-counts",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "border-color",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "Material's M2 table row divider (12% black)"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles and table header cells"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, the card title, and the table cells and chips inside them"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.opensearch-counts",
+      "name": "OpenSearch Counts",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'resource-counts/opensearch'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts-opensearch/resource-counts-opensearch.component.ts",
+          "anchor": "export class ResourceCountsOpensearchComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "opensearch-counts",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "border-color",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "Material's M2 table row divider (12% black)"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles and table header cells"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, card titles and table cells"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.mysql-counts",
+      "name": "MySQL Counts",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'mysql-counts'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/mysql-counts/mysql-counts.component.ts",
+          "anchor": "export class MySqlCountsComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "mysql-counts",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "border-color",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "Material's M2 table row divider (12% black)"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the counts card"
+        },
+        {
+          "property": "font-face",
+          "value": "CEE Roboto 700 has no loaded face",
+          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of the database headings"
+        },
+        {
+          "property": "font-size",
+          "value": "13.65px",
+          "reason": "The browser's default <small> size inside the 16.38px database headings"
+        },
+        {
+          "property": "font-size",
+          "value": "16.38px",
+          "reason": "The browser's default h3 size (1.17em of the 14px body) on the database headings"
+        },
+        {
+          "property": "font-weight",
+          "value": "700",
+          "reason": "The database headings keep the browser's bold; the shared scale has regular and medium weights only"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles and table header cells"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, card titles and table cells"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.logs-usage",
+      "name": "Logs & Usage",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'logs-usage'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.ts",
+          "anchor": "export class LogUsageComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "logs-usage",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised range buttons"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised range buttons"
+        },
+        {
+          "property": "font-face",
+          "value": "CEE Roboto 700 has no loaded face",
+          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of the insight card headings"
+        },
+        {
+          "property": "font-weight",
+          "value": "700",
+          "reason": "The insight card headings keep the browser's bold; the shared scale has regular and medium weights only"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.logs-explorer",
+      "name": "Live Log Explorer",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'logs-explorer'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.ts",
+          "anchor": "export class LogExplorerComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "logs-explorer",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "color",
+          "value": "rgb(107, 79, 196)",
+          "reason": "#6b4fc4, a categorical chart purple Monitoring keeps by policy, on POST in the method column"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.request-trace",
+      "name": "Request Trace",
+      "section": "Monitoring",
+      "parent": "monitoring.logs-explorer",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.html",
+          "anchor": "class=\"tracepane\""
+        }
+      ],
+      "contract": "dialog",
+      "scenario": "request-trace",
+      "selector": ".tracepane",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "background-color",
+          "value": "rgb(140, 116, 216)",
+          "reason": "#8c74d8, a categorical chart purple Monitoring keeps by policy, filling Cypher bars in the waterfall chart"
+        },
+        {
+          "property": "color",
+          "value": "rgb(107, 79, 196)",
+          "reason": "#6b4fc4, a categorical chart purple Monitoring keeps by policy, on the DB label of Cypher spans"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.copy-confirmation",
+      "name": "Copy Confirmation",
+      "section": "Monitoring",
+      "parent": "monitoring.logs-explorer",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.html",
+          "anchor": "<div class=\"toast\">"
+        }
+      ],
+      "contract": "page",
+      "scenario": "copy-confirmation",
+      "selector": ".toast",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "background-color",
+          "value": "rgb(33, 48, 63)",
+          "reason": "#21303f, the copy toast's dark background, which Monitoring keeps by policy"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.deploy",
+      "name": "Deploy",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'deploy'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.ts",
+          "anchor": "export class DeployMatrixComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "deploy",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "font-face",
+          "value": "CEE Roboto 700 has no loaded face",
+          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of table header cells"
+        },
+        {
+          "property": "font-family",
+          "value": "monospace",
+          "reason": "A <code> in the repositories heading sits outside the page's monospace rule and keeps the browser's default monospace family"
+        },
+        {
+          "property": "font-weight",
+          "value": "700",
+          "reason": "Table header cells keep the browser's bold; the shared scale has regular and medium weights only"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.environment",
+      "name": "Environment",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'environment'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.ts",
+          "anchor": "export class EnvironmentMatrixComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "environment",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "color",
+          "value": "rgb(105, 65, 198)",
+          "reason": "#6941c6, a categorical chart purple Monitoring keeps by policy, on masked secret values"
+        },
+        {
+          "property": "color",
+          "value": "rgba(0, 0, 0, 0.54)",
+          "reason": "Material's M2 secondary text colour (54% black) on the form field label"
+        },
+        {
+          "property": "font-face",
+          "value": "CEE Roboto 700 has no loaded face",
+          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of table header cells"
+        },
+        {
+          "property": "font-family",
+          "value": "monospace",
+          "reason": "A <code> in the column notes sits outside the page's monospace rule and keeps the browser's default monospace family"
+        },
+        {
+          "property": "font-size",
+          "value": "16px",
+          "reason": "Material's M2 body-1 size on the form field label"
+        },
+        {
+          "property": "font-weight",
+          "value": "700",
+          "reason": "Table header cells keep the browser's bold; the shared scale has regular and medium weights only"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, the card title and checkbox labels"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.5px",
+          "reason": "Material's M2 body-1 tracking (0.5px at 16px) on the form field label"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.configuration",
+      "name": "Configuration",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'configuration'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.ts",
+          "anchor": "export class ServerConfigurationComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "configuration",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "border-color",
+          "value": "rgba(0, 0, 0, 0.54)",
+          "reason": "Material's M2 expansion panel chevron, drawn as a border in secondary text colour"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised service buttons and the expansion panel"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "The umbra and penumbra layers of Material's M2 elevation shadow on the raised service buttons and the expansion panel"
+        },
+        {
+          "property": "font-family",
+          "value": "monospace",
+          "reason": "A <code> in the card subtitle sits outside the page's monospace rule and keeps the browser's default monospace family"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.jvm",
+      "name": "JVM",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'jvm'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.ts",
+          "anchor": "export class JvmInsightComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "jvm",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "font-face",
+          "value": "CEE Roboto 700 has no loaded face",
+          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of table header cells"
+        },
+        {
+          "property": "font-family",
+          "value": "monospace",
+          "reason": "A <code> in the card subtitle sits outside the page's monospace rule and keeps the browser's default monospace family"
+        },
+        {
+          "property": "font-weight",
+          "value": "700",
+          "reason": "Table header cells keep the browser's bold; the shared scale has regular and medium weights only"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, the card title and checkbox labels"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.worker-lag",
+      "name": "Worker Lag",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'worker-lag'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.ts",
+          "anchor": "export class WorkerLagComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "worker-lag",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "font-face",
+          "value": "CEE Roboto 700 has no loaded face",
+          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of table header cells"
+        },
+        {
+          "property": "font-weight",
+          "value": "700",
+          "reason": "Table header cells keep the browser's bold; the shared scale has regular and medium weights only"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link, the card title and checkbox labels"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.host-disk",
+      "name": "Disk & Logs",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'host-disk'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.ts",
+          "anchor": "export class HostDiskComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "host-disk",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "font-face",
+          "value": "CEE Roboto 700 has no loaded face",
+          "reason": "The build embeds the 400 and 500 CEE Roboto faces only, so the browser synthesizes the bold of table header cells"
+        },
+        {
+          "property": "font-weight",
+          "value": "700",
+          "reason": "Table header cells keep the browser's bold; the shared scale has regular and medium weights only"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 tracking (0.1px at 14px) on card subtitles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 title and body tracking (0.0125em at 20px, 0.0179em at 14px: 0.25px) on the header title link and card titles"
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button label tracking (0.0893em, 1.25px at 14px)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1220 @@
+{
+  "artifact": {
+    "application": "cedar-artifact-server",
+    "server": "artifact",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "localhost",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "mo****24",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "bridge": {
+    "application": "cedar-bridge-server",
+    "server": "bridge",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "group": {
+    "application": "cedar-group-server",
+    "server": "group",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "impex": {
+    "application": "cedar-impex-server",
+    "server": "impex",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "messaging": {
+    "application": "cedar-messaging-server",
+    "server": "messaging",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "monitor": {
+    "application": "cedar-monitor-server",
+    "server": "monitor",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "openview": {
+    "application": "cedar-openview-server",
+    "server": "openview",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "repo": {
+    "application": "cedar-repo-server",
+    "server": "repo",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "localhost",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "mo****24",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "resource": {
+    "application": "cedar-resource-server",
+    "server": "resource",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "localhost",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "mo****24",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "search-01.internal",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "schema": {
+    "application": "cedar-schema-server",
+    "server": "schema",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "terminology": {
+    "application": "cedar-terminology-server",
+    "server": "terminology",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "DECLARED_BUT_UNSET",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "user": {
+    "application": "cedar-user-server",
+    "server": "user",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "valuerecommender": {
+    "application": "cedar-valuerecommender-server",
+    "server": "valuerecommender",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "search-02.internal",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  },
+  "worker": {
+    "application": "cedar-worker-server",
+    "server": "worker",
+    "component": null,
+    "variables": [
+      {
+        "name": "CEDAR_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "metadatacenter.org",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "localhost",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_MONGO_APP_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "mo****24",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_BOLT_URL",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "bolt://localhost:7687",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_NEO4J_USER_PASSWORD",
+        "state": "SET",
+        "secure": true,
+        "type": "STRING",
+        "value": "ne****j7",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_HOST",
+        "state": "SET",
+        "secure": false,
+        "type": "STRING",
+        "value": "search-01.internal",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_BIOPORTAL_API_KEY",
+        "state": "NOT_DECLARED",
+        "secure": true,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "state": "SET",
+        "secure": false,
+        "type": "BOOLEAN",
+        "value": "true",
+        "presentInHostEnvironment": true
+      },
+      {
+        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "state": "NOT_DECLARED",
+        "secure": false,
+        "type": "STRING",
+        "value": null,
+        "presentInHostEnvironment": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "from": "2026-09-25T15:04:00Z",
+  "to": "2026-10-02T15:04:00Z",
+  "totals": {
+    "reqCount": 902441,
+    "errorCount": 13208,
+    "p50Nanos": 24000000,
+    "p95Nanos": 388000000,
+    "p99Nanos": 1420000000
+  },
+  "series": [
+    {
+      "hourUtc": "2026-10-02T09:00:00Z",
+      "reqCount": 5200,
+      "errorCount": 70
+    },
+    {
+      "hourUtc": "2026-10-02T10:00:00Z",
+      "reqCount": 5510,
+      "errorCount": 74
+    },
+    {
+      "hourUtc": "2026-10-02T11:00:00Z",
+      "reqCount": 5820,
+      "errorCount": 78
+    },
+    {
+      "hourUtc": "2026-10-02T12:00:00Z",
+      "reqCount": 6130,
+      "errorCount": 82
+    },
+    {
+      "hourUtc": "2026-10-02T13:00:00Z",
+      "reqCount": 6440,
+      "errorCount": 86
+    },
+    {
+      "hourUtc": "2026-10-02T14:00:00Z",
+      "reqCount": 6750,
+      "errorCount": 90
+    }
+  ]
+}

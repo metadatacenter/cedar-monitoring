@@ -1,0 +1,41 @@
+{
+  "request": {
+    "limit": 100,
+    "offset": 0
+  },
+  "totalCount": 3,
+  "currentOffset": 0,
+  "paging": {},
+  "statements": [
+    {
+      "operation": "READ",
+      "runnableHash": "3fa94c1e0b7d2a85",
+      "sample": "MATCH (f:Folder {@id: $id})-[:CONTAINS]->(r) RETURN r ORDER BY r.name SKIP $offset LIMIT $limit",
+      "execCount": 2904118,
+      "p50Nanos": 3000000,
+      "p95Nanos": 28000000,
+      "p99Nanos": 96000000,
+      "maxNanos": 2410000000
+    },
+    {
+      "operation": "READ",
+      "runnableHash": "b81d0e6a4c39f572",
+      "sample": "MATCH (u:User {@id: $userId})-[:MEMBEROF*0..1]->(g) RETURN g",
+      "execCount": 1204557,
+      "p50Nanos": 1000000,
+      "p95Nanos": 9000000,
+      "p99Nanos": 31000000,
+      "maxNanos": 840000000
+    },
+    {
+      "operation": "WRITE",
+      "runnableHash": "5c2e8f17ad904b36",
+      "sample": "MERGE (r:Resource {@id: $id}) SET r += $props RETURN r",
+      "execCount": 98204,
+      "p50Nanos": 6000000,
+      "p95Nanos": 48000000,
+      "p99Nanos": 140000000,
+      "maxNanos": 3920000000
+    }
+  ]
+}

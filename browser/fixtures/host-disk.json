@@ -1,0 +1,56 @@
+{
+  "scope": "app.metadatacenter.org (all of CEDAR)",
+  "cedarHome": "/srv/cedar",
+  "filesystems": [
+    {
+      "path": "/",
+      "totalBytes": 107374182400,
+      "usableBytes": 44023414784,
+      "usedPercent": 59
+    },
+    {
+      "path": "/srv",
+      "totalBytes": 536870912000,
+      "usableBytes": 88046829568,
+      "usedPercent": 83.6
+    },
+    {
+      "path": "/var",
+      "totalBytes": 4294967296,
+      "usableBytes": 322122547.2,
+      "usedPercent": 92.5
+    }
+  ],
+  "logs": {
+    "directory": "/srv/cedar/log",
+    "readable": true,
+    "fileCount": 61,
+    "totalBytes": 3650722201.6,
+    "files": [
+      {
+        "path": "/srv/cedar/log/cedar-worker-server.log",
+        "sizeBytes": 766509056,
+        "modifiedAt": "2026-10-02T15:03:58Z",
+        "ageDays": 0
+      },
+      {
+        "path": "/srv/cedar/log/cedar-resource-server.log",
+        "sizeBytes": 224395264,
+        "modifiedAt": "2026-10-02T15:04:02Z",
+        "ageDays": 0
+      },
+      {
+        "path": "/srv/cedar/log/cedar-terminology-server.log",
+        "sizeBytes": 100663296,
+        "modifiedAt": "2026-10-02T15:01:44Z",
+        "ageDays": 0
+      },
+      {
+        "path": "/srv/cedar/log/archive/cedar-resource-server-2026-09-01.log.gz",
+        "sizeBytes": 44040192,
+        "modifiedAt": "2026-09-02T00:00:03Z",
+        "ageDays": 30
+      }
+    ]
+  }
+}

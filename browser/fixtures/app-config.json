@@ -1,0 +1,6 @@
+{
+  "appUrl": "https://monitoring.metadatacenter.org/",
+  "apiUrl": "https://monitor.metadatacenter.org/",
+  "cedarUrl": "https://cedar.metadatacenter.org/",
+  "keycloakUrl": "https://auth.metadatacenter.org/"
+}

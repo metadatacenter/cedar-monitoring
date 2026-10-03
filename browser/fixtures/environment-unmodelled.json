@@ -1,0 +1,16 @@
+{
+  "scope": "app.metadatacenter.org (all of CEDAR)",
+  "note": "CEDAR_* variables the host sets that CedarEnvironmentVariable does not define. Values are withheld.",
+  "count": 3,
+  "variables": {
+    "CEDAR_DOCKER_NETWORK": {
+      "hasValue": true
+    },
+    "CEDAR_NGINX_CERT_DIR": {
+      "hasValue": true
+    },
+    "CEDAR_MONGO_INIT_FLAG": {
+      "hasValue": false
+    }
+  }
+}

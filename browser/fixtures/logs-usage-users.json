@@ -1,0 +1,32 @@
+{
+  "request": {
+    "limit": 100,
+    "offset": 0
+  },
+  "totalCount": 3,
+  "currentOffset": 0,
+  "paging": {},
+  "users": [
+    {
+      "userId": "https://metadatacenter.org/users/8a3c1f42-5e0b-4d7a-9c16-2b7e8f4d0a93",
+      "authSource": "apiKey",
+      "apiKeyHash": "0e4f8a1c9b3d7e52",
+      "reqCount": 288412,
+      "errorCount": 6032
+    },
+    {
+      "userId": "https://metadatacenter.org/users/1f6b9e24-7c3a-48d5-b0e2-9a4c6d8f1e37",
+      "authSource": "keycloak",
+      "apiKeyHash": "",
+      "reqCount": 94118,
+      "errorCount": 402
+    },
+    {
+      "userId": "https://metadatacenter.org/users/c4d72a19-0b8e-4f63-a5d1-7e3b9c2f6a08",
+      "authSource": "keycloak",
+      "apiKeyHash": "",
+      "reqCount": 41906,
+      "errorCount": 610
+    }
+  ]
+}

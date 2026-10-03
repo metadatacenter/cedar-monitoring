@@ -1,0 +1,49 @@
+{
+  "SEARCH": {
+    "jobId": "7d3f0a52-41e8-4c6b-9a2f-0e5d8c1b7a93",
+    "state": "RUNNING",
+    "command": "REGENERATE_SEARCH_INDEX",
+    "startedAt": "2026-10-02T13:40:00Z",
+    "finishedAt": null,
+    "deadlineAt": "2026-10-02T15:40:00Z",
+    "overdue": false,
+    "failure": null,
+    "progress": {
+      "phase": "INDEXING",
+      "phaseDescription": "Indexing each resource with its computed permissions",
+      "processed": 61204,
+      "total": 148930,
+      "percentComplete": 41.1,
+      "totalByType": {
+        "field": 20114,
+        "element": 9806,
+        "template": 4552,
+        "instance": 106423,
+        "folder": 8035
+      },
+      "processedByType": {
+        "field": 20114,
+        "element": 9806,
+        "template": 4552,
+        "instance": 26732,
+        "folder": 0
+      },
+      "startedAt": "2026-10-02T13:40:00Z",
+      "lastUpdatedAt": "2026-10-02T15:04:12Z",
+      "unitsPerSecond": 12.1,
+      "secondsRemaining": 7250,
+      "estimatedFinishAt": "2026-10-02T17:05:02Z"
+    }
+  },
+  "RULES": {
+    "jobId": null,
+    "state": "IDLE",
+    "command": null,
+    "startedAt": null,
+    "finishedAt": null,
+    "deadlineAt": null,
+    "overdue": false,
+    "failure": null,
+    "progress": null
+  }
+}

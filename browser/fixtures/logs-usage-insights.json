@@ -1,0 +1,104 @@
+{
+  "slowestCypher": [
+    {
+      "operation": "WRITE",
+      "runnableHash": "5c2e8f17ad904b36",
+      "sample": "MERGE (r:Resource {@id: $id}) SET r += $props RETURN r",
+      "execCount": 98204,
+      "p50Nanos": 6000000,
+      "p95Nanos": 48000000,
+      "p99Nanos": 140000000,
+      "maxNanos": 3920000000
+    },
+    {
+      "operation": "READ",
+      "runnableHash": "3fa94c1e0b7d2a85",
+      "sample": "MATCH (f:Folder {@id: $id})-[:CONTAINS]->(r) RETURN r ORDER BY r.name SKIP $offset LIMIT $limit",
+      "execCount": 2904118,
+      "p50Nanos": 3000000,
+      "p95Nanos": 28000000,
+      "p99Nanos": 96000000,
+      "maxNanos": 2410000000
+    }
+  ],
+  "slowestEndpoints": [
+    {
+      "component": "terminology",
+      "className": "IntegratedSearchResource",
+      "methodName": "integratedSearch",
+      "httpMethod": "POST",
+      "reqCount": 64320,
+      "errorCount": 412,
+      "p50Nanos": 212000000,
+      "p95Nanos": 1480000000,
+      "p99Nanos": 4020000000,
+      "maxNanos": 12600000000
+    },
+    {
+      "component": "artifact",
+      "className": "TemplateInstancesResource",
+      "methodName": "createTemplateInstance",
+      "httpMethod": "POST",
+      "reqCount": 21406,
+      "errorCount": 488,
+      "p50Nanos": 140000000,
+      "p95Nanos": 1260000000,
+      "p99Nanos": 3900000000,
+      "maxNanos": 18220000000
+    },
+    {
+      "component": "resource",
+      "className": "SearchResource",
+      "methodName": "search",
+      "httpMethod": "GET",
+      "reqCount": 188204,
+      "errorCount": 2911,
+      "p50Nanos": 96000000,
+      "p95Nanos": 870000000,
+      "p99Nanos": 2410000000,
+      "maxNanos": 31004000000
+    }
+  ],
+  "heaviestUsers": [
+    {
+      "userId": "https://metadatacenter.org/users/8a3c1f42-5e0b-4d7a-9c16-2b7e8f4d0a93",
+      "authSource": "apiKey",
+      "apiKeyHash": "0e4f8a1c9b3d7e52",
+      "reqCount": 288412,
+      "errorCount": 6032
+    },
+    {
+      "userId": "https://metadatacenter.org/users/1f6b9e24-7c3a-48d5-b0e2-9a4c6d8f1e37",
+      "authSource": "keycloak",
+      "apiKeyHash": "",
+      "reqCount": 94118,
+      "errorCount": 402
+    }
+  ],
+  "errorHotspots": [
+    {
+      "component": "artifact",
+      "className": "TemplateInstancesResource",
+      "methodName": "createTemplateInstance",
+      "httpMethod": "POST",
+      "reqCount": 21406,
+      "errorCount": 488,
+      "p50Nanos": 140000000,
+      "p95Nanos": 1260000000,
+      "p99Nanos": 3900000000,
+      "maxNanos": 18220000000
+    },
+    {
+      "component": "resource",
+      "className": "SearchResource",
+      "methodName": "search",
+      "httpMethod": "GET",
+      "reqCount": 188204,
+      "errorCount": 2911,
+      "p50Nanos": 96000000,
+      "p95Nanos": 870000000,
+      "p99Nanos": 2410000000,
+      "maxNanos": 31004000000
+    }
+  ]
+}

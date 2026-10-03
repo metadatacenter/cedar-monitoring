@@ -1,0 +1,72 @@
+{
+  "globalRequestId": "e2b7d4a1-9c6f-4b3e-8a5d-0f1c7e9b2d46",
+  "spans": [
+    {
+      "kind": "request",
+      "component": "artifact",
+      "label": "org.metadatacenter.cedar.artifact.resources.TemplateInstancesResource.createTemplateInstance",
+      "detail": "POST /template-instances",
+      "status": 201,
+      "startedAt": "2026-10-02T14:52:39.000Z",
+      "offsetMs": 0,
+      "durationMs": 182.7,
+      "localRequestId": "l-1"
+    },
+    {
+      "kind": "request",
+      "component": "repo",
+      "label": "org.metadatacenter.cedar.repo.resources.TemplatesResource.findTemplate",
+      "detail": "GET /templates/…",
+      "status": 200,
+      "startedAt": "2026-10-02T14:52:39.006Z",
+      "offsetMs": 6.1,
+      "durationMs": 22.4,
+      "localRequestId": "l-2"
+    },
+    {
+      "kind": "cypher",
+      "component": "artifact",
+      "label": "MERGE (r:Resource {@id: $id}) SET r += $props RETURN r",
+      "detail": "WRITE 5c2e8f17ad904b36",
+      "status": null,
+      "startedAt": "2026-10-02T14:52:39.031Z",
+      "offsetMs": 31.8,
+      "durationMs": 48.2,
+      "localRequestId": "l-1"
+    },
+    {
+      "kind": "request",
+      "component": "worker",
+      "label": "org.metadatacenter.cedar.worker.queue.SearchPermissionQueueProcessor.handle",
+      "detail": "search permission update",
+      "status": 200,
+      "startedAt": "2026-10-02T14:52:39.096Z",
+      "offsetMs": 96.4,
+      "durationMs": 61,
+      "localRequestId": "l-3"
+    },
+    {
+      "kind": "cypher",
+      "component": "worker",
+      "label": "MATCH (r:Resource {@id: $id})<-[:CONTAINS*]-(f) RETURN f",
+      "detail": "READ 3fa94c1e0b7d2a85",
+      "status": null,
+      "startedAt": "2026-10-02T14:52:39.101Z",
+      "offsetMs": 101.2,
+      "durationMs": 12.6,
+      "localRequestId": "l-3"
+    }
+  ],
+  "requestCount": 3,
+  "cypherCount": 2,
+  "componentCount": 3,
+  "handlerMs": 266.1,
+  "dbMs": 60.8,
+  "dbSharePct": 33.3,
+  "spanMs": 182.7,
+  "truncated": false,
+  "elapsedMs": 21,
+  "notes": [
+    "Handler time sums overlapping spans, so it can exceed wall time."
+  ]
+}

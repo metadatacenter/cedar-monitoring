@@ -1,0 +1,44 @@
+{
+  "neo4j": {
+    "artifact": {
+      "@id": "https://repo.metadatacenter.org/templates/a8f75474-ca14-4726-a071-acbfa9f8c466",
+      "schema:name": "Biosample",
+      "pav:version": "1.2.0",
+      "bibo:status": "bibo:published",
+      "ownedBy": "https://metadatacenter.org/users/1f6b9e24-7c3a-48d5-b0e2-9a4c6d8f1e37"
+    }
+  },
+  "opensearch": {
+    "document": {
+      "cid": "https://repo.metadatacenter.org/templates/a8f75474-ca14-4726-a071-acbfa9f8c466",
+      "info": {
+        "name": "Biosample",
+        "resourceType": "template",
+        "version": "1.2.0"
+      },
+      "summaryText": "Biosample"
+    }
+  },
+  "computed": {
+    "report": {
+      "@id": "https://repo.metadatacenter.org/templates/a8f75474-ca14-4726-a071-acbfa9f8c466",
+      "isLatestVersion": true,
+      "numberOfInstances": 214
+    },
+    "permissions": {
+      "canRead": true,
+      "canWrite": true,
+      "canDelete": false,
+      "canShare": true,
+      "canPublish": true
+    },
+    "materializedPermissions": {
+      "read": [
+        "g-everybody"
+      ],
+      "write": [
+        "u-1f6b9e24"
+      ]
+    }
+  }
+}

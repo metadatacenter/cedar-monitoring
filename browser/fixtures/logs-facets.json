@@ -1,0 +1,82 @@
+{
+  "component": {
+    "table": "request",
+    "column": "component",
+    "values": [
+      {
+        "value": "resource",
+        "count": 412018
+      },
+      {
+        "value": "artifact",
+        "count": 98204
+      },
+      {
+        "value": "terminology",
+        "count": 64320
+      }
+    ],
+    "truncated": false,
+    "elapsedMs": 6
+  },
+  "httpMethod": {
+    "table": "request",
+    "column": "httpMethod",
+    "values": [
+      {
+        "value": "GET",
+        "count": 701442
+      },
+      {
+        "value": "POST",
+        "count": 160337
+      },
+      {
+        "value": "PUT",
+        "count": 30118
+      },
+      {
+        "value": "DELETE",
+        "count": 10544
+      }
+    ],
+    "truncated": false,
+    "elapsedMs": 6
+  },
+  "statusClass": {
+    "table": "request",
+    "column": "statusClass",
+    "values": [
+      {
+        "value": "2xx",
+        "count": 871022
+      },
+      {
+        "value": "4xx",
+        "count": 18211
+      },
+      {
+        "value": "5xx",
+        "count": 13208
+      }
+    ],
+    "truncated": false,
+    "elapsedMs": 6
+  },
+  "authSource": {
+    "table": "request",
+    "column": "authSource",
+    "values": [
+      {
+        "value": "keycloak",
+        "count": 512904
+      },
+      {
+        "value": "apiKey",
+        "count": 389537
+      }
+    ],
+    "truncated": false,
+    "elapsedMs": 6
+  }
+}

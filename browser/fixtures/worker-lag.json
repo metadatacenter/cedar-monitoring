@@ -1,0 +1,28 @@
+{
+  "observedAt": "2026-10-02T15:04:20Z",
+  "appLogQueueDepth": 18432,
+  "tables": [
+    {
+      "table": "request",
+      "sqlTable": "log_request",
+      "newestAt": "2026-10-02T14:52:41Z",
+      "lagSeconds": 699
+    },
+    {
+      "table": "cypher",
+      "sqlTable": "log_cypher",
+      "newestAt": "2026-10-02T15:03:51Z",
+      "lagSeconds": 29
+    },
+    {
+      "table": "application",
+      "sqlTable": "log_application",
+      "newestAt": null,
+      "lagSeconds": null
+    }
+  ],
+  "worstLagSeconds": 699,
+  "status": "LAGGING",
+  "laggingAfterSeconds": 300,
+  "stalledAfterSeconds": 3600
+}

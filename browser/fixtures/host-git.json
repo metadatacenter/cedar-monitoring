@@ -1,0 +1,61 @@
+{
+  "scope": "app.metadatacenter.org (all of CEDAR)",
+  "cedarHome": "/srv/cedar",
+  "repositories": [
+    {
+      "repository": "cedar-parent",
+      "branch": "master",
+      "commit": "4f1c2a9e7b3d5c8f0a6e2d1b9c7f3e5a8d0b2c4e",
+      "committedAt": "2026-09-29T16:40:12Z",
+      "uncommittedFiles": 0,
+      "ahead": 0,
+      "behind": 0,
+      "upstream": "origin/master",
+      "error": null
+    },
+    {
+      "repository": "cedar-resource-server",
+      "branch": "master",
+      "commit": "9b2e7d4c1a8f3e6b0d5c2a9f7e4b1d8c3a6f0e2b",
+      "committedAt": "2026-09-29T16:52:31Z",
+      "uncommittedFiles": 2,
+      "ahead": 0,
+      "behind": 0,
+      "upstream": "origin/master",
+      "error": null
+    },
+    {
+      "repository": "cedar-monitor-server",
+      "branch": "master",
+      "commit": "c3a8f1e6b9d2c5a0f7e4b1d8c3a6f9e2b5d0c7a4",
+      "committedAt": "2026-09-29T17:01:05Z",
+      "uncommittedFiles": 0,
+      "ahead": 0,
+      "behind": 3,
+      "upstream": "origin/master",
+      "error": null
+    },
+    {
+      "repository": "cedar-openview-server",
+      "branch": "release/2.9.20",
+      "commit": "e7b4d1c8a5f2e9b6d3c0a7f4e1b8d5c2a9f6e3b0",
+      "committedAt": "2026-09-12T10:22:47Z",
+      "uncommittedFiles": 0,
+      "ahead": 0,
+      "behind": 0,
+      "upstream": "origin/release/2.9.20",
+      "error": null
+    },
+    {
+      "repository": "cedar-development",
+      "branch": "master",
+      "commit": "1d8c5a2f9e6b3d0c7a4f1e8b5d2c9a6f3e0b7d4c",
+      "committedAt": "2026-09-30T08:15:59Z",
+      "uncommittedFiles": 0,
+      "ahead": 1,
+      "behind": 0,
+      "upstream": "origin/master",
+      "error": null
+    }
+  ]
+}
