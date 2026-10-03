@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -44,7 +43,6 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
   private destroyed = false;
 
   constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -53,9 +51,9 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
     uiService: UiService,
-    private searchIndexService: SearchIndexService,
+    private searchIndexService: SearchIndexService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   override ngOnInit() {

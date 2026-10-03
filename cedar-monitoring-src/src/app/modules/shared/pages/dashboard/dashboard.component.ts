@@ -1,6 +1,5 @@
 import {CedarPageComponent} from '../../components/base/cedar-page-component.component';
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -19,7 +18,6 @@ import {UiService} from "../../../../services/ui.service";
 export class DashboardComponent extends CedarPageComponent implements OnInit {
 
   constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -27,9 +25,9 @@ export class DashboardComponent extends CedarPageComponent implements OnInit {
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
-    uiService: UiService,
+    uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   override ngOnInit() {

@@ -2,7 +2,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {CedarBase} from './cedar-base.component';
 import {ActivatedRoute, Router} from '@angular/router';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {KeycloakService} from "keycloak-angular";
@@ -19,7 +18,6 @@ export abstract class CedarPageComponent extends CedarBase {
   protected keycloakUserProfile: any;
 
   protected constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -29,7 +27,7 @@ export abstract class CedarPageComponent extends CedarBase {
     keycloak: KeycloakService,
     uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   ngOnInit() {

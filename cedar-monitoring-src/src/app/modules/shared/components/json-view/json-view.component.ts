@@ -4,7 +4,6 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {CedarBase} from '../base/cedar-base.component';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
@@ -24,7 +23,6 @@ export class JsonViewComponent extends CedarBase implements OnInit {
   @Input() subtitle: string = '';
 
   constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -32,9 +30,9 @@ export class JsonViewComponent extends CedarBase implements OnInit {
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
-    uiService: UiService,
+    uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   ngOnInit() {

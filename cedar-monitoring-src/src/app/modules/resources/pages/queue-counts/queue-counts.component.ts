@@ -1,5 +1,4 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -42,7 +41,6 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
   dataSource = REPORT;
 
   constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -50,9 +48,9 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
-    uiService: UiService,
+    uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   override ngOnInit() {

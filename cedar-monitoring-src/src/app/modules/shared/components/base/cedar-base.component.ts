@@ -3,7 +3,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {DatePipe} from '@angular/common';
 import {ActivatedRoute, NavigationExtras, Router, UrlTree} from '@angular/router';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {KeycloakService} from "keycloak-angular";
@@ -16,7 +15,6 @@ import {UiService} from "../../../../services/ui.service";
 })
 export abstract class CedarBase implements OnInit {
 
-  protected localSettings: LocalSettingsService;
   protected translateService: TranslateService;
   protected notify: SnotifyService;
   protected datePipe: DatePipe;
@@ -28,7 +26,6 @@ export abstract class CedarBase implements OnInit {
   protected uiService: UiService;
 
   protected constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -38,7 +35,6 @@ export abstract class CedarBase implements OnInit {
     keycloak: KeycloakService,
     uiService: UiService
   ) {
-    this.localSettings = localSettings;
     this.translateService = translateService;
     this.notify = notify;
     this.router = router;
