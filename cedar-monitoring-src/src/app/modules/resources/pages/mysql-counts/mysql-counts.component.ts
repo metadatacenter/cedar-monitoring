@@ -21,7 +21,8 @@ import {MySqlTable} from "../../../../shared/model/mysql-table.model";
 export class MySqlCountsComponent extends CedarPageComponent implements OnInit {
 
   public mySqlCounts: MySqlCounts | undefined;
-  public loadStatus: number = 0;
+  /** Why the report could not be loaded: its HTTP status, or that no answer came. */
+  public loadError: string | null = null;
   /** Whether the report on screen counted its rows or estimated them. */
   public exact: boolean = false;
 
@@ -54,6 +55,7 @@ export class MySqlCountsComponent extends CedarPageComponent implements OnInit {
   public load(exact: boolean) {
     this.exact = exact;
     this.mySqlCounts = undefined;
+    this.loadError = null;
     this.dataHandler.reset();
     this.dataHandler
       .requireId(DataHandlerDataId.MYSQL_COUNTS, exact ? 'exact' : 'approximate')
@@ -62,12 +64,13 @@ export class MySqlCountsComponent extends CedarPageComponent implements OnInit {
   }
 
   private countsCallback() {
+    // The data handler calls this once every request has settled, failed ones included.
+    if (this.loadError) return;
     this.mySqlCounts = this.dataStore.getMySqlCounts();
-    this.loadStatus = 0;
   }
 
   private countsErrorCallback(error: any) {
-    this.loadStatus = error.status;
+    this.loadError = error?.status ? `HTTP ${error.status}` : 'no answer';
   }
 
   /** The count to show for a table: the exact one when it was gathered, the estimate otherwise. */

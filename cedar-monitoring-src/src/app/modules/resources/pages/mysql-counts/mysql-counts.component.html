@@ -56,9 +56,9 @@
         </div>
       }
 
-      @if (loadStatus) {
+      @if (loadError) {
         <p>
-          <span class="unreachable">The report could not be loaded (HTTP {{loadStatus}}).</span>
+          <span class="unreachable">The report could not be loaded ({{loadError}}).</span>
         </p>
       }
 

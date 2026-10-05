@@ -1,3 +1,4 @@
+import {loadFailure} from '../../../shared/util/load-failure';
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
@@ -53,22 +54,27 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
     super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
+  /** Why the report could not be loaded, when it could not. */
+  public error: string | null = null;
+
   override ngOnInit() {
     super.ngOnInit();
     this.initDataHandler();
     this.dataHandler.reset();
     this.dataHandler
       .require(DataHandlerDataId.REDIS_QUEUE_COUNTS)
-      .load(() => this.queueCountsCallback(), () => this.queueCountsErrorCallback());
+      .load(() => this.queueCountsCallback(), (error: unknown) => this.queueCountsErrorCallback(error));
   }
 
   private queueCountsCallback() {
+    // The data handler calls this once every request has settled, failed ones included.
+    if (this.error) return;
     this.redisQueueCounts = this.dataStore.getRedisQueueCounts();
     this.updateIdReportTable();
   }
 
-  private queueCountsErrorCallback() {
-    this.updateIdReportTable();
+  private queueCountsErrorCallback(error: unknown) {
+    this.error = loadFailure('the queue counts', error);
   }
 
   private updateIdReportTable() {

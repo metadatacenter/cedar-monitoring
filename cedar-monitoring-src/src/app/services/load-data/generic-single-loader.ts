@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {catchError, tap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {RestApiUrlService} from '../rest-api-url.service';
 import {Router} from '@angular/router';
@@ -28,7 +28,7 @@ export class GenericSingleLoaderService<T> extends AbstractDataLoaderService {
     this.observable = null;
   }
 
-  getData(url: string, errorCallback?: Function): Observable<T | null> {
+  getData(url: string): Observable<T | null> {
     if (this.data) {
       return of(this.data);
     } else if (this.observable) {
@@ -39,7 +39,12 @@ export class GenericSingleLoaderService<T> extends AbstractDataLoaderService {
           tap(data => {
             this.data = data;
           }),
-          catchError(this.handleError(errorCallback, null))
+          // A failed request reaches the page as a failure. Answering it with null made it a success
+          // with no data, so the page drew an empty or placeholder report and said nothing.
+          catchError((error) => {
+            this.observable = null;
+            return throwError(() => error);
+          })
         );
       return this.observable;
     }

@@ -1,3 +1,4 @@
+import {loadFailure} from '../../../shared/util/load-failure';
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
@@ -58,6 +59,8 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
   public resourceIdToLookUp: string = '';
   public resourceIdLookupMap: Map<string, ResourceIdLookup> = new Map<string, ResourceIdLookup>();
   public resourceIdLookupStatusMap: Map<string, number> = new Map<string, number>();
+  /** Why the lookup or its report could not be loaded, when it could not. */
+  public error: string | null = null;
   public resourceReportStatusMap: Map<string, number> = new Map<string, number>();
 
   displayedColumns: string[] = ['position', 'name', 'value'];
@@ -85,6 +88,7 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
     this.initDataHandler();
     this.responseSuccess = undefined;
     this.responseResourceId = '';
+    this.error = null;
     this.responseResourceIdSource = '';
     this.responseResourceType = '';
     this.updateIdReportTable();
@@ -101,6 +105,8 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
   }
 
   private resourceIdLookedUpCallback() {
+    // The data handler calls this once every request has settled, failed ones included.
+    if (this.error) return;
     const v: any = this.dataStore.getResourceIdLookup(this.resourceIdToLookUp);
     this.responseSuccess = v['success'];
     if (v['resourceIdString']) {
@@ -127,6 +133,7 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
 
   private resourceIdLookUpErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.resourceIdLookupStatusMap.set(dataStatus.id, error.status);
+    this.error = loadFailure('the resource lookup', error);
   }
 
   private loadResourceReport() {
@@ -198,5 +205,6 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
 
   private resourceReportErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.resourceReportStatusMap.set(dataStatus.id, error.status);
+    this.error = loadFailure('the resource report', error);
   }
 }

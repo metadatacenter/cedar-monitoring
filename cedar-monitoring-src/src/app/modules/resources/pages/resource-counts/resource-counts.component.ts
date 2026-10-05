@@ -1,3 +1,4 @@
+import {loadFailure} from '../../../shared/util/load-failure';
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
@@ -114,22 +115,27 @@ export class ResourceCountsComponent extends CedarPageComponent implements OnIni
     super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
+  /** Why the report could not be loaded, when it could not. */
+  public error: string | null = null;
+
   override ngOnInit() {
     super.ngOnInit();
     this.initDataHandler();
     this.dataHandler.reset();
     this.dataHandler
       .require(DataHandlerDataId.RESOURCE_COUNTS)
-      .load(() => this.resourceCallback(), () => this.resourceCountsErrorCallback());
+      .load(() => this.resourceCallback(), (error: unknown) => this.resourceCountsErrorCallback(error));
   }
 
   private resourceCallback() {
+    // The data handler calls this once every request has settled, failed ones included.
+    if (this.error) return;
     this.resourceCounts = this.dataStore.getResourceCounts();
     this.updateIdReportTable();
   }
 
-  private resourceCountsErrorCallback() {
-    this.updateIdReportTable();
+  private resourceCountsErrorCallback(error: unknown) {
+    this.error = loadFailure('the resource counts', error);
   }
 
   private updateIdReportTable() {

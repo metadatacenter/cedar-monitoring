@@ -1,3 +1,5 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 .search-wrapper-card {
   min-width: 400px;
   max-width: 600px;
@@ -17,4 +19,13 @@
   margin-right: auto;
   margin-top: var(--cedar-space-4);
   margin-bottom: var(--cedar-space-4);
+}
+
+.banner {
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
+
+  &.error {
+    @include patterns.notice-tone(error);
+  }
 }

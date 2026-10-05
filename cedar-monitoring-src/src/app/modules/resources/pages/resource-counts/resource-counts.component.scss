@@ -1,3 +1,5 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 // Material sizes a card header's text block to its content, so the subtitle wrapped at roughly
 // three quarters of the card and left a ragged column of white space beside it. The subtitle is a
 // paragraph here rather than a few words, so it should use the width the card already has.
@@ -143,3 +145,11 @@
   margin-right: var(--cedar-space-2);
 }
 
+.banner {
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
+
+  &.error {
+    @include patterns.notice-tone(error);
+  }
+}

@@ -113,3 +113,12 @@
     border-bottom: 1px solid var(--cedar-border-rule);
   }
 }
+
+.banner {
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
+
+  &.error {
+    @include patterns.notice-tone(error);
+  }
+}

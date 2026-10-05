@@ -1,3 +1,5 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 .counts-card {
   min-width: 400px;
   // Three numeric columns rather than one since 2026-09-15: pending, processing, dead-letter.
@@ -14,4 +16,13 @@
   font-weight: var(--cedar-font-weight-medium, 500);
   --cedar-icon-color: var(--cedar-status-warning-text);
   color: var(--cedar-status-warning-text);
+}
+
+.banner {
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
+
+  &.error {
+    @include patterns.notice-tone(error);
+  }
 }
