@@ -68,8 +68,8 @@
           <h3>
             {{database.name}}
             <small>
-              &middot; {{database.tableCount}} tables
-              &middot; {{database.rowsExact !== null ? formatNumber(database.rowsExact) : '~' + formatNumber(database.rowsApproximate)}} rows
+              &middot; {{database.tableCount}} {{database.tableCount | noun: 'table'}}
+              &middot; {{database.rowsExact !== null ? formatNumber(database.rowsExact) : '~' + formatNumber(database.rowsApproximate)}} {{(database.rowsExact ?? database.rowsApproximate) | noun: 'row'}}
               &middot; {{formatBytes(database.totalBytes)}}
             </small>
           </h3>

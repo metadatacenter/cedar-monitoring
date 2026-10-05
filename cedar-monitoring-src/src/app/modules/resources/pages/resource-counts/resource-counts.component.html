@@ -22,9 +22,13 @@
         @if (totalChecks) {
           <div class="drift-summary" [ngClass]="summaryClass">
             @if (driftingChecks) {
-              <strong>{{ driftingChecks }} of {{ totalChecks }} cross-store checks in drift.</strong>
+              <strong>{{ driftingChecks }} of {{ totalChecks }} cross-store {{ totalChecks | noun: 'check' }} in drift.</strong>
             } @else {
-              <strong>All {{ totalChecks }} cross-store checks hold.</strong>
+              @if (totalChecks === 1) {
+                <strong>The cross-store check holds.</strong>
+              } @else {
+                <strong>All {{ totalChecks }} cross-store {{ totalChecks | noun: 'check' }} hold.</strong>
+              }
             }
             @if (unverifiedChecks) {
               <span>{{ unverifiedChecks }} cannot be settled from totals alone.</span>

@@ -58,7 +58,7 @@
       <h3 class="section">
         Largest log files
         @if (report.logs.readable) {
-          <span class="sub">{{ report.logs.fileCount }} files,
+          <span class="sub">{{ report.logs.fileCount }} {{ report.logs.fileCount | noun: 'file' }},
           {{ bytes(report.logs.totalBytes) }} total in {{ report.logs.directory }}</span>
         }
       </h3>

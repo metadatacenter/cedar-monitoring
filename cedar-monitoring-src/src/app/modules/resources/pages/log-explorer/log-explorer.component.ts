@@ -1,3 +1,4 @@
+import {noun} from '../../../shared/pipes/noun.pipe';
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LogQueryService} from '../../../../services/load-data/log-query.service';
@@ -539,7 +540,7 @@ export class LogExplorerComponent implements OnInit {
   copyTsv(): void {
     const head = this.columns.map(c => c.key).join('\t');
     const body = this.rows.map(r => this.columns.map(c => this.flat(r[c.key])).join('\t')).join('\n');
-    this.copyText(head + '\n' + body, `${this.rows.length} rows as TSV`);
+    this.copyText(head + '\n' + body, `${this.rows.length} ${noun(this.rows.length, 'row')} as TSV`);
   }
 
   downloadCsv(): void {

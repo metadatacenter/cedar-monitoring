@@ -42,7 +42,7 @@
         <div class="tile" [ngClass]="errClass(summary.totals.errorCount, summary.totals.reqCount)">
           <div class="tl">Error rate</div>
           <div class="tv">{{ errPct(summary.totals.errorCount, summary.totals.reqCount) | number:'1.2-2' }}%</div>
-          <div class="td">{{ fmtN(summary.totals.errorCount) }} errors</div>
+          <div class="td">{{ fmtN(summary.totals.errorCount) }} {{ summary.totals.errorCount | noun: 'error' }}</div>
         </div>
         <div class="tile">
           <div class="tl">p95 latency</div>
