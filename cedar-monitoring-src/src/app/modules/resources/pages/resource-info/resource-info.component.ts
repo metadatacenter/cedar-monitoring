@@ -18,6 +18,7 @@ import {ResourceReportTemplate} from "../../../../shared/model/resource-report-t
 import {ResourceReportInstance} from "../../../../shared/model/resource-report-instance.model";
 import {ResourceReportGroup} from "../../../../shared/model/resource-report-group.model";
 import {ResourceReportFolder} from "../../../../shared/model/resource-report-folder.model";
+import {storeView} from "../../../../shared/model/store-section.model";
 
 export interface ReportRow {
   position: number;
@@ -40,6 +41,8 @@ const ID_PARSING_REPORT: ReportRow[] = [
   standalone: false
 })
 export class ResourceInfoComponent extends CedarPageComponent implements OnInit {
+
+  protected readonly storeView = storeView;
 
 
   constructor(
