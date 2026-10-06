@@ -1,9 +1,11 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 .search-wrapper-card {
   min-width: 400px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 16px;
+  margin-top: var(--cedar-space-4);
 }
 
 .resource-id-form-field {
@@ -15,6 +17,15 @@
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin-top: var(--cedar-space-4);
+  margin-bottom: var(--cedar-space-4);
+}
+
+.banner {
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
+
+  &.error {
+    @include patterns.notice-tone(error);
+  }
 }

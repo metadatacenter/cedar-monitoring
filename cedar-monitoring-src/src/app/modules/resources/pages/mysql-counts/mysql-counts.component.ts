@@ -1,16 +1,13 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
 import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.model";
-import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-status.model";
 import {MySqlCounts} from "../../../../shared/model/mysql-counts.model";
 import {MySqlTable} from "../../../../shared/model/mysql-table.model";
 
@@ -24,14 +21,14 @@ import {MySqlTable} from "../../../../shared/model/mysql-table.model";
 export class MySqlCountsComponent extends CedarPageComponent implements OnInit {
 
   public mySqlCounts: MySqlCounts | undefined;
-  public loadStatus: number = 0;
+  /** Why the report could not be loaded: its HTTP status, or that no answer came. */
+  public loadError: string | null = null;
   /** Whether the report on screen counted its rows or estimated them. */
   public exact: boolean = false;
 
   displayedColumns: string[] = ['name', 'rows', 'data', 'index', 'total', 'free', 'engine', 'updated'];
 
   constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -39,10 +36,9 @@ export class MySqlCountsComponent extends CedarPageComponent implements OnInit {
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
-    uiService: UiService,
-    private configService: AppConfigService,
+    uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   override ngOnInit() {
@@ -59,20 +55,22 @@ export class MySqlCountsComponent extends CedarPageComponent implements OnInit {
   public load(exact: boolean) {
     this.exact = exact;
     this.mySqlCounts = undefined;
+    this.loadError = null;
     this.dataHandler.reset();
     this.dataHandler
       .requireId(DataHandlerDataId.MYSQL_COUNTS, exact ? 'exact' : 'approximate')
       .load(() => this.countsCallback(),
-        (error: any, dataStatus: DataHandlerDataStatus) => this.countsErrorCallback(error, dataStatus));
+        (error: any) => this.countsErrorCallback(error));
   }
 
   private countsCallback() {
+    // The data handler calls this once every request has settled, failed ones included.
+    if (this.loadError) return;
     this.mySqlCounts = this.dataStore.getMySqlCounts();
-    this.loadStatus = 0;
   }
 
-  private countsErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
-    this.loadStatus = error.status;
+  private countsErrorCallback(error: any) {
+    this.loadError = error?.status ? `HTTP ${error.status}` : 'no answer';
   }
 
   /** The count to show for a table: the exact one when it was gathered, the estimate otherwise. */

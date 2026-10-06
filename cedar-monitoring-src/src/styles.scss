@@ -1,11 +1,45 @@
+@use 'sass:map';
+@use 'sass:math';
 @use '@org.metadatacenter/cedar-design-tokens/motion';
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 @use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
+@use '@org.metadatacenter/cedar-design-tokens/controls';
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
 
-@use 'styles/roboto';
+@use '@org.metadatacenter/cedar-design-tokens/fonts/regular';
+@use '@org.metadatacenter/cedar-design-tokens/fonts/medium';
 @include mat.core();
-@include mat.all-component-themes(mat.m2-define-light-theme((color: (primary: mat.m2-define-palette(tokens.$brand-primary), accent: mat.m2-define-palette(tokens.$brand-accent)), typography: mat.m2-define-typography-config($font-family: tokens.$font-family-string))));
+
+// Material's M2 type levels on the shared scale. M2 tracks every level, from 0.1px on subtitles to
+// 1.25px on buttons, sets body text, form-field labels and menus at 16px, and draws its display
+// levels light. Each level here keeps Material's line height, so no Material component changes
+// height, and takes a shared size and weight with no tracking. Material's largest levels, which no
+// Monitoring page shows, take the title size.
+$-m2-levels: mat.m2-define-typography-config($font-family: tokens.$font-family-string);
+
+@function -on-scale($level, $size, $weight: tokens.$font-weight-regular) {
+  @return mat.m2-define-typography-level($size, map.get($-m2-levels, $level, line-height), $weight);
+}
+
+$typography: mat.m2-define-typography-config(
+  $font-family: tokens.$font-family-string,
+  $headline-1: -on-scale(headline-1, tokens.$font-size-artifact-title, tokens.$font-weight-medium),
+  $headline-2: -on-scale(headline-2, tokens.$font-size-artifact-title, tokens.$font-weight-medium),
+  $headline-3: -on-scale(headline-3, tokens.$font-size-artifact-title, tokens.$font-weight-medium),
+  $headline-4: -on-scale(headline-4, tokens.$font-size-artifact-title, tokens.$font-weight-medium),
+  $headline-5: -on-scale(headline-5, tokens.$font-size-artifact-title, tokens.$font-weight-medium),
+  $headline-6: -on-scale(headline-6, tokens.$font-size-large, tokens.$font-weight-medium),
+  $subtitle-1: -on-scale(subtitle-1, tokens.$font-size),
+  $subtitle-2: -on-scale(subtitle-2, tokens.$font-size, tokens.$font-weight-medium),
+  $body-1: -on-scale(body-1, tokens.$font-size),
+  $body-2: -on-scale(body-2, tokens.$font-size),
+  $caption: -on-scale(caption, tokens.$font-size-small),
+  $button: -on-scale(button, tokens.$font-size, tokens.$font-weight-medium),
+  $overline: -on-scale(overline, tokens.$font-size-small),
+);
+
+@include mat.all-component-themes(mat.m2-define-light-theme((color: (primary: mat.m2-define-palette(tokens.$brand-primary), accent: mat.m2-define-palette(tokens.$brand-accent)), typography: $typography)));
 
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
 @import '@org.metadatacenter/cedar-design-tokens/icon-contract.css';
@@ -28,8 +62,8 @@ body {
 
 .wrapper-card {
   background-color: $page-background !important;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: tokens.$space-4;
+  padding-bottom: tokens.$space-4;
   // A mat-card carries an elevation shadow. It drew an edge when the card was a lighter panel on a
   // white page; now that the card and the page are the same colour, all it leaves is a stray
   // horizontal rule under the last row of content.
@@ -47,28 +81,28 @@ body {
 
   .dash-card {
     cursor: pointer;
-    margin: 8px;
+    margin: tokens.$space-2;
     width: 340px;
     min-height: 150px;
     box-sizing: border-box;
-    padding-bottom: 8px;
+    padding-bottom: tokens.$space-2;
     transition: transform tokens.$motion-duration-fast tokens.$motion-ease-standard, box-shadow tokens.$motion-duration-fast tokens.$motion-ease-standard;
 
     // Enough movement to answer the pointer, not enough to shift what is being read beside it.
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, .16);
+      box-shadow: tokens.$shadow-overlay;
     }
 
     &:active {
       transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(0, 0, 0, .18);
+      box-shadow: tokens.$shadow-overlay;
     }
 
-    // These are links, so they answer the keyboard the way they answer the mouse.
+    // These are links, so they answer the keyboard the way they answer the mouse. The cards sit on
+    // the page's subtle surface, so the shared ring takes the theme colour.
     &:focus-visible {
-      outline: 2px solid mat.m2-get-color-from-palette(mat.$m2-indigo-palette, 400);
-      outline-offset: 2px;
+      @include controls.focus-ring;
     }
 
     // A card is one target; the subtitle should not look separately clickable inside it.
@@ -103,6 +137,12 @@ strong, b {
   font-weight: var(--cedar-font-weight-medium, 500);
 }
 
+// The browser draws headings and table header cells bold. The shared scale's heavier weight is
+// medium, and the build embeds no bold face, so the browser would synthesize one.
+h1, h2, h3, h4, h5, h6, th {
+  font-weight: var(--cedar-font-weight-medium, 500);
+}
+
 /* Shared SVG geometry and size; the surrounding control supplies its accessible name. */
 mat-icon.cedar-icon {
   width: var(--cedar-icon-size-default);
@@ -119,13 +159,76 @@ button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) s
 
 .mat-toolbar.mat-primary :focus-visible { outline-color: var(--cedar-color-on-primary); }
 
+// Material's M2 elevation shadows and greys on the shared roles. Cards, raised buttons and expansion
+// panels rest on the overlay shadow. A raised button still lifts onto the dialog shadow under the
+// pointer and on keyboard focus, as the dashboard cards do. Secondary text, placeholders, form-field
+// labels and the expansion chevron take the muted text colour. Table dividers take the rule colour.
+// The fill field sits on the subtle surface above the outline of an editable control.
 @include mat.card-overrides((
-  title-text-size: tokens.$font-size-heading,
+  title-text-size: tokens.$font-size-large,
   title-text-weight: tokens.$font-weight-medium,
   subtitle-text-size: tokens.$font-size,
   subtitle-text-color: tokens.$text-muted,
+  elevated-container-elevation: tokens.$shadow-overlay,
 ));
-@include mat.toolbar-overrides((title-text-size: tokens.$font-size-heading, title-text-weight: tokens.$font-weight-medium));
+@include mat.toolbar-overrides((title-text-size: tokens.$font-size-large, title-text-weight: tokens.$font-weight-medium));
+@include mat.expansion-overrides((
+  container-elevation-shadow: tokens.$shadow-overlay,
+  header-description-color: tokens.$text-muted,
+  header-indicator-color: tokens.$text-muted,
+));
+@include mat.table-overrides((row-item-outline-color: tokens.$border-rule));
+@include mat.form-field-overrides((
+  filled-container-color: tokens.$surface-subtle,
+  filled-label-text-color: tokens.$text-muted,
+  filled-hover-label-text-color: tokens.$text-muted,
+  filled-active-indicator-color: tokens.$control-border-default,
+  filled-input-text-placeholder-color: tokens.$text-muted,
+  outlined-label-text-color: tokens.$text-muted,
+  outlined-input-text-placeholder-color: tokens.$text-muted,
+));
+// A floated label shrinks by Material's own factor, 0.75, which takes the 14px label to 10.5px,
+// below the smallest step of the scale. It shrinks to the small size instead. An outlined field
+// reads the factor from Material's property; a filled one writes 0.75 into its transform, which
+// therefore takes the property too. Material's stylesheet loads after this one and sets both on
+// selectors of the same weight, hence the body qualifier.
+body .mat-mdc-form-field {
+  --mat-mdc-form-field-floating-label-scale: #{math.div(tokens.$font-size-small, tokens.$font-size)};
+}
+body .mdc-text-field--filled .mdc-floating-label--float-above {
+  transform: translateY(-106%) scale(var(--mat-mdc-form-field-floating-label-scale));
+}
+// A code element no component styles is set in the shared monospace face, not the browser's.
+code {
+  font-family: var(--cedar-font-family-monospace);
+}
+@include mat.button-overrides((
+  protected-container-elevation-shadow: tokens.$shadow-overlay,
+  protected-hover-container-elevation-shadow: tokens.$shadow-overlay,
+  protected-focus-container-elevation-shadow: tokens.$shadow-overlay,
+  protected-pressed-container-elevation-shadow: tokens.$shadow-overlay,
+  protected-disabled-container-elevation-shadow: none,
+));
+
+// The theme defines no warn palette, so Material fills a warn button with its default red. Here the
+// fill is the error status colour, under the white label of a filled action.
+.mat-mdc-raised-button.mat-warn {
+  @include mat.button-overrides((
+    protected-container-color: tokens.$status-error-text,
+    protected-label-text-color: tokens.$color-on-primary,
+  ));
+}
+
+// Material paints a disabled raised button in two greys of its own. A disabled primary action keeps
+// its colours instead, and the icon contract fades every disabled button by the shared disabled
+// opacity.
+.mat-mdc-raised-button.mat-primary {
+  @include mat.button-overrides((
+    protected-disabled-container-color: tokens.$color-primary,
+    protected-disabled-label-text-color: tokens.$color-on-primary,
+    protected-disabled-state-layer-color: tokens.$color-on-primary,
+  ));
+}
 
 @include motion.reduced-motion;
 
@@ -135,6 +238,31 @@ textarea.mat-mdc-input-element {
   resize: none;
 }
 
-.mat-mdc-menu-item mat-icon {
-  color: var(--cedar-color-primary);
+// A Material menu takes the shared menu text: the shared family at body size, regular weight, on
+// the control line height, in the theme colour. The roles resolve on the panel, so a theme set on a
+// menu reaches its labels. Material types the labels through its item tokens, which point at the
+// same roles here. It leaves the item button's family and line height to the browser, which would
+// draw Arial, so the button takes the recipe as well. The panel and its items take the shared menu
+// geometry too: a ruled surface with a small inset, and rows at the control height.
+.mat-mdc-menu-panel {
+  @include patterns.menu-surface;
+  @include mat.menu-overrides((
+    container-color: tokens.$surface-raised,
+    container-shape: tokens.$radius,
+    container-elevation-shadow: tokens.$shadow-overlay,
+    item-label-text-color: var(--cedar-color-primary),
+    item-label-text-font: var(--cedar-font-family),
+    item-label-text-size: var(--cedar-font-size),
+    item-label-text-weight: var(--cedar-font-weight-regular),
+    item-label-text-line-height: var(--cedar-control-line-height-default),
+    item-label-text-tracking: normal,
+  ));
+
+  .mat-mdc-menu-content {
+    padding: 0;
+  }
+
+  .mat-mdc-menu-item {
+    @include patterns.menu-item;
+  }
 }

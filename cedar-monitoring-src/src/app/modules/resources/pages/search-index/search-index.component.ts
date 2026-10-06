@@ -1,5 +1,5 @@
+import {loadFailure} from '../../../shared/util/load-failure';
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -44,7 +44,6 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
   private destroyed = false;
 
   constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -53,10 +52,15 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
     uiService: UiService,
-    private searchIndexService: SearchIndexService,
+    private searchIndexService: SearchIndexService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
+
+  /** Why the job status could not be read, while it cannot. */
+  public error: string | null = null;
+  /** Whether this poll's request failed, in which case the data handler calls both callbacks. */
+  private pollFailed = false;
 
   override ngOnInit() {
     super.ngOnInit();
@@ -79,6 +83,7 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
       clearTimeout(this.pollTimeout);
       this.pollTimeout = null;
     }
+    this.pollFailed = false;
     this.dataHandler.reset();
     this.dataHandler
       .require(DataHandlerDataId.SEARCH_INDEX_JOB_STATUS)
@@ -86,6 +91,10 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
   }
 
   private statusCallback() {
+    // The data handler calls this after a failed poll too. The failure has already scheduled the next
+    // poll, and clearing the error here would hide it.
+    if (this.pollFailed) return;
+    this.error = null;
     this.jobStatus = this.dataStore.getSearchIndexJobStatus();
     // Released only now. Clearing it when the POST returned left a gap in which the button was
     // enabled again while the status still said IDLE, so a second click was possible before the
@@ -94,7 +103,9 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
     this.scheduleNextPoll();
   }
 
-  private statusErrorCallback(_error: any, _dataStatus: DataHandlerDataStatus) {
+  private statusErrorCallback(error: any, _dataStatus: DataHandlerDataStatus) {
+    this.pollFailed = true;
+    this.error = loadFailure('the search index status', error);
     this.starting = false;
     this.scheduleNextPoll();
   }

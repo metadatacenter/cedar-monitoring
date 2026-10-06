@@ -1,12 +1,14 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 .wrapper-card {
-  margin: 16px;
+  margin: var(--cedar-space-4);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 16px 0 4px;
+  gap: var(--cedar-space-2);
+  margin: var(--cedar-space-4) 0 var(--cedar-space-1);
 
   .spacer {
     flex: 1;
@@ -14,60 +16,45 @@
 
   .note {
     font-size: var(--cedar-font-size-small);
-    color: #667085;
+    color: var(--cedar-text-muted);
   }
 }
 
 .banner {
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin: 10px 0;
-  font-size: var(--cedar-font-size);
-
-  &.loading {
-    background: rgba(14, 139, 163, .1);
-    color: #0e6b80;
-  }
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
 
   &.error {
-    background: rgba(211, 47, 47, .1);
-    --cedar-icon-color: var(--cedar-status-error-text);
-    color: var(--cedar-status-error-text);
+    @include patterns.notice-tone(error);
   }
 
   &.warn {
-    background: rgba(245, 158, 11, .12);
-    --cedar-icon-color: var(--cedar-status-warning-text);
-    color: var(--cedar-status-warning-text);
+    @include patterns.notice-tone(warning);
   }
 }
 
 h3.section {
-  margin: 22px 0 8px;
-  font-size: var(--cedar-font-size);
-  text-transform: uppercase;
-  letter-spacing: .4px;
-  color: #475467;
-  font-weight: var(--cedar-font-weight-medium, 500);
+  @include patterns.section-heading;
+  margin: var(--cedar-space-6) 0 var(--cedar-space-2);
 
+  // The note stays at body size beside the larger heading.
   .sub {
-    text-transform: none;
-    letter-spacing: 0;
+    font-size: var(--cedar-font-size);
     font-weight: var(--cedar-font-weight-regular, 400);
-    color: #667085;
-    margin-left: 8px;
+    color: var(--cedar-text-muted);
+    margin-left: var(--cedar-space-2);
   }
 }
 
 .filesystems {
   display: flex;
-  gap: 12px;
+  gap: var(--cedar-space-3);
   flex-wrap: wrap;
 
   .fs {
-    border: 1px solid #e4e7ec;
-    border-radius: 10px;
-    padding: 12px 14px;
+    border: 1px solid var(--cedar-border-rule);
+    border-radius: var(--cedar-radius);
+    padding: var(--cedar-space-3);
     min-width: 260px;
     flex: 1 1 260px;
   }
@@ -76,7 +63,7 @@ h3.section {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 12px;
+    gap: var(--cedar-space-3);
   }
 
   .fs-path {
@@ -88,7 +75,7 @@ h3.section {
   }
 
   .fs-pct {
-    font-size: 16px;
+    font-size: var(--cedar-font-size-large);
     font-weight: var(--cedar-font-weight-medium, 500);
     font-variant-numeric: tabular-nums;
 
@@ -100,40 +87,42 @@ h3.section {
 
   .fs-foot {
     font-size: var(--cedar-font-size-small);
-    color: #667085;
-    margin-top: 6px;
+    color: var(--cedar-text-muted);
+    margin-top: var(--cedar-space-2);
   }
 }
 
+// The track is drawn in the rule colour: the card sits on the page's subtle surface, which would
+// hide a track in that same colour.
 .bar {
   height: 8px;
-  border-radius: 4px;
-  background: #eef0f3;
+  border-radius: var(--cedar-radius);
+  background: var(--cedar-border-rule);
   overflow: hidden;
-  margin-top: 8px;
+  margin-top: var(--cedar-space-2);
 
   .fill {
     height: 100%;
-    border-radius: 4px;
+    border-radius: var(--cedar-radius);
 
     &.bar-ok {
-      background: #12b76a;
+      background: var(--cedar-status-success-text);
     }
 
     &.bar-warn {
-      background: #f59e0b;
+      background: var(--cedar-status-warning-text);
     }
 
     &.bar-bad {
-      background: #d32f2f;
+      background: var(--cedar-status-error-text);
     }
   }
 }
 
 .table-scroll {
   overflow-x: auto;
-  border: 1px solid #e4e7ec;
-  border-radius: 10px;
+  border: 1px solid var(--cedar-border-rule);
+  border-radius: var(--cedar-radius);
 }
 
 table.grid {
@@ -144,18 +133,17 @@ table.grid {
   font-variant-numeric: tabular-nums;
 
   th, td {
-    border-bottom: 1px solid #f0f1f4;
-    padding: 6px 10px;
+    border-bottom: 1px solid var(--cedar-border-rule);
+    padding: var(--cedar-space-2);
     text-align: left;
     white-space: nowrap;
   }
 
   thead th {
-    background: #fafbfc;
+    background: var(--cedar-surface-subtle);
     font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
-    letter-spacing: .3px;
-    color: #475467;
+    color: var(--cedar-text-muted);
   }
 
   th.name {
@@ -178,12 +166,12 @@ table.grid {
   }
 
   .dim {
-    color: #667085;
+    color: var(--cedar-text-muted);
   }
 }
 
 .empty {
-  padding: 16px;
-  color: #667085;
+  padding: var(--cedar-space-4);
+  color: var(--cedar-text-muted);
   font-size: var(--cedar-font-size);
 }

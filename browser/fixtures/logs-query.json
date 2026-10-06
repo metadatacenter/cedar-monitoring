@@ -1,0 +1,135 @@
+{
+  "columns": [
+    {
+      "key": "startedAt",
+      "label": "When",
+      "type": "TIMESTAMP"
+    },
+    {
+      "key": "component",
+      "label": "Component",
+      "type": "STRING"
+    },
+    {
+      "key": "httpMethod",
+      "label": "Method",
+      "type": "STRING"
+    },
+    {
+      "key": "status",
+      "label": "Status",
+      "type": "NUMBER"
+    },
+    {
+      "key": "path",
+      "label": "Path",
+      "type": "STRING"
+    },
+    {
+      "key": "handler",
+      "label": "Handler",
+      "type": "STRING"
+    },
+    {
+      "key": "handlerDuration",
+      "label": "Duration",
+      "type": "NANOS"
+    },
+    {
+      "key": "userId",
+      "label": "User",
+      "type": "STRING"
+    },
+    {
+      "key": "globalRequestId",
+      "label": "Request",
+      "type": "STRING"
+    },
+    {
+      "key": "errorPack",
+      "label": "Error",
+      "type": "TEXT"
+    }
+  ],
+  "rows": [
+    {
+      "startedAt": "2026-10-02T14:52:41Z",
+      "component": "resource",
+      "httpMethod": "GET",
+      "status": 200,
+      "path": "/folders/https%3A%2F%2Frepo.metadatacenter.org%2Ffolders%2F5f2c/contents",
+      "handler": "org.metadatacenter.cedar.resource.resources.FolderContentsResource.findFolderContents",
+      "handlerDuration": 41200000,
+      "userId": "https://metadatacenter.org/users/1f6b9e24-7c3a-48d5-b0e2-9a4c6d8f1e37",
+      "globalRequestId": "a9c4e1f7-3b8d-4e2a-9f6c-1d7b5e0a8c32",
+      "errorPack": null
+    },
+    {
+      "startedAt": "2026-10-02T14:52:39Z",
+      "component": "artifact",
+      "httpMethod": "POST",
+      "status": 201,
+      "path": "/template-instances",
+      "handler": "org.metadatacenter.cedar.artifact.resources.TemplateInstancesResource.createTemplateInstance",
+      "handlerDuration": 182700000,
+      "userId": "https://metadatacenter.org/users/8a3c1f42-5e0b-4d7a-9c16-2b7e8f4d0a93",
+      "globalRequestId": "e2b7d4a1-9c6f-4b3e-8a5d-0f1c7e9b2d46",
+      "errorPack": null
+    },
+    {
+      "startedAt": "2026-10-02T14:52:36Z",
+      "component": "resource",
+      "httpMethod": "PUT",
+      "status": 200,
+      "path": "/command/rename-resource",
+      "handler": "org.metadatacenter.cedar.resource.resources.CommandResource.renameResource",
+      "handlerDuration": 63000000,
+      "userId": "https://metadatacenter.org/users/c4d72a19-0b8e-4f63-a5d1-7e3b9c2f6a08",
+      "globalRequestId": "7f3a9e2c-1d5b-4c8e-b6a0-4e9d2f7c1b85",
+      "errorPack": null
+    },
+    {
+      "startedAt": "2026-10-02T14:52:31Z",
+      "component": "repo",
+      "httpMethod": "GET",
+      "status": 404,
+      "path": "/templates/https%3A%2F%2Frepo.metadatacenter.org%2Ftemplates%2F0000",
+      "handler": "org.metadatacenter.cedar.repo.resources.TemplatesResource.findTemplate",
+      "handlerDuration": 8400000,
+      "userId": "",
+      "globalRequestId": "c1e8b5d2-7a4f-4e9c-a3b6-2d0f8e5c9a17",
+      "errorPack": null
+    },
+    {
+      "startedAt": "2026-10-02T14:52:27Z",
+      "component": "terminology",
+      "httpMethod": "POST",
+      "status": 500,
+      "path": "/bioportal/integrated-search",
+      "handler": "org.metadatacenter.cedar.terminology.resources.IntegratedSearchResource.integratedSearch",
+      "handlerDuration": 1204900000,
+      "userId": "https://metadatacenter.org/users/1f6b9e24-7c3a-48d5-b0e2-9a4c6d8f1e37",
+      "globalRequestId": "4b9e2d7a-6c1f-4a8e-9d3b-5f0c2e7a1b94",
+      "errorPack": "{\"errorKey\":\"upstreamTimeout\",\"message\":\"BioPortal did not answer within 10s\"}"
+    },
+    {
+      "startedAt": "2026-10-02T14:52:20Z",
+      "component": "resource",
+      "httpMethod": "DELETE",
+      "status": 204,
+      "path": "/folders/https%3A%2F%2Frepo.metadatacenter.org%2Ffolders%2F9a1e",
+      "handler": "org.metadatacenter.cedar.resource.resources.FoldersResource.deleteFolder",
+      "handlerDuration": 97300000,
+      "userId": "https://metadatacenter.org/users/c4d72a19-0b8e-4f63-a5d1-7e3b9c2f6a08",
+      "globalRequestId": "d6a1c8e3-2f7b-4d9a-b5e0-8c3f1a6d2e79",
+      "errorPack": null
+    }
+  ],
+  "rowCount": 6,
+  "truncated": true,
+  "nextCursor": "eyJzdGFydGVkQXQiOiIyMDI2LTEwLTAyVDE0OjUyOjIwWiJ9",
+  "elapsedMs": 38,
+  "exact": true,
+  "source": "raw",
+  "notes": []
+}

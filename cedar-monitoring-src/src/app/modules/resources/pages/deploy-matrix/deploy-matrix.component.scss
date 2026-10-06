@@ -1,12 +1,14 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 .wrapper-card {
-  margin: 16px;
+  margin: var(--cedar-space-4);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 16px 0 4px;
+  gap: var(--cedar-space-2);
+  margin: var(--cedar-space-4) 0 var(--cedar-space-1);
 
   .spacer {
     flex: 1;
@@ -14,99 +16,83 @@
 
   .note {
     font-size: var(--cedar-font-size-small);
-    color: #667085;
+    color: var(--cedar-text-muted);
     font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
   }
 }
 
 .banner {
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin: 10px 0;
-  font-size: var(--cedar-font-size);
-
-  &.loading {
-    background: rgba(14, 139, 163, .1);
-    color: #0e6b80;
-  }
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
 
   &.error {
-    background: rgba(211, 47, 47, .1);
-    --cedar-icon-color: var(--cedar-status-error-text);
-    color: var(--cedar-status-error-text);
+    @include patterns.notice-tone(error);
   }
 
   &.warn {
-    background: rgba(245, 158, 11, .12);
-    --cedar-icon-color: var(--cedar-status-warning-text);
-    color: var(--cedar-status-warning-text);
+    @include patterns.notice-tone(warning);
   }
 }
 
 .tiles {
   display: flex;
-  gap: 12px;
+  gap: var(--cedar-space-3);
   flex-wrap: wrap;
-  margin: 12px 0 4px;
+  margin: var(--cedar-space-3) 0 var(--cedar-space-1);
 
   .tile {
-    border: 1px solid #e4e7ec;
-    border-radius: 10px;
-    padding: 10px 14px;
+    border: 1px solid var(--cedar-border-rule);
+    border-radius: var(--cedar-radius);
+    padding: var(--cedar-space-2) var(--cedar-space-3);
     min-width: 150px;
 
     &.bad {
-      border-color: #f3b0ab;
-      background: rgba(211, 47, 47, .05);
+      border-color: transparent;
+      background: var(--cedar-status-error-surface);
     }
 
     &.warn {
-      border-color: #f5cf94;
-      background: rgba(245, 158, 11, .06);
+      border-color: transparent;
+      background: var(--cedar-status-warning-surface);
     }
 
     .tl {
       font-size: var(--cedar-font-size-small);
       text-transform: uppercase;
-      letter-spacing: .4px;
-      color: #667085;
+      color: var(--cedar-text-muted);
       font-weight: var(--cedar-font-weight-medium, 500);
     }
 
     .tv {
-      font-size: 22px;
+      font-size: var(--cedar-font-size-large);
       font-weight: var(--cedar-font-weight-medium, 500);
       font-variant-numeric: tabular-nums;
     }
 
     .td {
       font-size: var(--cedar-font-size-small);
-      color: #667085;
+      color: var(--cedar-text-muted);
     }
   }
 }
 
 h3.section {
-  margin: 22px 0 8px;
-  font-size: var(--cedar-font-size);
-  text-transform: uppercase;
-  letter-spacing: .4px;
-  color: #475467;
-  font-weight: var(--cedar-font-weight-medium, 500);
+  @include patterns.section-heading;
+  margin: var(--cedar-space-6) 0 var(--cedar-space-2);
 
+  // The note stays at body size beside the larger heading.
   .sub {
-    text-transform: none;
-    letter-spacing: 0;
+    font-size: var(--cedar-font-size);
     font-weight: var(--cedar-font-weight-regular, 400);
-    color: #667085;
-    margin-left: 8px;
+    color: var(--cedar-text-muted);
+    margin-left: var(--cedar-space-2);
   }
 }
 
 .table-scroll {
   overflow-x: auto;
-  border: 1px solid #e4e7ec;
-  border-radius: 10px;
+  border: 1px solid var(--cedar-border-rule);
+  border-radius: var(--cedar-radius);
 }
 
 table.grid {
@@ -117,18 +103,17 @@ table.grid {
   font-variant-numeric: tabular-nums;
 
   th, td {
-    border-bottom: 1px solid #f0f1f4;
-    padding: 6px 10px;
+    border-bottom: 1px solid var(--cedar-border-rule);
+    padding: var(--cedar-space-2);
     text-align: left;
     white-space: nowrap;
   }
 
   thead th {
-    background: #fafbfc;
+    background: var(--cedar-surface-subtle);
     font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
-    letter-spacing: .3px;
-    color: #475467;
+    color: var(--cedar-text-muted);
   }
 
   th.name {
@@ -156,7 +141,7 @@ table.grid {
   }
 
   .dim {
-    color: #667085;
+    color: var(--cedar-text-muted);
   }
 
   .mono, code {
@@ -164,11 +149,11 @@ table.grid {
   }
 
   .modifier {
-    color: #667085;
+    color: var(--cedar-text-muted);
   }
 
   .pid, .kind {
-    color: #98a2b3;
+    color: var(--cedar-text-muted);
   }
 
   .flag {
@@ -185,7 +170,7 @@ table.grid {
 }
 
 .empty {
-  padding: 16px;
-  color: #667085;
+  padding: var(--cedar-space-4);
+  color: var(--cedar-text-muted);
   font-size: var(--cedar-font-size);
 }

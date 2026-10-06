@@ -1,3 +1,4 @@
+import {noun} from '../../../shared/pipes/noun.pipe';
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LogQueryService} from '../../../../services/load-data/log-query.service';
@@ -81,6 +82,17 @@ export class LogExplorerComponent implements OnInit {
   boards: Board[] = [];
   boardGroups: string[] = [];
   activeBoard: Board | null = null;
+  /**
+   * A board the URL names before the catalogue has arrived to resolve it. Until it resolves, the URL
+   * keeps naming it: the first load rewrites the URL, and without this it dropped the board, so a
+   * shared board link opened the plain request table.
+   */
+  private pendingBoard: string | null = null;
+  /**
+   * Facet selections the URL carries, by column, until the facets are built to hold them. Without
+   * this a selection came back as an ad-hoc filter, a different control for the same condition.
+   */
+  private pendingFacets = new Map<string, string>();
 
   /** Trace overlay: one globalRequestId across every component that handled it. */
   trace: TraceResult | null = null;
@@ -121,17 +133,24 @@ export class LogExplorerComponent implements OnInit {
         this.boards = b || [];
         this.boardGroups = this.boards.map(x => x.group).filter((g, i, a) => a.indexOf(g) === i);
         // a board id in the URL can only be resolved once the catalog has arrived
-        const wanted = this.route.snapshot.queryParamMap.get('board');
-        if (wanted) {
-          const board = this.boards.find(x => x.id === wanted);
-          if (board && this.activeBoard?.id !== board.id) {
-            this.activeBoard = board;
-            this.table = (board.spec?.table || this.table) as LogTable;
-            this.load();
-          }
+        const wanted = this.pendingBoard;
+        this.pendingBoard = null;
+        const board = wanted ? this.boards.find(x => x.id === wanted) : undefined;
+        if (board && this.activeBoard?.id !== board.id) {
+          this.activeBoard = board;
+          this.table = (board.spec?.table || this.table) as LogTable;
+          this.load();
+        } else if (wanted) {
+          this.syncUrl();       // a board the catalog does not hold leaves the URL
         }
       },
-      error: () => this.boards = []
+      error: () => {
+        this.boards = [];
+        if (this.pendingBoard) {
+          this.pendingBoard = null;
+          this.syncUrl();
+        }
+      }
     });
     this.resetAndLoad();
   }
@@ -144,8 +163,8 @@ export class LogExplorerComponent implements OnInit {
    */
   private syncUrl(): void {
     const q: any = {};
-    if (this.activeBoard) {
-      q.board = this.activeBoard.id;
+    if (this.activeBoard || this.pendingBoard) {
+      q.board = this.activeBoard?.id ?? this.pendingBoard;
     }
     if (this.table !== 'request') {
       q.table = this.table;
@@ -166,7 +185,8 @@ export class LogExplorerComponent implements OnInit {
       q.minMs = this.minDurationMs;
     }
     const active = [...this.filters, ...this.facets.filter(f => f.selected)
-      .map(f => ({col: f.col, op: 'eq' as const, val: f.selected}))];
+      .map(f => ({col: f.col, op: 'eq' as const, val: f.selected})),
+      ...[...this.pendingFacets].map(([col, val]) => ({col, op: 'eq' as const, val}))];
     if (active.length) {
       q.f = JSON.stringify(active);
     }
@@ -175,6 +195,7 @@ export class LogExplorerComponent implements OnInit {
 
   private restoreFromUrl(): void {
     const p = this.route.snapshot.queryParamMap;
+    this.pendingBoard = p.get('board');
     const table = p.get('table');
     if (table === 'cypher' || table === 'request') {
       this.table = table;
@@ -198,7 +219,15 @@ export class LogExplorerComponent implements OnInit {
       try {
         const parsed = JSON.parse(f);
         if (Array.isArray(parsed)) {
-          this.filters = parsed.filter(x => x && x.col && x.op);
+          const facetColumns = new Set(LogExplorerComponent.FACET_COLUMNS[this.table].map(d => d.col));
+          for (const filter of parsed.filter(x => x && x.col && x.op)) {
+            // An equality on a facet column is how a facet selection is written, so it returns as one.
+            if (filter.op === 'eq' && facetColumns.has(filter.col) && !this.pendingFacets.has(filter.col)) {
+              this.pendingFacets.set(filter.col, String(filter.val));
+            } else {
+              this.filters.push(filter);
+            }
+          }
         }
       } catch {
         // a hand-edited link should not break the page — fall back to no filters
@@ -417,6 +446,10 @@ export class LogExplorerComponent implements OnInit {
         filters.push({col: f.col, op: 'eq', val: f.selected});
       }
     }
+    // The first query runs before the facets exist to hold what the URL selected.
+    for (const [col, val] of this.pendingFacets) {
+      filters.push({col, op: 'eq', val});
+    }
     if (this.contains.trim()) {
       filters.push({col: this.textColumn(), op: 'like', val: this.contains.trim()});
     }
@@ -490,7 +523,8 @@ export class LogExplorerComponent implements OnInit {
     const to = new Date();
     const from = new Date(to.getTime() - this.rangeMinutes * 60_000);
     const defs = LogExplorerComponent.FACET_COLUMNS[this.table];
-    this.facets = defs.map(d => ({col: d.col, label: d.label, values: [], selected: ''}));
+    this.facets = defs.map(d => ({col: d.col, label: d.label, values: [], selected: this.pendingFacets.get(d.col) ?? ''}));
+    this.pendingFacets.clear();
     defs.forEach((d, i) => {
       this.svc.facet(this.table, d.col, from.toISOString(), to.toISOString()).subscribe({
         next: (f) => this.facets[i].values = (f.values || []).filter(v => v.value != null),
@@ -539,7 +573,7 @@ export class LogExplorerComponent implements OnInit {
   copyTsv(): void {
     const head = this.columns.map(c => c.key).join('\t');
     const body = this.rows.map(r => this.columns.map(c => this.flat(r[c.key])).join('\t')).join('\n');
-    this.copyText(head + '\n' + body, `${this.rows.length} rows as TSV`);
+    this.copyText(head + '\n' + body, `${this.rows.length} ${noun(this.rows.length, 'row')} as TSV`);
   }
 
   downloadCsv(): void {

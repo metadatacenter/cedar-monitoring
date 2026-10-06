@@ -73,8 +73,8 @@
           Which components hold each variable, not what they hold — the values are in the table below.
           A tick is a value the component resolved; <span class="k-default">·</span> is optional and unset,
           so it is running on its own default; <span class="k-unset">✗</span> is declared and supplied with
-          nothing, which breaks a boot. The first {{ servers.length }} columns are running services and were
-          asked. The rest are builds, scripts and infrastructure — nothing is running there to ask, so a tick
+          nothing, which breaks a boot. Running services, which were asked, fill the first
+          {{ servers.length }} {{ servers.length | noun: 'column' }}. The rest are builds, scripts and infrastructure — nothing is running there to ask, so a tick
           there means the component <em>declares</em> the variable.
         </p>
       }

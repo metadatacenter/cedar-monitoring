@@ -45,8 +45,18 @@ jobs:
       - name: Build the production distribution
         run: npm run build -- --configuration=production
 
+      - name: Validate rendered page surfaces
+        working-directory: browser
+        run: |
+          npm ci
+          ./node_modules/.bin/playwright install --with-deps chromium
+          npm test
+
+      # Vitest runs the specs in headless Chromium, which the icon layout checks need.
       - name: Test shared icons and application rendering
-        run: npm test -- --watch=false --browsers=ChromeHeadless
+        run: |
+          npx playwright install --with-deps chromium
+          npm test -- --watch=false
 
       - uses: actions/checkout@v4
         with:

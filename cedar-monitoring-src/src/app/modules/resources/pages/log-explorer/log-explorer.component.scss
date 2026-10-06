@@ -1,19 +1,17 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 // Visual language for the explorer. Deliberately quiet: the page is dense data, so the chrome should
 // recede. Three rules drive most of this:
 //   1. no ruled grid — per-row borders read as a 1990s analytics ledger; separation comes from
 //      whitespace and a hover tint instead;
 //   2. state is typographic or a small dot, not a filled pastel pill;
-//   3. one accent colour, one radius scale, three type sizes.
-:host {
-  --ink: #1c2430;
-  --ink-2: #5a6673;
-  --ink-3: #8b96a3;
-  --hair: #edf0f3;
-  --accent: #0f7c91;
-  --accent-soft: #eaf4f6;
-  --ok: #1a7f4b;
-  --warn: #a8710b;
-  --err: #c23b3b;
+//   3. one accent colour, one corner radius, three type sizes.
+
+// Counts, captions and labels are secondary facts, set small and muted. One shared rule keeps the
+// stylesheet inside its size budget.
+%secondary {
+  font-size: var(--cedar-font-size-small);
+  color: var(--cedar-text-muted);
 }
 
 // styles.scss paints every .wrapper-card with indigo-50 !important — a tinted panel behind dense
@@ -21,11 +19,11 @@
 // selector is more specific than the global one, so this stays local to the explorer rather than
 // restyling every monitoring page.
 .wrapper-card {
-  margin: 18px;
-  background-color: #fff !important;
-  border-radius: 14px !important;
-  box-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 8px 24px -12px rgba(16, 24, 40, .12) !important;
-  padding: 6px 10px 12px;
+  margin: var(--cedar-space-4);
+  background-color: var(--cedar-surface-raised) !important;
+  border-radius: var(--cedar-radius) !important;
+  box-shadow: var(--cedar-shadow-overlay) !important;
+  padding: var(--cedar-space-2) var(--cedar-space-2) var(--cedar-space-3);
 }
 
 // ---- board rail --------------------------------------------------------------------------------
@@ -34,15 +32,14 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  padding: 12px 0 16px;
+  gap: var(--cedar-space-2);
+  padding: var(--cedar-space-3) 0 var(--cedar-space-4);
 }
 
 .railgrp {
-  font-size: var(--cedar-font-size-small);
-  color: var(--ink-3);
-  font-weight: var(--cedar-font-weight-medium, 500);
-  margin: 0 4px 0 12px;
+  @extend %secondary;
+  font-weight: var(--cedar-font-weight-medium);
+  margin: 0 var(--cedar-space-1) 0 var(--cedar-space-3);
 
   &:first-child {
     margin-left: 0;
@@ -52,34 +49,32 @@
 .board {
   font: inherit;
   font-size: var(--cedar-font-size-small);
-  padding: 5px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--hair);
-  background: #fff;
-  color: var(--ink-2);
+  padding: var(--cedar-space-1) var(--cedar-space-3);
+  border-radius: var(--cedar-radius-pill);
+  border: 1px solid var(--cedar-control-border-default);
+  background: var(--cedar-surface-raised);
+  color: var(--cedar-text-muted);
   cursor: pointer;
 
   &:hover {
-    background: #f4f6f8;
-    color: var(--ink);
+    background: var(--cedar-surface-subtle);
+    color: var(--cedar-text-primary);
   }
 
   &.on {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
+    background: var(--cedar-color-primary);
+    border-color: var(--cedar-color-primary);
+    color: var(--cedar-color-on-primary);
   }
 }
 
 .boardhead {
   font-size: var(--cedar-font-size);
-  color: var(--ink-2);
-  padding: 2px 2px 0;
+  color: var(--cedar-text-muted);
 
   .bnote {
     font-size: var(--cedar-font-size-small);
-    color: var(--ink-3);
-    margin-top: 3px;
+    margin-top: var(--cedar-space-1);
   }
 }
 
@@ -88,28 +83,28 @@
 .controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--cedar-space-2);
   flex-wrap: wrap;
-  padding: 14px 0;
-  border-top: 1px solid var(--hair);
+  padding: var(--cedar-space-3) 0;
+  border-top: 1px solid var(--cedar-border-rule);
 }
 
 // Segmented control instead of a row of raised Material buttons — less visual weight, and it reads
 // as one choice rather than several unrelated actions.
 .seg {
   display: inline-flex;
-  border: 1px solid var(--hair);
-  border-radius: 8px;
+  border: 1px solid var(--cedar-control-border-default);
+  border-radius: var(--cedar-radius);
   overflow: hidden;
 
   button {
     font: inherit;
     font-size: var(--cedar-font-size-small);
-    padding: 6px 13px;
+    padding: var(--cedar-space-2) var(--cedar-space-3);
     border: 0;
-    border-right: 1px solid var(--hair);
-    background: #fff;
-    color: var(--ink-2);
+    border-right: 1px solid var(--cedar-control-border-default);
+    background: var(--cedar-surface-raised);
+    color: var(--cedar-text-muted);
     cursor: pointer;
 
     &:last-child {
@@ -117,13 +112,13 @@
     }
 
     &:hover {
-      background: #f7f9fa;
+      background: var(--cedar-surface-subtle);
     }
 
     &.on {
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-weight: var(--cedar-font-weight-medium, 500);
+      background: var(--cedar-surface-selected);
+      color: var(--cedar-color-primary);
+      font-weight: var(--cedar-font-weight-medium);
     }
   }
 }
@@ -132,27 +127,26 @@
 select {
   font: inherit;
   font-size: var(--cedar-font-size);
-  padding: 6px 10px;
-  border: 1px solid var(--hair);
-  border-radius: 8px;
-  background: #fff;
-  color: var(--ink);
+  padding: var(--cedar-space-2);
+  border: 1px solid var(--cedar-control-border-default);
+  border-radius: var(--cedar-radius);
+  background: var(--cedar-surface-raised);
+  color: var(--cedar-text-primary);
 }
 
 .txt {
   min-width: 210px;
 
   &::placeholder {
-    color: var(--ink-3);
+    color: var(--cedar-text-muted);
   }
 }
 
 .fld {
-  font-size: var(--cedar-font-size-small);
-  color: var(--ink-3);
+  @extend %secondary;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--cedar-space-2);
 }
 
 // ---- chips, bars, links ------------------------------------------------------------------------
@@ -161,17 +155,17 @@ select {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  margin: 0 0 8px;
+  gap: var(--cedar-space-2);
+  margin: 0 0 var(--cedar-space-2);
 }
 
 .chip {
   font-size: var(--cedar-font-size-small);
-  font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
-  background: var(--accent-soft);
-  color: var(--accent);
-  border-radius: 999px;
-  padding: 3px 6px 3px 10px;
+  font-family: var(--cedar-font-family-monospace);
+  background: var(--cedar-surface-selected);
+  color: var(--cedar-color-primary);
+  border-radius: var(--cedar-radius-pill);
+  padding: var(--cedar-space-1) var(--cedar-space-2);
 
   .x {
     border: 0;
@@ -180,8 +174,8 @@ select {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
-    font-weight: var(--cedar-font-weight-medium, 500);
-    padding: 0 5px;
+    font-weight: var(--cedar-font-weight-medium);
+    padding: 0 var(--cedar-space-1);
     opacity: .55;
   }
 
@@ -193,8 +187,8 @@ select {
 .bar {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 2px 6px;
+  gap: var(--cedar-space-3);
+  padding: var(--cedar-space-2) 0;
 
   .spacer {
     flex: 1;
@@ -204,10 +198,10 @@ select {
 .link {
   background: none;
   border: 0;
-  padding: 3px 2px;
+  padding: var(--cedar-space-1) 0;
   font: inherit;
   font-size: var(--cedar-font-size-small);
-  color: var(--accent);
+  color: var(--cedar-color-primary);
   cursor: pointer;
 
   &:hover:not(:disabled) {
@@ -215,47 +209,32 @@ select {
   }
 
   &:disabled {
-    color: #c9d0d8;
+    color: var(--cedar-text-muted);
+    opacity: var(--cedar-control-disabled-opacity);
     cursor: default;
-  }
-
-  &.sm {
-    font-size: var(--cedar-font-size-small);
   }
 }
 
 .count {
-  font-size: var(--cedar-font-size-small);
-  color: var(--ink-3);
+  @extend %secondary;
 }
 
 .caveat {
-  font-size: var(--cedar-font-size-small);
-  color: var(--ink-3);
+  @extend %secondary;
   line-height: 1.5;
-  margin: 10px 2px 2px;
+  margin: var(--cedar-space-2) 0 0;
 }
 
 .banner {
-  padding: 9px 13px;
-  border-radius: 8px;
-  margin: 10px 0;
-  font-size: var(--cedar-font-size-small);
-
-  &.loading {
-    background: var(--accent-soft);
-    color: var(--accent);
-  }
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
 
   &.error {
-    background: rgba(194, 59, 59, .08);
-    color: var(--err);
+    @include patterns.notice-tone(error);
   }
 
   &.note {
-    background: rgba(168, 113, 11, .08);
-    color: var(--warn);
-    font-size: var(--cedar-font-size-small);
+    @include patterns.notice-tone(warning);
   }
 }
 
@@ -273,18 +252,17 @@ table.data {
     position: sticky;
     top: 0;
     z-index: 2;
-    background: #fff;
+    background: var(--cedar-surface-raised);
     text-align: left;
-    font-size: var(--cedar-font-size-small);
-    font-weight: var(--cedar-font-weight-medium, 500);
-    color: var(--ink-3);
-    padding: 0 12px 9px;
-    border-bottom: 1px solid var(--hair);
+    @extend %secondary;
+    font-weight: var(--cedar-font-weight-medium);
+    padding: 0 var(--cedar-space-3) var(--cedar-space-2);
+    border-bottom: 1px solid var(--cedar-border-rule);
     white-space: nowrap;
   }
 
   td {
-    padding: 11px 12px;
+    padding: var(--cedar-space-3);
     font-size: var(--cedar-font-size);
     vertical-align: middle;
     border: 0;                 // no ruled grid; see the note at the top of this file
@@ -295,27 +273,27 @@ table.data {
   }
 
   tr.main:hover td {
-    background: #fafbfc;
+    background: var(--cedar-surface-subtle);
   }
 
   tr.main:hover td:first-child {
-    border-radius: 8px 0 0 8px;
+    border-radius: var(--cedar-radius) 0 0 var(--cedar-radius);
   }
 
   tr.main:hover td:last-child {
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 var(--cedar-radius) var(--cedar-radius) 0;
   }
 
   tr.detail td {
-    background: #fafbfc;
-    border-radius: 8px;
+    background: var(--cedar-surface-subtle);
+    border-radius: var(--cedar-radius);
   }
 
   .num {
     text-align: right;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
-    color: var(--ink-2);
+    color: var(--cedar-text-muted);
   }
 
   // Click-to-copy affordance: one delegated handler on <tbody> does the work, and the glyph is a
@@ -327,7 +305,7 @@ table.data {
   }
 
   td[data-copy]:hover {
-    background: #f2f7f8;
+    background: var(--cedar-surface-selected);
   }
 
   td[data-copy]:hover::after {
@@ -337,14 +315,14 @@ table.data {
     top: 50%;
     transform: translateY(-50%);
     font-size: var(--cedar-font-size-small);
-    line-height: 1;
-    color: #9fb0b6;
+    line-height: var(--cedar-line-height-tight);
+    color: var(--cedar-text-muted);
   }
 }
 
 .caret {
   display: inline-block;
-  color: #c2cad3;
+  color: var(--cedar-text-muted);
   font-size: var(--cedar-font-size-small);
   transition: transform var(--cedar-motion-duration-fast);
 
@@ -355,14 +333,13 @@ table.data {
 
 // HTTP method: coloured text, not a filled chip.
 .method {
-  font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-family: var(--cedar-font-family-monospace);
   font-size: var(--cedar-font-size-small);
-  font-weight: var(--cedar-font-weight-medium, 500);
-  letter-spacing: .02em;
-  color: var(--ink-2);
+  font-weight: var(--cedar-font-weight-medium);
+  color: var(--cedar-text-muted);
 
   &.m-get {
-    color: var(--accent);
+    color: var(--cedar-color-primary);
   }
 
   &.m-post {
@@ -371,11 +348,11 @@ table.data {
 
   &.m-put,
   &.m-patch {
-    color: var(--warn);
+    color: var(--cedar-status-warning-text);
   }
 
   &.m-delete {
-    color: var(--err);
+    color: var(--cedar-status-error-text);
   }
 }
 
@@ -383,51 +360,38 @@ table.data {
 .stat {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--cedar-space-2);
   font-variant-numeric: tabular-nums;
-  color: var(--ink-2);
+  color: var(--cedar-text-muted);
 
   &::before {
     content: '';
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--ink-3);
+    background: var(--cedar-text-muted);
   }
 
   &.s2::before {
-    background: var(--ok);
-  }
-
-  &.s3::before {
-    background: var(--ink-3);
+    background: var(--cedar-status-success-text);
   }
 
   &.s4::before {
-    background: var(--warn);
+    background: var(--cedar-status-warning-text);
   }
 
   &.s5::before {
-    background: var(--err);
+    background: var(--cedar-status-error-text);
   }
 }
 
-.tag {
-  font-size: var(--cedar-font-size-small);
-  color: var(--ink-3);
-}
-
 .mono {
-  font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-family: var(--cedar-font-family-monospace);
   font-size: var(--cedar-font-size-small);
 }
 
 .muted {
-  color: var(--ink-3);
-}
-
-.nowrap {
-  white-space: nowrap;
+  color: var(--cedar-text-muted);
 }
 
 // Wide columns (path, handler, query text) are clipped so the columns to their right stay on screen.
@@ -444,12 +408,12 @@ table.data {
 .kv {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 5px 16px;
+  gap: var(--cedar-space-1) var(--cedar-space-4);
   font-size: var(--cedar-font-size-small);
-  padding: 6px 0 10px 30px;
+  padding: var(--cedar-space-2) 0 var(--cedar-space-2) var(--cedar-space-6);
 
   .k {
-    color: var(--ink-3);
+    color: var(--cedar-text-muted);
   }
 
   .v {
@@ -458,23 +422,22 @@ table.data {
 }
 
 .block {
-  padding: 4px 0 10px 30px;
+  padding: var(--cedar-space-1) 0 var(--cedar-space-2) var(--cedar-space-6);
 }
 
 .dlabel {
-  font-size: var(--cedar-font-size-small);
-  color: var(--ink-3);
-  font-weight: var(--cedar-font-weight-medium, 500);
-  margin-bottom: 5px;
+  @extend %secondary;
+  font-weight: var(--cedar-font-weight-medium);
+  margin-bottom: var(--cedar-space-1);
 }
 
 pre.code {
-  font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-family: var(--cedar-font-family-monospace);
   font-size: var(--cedar-font-size-small);
-  background: #fff;
-  border: 1px solid var(--hair);
-  border-radius: 8px;
-  padding: 10px 12px;
+  background: var(--cedar-surface-raised);
+  border: 1px solid var(--cedar-border-rule);
+  border-radius: var(--cedar-radius);
+  padding: var(--cedar-space-2) var(--cedar-space-3);
   margin: 0;
   white-space: pre-wrap;
   word-break: break-word;
@@ -485,8 +448,8 @@ pre.code {
 
 .empty {
   text-align: center;
-  color: var(--ink-3);
-  padding: 28px;
+  color: var(--cedar-text-muted);
+  padding: var(--cedar-space-6);
 }
 
 // ---- trace overlay -----------------------------------------------------------------------------
@@ -494,33 +457,34 @@ pre.code {
 .scrim {
   position: fixed;
   inset: 0;
-  background: rgba(20, 28, 38, .38);
+  background: var(--cedar-dialog-backdrop);
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 40px 24px;
-  z-index: 900;
+  padding: var(--cedar-space-6);
+  // The trace overlay draws above the page and below the copy toast and Material's overlays.
+  z-index: var(--cedar-layer-menu);
 }
 
 .tracepane {
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 18px 50px -12px rgba(16, 24, 40, .35);
+  background: var(--cedar-surface-raised);
+  border-radius: var(--cedar-radius);
+  box-shadow: var(--cedar-shadow-overlay);
   width: min(1100px, 100%);
   max-height: calc(100vh - 80px);
   overflow: auto;
-  padding: 18px 22px 20px;
+  padding: var(--cedar-space-4) var(--cedar-space-6) var(--cedar-space-6);
 }
 
 .tracehead {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: var(--cedar-space-3);
+  margin-bottom: var(--cedar-space-3);
 
   .tracetitle {
     font-size: var(--cedar-font-size);
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
   }
 
   .spacer {
@@ -531,28 +495,26 @@ pre.code {
 .tiles {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: var(--cedar-space-2);
+  margin-bottom: var(--cedar-space-4);
 }
 
 .tile {
   display: flex;
   flex-direction: column;
-  gap: 2px;
   min-width: 104px;
-  padding: 10px 14px;
-  border: 1px solid var(--hair);
-  border-radius: 10px;
+  padding: var(--cedar-space-2) var(--cedar-space-3);
+  border: 1px solid var(--cedar-border-rule);
+  border-radius: var(--cedar-radius);
 
   .tv {
-    font-size: 17px;
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-size: var(--cedar-font-size-large);
+    font-weight: var(--cedar-font-weight-medium);
     font-variant-numeric: tabular-nums;
   }
 
   .tl {
-    font-size: var(--cedar-font-size-small);
-    color: var(--ink-3);
+    @extend %secondary;
   }
 }
 
@@ -562,20 +524,19 @@ pre.code {
   .wrow {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 3px 0;
+    gap: var(--cedar-space-2);
+    padding: var(--cedar-space-1) 0;
     font-size: var(--cedar-font-size-small);
 
     &:hover {
-      background: #fafbfc;
+      background: var(--cedar-surface-subtle);
     }
   }
 
   .wkind {
     flex: 0 0 30px;
-    font-size: var(--cedar-font-size-small);
-    font-weight: var(--cedar-font-weight-medium, 500);
-    color: var(--accent);
+    font-weight: var(--cedar-font-weight-medium);
+    color: var(--cedar-color-primary);
 
     &.k-cypher {
       color: #6b4fc4;
@@ -584,29 +545,28 @@ pre.code {
 
   .wcomp {
     flex: 0 0 84px;
-    color: var(--ink-2);
+    color: var(--cedar-text-muted);
   }
 
   .wlabel {
     flex: 0 0 260px;
-    color: var(--ink-3);
-    font-size: var(--cedar-font-size-small);
+    color: var(--cedar-text-muted);
   }
 
   .wtrack {
     flex: 1;
     position: relative;
     height: 12px;
-    background: #f4f6f8;
-    border-radius: 3px;
+    background: var(--cedar-surface-subtle);
+    border-radius: var(--cedar-radius);
   }
 
   .wbar {
     position: absolute;
     top: 0;
     height: 12px;
-    border-radius: 3px;
-    background: var(--accent);
+    border-radius: var(--cedar-radius);
+    background: var(--cedar-color-primary);
 
     &.b-cypher {
       background: #8c74d8;
@@ -616,7 +576,7 @@ pre.code {
   .wms {
     flex: 0 0 74px;
     text-align: right;
-    color: var(--ink-2);
+    color: var(--cedar-text-muted);
     font-variant-numeric: tabular-nums;
   }
 }
@@ -628,20 +588,19 @@ pre.code {
   background: #21303f;
   color: #fff;
   font-size: var(--cedar-font-size-small);
-  padding: 9px 14px;
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, .22);
-  z-index: 1000;
+  padding: var(--cedar-space-2) var(--cedar-space-3);
+  border-radius: var(--cedar-radius);
+  box-shadow: var(--cedar-shadow-overlay);
+  z-index: var(--cedar-layer-modal);
 }
 
 // Rollup-sourced values are histogram estimates. They are marked in two places — a badge on the
 // result bar and a tilde on each percentile cell — so a number can never be quoted as exact once it
 // has been copied out of the table.
 .approx {
-  color: #8a5a08;
+  color: var(--cedar-status-warning-text);
 }
 
 .tilde {
-  color: #98a2b3;
-  margin-right: 1px;
+  color: var(--cedar-text-muted);
 }

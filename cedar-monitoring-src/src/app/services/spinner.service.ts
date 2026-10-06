@@ -22,13 +22,4 @@ export class SpinnerService {
       this.active = false;
     }
   }
-
-  reset() {
-    this.loadCount = 0;
-  }
-
-  resetAndShow() {
-    this.reset();
-    this.show();
-  }
 }

@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "resourceIdSource": "fullId",
+  "resourceIdString": "https://repo.metadatacenter.org/templates/a8f75474-ca14-4726-a071-acbfa9f8c466",
+  "resourceId": {
+    "type": "template",
+    "id": "https://repo.metadatacenter.org/templates/a8f75474-ca14-4726-a071-acbfa9f8c466"
+  }
+}

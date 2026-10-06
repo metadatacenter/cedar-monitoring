@@ -1,13 +1,15 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 .wrapper-card {
-  margin: 16px;
+  margin: var(--cedar-space-4);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--cedar-space-4);
   flex-wrap: wrap;
-  margin: 16px 0 4px;
+  margin: var(--cedar-space-4) 0 var(--cedar-space-1);
 
   .search {
     width: 260px;
@@ -19,68 +21,56 @@
 }
 
 .banner {
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin: 10px 0;
-  font-size: var(--cedar-font-size);
-
-  &.loading {
-    background: rgba(14, 139, 163, .1);
-    color: #0e6b80;
-  }
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
 
   &.error {
-    background: rgba(211, 47, 47, .1);
-    --cedar-icon-color: var(--cedar-status-error-text);
-    color: var(--cedar-status-error-text);
+    @include patterns.notice-tone(error);
   }
 
   &.warn {
-    background: rgba(245, 158, 11, .12);
-    --cedar-icon-color: var(--cedar-status-warning-text);
-    color: var(--cedar-status-warning-text);
+    @include patterns.notice-tone(warning);
   }
 }
 
 .tiles {
   display: flex;
-  gap: 12px;
+  gap: var(--cedar-space-3);
   flex-wrap: wrap;
-  margin: 12px 0;
+  margin: var(--cedar-space-3) 0;
 
   .tile {
-    border: 1px solid #e4e7ec;
-    border-radius: 10px;
-    padding: 10px 14px;
+    border: 1px solid var(--cedar-border-rule);
+    border-radius: var(--cedar-radius);
+    padding: var(--cedar-space-2) var(--cedar-space-3);
     min-width: 150px;
 
     &.bad {
-      border-color: #f3b0ab;
-      background: rgba(211, 47, 47, .05);
+      border-color: transparent;
+      background: var(--cedar-status-error-surface);
     }
 
     &.warn {
-      border-color: #f5cf94;
-      background: rgba(245, 158, 11, .06);
+      border-color: transparent;
+      background: var(--cedar-status-warning-surface);
     }
 
     .tl {
       font-size: var(--cedar-font-size-small);
       text-transform: uppercase;
-      letter-spacing: .4px;
-      color: #667085;
+      color: var(--cedar-text-muted);
       font-weight: var(--cedar-font-weight-medium, 500);
     }
 
     .tv {
-      font-size: 24px;
+      font-size: var(--cedar-font-size-large);
       font-weight: var(--cedar-font-weight-medium, 500);
       font-variant-numeric: tabular-nums;
     }
 
     .td {
       font-size: var(--cedar-font-size-small);
-      color: #667085;
+      color: var(--cedar-text-muted);
     }
   }
 }
@@ -90,8 +80,8 @@
 // meaningless without it.
 .matrix-scroll {
   overflow-x: auto;
-  border: 1px solid #e4e7ec;
-  border-radius: 10px;
+  border: 1px solid var(--cedar-border-rule);
+  border-radius: var(--cedar-radius);
 }
 
 table.matrix {
@@ -102,8 +92,8 @@ table.matrix {
   min-width: 100%;
 
   th, td {
-    border-bottom: 1px solid #f0f1f4;
-    padding: 3px 4px;
+    border-bottom: 1px solid var(--cedar-border-rule);
+    padding: var(--cedar-space-1);
     text-align: left;
     white-space: nowrap;
   }
@@ -112,9 +102,9 @@ table.matrix {
   // columns are as narrow as the glyph they carry, and a horizontal label cannot be.
   th.rot {
     height: 150px;
-    padding: 4px 0;
+    padding: var(--cedar-space-1) 0;
     vertical-align: bottom;
-    background: #fafbfc;
+    background: var(--cedar-surface-subtle);
     position: sticky;
     top: 0;
     z-index: 2;
@@ -124,8 +114,7 @@ table.matrix {
       transform: rotate(180deg);
       font-size: var(--cedar-font-size-small);
       font-weight: var(--cedar-font-weight-medium, 500);
-      letter-spacing: .2px;
-      color: #475467;
+      color: var(--cedar-text-muted);
       text-align: left;
       margin: 0 auto;
     }
@@ -134,18 +123,18 @@ table.matrix {
   th.name-col {
     position: sticky;
     left: 0;
-    background: #fff;
+    background: var(--cedar-surface-raised);
     z-index: 1;
     font-weight: var(--cedar-font-weight-medium, 500);
-    border-right: 1px solid #e4e7ec;
-    padding-right: 10px;
+    border-right: 1px solid var(--cedar-border-rule);
+    padding-right: var(--cedar-space-2);
     max-width: 300px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   thead th.name-col {
-    background: #fafbfc;
+    background: var(--cedar-surface-subtle);
     z-index: 3;
     height: auto;
     vertical-align: bottom;
@@ -156,7 +145,7 @@ table.matrix {
   }
 
   tr.hole th.name-col {
-    background: #fdf0ef;
+    background: var(--cedar-status-error-surface);
   }
 
   // One glyph, centred, in a column just wide enough to hold it.
@@ -169,12 +158,12 @@ table.matrix {
   }
 
   td.first-decl, th.first-decl {
-    border-left: 2px solid #c7cbd4;
+    border-left: 2px solid var(--cedar-border-rule);
   }
 
   td.decl-cell {
-    background: #fcfcfd;
-    color: #d0d5dd;
+    background: var(--cedar-surface-subtle);
+    color: var(--cedar-text-muted);
   }
 
   td.decl-cell.declared {
@@ -191,7 +180,7 @@ table.matrix {
     width: 14px;
     height: 14px;
     vertical-align: middle;
-    color: #98a2b3;
+    color: var(--cedar-text-muted);
 
     &.warn {
       --cedar-icon-color: var(--cedar-status-warning-text);
@@ -206,7 +195,7 @@ table.matrix {
 }
 
 .cell-set {
-  color: #12b76a;
+  color: var(--cedar-status-success-text);
 }
 
 .cell-secure {
@@ -217,24 +206,26 @@ table.matrix {
   --cedar-icon-color: var(--cedar-status-error-text);
   color: var(--cedar-status-error-text);
   font-weight: var(--cedar-font-weight-medium, 500);
-  background: rgba(211, 47, 47, .06);
+  background: var(--cedar-status-error-surface);
 }
 
 .cell-default {
-  color: #98a2b3;
+  color: var(--cedar-text-muted);
 }
 
+// An undeclared cell draws no glyph. A glyph added later takes the quietest text colour.
 .cell-undeclared {
-  color: #e4e7ec;
+  color: var(--cedar-text-muted);
 }
 
 .cell-noanswer {
-  background: repeating-linear-gradient(45deg, #fbfbfc, #fbfbfc 4px, #f4f5f7 4px, #f4f5f7 8px);
+  background: repeating-linear-gradient(45deg, var(--cedar-surface-raised), var(--cedar-surface-raised) 4px,
+    var(--cedar-surface-subtle) 4px, var(--cedar-surface-subtle) 8px);
 }
 
 // The legend in the note above the grid, so the glyphs are explained in the words that use them.
 .k-default {
-  color: #98a2b3;
+  color: var(--cedar-text-muted);
   font-weight: var(--cedar-font-weight-medium, 500);
 }
 
@@ -250,18 +241,17 @@ table.values {
   width: 100%;
 
   th, td {
-    border-bottom: 1px solid #f0f1f4;
-    padding: 5px 10px;
+    border-bottom: 1px solid var(--cedar-border-rule);
+    padding: var(--cedar-space-1) var(--cedar-space-2);
     text-align: left;
     vertical-align: top;
   }
 
   thead th {
-    background: #fafbfc;
+    background: var(--cedar-surface-subtle);
     font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
-    letter-spacing: .3px;
-    color: #475467;
+    color: var(--cedar-text-muted);
     position: sticky;
     top: 0;
   }
@@ -282,7 +272,7 @@ table.values {
   }
 
   td.vsrv {
-    color: #667085;
+    color: var(--cedar-text-muted);
     white-space: normal;
   }
 
@@ -292,8 +282,8 @@ table.values {
 }
 
 .empty {
-  padding: 16px;
-  color: #667085;
+  padding: var(--cedar-space-4);
+  color: var(--cedar-text-muted);
   font-size: var(--cedar-font-size);
 }
 
@@ -302,34 +292,30 @@ table.values {
 // read as a column that had failed to fill rather than as a deliberate measure.
 .col-note {
   font-size: var(--cedar-font-size-small);
-  color: #475467;
-  margin: 10px 0;
+  color: var(--cedar-text-muted);
+  margin: var(--cedar-space-2) 0;
   line-height: 1.5;
 }
 
 h3.section {
-  margin: 26px 0 4px;
-  font-size: var(--cedar-font-size);
-  text-transform: uppercase;
-  letter-spacing: .4px;
-  color: #475467;
-  font-weight: var(--cedar-font-weight-medium, 500);
+  @include patterns.section-heading;
+  margin: var(--cedar-space-6) 0 var(--cedar-space-1);
 }
 
 // Declaration columns say something different from the value columns beside them, so the boundary
 // between the two is drawn rather than left to the reader to infer from the header.
 table.matrix {
-  th.decl-col, td.decl-cell {
+  td.decl-cell {
     text-align: center;
-    color: #667085;
+    color: var(--cedar-text-muted);
   }
 
   th.first-decl, td.first-decl {
-    border-left: 2px solid #c7cbd4;
+    border-left: 2px solid var(--cedar-border-rule);
   }
 
   td.decl-cell {
-    background: #fcfcfd;
+    background: var(--cedar-surface-subtle);
   }
 
   td.decl-cell.declared {
@@ -342,18 +328,18 @@ table.matrix {
 .unmodelled {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin: 8px 0 4px;
+  gap: var(--cedar-space-2);
+  margin: var(--cedar-space-2) 0 var(--cedar-space-1);
 
   .chip {
     font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
     font-size: var(--cedar-font-size-small);
-    padding: 3px 8px;
-    border-radius: 6px;
-    background: rgba(245, 158, 11, .12);
+    padding: var(--cedar-space-1) var(--cedar-space-2);
+    border-radius: var(--cedar-radius);
+    background: var(--cedar-status-warning-surface);
     --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
-    border: 1px solid #f5cf94;
+    border: 1px solid transparent;
 
     &.empty-value {
       opacity: .6;
@@ -365,7 +351,7 @@ table.matrix {
 // Optional and unset: the component is on its own default. Muted, because it is a normal state and
 // must not compete with cell-unset, which is a service that could not start.
 .cell-default {
-  color: #667085;
+  color: var(--cedar-text-muted);
   font-style: italic;
 }
 
@@ -379,26 +365,26 @@ table.values {
     &.open {
       max-height: 220px;
       overflow: auto;
-      padding: 6px 8px;
-      background: #fafbfc;
-      border: 1px solid #e4e7ec;
-      border-radius: 6px;
-      margin-bottom: 4px;
+      padding: var(--cedar-space-2);
+      background: var(--cedar-surface-subtle);
+      border: 1px solid var(--cedar-border-rule);
+      border-radius: var(--cedar-radius);
+      margin-bottom: var(--cedar-space-1);
     }
   }
 
   .more {
     border: 0;
     background: none;
-    padding: 2px 0;
+    padding: 0;
     font-size: var(--cedar-font-size-small);
     font-family: inherit;
-    color: #0e6b80;
+    color: var(--cedar-color-primary);
     cursor: pointer;
     text-decoration: underline;
 
     &:hover {
-      color: #0a4f5e;
+      color: var(--cedar-color-primary-strong);
     }
   }
 }

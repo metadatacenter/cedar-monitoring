@@ -2,6 +2,10 @@
 
 <mat-card class="wrapper-card">
 
+  @if (error) {
+    <div class="banner error">{{ error }}</div>
+  }
+
   @if (resourceCounts) {
     <mat-card class="counts-card">
       <mat-card-header>
@@ -13,14 +17,18 @@
           column is what is left once those rules are applied.
         </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content style="margin-top:16px">
+      <mat-card-content style="margin-top: var(--cedar-space-4)">
 
         @if (totalChecks) {
           <div class="drift-summary" [ngClass]="summaryClass">
             @if (driftingChecks) {
-              <strong>{{ driftingChecks }} of {{ totalChecks }} cross-store checks in drift.</strong>
+              <strong>{{ driftingChecks }} of {{ totalChecks }} cross-store {{ totalChecks | noun: 'check' }} in drift.</strong>
             } @else {
-              <strong>All {{ totalChecks }} cross-store checks hold.</strong>
+              @if (totalChecks === 1) {
+                <strong>The cross-store check holds.</strong>
+              } @else {
+                <strong>All {{ totalChecks }} cross-store {{ totalChecks | noun: 'check' }} hold.</strong>
+              }
             }
             @if (unverifiedChecks) {
               <span>{{ unverifiedChecks }} cannot be settled from totals alone.</span>

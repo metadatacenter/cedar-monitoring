@@ -1,5 +1,5 @@
+import { resourceSelector } from "../resource-address";
 import {Injectable} from '@angular/core';
-import {AppConfigService} from './app-config.service';
 import {globalAppConfig} from "../../environments/global-app-config";
 
 @Injectable({
@@ -7,12 +7,9 @@ import {globalAppConfig} from "../../environments/global-app-config";
 })
 export class RestApiUrlService {
 
-  private configService: AppConfigService;
-
   private API_URL: string;
 
-  constructor(configService: AppConfigService) {
-    this.configService = configService;
+  constructor() {
     this.API_URL = globalAppConfig.apiUrl;
   }
 
@@ -105,7 +102,7 @@ export class RestApiUrlService {
   }
 
   public resourceIdLookup(resourceId: string) {
-    return `${this.resourceIdLookups()}?input=${encodeURIComponent(resourceId)}`;
+    return `${this.resourceIdLookups()}?input=${encodeURIComponent(resourceSelector(resourceId))}`;
   }
 
   public resourceReportUser(userId: string) {
@@ -117,23 +114,23 @@ export class RestApiUrlService {
   }
 
   public resourceReportFolder(folderId: string) {
-    return `${this.resourceReportFolders()}?id=${encodeURIComponent(folderId)}`;
+    return `${this.resourceReportFolders()}?id=${encodeURIComponent(resourceSelector(folderId))}`;
   }
 
   resourceReportField(fieldId: string) {
-    return `${this.resourceReportFields()}?id=${encodeURIComponent(fieldId)}`;
+    return `${this.resourceReportFields()}?id=${encodeURIComponent(resourceSelector(fieldId))}`;
   }
 
   resourceReportElement(elementId: string) {
-    return `${this.resourceReportElements()}?id=${encodeURIComponent(elementId)}`;
+    return `${this.resourceReportElements()}?id=${encodeURIComponent(resourceSelector(elementId))}`;
   }
 
   resourceReportTemplate(templateId: string) {
-    return `${this.resourceReportTemplates()}?id=${encodeURIComponent(templateId)}`;
+    return `${this.resourceReportTemplates()}?id=${encodeURIComponent(resourceSelector(templateId))}`;
   }
 
   resourceReportInstance(instanceId: string) {
-    return `${this.resourceReportInstances()}?id=${encodeURIComponent(instanceId)}`;
+    return `${this.resourceReportInstances()}?id=${encodeURIComponent(resourceSelector(instanceId))}`;
   }
 
   redisQueueCounts() {
@@ -181,28 +178,6 @@ export class RestApiUrlService {
 
   logsUsageInsights(from: string, to: string) {
     return this.logsRange('insights', from, to);
-  }
-
-  private logsExplorer(path: string, q: string, minDurationMs: number, limit: number, offset: number) {
-    let url = `${this.base()}logs/explorer/${path}?limit=${limit}`;
-    if (offset) {
-      url += `&offset=${offset}`;
-    }
-    if (q) {
-      url += `&q=${encodeURIComponent(q)}`;
-    }
-    if (minDurationMs > 0) {
-      url += `&minDurationMs=${minDurationMs}`;
-    }
-    return url;
-  }
-
-  logsExplorerRequests(q: string, minDurationMs: number, limit: number, offset = 0) {
-    return this.logsExplorer('requests', q, minDurationMs, limit, offset);
-  }
-
-  logsExplorerCypher(q: string, minDurationMs: number, limit: number, offset = 0) {
-    return this.logsExplorer('cypher', q, minDurationMs, limit, offset);
   }
 
   /**

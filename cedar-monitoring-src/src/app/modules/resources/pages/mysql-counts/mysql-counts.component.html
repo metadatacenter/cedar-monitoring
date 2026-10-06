@@ -10,7 +10,7 @@
       </mat-card-subtitle>
     </mat-card-header>
 
-    <mat-card-content style="margin-top:16px">
+    <mat-card-content style="margin-top: var(--cedar-space-4)">
 
       <!-- Which datasources answered. One database being unreachable is the thing worth seeing,
       so it is reported here rather than leaving its section silently absent below. -->
@@ -56,9 +56,9 @@
         </div>
       }
 
-      @if (loadStatus) {
+      @if (loadError) {
         <p>
-          <span class="unreachable">The report could not be loaded (HTTP {{loadStatus}}).</span>
+          <span class="unreachable">The report could not be loaded ({{loadError}}).</span>
         </p>
       }
 
@@ -68,8 +68,8 @@
           <h3>
             {{database.name}}
             <small>
-              &middot; {{database.tableCount}} tables
-              &middot; {{database.rowsExact !== null ? formatNumber(database.rowsExact) : '~' + formatNumber(database.rowsApproximate)}} rows
+              &middot; {{database.tableCount}} {{database.tableCount | noun: 'table'}}
+              &middot; {{database.rowsExact !== null ? formatNumber(database.rowsExact) : '~' + formatNumber(database.rowsApproximate)}} {{(database.rowsExact ?? database.rowsApproximate) | noun: 'row'}}
               &middot; {{formatBytes(database.totalBytes)}}
             </small>
           </h3>

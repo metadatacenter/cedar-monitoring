@@ -1,0 +1,470 @@
+{
+  "schema": 1,
+  "repo": "cedar-monitoring",
+  "browserHelper": "browser/tests/surface-contracts.generated.mjs",
+  "surfaces": [
+    {
+      "id": "monitoring.dashboard",
+      "name": "Dashboard",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/app-routing.module.ts",
+          "anchor": "path: ''"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/shared/pages/dashboard/dashboard.component.ts",
+          "anchor": "export class DashboardComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "dashboard",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.user-menu",
+      "name": "User Menu",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/shared/components/header/header.component.html",
+          "anchor": "<mat-menu #menu=\"matMenu\">"
+        }
+      ],
+      "contract": "menu",
+      "scenario": "user-menu",
+      "selector": ".mat-mdc-menu-panel",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.health-checks",
+      "name": "Health Checks",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'health-checks'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/health-checks/health-checks.component.ts",
+          "anchor": "export class HealthChecksComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "health-checks",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.profile",
+      "name": "Profile",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'profile'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/profile/profile.component.ts",
+          "anchor": "export class ProfileComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "profile",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.resource-info",
+      "name": "Resource Info",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'resource-info'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-info/resource-info.component.ts",
+          "anchor": "export class ResourceInfoComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "resource-info",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.search-index",
+      "name": "Search Index",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'search-index'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/search-index/search-index.component.ts",
+          "anchor": "export class SearchIndexComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "search-index",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.queue-counts",
+      "name": "Queue Counts",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'queue-counts'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/queue-counts/queue-counts.component.ts",
+          "anchor": "export class QueueCountsComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "queue-counts",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.resource-counts",
+      "name": "Resource Counts",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'resource-counts'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts/resource-counts.component.ts",
+          "anchor": "export class ResourceCountsComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "resource-counts",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.opensearch-counts",
+      "name": "OpenSearch Counts",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'resource-counts/opensearch'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/resource-counts-opensearch/resource-counts-opensearch.component.ts",
+          "anchor": "export class ResourceCountsOpensearchComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "opensearch-counts",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.mysql-counts",
+      "name": "MySQL Counts",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'mysql-counts'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/mysql-counts/mysql-counts.component.ts",
+          "anchor": "export class MySqlCountsComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "mysql-counts",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.logs-usage",
+      "name": "Logs & Usage",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'logs-usage'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-usage/log-usage.component.ts",
+          "anchor": "export class LogUsageComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "logs-usage",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.logs-explorer",
+      "name": "Live Log Explorer",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'logs-explorer'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.ts",
+          "anchor": "export class LogExplorerComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "logs-explorer",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "color",
+          "value": "rgb(107, 79, 196)",
+          "reason": "#6b4fc4, a categorical chart purple Monitoring keeps by policy, on POST in the method column"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.request-trace",
+      "name": "Request Trace",
+      "section": "Monitoring",
+      "parent": "monitoring.logs-explorer",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.html",
+          "anchor": "class=\"tracepane\""
+        }
+      ],
+      "contract": "dialog",
+      "scenario": "request-trace",
+      "selector": ".tracepane",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "background-color",
+          "value": "rgb(140, 116, 216)",
+          "reason": "#8c74d8, a categorical chart purple Monitoring keeps by policy, filling Cypher bars in the waterfall chart"
+        },
+        {
+          "property": "color",
+          "value": "rgb(107, 79, 196)",
+          "reason": "#6b4fc4, a categorical chart purple Monitoring keeps by policy, on the DB label of Cypher spans"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.copy-confirmation",
+      "name": "Copy Confirmation",
+      "section": "Monitoring",
+      "parent": "monitoring.logs-explorer",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.html",
+          "anchor": "<div class=\"toast\">"
+        }
+      ],
+      "contract": "page",
+      "scenario": "copy-confirmation",
+      "selector": ".toast",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "background-color",
+          "value": "rgb(33, 48, 63)",
+          "reason": "#21303f, the copy toast's dark background, which Monitoring keeps by policy"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.deploy",
+      "name": "Deploy",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'deploy'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.ts",
+          "anchor": "export class DeployMatrixComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "deploy",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.environment",
+      "name": "Environment",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'environment'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.ts",
+          "anchor": "export class EnvironmentMatrixComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "environment",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "color",
+          "value": "rgb(105, 65, 198)",
+          "reason": "#6941c6, a categorical chart purple Monitoring keeps by policy, on masked secret values"
+        }
+      ]
+    },
+    {
+      "id": "monitoring.configuration",
+      "name": "Configuration",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'configuration'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/server-configuration/server-configuration.component.ts",
+          "anchor": "export class ServerConfigurationComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "configuration",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.jvm",
+      "name": "JVM",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'jvm'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.ts",
+          "anchor": "export class JvmInsightComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "jvm",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.worker-lag",
+      "name": "Worker Lag",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'worker-lag'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/worker-lag/worker-lag.component.ts",
+          "anchor": "export class WorkerLagComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "worker-lag",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "monitoring.host-disk",
+      "name": "Disk & Logs",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'host-disk'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.ts",
+          "anchor": "export class HostDiskComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "host-disk",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    }
+  ]
+}

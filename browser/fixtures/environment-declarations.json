@@ -1,0 +1,45 @@
+{
+  "note": "Declared by components that are not running services. Nothing is running there to ask, so only the declaration is known.",
+  "components": [
+    {
+      "component": "cedar-template-editor",
+      "variables": [
+        {
+          "name": "CEDAR_HOST",
+          "secure": false,
+          "presentInHostEnvironment": true
+        }
+      ]
+    },
+    {
+      "component": "keycloak",
+      "variables": [
+        {
+          "name": "CEDAR_HOST",
+          "secure": false,
+          "presentInHostEnvironment": true
+        },
+        {
+          "name": "CEDAR_NEO4J_BOLT_URL",
+          "secure": false,
+          "presentInHostEnvironment": true
+        }
+      ]
+    },
+    {
+      "component": "cedar-cli",
+      "variables": [
+        {
+          "name": "CEDAR_HOST",
+          "secure": false,
+          "presentInHostEnvironment": true
+        },
+        {
+          "name": "CEDAR_MONGO_HOST",
+          "secure": false,
+          "presentInHostEnvironment": true
+        }
+      ]
+    }
+  ]
+}

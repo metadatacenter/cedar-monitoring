@@ -1,16 +1,14 @@
+import {loadFailure} from '../../../shared/util/load-failure';
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
 import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.model";
-import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-status.model";
 import {ResourceCounts} from "../../../../shared/model/resource-counts.model";
 import {DriftStatus, StoreCountDrift} from "../../../../shared/model/store-count-drift.model";
 
@@ -100,13 +98,11 @@ const REPORT: ReportRow[] = [
 export class ResourceCountsComponent extends CedarPageComponent implements OnInit {
 
   public resourceCounts: ResourceCounts | undefined;
-  private resourceCountsStatus: number = 0;
 
   displayedColumns: string[] = ['position', 'name', 'neo4j', 'mongo', 'opensearch', 'keycloak', 'drift'];
   dataSource = REPORT;
 
   constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -114,11 +110,13 @@ export class ResourceCountsComponent extends CedarPageComponent implements OnIni
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
-    uiService: UiService,
-    private configService: AppConfigService,
+    uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
+
+  /** Why the report could not be loaded, when it could not. */
+  public error: string | null = null;
 
   override ngOnInit() {
     super.ngOnInit();
@@ -126,17 +124,18 @@ export class ResourceCountsComponent extends CedarPageComponent implements OnIni
     this.dataHandler.reset();
     this.dataHandler
       .require(DataHandlerDataId.RESOURCE_COUNTS)
-      .load(() => this.resourceCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.resourceCountsErrorCallback(error, dataStatus));
+      .load(() => this.resourceCallback(), (error: unknown) => this.resourceCountsErrorCallback(error));
   }
 
   private resourceCallback() {
+    // The data handler calls this once every request has settled, failed ones included.
+    if (this.error) return;
     this.resourceCounts = this.dataStore.getResourceCounts();
     this.updateIdReportTable();
   }
 
-  private resourceCountsErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
-    this.resourceCountsStatus = error.status;
-    this.updateIdReportTable();
+  private resourceCountsErrorCallback(error: unknown) {
+    this.error = loadFailure('the resource counts', error);
   }
 
   private updateIdReportTable() {

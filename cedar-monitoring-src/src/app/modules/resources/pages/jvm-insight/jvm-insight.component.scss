@@ -1,12 +1,14 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 .wrapper-card {
-  margin: 16px;
+  margin: var(--cedar-space-4);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin: 16px 0 4px;
+  gap: var(--cedar-space-4);
+  margin: var(--cedar-space-4) 0 var(--cedar-space-1);
 
   .spacer {
     flex: 1;
@@ -14,76 +16,66 @@
 
   .note {
     font-size: var(--cedar-font-size-small);
-    color: #667085;
+    color: var(--cedar-text-muted);
     font-variant-numeric: tabular-nums;
   }
 }
 
 .banner {
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin: 10px 0;
-  font-size: var(--cedar-font-size);
-
-  &.loading {
-    background: rgba(14, 139, 163, .1);
-    color: #0e6b80;
-  }
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-2) 0;
 
   &.error {
-    background: rgba(211, 47, 47, .1);
-    --cedar-icon-color: var(--cedar-status-error-text);
-    color: var(--cedar-status-error-text);
+    @include patterns.notice-tone(error);
   }
 }
 
 .tiles {
   display: flex;
-  gap: 12px;
+  gap: var(--cedar-space-3);
   flex-wrap: wrap;
-  margin: 12px 0;
+  margin: var(--cedar-space-3) 0;
 
   .tile {
-    border: 1px solid #e4e7ec;
-    border-radius: 10px;
-    padding: 10px 14px;
+    border: 1px solid var(--cedar-border-rule);
+    border-radius: var(--cedar-radius);
+    padding: var(--cedar-space-2) var(--cedar-space-3);
     min-width: 150px;
 
     &.bad {
-      border-color: #f3b0ab;
-      background: rgba(211, 47, 47, .05);
+      border-color: transparent;
+      background: var(--cedar-status-error-surface);
     }
 
     &.warn {
-      border-color: #f5cf94;
-      background: rgba(245, 158, 11, .06);
+      border-color: transparent;
+      background: var(--cedar-status-warning-surface);
     }
 
     .tl {
       font-size: var(--cedar-font-size-small);
       text-transform: uppercase;
-      letter-spacing: .4px;
-      color: #667085;
+      color: var(--cedar-text-muted);
       font-weight: var(--cedar-font-weight-medium, 500);
     }
 
     .tv {
-      font-size: 22px;
+      font-size: var(--cedar-font-size-large);
       font-weight: var(--cedar-font-weight-medium, 500);
       font-variant-numeric: tabular-nums;
     }
 
     .td {
       font-size: var(--cedar-font-size-small);
-      color: #667085;
+      color: var(--cedar-text-muted);
     }
   }
 }
 
 .table-scroll {
   overflow-x: auto;
-  border: 1px solid #e4e7ec;
-  border-radius: 10px;
+  border: 1px solid var(--cedar-border-rule);
+  border-radius: var(--cedar-radius);
 }
 
 table.grid {
@@ -94,18 +86,17 @@ table.grid {
   font-variant-numeric: tabular-nums;
 
   th, td {
-    border-bottom: 1px solid #f0f1f4;
-    padding: 6px 10px;
+    border-bottom: 1px solid var(--cedar-border-rule);
+    padding: var(--cedar-space-2);
     text-align: left;
     white-space: nowrap;
   }
 
   thead th {
-    background: #fafbfc;
+    background: var(--cedar-surface-subtle);
     font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
-    letter-spacing: .3px;
-    color: #475467;
+    color: var(--cedar-text-muted);
   }
 
   th.name {
@@ -117,43 +108,45 @@ table.grid {
   }
 
   .dim {
-    color: #667085;
+    color: var(--cedar-text-muted);
   }
 
   .heap-col {
     width: 190px;
   }
 
+  // The track is drawn in the rule colour: the table sits on the page's subtle surface, which would
+  // hide a track in that same colour.
   .bar {
     display: inline-block;
     width: 120px;
     height: 8px;
-    border-radius: 4px;
-    background: #eef0f3;
+    border-radius: var(--cedar-radius);
+    background: var(--cedar-border-rule);
     overflow: hidden;
     vertical-align: middle;
   }
 
   .fill {
     height: 100%;
-    border-radius: 4px;
-    transition: width var(--cedar-motion-duration-normal) ease;
+    border-radius: var(--cedar-radius);
+    transition: width var(--cedar-motion-duration-normal) var(--cedar-motion-ease-standard);
 
     &.bar-ok {
-      background: #12b76a;
+      background: var(--cedar-status-success-text);
     }
 
     &.bar-warn {
-      background: #f59e0b;
+      background: var(--cedar-status-warning-text);
     }
 
     &.bar-bad {
-      background: #d32f2f;
+      background: var(--cedar-status-error-text);
     }
   }
 
   .pct {
-    margin-left: 8px;
-    color: #475467;
+    margin-left: var(--cedar-space-2);
+    color: var(--cedar-text-muted);
   }
 }

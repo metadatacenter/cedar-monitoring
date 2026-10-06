@@ -1,0 +1,23 @@
+{
+  "tables": [
+    {
+      "table": "request",
+      "sqlTable": "log_request",
+      "rowCount": 18204113,
+      "oldest": "2026-09-02T00:00:04Z",
+      "newest": "2026-10-02T14:52:41Z",
+      "columns": []
+    },
+    {
+      "table": "cypher",
+      "sqlTable": "log_cypher",
+      "rowCount": 41880502,
+      "oldest": "2026-09-02T00:00:04Z",
+      "newest": "2026-10-02T15:03:51Z",
+      "columns": []
+    }
+  ],
+  "notes": [
+    "Raw rows are kept for 30 days; the hourly rollups answer longer ranges."
+  ]
+}

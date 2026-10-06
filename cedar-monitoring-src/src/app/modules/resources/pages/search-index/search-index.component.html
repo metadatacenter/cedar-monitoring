@@ -10,6 +10,10 @@
       </button>
     </div>
 
+    @if (error) {
+      <div class="banner error">{{ error }}</div>
+    }
+
     <p class="page-note">
       A full rebuild reads every resource, recomputes its permissions and re-indexes it. It runs for
       as long as the repository requires — hours, on a large one. Search keeps working against the

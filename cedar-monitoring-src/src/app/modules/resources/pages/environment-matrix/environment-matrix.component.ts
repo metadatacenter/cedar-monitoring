@@ -139,11 +139,6 @@ export class EnvironmentMatrixComponent implements OnInit {
     return this.rows.filter(row => row.unused).length;
   }
 
-  /** The non-server components that declare a variable, for the row's tooltip. */
-  readersOf(name: string): string[] {
-    return this.declarations.filter(d => d.variables.some(v => v.name === name)).map(d => d.component);
-  }
-
   get unmodelledNames(): string[] {
     return this.unmodelled ? Object.keys(this.unmodelled.variables) : [];
   }
@@ -260,25 +255,6 @@ export class EnvironmentMatrixComponent implements OnInit {
         return 'info';
       case 'DECLARED_BUT_UNSET':
         return 'close';
-      default:
-        return cell.presentInHostEnvironment ? '' : '';
-    }
-  }
-
-  /** What a cell shows: the value where there is one, and otherwise why there is not. */
-  cellText(cell: EnvironmentVariableEntry | null): string {
-    if (!cell) {
-      return '—';
-    }
-    switch (cell.state) {
-      case 'SET':
-        return cell.value === '' ? '(empty)' : (cell.value ?? '');
-      case 'DECLARED_BUT_UNSET':
-        return 'UNSET';
-      case 'USING_DEFAULT':
-        return 'default';
-      case 'NOT_DECLARED':
-        return cell.presentInHostEnvironment ? '· (on host)' : '·';
       default:
         return '';
     }

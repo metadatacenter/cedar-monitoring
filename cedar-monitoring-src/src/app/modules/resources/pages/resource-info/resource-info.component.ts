@@ -1,11 +1,10 @@
+import {loadFailure} from '../../../shared/util/load-failure';
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
@@ -19,6 +18,7 @@ import {ResourceReportTemplate} from "../../../../shared/model/resource-report-t
 import {ResourceReportInstance} from "../../../../shared/model/resource-report-instance.model";
 import {ResourceReportGroup} from "../../../../shared/model/resource-report-group.model";
 import {ResourceReportFolder} from "../../../../shared/model/resource-report-folder.model";
+import {storeView} from "../../../../shared/model/store-section.model";
 
 export interface ReportRow {
   position: number;
@@ -42,9 +42,10 @@ const ID_PARSING_REPORT: ReportRow[] = [
 })
 export class ResourceInfoComponent extends CedarPageComponent implements OnInit {
 
+  protected readonly storeView = storeView;
+
 
   constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -52,16 +53,17 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
-    uiService: UiService,
-    private configService: AppConfigService
+    uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   public resourceIdFromPage: string = '';
   public resourceIdToLookUp: string = '';
   public resourceIdLookupMap: Map<string, ResourceIdLookup> = new Map<string, ResourceIdLookup>();
   public resourceIdLookupStatusMap: Map<string, number> = new Map<string, number>();
+  /** Why the lookup or its report could not be loaded, when it could not. */
+  public error: string | null = null;
   public resourceReportStatusMap: Map<string, number> = new Map<string, number>();
 
   displayedColumns: string[] = ['position', 'name', 'value'];
@@ -89,6 +91,7 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
     this.initDataHandler();
     this.responseSuccess = undefined;
     this.responseResourceId = '';
+    this.error = null;
     this.responseResourceIdSource = '';
     this.responseResourceType = '';
     this.updateIdReportTable();
@@ -105,6 +108,8 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
   }
 
   private resourceIdLookedUpCallback() {
+    // The data handler calls this once every request has settled, failed ones included.
+    if (this.error) return;
     const v: any = this.dataStore.getResourceIdLookup(this.resourceIdToLookUp);
     this.responseSuccess = v['success'];
     if (v['resourceIdString']) {
@@ -131,6 +136,7 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
 
   private resourceIdLookUpErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.resourceIdLookupStatusMap.set(dataStatus.id, error.status);
+    this.error = loadFailure('the resource lookup', error);
   }
 
   private loadResourceReport() {
@@ -202,5 +208,6 @@ export class ResourceInfoComponent extends CedarPageComponent implements OnInit 
 
   private resourceReportErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.resourceReportStatusMap.set(dataStatus.id, error.status);
+    this.error = loadFailure('the resource report', error);
   }
 }

@@ -1,0 +1,71 @@
+{
+  "request": {
+    "limit": 100,
+    "offset": 0
+  },
+  "totalCount": 5,
+  "currentOffset": 0,
+  "paging": {},
+  "endpoints": [
+    {
+      "component": "resource",
+      "className": "FolderContentsResource",
+      "methodName": "findFolderContents",
+      "httpMethod": "GET",
+      "reqCount": 412018,
+      "errorCount": 1204,
+      "p50Nanos": 38000000,
+      "p95Nanos": 212000000,
+      "p99Nanos": 640000000,
+      "maxNanos": 9120000000
+    },
+    {
+      "component": "resource",
+      "className": "SearchResource",
+      "methodName": "search",
+      "httpMethod": "GET",
+      "reqCount": 188204,
+      "errorCount": 2911,
+      "p50Nanos": 96000000,
+      "p95Nanos": 870000000,
+      "p99Nanos": 2410000000,
+      "maxNanos": 31004000000
+    },
+    {
+      "component": "artifact",
+      "className": "TemplateInstancesResource",
+      "methodName": "createTemplateInstance",
+      "httpMethod": "POST",
+      "reqCount": 21406,
+      "errorCount": 488,
+      "p50Nanos": 140000000,
+      "p95Nanos": 1260000000,
+      "p99Nanos": 3900000000,
+      "maxNanos": 18220000000
+    },
+    {
+      "component": "terminology",
+      "className": "IntegratedSearchResource",
+      "methodName": "integratedSearch",
+      "httpMethod": "POST",
+      "reqCount": 64320,
+      "errorCount": 412,
+      "p50Nanos": 212000000,
+      "p95Nanos": 1480000000,
+      "p99Nanos": 4020000000,
+      "maxNanos": 12600000000
+    },
+    {
+      "component": "user",
+      "className": "UsersResource",
+      "methodName": "findUser",
+      "httpMethod": "GET",
+      "reqCount": 120993,
+      "errorCount": 18,
+      "p50Nanos": 4000000,
+      "p95Nanos": 21000000,
+      "p99Nanos": 66000000,
+      "maxNanos": 1402000000
+    }
+  ]
+}

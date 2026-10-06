@@ -112,7 +112,7 @@
       <div class="tblwrap">
         <div class="bar">
           <span class="count">
-            {{ rows.length }} rows · {{ elapsedMs }}ms
+            {{ rows.length }} {{ rows.length | noun: 'row' }} · {{ elapsedMs }}ms
             @if (pageIndex > 0) {
               · page {{ pageIndex + 1 }}
             }
@@ -215,7 +215,7 @@
             @if (coverage) {
               <span class="count">
                 raw tables: @for (t of coverage.tables; track t) {
-                {{ t.sqlTable }} {{ t.rowCount }} rows ({{ t.oldest | slice:0:10 }} → {{ t.newest | slice:0:10 }})
+                {{ t.sqlTable }} {{ t.rowCount }} {{ t.rowCount | noun: 'row' }} ({{ t.oldest | slice:0:10 }} → {{ t.newest | slice:0:10 }})
               }
             </span>
           }

@@ -1,8 +1,10 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
 .counts-card {
   min-width: 400px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: var(--cedar-space-6);
 }
 
 // A log database's table names and byte figures overflow a narrow window rather than wrapping into
@@ -19,13 +21,12 @@
 .source-line {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--cedar-space-2);
   align-items: baseline;
-  padding: 2px 0;
 }
 
 .unreachable {
-  color: #b00020;
+  color: var(--cedar-status-error-text);
 }
 
 .source-error {
@@ -34,12 +35,18 @@
   overflow-wrap: anywhere;
 }
 
-.totals-row td {
-  font-weight: var(--cedar-font-weight-medium, 500);
-}
-
 .count-note {
   font-size: var(--cedar-font-size-small);
   opacity: 0.75;
-  margin-top: 4px;
+  margin-top: var(--cedar-space-1);
+}
+
+// A database's section heading. Its counts stay at body size beside it, as the notes beside Disk &
+// Logs' section headings do.
+h3 {
+  @include patterns.section-heading;
+
+  small {
+    font-size: var(--cedar-font-size);
+  }
 }

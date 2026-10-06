@@ -1,16 +1,14 @@
+import {loadFailure} from '../../../shared/util/load-failure';
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
 import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.model";
-import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-status.model";
 import {RedisQueueCounts} from "../../../../shared/model/redis-queue-counts.model";
 
 export interface ReportRow {
@@ -39,13 +37,11 @@ const REPORT: ReportRow[] = [
 export class QueueCountsComponent extends CedarPageComponent implements OnInit {
 
   public redisQueueCounts: RedisQueueCounts | undefined;
-  private redisQueueCountsStatus: number = 0;
 
   displayedColumns: string[] = ['position', 'name', 'value', 'processing', 'deadLetter'];
   dataSource = REPORT;
 
   constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -53,11 +49,13 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
-    uiService: UiService,
-    private configService: AppConfigService,
+    uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
   }
+
+  /** Why the report could not be loaded, when it could not. */
+  public error: string | null = null;
 
   override ngOnInit() {
     super.ngOnInit();
@@ -65,17 +63,18 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
     this.dataHandler.reset();
     this.dataHandler
       .require(DataHandlerDataId.REDIS_QUEUE_COUNTS)
-      .load(() => this.queueCountsCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.queueCountsErrorCallback(error, dataStatus));
+      .load(() => this.queueCountsCallback(), (error: unknown) => this.queueCountsErrorCallback(error));
   }
 
   private queueCountsCallback() {
+    // The data handler calls this once every request has settled, failed ones included.
+    if (this.error) return;
     this.redisQueueCounts = this.dataStore.getRedisQueueCounts();
     this.updateIdReportTable();
   }
 
-  private queueCountsErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
-    this.redisQueueCountsStatus = error.status;
-    this.updateIdReportTable();
+  private queueCountsErrorCallback(error: unknown) {
+    this.error = loadFailure('the queue counts', error);
   }
 
   private updateIdReportTable() {

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "slow-endpoints",
+    "title": "Slow endpoints",
+    "question": "Which endpoints are slowest at the 95th percentile?",
+    "group": "Latency",
+    "defaultRangeMinutes": 1440,
+    "spec": {
+      "table": "request",
+      "groupBy": [
+        "component",
+        "handler"
+      ],
+      "metrics": [
+        "count",
+        "p95:handlerDuration"
+      ],
+      "orderBy": [
+        {
+          "key": "p95:handlerDuration",
+          "dir": "desc"
+        }
+      ],
+      "limit": 50
+    }
+  },
+  {
+    "id": "slow-cypher",
+    "title": "Slow Cypher",
+    "question": "Which query shapes take longest?",
+    "group": "Latency",
+    "defaultRangeMinutes": 1440,
+    "spec": {
+      "table": "cypher",
+      "groupBy": [
+        "operation",
+        "runnableHash"
+      ],
+      "metrics": [
+        "count",
+        "p95:duration"
+      ],
+      "orderBy": [
+        {
+          "key": "p95:duration",
+          "dir": "desc"
+        }
+      ],
+      "limit": 50
+    }
+  },
+  {
+    "id": "server-errors",
+    "title": "Server errors",
+    "question": "Which endpoints answer with a 5xx status?",
+    "group": "Errors",
+    "defaultRangeMinutes": 60,
+    "spec": {
+      "table": "request",
+      "filters": [
+        {
+          "col": "statusClass",
+          "op": "eq",
+          "val": "5xx"
+        }
+      ],
+      "groupBy": [
+        "component",
+        "handler"
+      ],
+      "metrics": [
+        "count"
+      ],
+      "limit": 50
+    }
+  }
+]

@@ -1,0 +1,137 @@
+{
+  "exactCounts": false,
+  "sources": [
+    {
+      "id": "log",
+      "configKey": "logDatabase",
+      "configured": true,
+      "server": "localhost:3306",
+      "schema": "cedar_log",
+      "reachable": true,
+      "error": null,
+      "schemas": [
+        "cedar_log"
+      ]
+    },
+    {
+      "id": "messaging",
+      "configKey": "messagingDatabase",
+      "configured": true,
+      "server": "localhost:3306",
+      "schema": "cedar_messaging",
+      "reachable": true,
+      "error": null,
+      "schemas": [
+        "cedar_messaging"
+      ]
+    },
+    {
+      "id": "submission",
+      "configKey": "submissionDatabase",
+      "configured": true,
+      "server": "db-02.internal:3306",
+      "schema": "cedar_submission",
+      "reachable": false,
+      "error": "Communications link failure",
+      "schemas": []
+    }
+  ],
+  "databases": [
+    {
+      "name": "cedar_log",
+      "source": "log",
+      "tableCount": 3,
+      "rowsApproximate": 61305063,
+      "rowsExact": null,
+      "dataBytes": 25002246144,
+      "indexBytes": 6567231488,
+      "totalBytes": 31569477632,
+      "freeBytes": 17825792,
+      "tables": [
+        {
+          "name": "log_request",
+          "engine": "InnoDB",
+          "rowsApproximate": 18204113,
+          "rowsExact": null,
+          "dataBytes": 9869197312,
+          "indexBytes": 2314207232,
+          "totalBytes": 12183404544,
+          "freeBytes": 6291456,
+          "averageRowBytes": 542,
+          "createdAt": "2025-03-14T09:12:00Z",
+          "updatedAt": "2026-10-02T15:03:58Z",
+          "countError": null
+        },
+        {
+          "name": "log_cypher",
+          "engine": "InnoDB",
+          "rowsApproximate": 41880502,
+          "rowsExact": null,
+          "dataBytes": 14701035520,
+          "indexBytes": 4152360960,
+          "totalBytes": 18853396480,
+          "freeBytes": 11534336,
+          "averageRowBytes": 351,
+          "createdAt": "2025-03-14T09:12:00Z",
+          "updatedAt": "2026-10-02T15:03:51Z",
+          "countError": null
+        },
+        {
+          "name": "agg_request_hourly",
+          "engine": "InnoDB",
+          "rowsApproximate": 1220448,
+          "rowsExact": null,
+          "dataBytes": 432013312,
+          "indexBytes": 100663296,
+          "totalBytes": 532676608,
+          "freeBytes": 0,
+          "averageRowBytes": 354,
+          "createdAt": "2025-03-14T09:12:00Z",
+          "updatedAt": "2026-10-02T15:00:04Z",
+          "countError": null
+        }
+      ]
+    },
+    {
+      "name": "cedar_messaging",
+      "source": "messaging",
+      "tableCount": 2,
+      "rowsApproximate": 489619,
+      "rowsExact": null,
+      "dataBytes": 114294784,
+      "indexBytes": 45088768,
+      "totalBytes": 159383552,
+      "freeBytes": 0,
+      "tables": [
+        {
+          "name": "message",
+          "engine": "InnoDB",
+          "rowsApproximate": 88412,
+          "rowsExact": null,
+          "dataBytes": 63963136,
+          "indexBytes": 12582912,
+          "totalBytes": 76546048,
+          "freeBytes": 0,
+          "averageRowBytes": 723,
+          "createdAt": "2025-03-14T09:12:00Z",
+          "updatedAt": "2026-10-02T14:58:12Z",
+          "countError": null
+        },
+        {
+          "name": "user_message",
+          "engine": "InnoDB",
+          "rowsApproximate": 401207,
+          "rowsExact": null,
+          "dataBytes": 50331648,
+          "indexBytes": 32505856,
+          "totalBytes": 82837504,
+          "freeBytes": 0,
+          "averageRowBytes": 125,
+          "createdAt": "2025-03-14T09:12:00Z",
+          "updatedAt": "2026-10-02T14:58:12Z",
+          "countError": null
+        }
+      ]
+    }
+  ]
+}

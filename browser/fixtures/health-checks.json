@@ -1,0 +1,184 @@
+{
+  "artifact": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "bridge": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "group": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "impex": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "messaging": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "monitor": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "openview": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "repo": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "resource": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "schema": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "terminology": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "user": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "valuerecommender": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  },
+  "worker": {
+    "deadlocks": {
+      "healthy": true,
+      "duration": 0,
+      "timestamp": "2026-10-02T15:04:11.120Z"
+    },
+    "neo4j": {
+      "healthy": true,
+      "message": "Connected",
+      "duration": 5,
+      "timestamp": "2026-10-02T15:04:11.128Z"
+    }
+  }
+}

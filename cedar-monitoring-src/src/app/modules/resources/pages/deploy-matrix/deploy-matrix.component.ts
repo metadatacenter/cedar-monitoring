@@ -35,9 +35,6 @@ export class DeployMatrixComponent implements OnInit {
   /** The version the majority of services report, which the rest are compared against. */
   expectedVersion: string | null = null;
 
-  serviceColumns = ['server', 'version', 'artifactBuiltAt', 'startedAt', 'uptime', 'host', 'artifact'];
-  repositoryColumns = ['repository', 'branch', 'commit', 'committedAt', 'uncommitted', 'distance'];
-
   constructor(private servers: ServerReportService, private host: HostReportService) {
   }
 
@@ -111,15 +108,6 @@ export class DeployMatrixComponent implements OnInit {
 
   get hotPatched(): RepositoryState[] {
     return this.repositories.filter(repository => (repository.uncommittedFiles ?? 0) > 0);
-  }
-
-  /** Branches other than the one most repositories are on — usually a repo left on a feature branch. */
-  get offBranch(): RepositoryState[] {
-    const main = majorityBranch(this.repositories);
-    if (main === null) {
-      return [];
-    }
-    return this.repositories.filter(repository => repository.branch !== null && repository.branch !== main);
   }
 
   get majorityBranchName(): string | null {

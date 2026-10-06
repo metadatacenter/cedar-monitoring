@@ -17,7 +17,7 @@ describe('Shared CEDAR icon rendering', () => {
       fixture.detectChanges();
       const host = fixture.nativeElement.querySelector('mat-icon');
       const svg = host.querySelector('svg');
-      expect(svg).withContext(name).not.toBeNull();
+      expect(svg, name).not.toBeNull();
       expect(svg.getAttribute('viewBox')).toBe('0 0 24 24');
       expect(svg.getAttribute('stroke-width')).toBe('2');
       expect(host.getAttribute('aria-hidden')).toBe('true');
