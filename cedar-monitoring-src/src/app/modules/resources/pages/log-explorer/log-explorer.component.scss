@@ -161,7 +161,6 @@ select {
 
 .chip {
   font-size: var(--cedar-font-size-small);
-  font-family: var(--cedar-font-family-monospace);
   background: var(--cedar-surface-selected);
   color: var(--cedar-color-primary);
   border-radius: var(--cedar-radius-pill);
@@ -333,7 +332,6 @@ table.data {
 
 // HTTP method: coloured text, not a filled chip.
 .method {
-  font-family: var(--cedar-font-family-monospace);
   font-size: var(--cedar-font-size-small);
   font-weight: var(--cedar-font-weight-medium);
   color: var(--cedar-text-muted);
@@ -385,8 +383,7 @@ table.data {
   }
 }
 
-.mono {
-  font-family: var(--cedar-font-family-monospace);
+.literal {
   font-size: var(--cedar-font-size-small);
 }
 
@@ -432,7 +429,6 @@ table.data {
 }
 
 pre.code {
-  font-family: var(--cedar-font-family-monospace);
   font-size: var(--cedar-font-size-small);
   background: var(--cedar-surface-raised);
   border: 1px solid var(--cedar-border-rule);

@@ -40,9 +40,6 @@
     @include patterns.notice-tone(success);
   }
 
-  code {
-    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
-  }
 }
 
 .placeholders {

@@ -167,7 +167,7 @@
                       <div class="kv">
                         @for (c of columns; track c) {
                           <span class="k">{{ c.key }}</span>
-                          <span class="v mono">
+                          <span class="v literal">
                             {{ raw(row, c) || '—' }}
                             @if (isFacetColumn(c.key) && row[c.key]) {
                               <button class="link sm"
@@ -251,7 +251,7 @@
         <div>
           <div class="tracetitle">Request trace</div>
           @if (trace) {
-            <div class="mono muted">{{ trace.globalRequestId }}</div>
+            <div class="literal muted">{{ trace.globalRequestId }}</div>
           }
         </div>
         <span class="spacer"></span>
@@ -280,12 +280,12 @@
             <div class="wrow" [title]="s.detail">
               <span class="wkind" [class.k-cypher]="s.kind === 'cypher'">{{ s.kind === 'cypher' ? 'DB' : 'REQ' }}</span>
               <span class="wcomp">{{ s.component }}</span>
-              <span class="wlabel mono ell">{{ spanLabel(s) }}</span>
+              <span class="wlabel literal ell">{{ spanLabel(s) }}</span>
               <span class="wtrack">
                 <span class="wbar" [class.b-cypher]="s.kind === 'cypher'"
                 [style.left]="spanLeft(s)" [style.width]="spanWidth(s)"></span>
               </span>
-              <span class="wms mono">{{ s.durationMs | number:'1.0-2' }}ms</span>
+              <span class="wms literal">{{ s.durationMs | number:'1.0-2' }}ms</span>
             </div>
           }
           @if (!trace.spans.length) {

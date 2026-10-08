@@ -17,7 +17,6 @@
   .note {
     font-size: var(--cedar-font-size-small);
     color: var(--cedar-text-muted);
-    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
   }
 }
 
@@ -144,9 +143,6 @@ table.grid {
     color: var(--cedar-text-muted);
   }
 
-  .mono, code {
-    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
-  }
 
   .modifier {
     color: var(--cedar-text-muted);
