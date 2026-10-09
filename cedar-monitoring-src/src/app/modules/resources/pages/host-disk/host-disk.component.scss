@@ -68,7 +68,6 @@ h3.section {
 
   .fs-path {
     font-size: var(--cedar-font-size-small);
-    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -148,7 +147,6 @@ table.grid {
 
   th.name {
     font-weight: var(--cedar-font-weight-medium, 500);
-    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
     max-width: 460px;
     overflow: hidden;
     text-overflow: ellipsis;

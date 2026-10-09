@@ -182,8 +182,7 @@ table.data {
   }
 }
 
-.mono {
-  font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
+.literal {
   font-size: var(--cedar-font-size-small);
 }
 

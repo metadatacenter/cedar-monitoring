@@ -198,9 +198,13 @@ body .mat-mdc-form-field {
 body .mdc-text-field--filled .mdc-floating-label--float-above {
   transform: translateY(-106%) scale(var(--mat-mdc-form-field-floating-label-scale));
 }
-// A code element no component styles is set in the shared monospace face, not the browser's.
-code {
-  font-family: var(--cedar-font-family-monospace);
+// CEDAR has no monospace face: code and preformatted text are set in the body font, not the
+// browser's monospace.
+code,
+pre,
+kbd,
+samp {
+  font-family: inherit;
 }
 @include mat.button-overrides((
   protected-container-elevation-shadow: tokens.$shadow-overlay,

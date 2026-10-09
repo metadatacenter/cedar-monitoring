@@ -62,7 +62,7 @@
             <h3>🐢 Slowest endpoints</h3>
             @for (e of insights.slowestEndpoints; track e) {
               <div class="ins-row">
-                <span class="ins-name mono">{{ endpointLabel(e) }}</span>
+                <span class="ins-name literal">{{ endpointLabel(e) }}</span>
                 <span class="ins-val">{{ fmtMs(e.p95Nanos) }}</span>
               </div>
             }
@@ -74,7 +74,7 @@
             <h3>⛓ Slowest Cypher</h3>
             @for (c of insights.slowestCypher; track c) {
               <div class="ins-row">
-                <span class="ins-name mono">{{ c.operation }} · {{ shortHash(c.runnableHash) }}</span>
+                <span class="ins-name literal">{{ c.operation }} · {{ shortHash(c.runnableHash) }}</span>
                 <span class="ins-val">{{ fmtMs(c.p95Nanos) }}</span>
               </div>
             }
@@ -98,7 +98,7 @@
             <h3>⚠ Error hotspots</h3>
             @for (e of insights.errorHotspots; track e) {
               <div class="ins-row">
-                <span class="ins-name mono">{{ endpointLabel(e) }}</span>
+                <span class="ins-name literal">{{ endpointLabel(e) }}</span>
                 <span class="ins-val" [ngClass]="errClass(e.errorCount, e.reqCount)">{{ errPct(e.errorCount, e.reqCount) | number:'1.1-1' }}%</span>
               </div>
             }
@@ -116,12 +116,12 @@
           <tbody>
             @for (e of endpoints; track e) {
               <tr>
-                <td><span class="comp">{{ e.component }}</span> <span class="mono">{{ endpointLabel(e) }}</span></td>
+                <td><span class="comp">{{ e.component }}</span> <span class="literal">{{ endpointLabel(e) }}</span></td>
                 <td class="num">{{ fmtN(e.reqCount) }}</td>
                 <td class="num" [ngClass]="errClass(e.errorCount, e.reqCount)">{{ errPct(e.errorCount, e.reqCount) | number:'1.2-2' }}%</td>
-                <td class="num mono">{{ fmtMs(e.p50Nanos) }}</td>
-                <td class="num mono">{{ fmtMs(e.p95Nanos) }}</td>
-                <td class="num mono">{{ fmtMs(e.maxNanos) }}</td>
+                <td class="num literal">{{ fmtMs(e.p50Nanos) }}</td>
+                <td class="num literal">{{ fmtMs(e.p95Nanos) }}</td>
+                <td class="num literal">{{ fmtMs(e.maxNanos) }}</td>
               </tr>
             }
             @if (!endpoints.length) {
@@ -138,11 +138,11 @@
           <tbody>
             @for (c of cypher; track c) {
               <tr>
-                <td class="mono">{{ c.operation }} <span class="muted">{{ shortHash(c.runnableHash) }}</span></td>
-                <td class="mono query">{{ c.sample }}</td>
+                <td class="literal">{{ c.operation }} <span class="muted">{{ shortHash(c.runnableHash) }}</span></td>
+                <td class="literal query">{{ c.sample }}</td>
                 <td class="num">{{ fmtN(c.execCount) }}</td>
-                <td class="num mono">{{ fmtMs(c.p95Nanos) }}</td>
-                <td class="num mono">{{ fmtMs(c.maxNanos) }}</td>
+                <td class="num literal">{{ fmtMs(c.p95Nanos) }}</td>
+                <td class="num literal">{{ fmtMs(c.maxNanos) }}</td>
               </tr>
             }
             @if (!cypher.length) {
@@ -160,7 +160,7 @@
             @for (u of users; track u) {
               <tr>
                 <td>{{ u.userId }}</td>
-                <td class="mono">{{ authLabel(u) }}</td>
+                <td class="literal">{{ authLabel(u) }}</td>
                 <td class="num">{{ fmtN(u.reqCount) }}</td>
                 <td class="num" [ngClass]="errClass(u.errorCount, u.reqCount)">{{ errPct(u.errorCount, u.reqCount) | number:'1.2-2' }}%</td>
               </tr>

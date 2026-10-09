@@ -144,7 +144,7 @@
                 <th class="name">{{ repository.repository }}</th>
                 @if (!repository.error) {
                   <td><code>{{ repository.branch || '—' }}</code></td>
-                  <td class="mono dim" [title]="repository.commit || ''">{{ shortCommit(repository.commit) }}</td>
+                  <td class="dim" [title]="repository.commit || ''">{{ shortCommit(repository.commit) }}</td>
                   <td>{{ repository.committedAt | date:'yyyy-MM-dd HH:mm' }}</td>
                   <td [class.bad]="(repository.uncommittedFiles || 0) > 0">
                     {{ repository.uncommittedFiles === null ? '—' : repository.uncommittedFiles }}

@@ -660,11 +660,11 @@ export class LogExplorerComponent implements OnInit {
   }
 
   cellClass(col: ColumnMeta): string {
-    const mono = col.type === 'NANOS' || col.type === 'TEXT'
+    const literal = col.type === 'NANOS' || col.type === 'TEXT'
       || ['userId', 'runnableHash', 'apiKeyHash', 'globalRequestId', 'operation'].includes(col.key);
     // ellipsise the two columns that would otherwise push everything else off-screen
     const wide = col.type === 'TEXT' || col.key === 'handler' || col.key === 'path';
-    return (mono ? 'mono ' : '') + (col.type === 'NANOS' ? 'num ' : '') + (wide ? 'ell' : '');
+    return (literal ? 'literal ' : '') + (col.type === 'NANOS' ? 'num ' : '') + (wide ? 'ell' : '');
   }
 
   isFacetColumn(key: string): boolean {

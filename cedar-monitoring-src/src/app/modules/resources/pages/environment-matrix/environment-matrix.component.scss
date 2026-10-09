@@ -263,7 +263,6 @@ table.values {
   }
 
   td.vval {
-    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
     word-break: break-all;
 
     &.secret {
@@ -332,7 +331,6 @@ table.matrix {
   margin: var(--cedar-space-2) 0 var(--cedar-space-1);
 
   .chip {
-    font-family: var(--cedar-font-family-monospace, ui-monospace, SFMono-Regular, Menlo, monospace);
     font-size: var(--cedar-font-size-small);
     padding: var(--cedar-space-1) var(--cedar-space-2);
     border-radius: var(--cedar-radius);
