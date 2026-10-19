@@ -99,7 +99,7 @@
     background: var(--cedar-status-error-surface);
     --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
   }
 
   &.unverified {

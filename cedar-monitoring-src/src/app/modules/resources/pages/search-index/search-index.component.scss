@@ -31,7 +31,7 @@
 .state-chip {
   padding: 0 var(--cedar-space-2);
   border-radius: var(--cedar-radius-pill);
-  font-weight: var(--cedar-font-weight-medium, 500);
+  font-weight: var(--cedar-font-weight-medium);
   font-size: var(--cedar-font-size-small);
   color: var(--cedar-color-on-primary);
 
@@ -46,7 +46,7 @@
 
 .overdue {
   color: var(--cedar-status-error-text);
-  font-weight: var(--cedar-font-weight-medium, 500);
+  font-weight: var(--cedar-font-weight-medium);
 }
 
 .error-box {
@@ -67,7 +67,7 @@
   }
 
   th {
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
     color: var(--cedar-text-muted);
     white-space: nowrap;
   }
@@ -108,7 +108,7 @@
   }
 
   th {
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
     color: var(--cedar-text-muted);
     border-bottom: 1px solid var(--cedar-border-rule);
   }

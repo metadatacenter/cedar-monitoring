@@ -136,13 +136,13 @@ body {
 }
 
 strong, b {
-  font-weight: var(--cedar-font-weight-medium, 500);
+  font-weight: var(--cedar-font-weight-medium);
 }
 
 // The browser draws headings and table header cells bold. The shared scale's heavier weight is
 // medium, and the build embeds no bold face, so the browser would synthesize one.
 h1, h2, h3, h4, h5, h6, th {
-  font-weight: var(--cedar-font-weight-medium, 500);
+  font-weight: var(--cedar-font-weight-medium);
 }
 
 /* Shared SVG geometry and size; the surrounding control supplies its accessible name. */

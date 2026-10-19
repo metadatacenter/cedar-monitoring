@@ -43,7 +43,7 @@
 
   .verdict-status {
     font-size: var(--cedar-font-size-large);
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
   }
 
   .verdict-text {
@@ -94,12 +94,12 @@
       font-size: var(--cedar-font-size-small);
       text-transform: uppercase;
       color: var(--cedar-text-muted);
-      font-weight: var(--cedar-font-weight-medium, 500);
+      font-weight: var(--cedar-font-weight-medium);
     }
 
     .tv {
       font-size: var(--cedar-font-size-large);
-      font-weight: var(--cedar-font-weight-medium, 500);
+      font-weight: var(--cedar-font-weight-medium);
       font-variant-numeric: tabular-nums;
 
       &.small {
@@ -147,18 +147,18 @@ table.grid {
   }
 
   th.name {
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
   }
 
   td.bad {
     --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
   }
 
   td.warn {
     --cedar-icon-color: var(--cedar-status-warning-text);
     color: var(--cedar-status-warning-text);
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
   }
 }

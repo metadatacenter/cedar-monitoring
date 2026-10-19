@@ -15,7 +15,7 @@
     font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
     color: var(--cedar-text-muted);
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
     margin-right: var(--cedar-space-1);
   }
 
@@ -55,12 +55,12 @@
       font-size: var(--cedar-font-size-small);
       text-transform: uppercase;
       color: var(--cedar-text-muted);
-      font-weight: var(--cedar-font-weight-medium, 500);
+      font-weight: var(--cedar-font-weight-medium);
     }
 
     .tv {
       font-size: var(--cedar-font-size-large);
-      font-weight: var(--cedar-font-weight-medium, 500);
+      font-weight: var(--cedar-font-weight-medium);
       margin-top: var(--cedar-space-2);
       font-variant-numeric: tabular-nums;
     }
@@ -121,7 +121,7 @@
       }
 
       .ins-val {
-        font-weight: var(--cedar-font-weight-medium, 500);
+        font-weight: var(--cedar-font-weight-medium);
         font-variant-numeric: tabular-nums;
         font-size: var(--cedar-font-size);
       }
@@ -154,7 +154,7 @@ table.data {
     font-size: var(--cedar-font-size-small);
     text-transform: uppercase;
     color: var(--cedar-text-muted);
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
     padding: var(--cedar-space-2) var(--cedar-space-3);
     border-bottom: 1px solid var(--cedar-border-rule);
     white-space: nowrap;
@@ -219,5 +219,5 @@ table.data {
 
 .err-bad {
   color: var(--cedar-status-error-text);
-  font-weight: var(--cedar-font-weight-medium, 500);
+  font-weight: var(--cedar-font-weight-medium);
 }
