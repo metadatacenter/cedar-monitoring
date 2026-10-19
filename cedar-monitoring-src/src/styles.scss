@@ -43,6 +43,8 @@ $typography: mat.m2-define-typography-config(
 
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
 @import '@org.metadatacenter/cedar-design-tokens/icon-contract.css';
+// The shared focus ring for everything focusable that does not draw its own.
+@import '@org.metadatacenter/cedar-design-tokens/focus.css';
 
 html, body {
   height: 100%;
