@@ -16,11 +16,8 @@ export class MicroservicesService {
     'openview',
     'repo',
     'resource',
-    'schema',
-    'submission',
     'terminology',
     'user',
-    'valuerecommender',
     'worker'
   ];
 

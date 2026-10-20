@@ -1,10 +1,4 @@
 {
-  "valuerecommender": 0,
-  "valuerecommenderProcessing": 0,
-  "valuerecommenderDeadLetter": 2,
-  "ncbiSubmission": 0,
-  "ncbiSubmissionProcessing": 0,
-  "ncbiSubmissionDeadLetter": 0,
   "appLog": 18432,
   "appLogProcessing": 0,
   "appLogDeadLetter": 0,
