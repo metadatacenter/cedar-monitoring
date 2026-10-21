@@ -59,7 +59,7 @@ const scenarios = {
   'opensearch-counts': async (page) => {
     await openMonitor(page, { 'resources/counts/opensearch': fixture('resource-counts-opensearch') });
     await page.goto('/resource-counts/opensearch');
-    await expect(page.getByRole('cell', { name: '141233' })).toBeVisible();
+    await expect(page.getByRole('cell', { name: '143189' })).toBeVisible();
     await settled(page);
   },
   'mysql-counts': async (page) => {

@@ -12,12 +12,6 @@ import {CedarMonitoring} from "./cedar-monitoring.model";
  * -1 means "not loaded yet", as elsewhere in these models.
  */
 export class RedisQueueCounts extends CedarMonitoring {
-  valuerecommender: number = -1;
-  valuerecommenderProcessing: number = -1;
-  valuerecommenderDeadLetter: number = -1;
-  ncbiSubmission: number = -1;
-  ncbiSubmissionProcessing: number = -1;
-  ncbiSubmissionDeadLetter: number = -1;
   appLog: number = -1;
   appLogProcessing: number = -1;
   appLogDeadLetter: number = -1;

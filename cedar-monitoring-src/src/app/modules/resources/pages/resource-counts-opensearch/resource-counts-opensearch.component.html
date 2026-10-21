@@ -11,7 +11,7 @@
       <mat-card-header>
         <mat-card-title>Opensearch Document Counts</mat-card-title>
         <mat-card-subtitle>
-          Loaded from two indices
+          Loaded from the search index
         </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content style="margin-top: var(--cedar-space-4)">
@@ -29,10 +29,6 @@
           <ng-container matColumnDef="searchIndex">
             <th mat-header-cell *matHeaderCellDef>Search Index</th>
             <td mat-cell *matCellDef="let element">{{element.searchIndex}}</td>
-          </ng-container>
-          <ng-container matColumnDef="recommenderIndex">
-            <th mat-header-cell *matHeaderCellDef>Recommender Index</th>
-            <td mat-cell *matCellDef="let element">{{element.recommenderIndex}}</td>
           </ng-container>
         </table>
       </mat-card-content>

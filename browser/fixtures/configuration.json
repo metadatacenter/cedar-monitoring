@@ -11,12 +11,6 @@
         "admin": {
           "port": 9110
         }
-      },
-      "submission": {
-        "base": "https://submission.metadatacenter.org/",
-        "http": {
-          "port": "${CEDAR_SUBMISSION_HTTP_PORT}"
-        }
       }
     },
     "mongo": {

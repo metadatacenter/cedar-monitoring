@@ -22,9 +22,7 @@ export interface ReportRow {
 const REPORT: ReportRow[] = [
   {position: 1, name: 'App Log', value: 0, processing: 0, deadLetter: 0},
   {position: 2, name: 'Search Permission', value: 0, processing: 0, deadLetter: 0},
-  {position: 3, name: 'NCBI Submission', value: 0, processing: 0, deadLetter: 0},
-  {position: 4, name: 'Value Recommender', value: 0, processing: 0, deadLetter: 0},
-  {position: 5, name: 'Clone Instances', value: 0, processing: 0, deadLetter: 0},
+  {position: 3, name: 'Clone Instances', value: 0, processing: 0, deadLetter: 0},
 ];
 
 @Component({
@@ -86,15 +84,9 @@ export class QueueCountsComponent extends CedarPageComponent implements OnInit {
       REPORT[1].value = counts.searchPermission;
       REPORT[1].processing = counts.searchPermissionProcessing;
       REPORT[1].deadLetter = counts.searchPermissionDeadLetter;
-      REPORT[2].value = counts.ncbiSubmission;
-      REPORT[2].processing = counts.ncbiSubmissionProcessing;
-      REPORT[2].deadLetter = counts.ncbiSubmissionDeadLetter;
-      REPORT[3].value = counts.valuerecommender;
-      REPORT[3].processing = counts.valuerecommenderProcessing;
-      REPORT[3].deadLetter = counts.valuerecommenderDeadLetter;
-      REPORT[4].value = counts.cloneInstances;
-      REPORT[4].processing = counts.cloneInstancesProcessing;
-      REPORT[4].deadLetter = counts.cloneInstancesDeadLetter;
+      REPORT[2].value = counts.cloneInstances;
+      REPORT[2].processing = counts.cloneInstancesProcessing;
+      REPORT[2].deadLetter = counts.cloneInstancesDeadLetter;
     }
     this.uiService.redisQueueCountTimeout = setTimeout(() => {
       this.ngOnInit();

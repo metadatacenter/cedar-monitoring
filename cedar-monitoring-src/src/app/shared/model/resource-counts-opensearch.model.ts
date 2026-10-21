@@ -7,5 +7,4 @@ export class ResourceCountsOpensearch extends CedarMonitoring {
   template: number = -1;
   instance: number = -1;
   artifactTotal: number = -1;
-  recommenderTotal: number = -1;
 }

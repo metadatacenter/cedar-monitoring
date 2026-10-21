@@ -15,16 +15,15 @@ export interface ReportRow {
   position: number;
   name: string;
   searchIndex: string;
-  recommenderIndex: string;
 }
 
 const REPORT: ReportRow[] = [
-  {position: 3, name: 'Fields', searchIndex: '', recommenderIndex: ''},
-  {position: 4, name: 'Element', searchIndex: '', recommenderIndex: ''},
-  {position: 5, name: 'Templates', searchIndex: '', recommenderIndex: ''},
-  {position: 6, name: 'Instances', searchIndex: '', recommenderIndex: ''},
-  {position: 7, name: 'Folders', searchIndex: '', recommenderIndex: ''},
-  {position: 8, name: 'Total', searchIndex: '', recommenderIndex: ''},
+  {position: 3, name: 'Fields', searchIndex: ''},
+  {position: 4, name: 'Element', searchIndex: ''},
+  {position: 5, name: 'Templates', searchIndex: ''},
+  {position: 6, name: 'Instances', searchIndex: ''},
+  {position: 7, name: 'Folders', searchIndex: ''},
+  {position: 8, name: 'Total', searchIndex: ''},
 ];
 
 @Component({
@@ -38,7 +37,7 @@ export class ResourceCountsOpensearchComponent extends CedarPageComponent implem
 
   public resourceCounts: ResourceCountsOpensearchIndex | undefined;
 
-  displayedColumns: string[] = ['position', 'name', 'searchIndex', 'recommenderIndex'];
+  displayedColumns: string[] = ['position', 'name', 'searchIndex'];
   dataSource = REPORT;
 
   constructor(
@@ -86,7 +85,6 @@ export class ResourceCountsOpensearchComponent extends CedarPageComponent implem
       REPORT[3].searchIndex = '' + this.resourceCounts.opensearch.instance;
       REPORT[4].searchIndex = '' + this.resourceCounts.opensearch.folder;
       REPORT[5].searchIndex = '' + this.resourceCounts.opensearch.artifactTotal;
-      REPORT[5].recommenderIndex = '' + this.resourceCounts.opensearch.recommenderTotal;
 
     }
   }

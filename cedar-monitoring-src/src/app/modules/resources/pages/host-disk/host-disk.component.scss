@@ -40,7 +40,7 @@ h3.section {
   // The note stays at body size beside the larger heading.
   .sub {
     font-size: var(--cedar-font-size);
-    font-weight: var(--cedar-font-weight-regular, 400);
+    font-weight: var(--cedar-font-weight-regular);
     color: var(--cedar-text-muted);
     margin-left: var(--cedar-space-2);
   }
@@ -75,7 +75,7 @@ h3.section {
 
   .fs-pct {
     font-size: var(--cedar-font-size-large);
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
     font-variant-numeric: tabular-nums;
 
     &.bad {
@@ -146,7 +146,7 @@ table.grid {
   }
 
   th.name {
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
     max-width: 460px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -160,7 +160,7 @@ table.grid {
   td.bad {
     --cedar-icon-color: var(--cedar-status-error-text);
     color: var(--cedar-status-error-text);
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
   }
 
   .dim {

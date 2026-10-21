@@ -24,16 +24,6 @@
       "schemas": [
         "cedar_messaging"
       ]
-    },
-    {
-      "id": "submission",
-      "configKey": "submissionDatabase",
-      "configured": true,
-      "server": "db-02.internal:3306",
-      "schema": "cedar_submission",
-      "reachable": false,
-      "error": "Communications link failure",
-      "schemas": []
     }
   ],
   "databases": [

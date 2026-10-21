@@ -53,24 +53,6 @@
     "artifactSizeBytes": 58824662,
     "implementationVersion": "2.9.21"
   },
-  "impex": {
-    "application": "cedar-impex-server",
-    "server": "impex",
-    "version": "2.9.21",
-    "versionModifier": null,
-    "host": "app.metadatacenter.org",
-    "pid": 41311,
-    "java.version": "17.0.16",
-    "java.vendor": "Eclipse Adoptium",
-    "jvm.name": "OpenJDK 64-Bit Server VM",
-    "startedAt": "2026-09-29T17:30:27.000Z",
-    "uptimeMs": 251973000,
-    "artifactPath": "/srv/cedar/cedar-impex-server/cedar-impex-server-application/target/cedar-impex-server-application-2.9.21.jar",
-    "artifactType": "jar",
-    "artifactBuiltAt": "2026-09-29T17:12:40Z",
-    "artifactSizeBytes": 59236993,
-    "implementationVersion": "2.9.21"
-  },
   "messaging": {
     "application": "cedar-messaging-server",
     "server": "messaging",
@@ -161,24 +143,6 @@
     "artifactSizeBytes": 61298648,
     "implementationVersion": "2.9.21"
   },
-  "schema": {
-    "application": "cedar-schema-server",
-    "server": "schema",
-    "version": "2.9.21",
-    "versionModifier": null,
-    "host": "app.metadatacenter.org",
-    "pid": 41533,
-    "java.version": "17.0.16",
-    "java.vendor": "Eclipse Adoptium",
-    "jvm.name": "OpenJDK 64-Bit Server VM",
-    "startedAt": "2026-09-29T17:31:21.000Z",
-    "uptimeMs": 251919000,
-    "artifactPath": "/srv/cedar/cedar-schema-server/cedar-schema-server-application/target/cedar-schema-server-application-2.9.21.jar",
-    "artifactType": "jar",
-    "artifactBuiltAt": "2026-09-29T17:12:40Z",
-    "artifactSizeBytes": 61710979,
-    "implementationVersion": "2.9.21"
-  },
   "terminology": {
     "application": "cedar-terminology-server",
     "server": "terminology",
@@ -213,24 +177,6 @@
     "artifactType": "jar",
     "artifactBuiltAt": "2026-09-29T17:12:40Z",
     "artifactSizeBytes": 62535641,
-    "implementationVersion": "2.9.21"
-  },
-  "valuerecommender": {
-    "application": "cedar-valuerecommender-server",
-    "server": "valuerecommender",
-    "version": "2.9.21",
-    "versionModifier": null,
-    "host": "app.metadatacenter.org",
-    "pid": 41644,
-    "java.version": "17.0.16",
-    "java.vendor": "Eclipse Adoptium",
-    "jvm.name": "OpenJDK 64-Bit Server VM",
-    "startedAt": "2026-09-29T17:31:48.000Z",
-    "uptimeMs": 251892000,
-    "artifactPath": "/srv/cedar/cedar-valuerecommender-server/cedar-valuerecommender-server-application/target/cedar-valuerecommender-server-application-2.9.21.jar",
-    "artifactType": "jar",
-    "artifactBuiltAt": "2026-09-29T17:12:40Z",
-    "artifactSizeBytes": 62947972,
     "implementationVersion": "2.9.21"
   },
   "worker": {

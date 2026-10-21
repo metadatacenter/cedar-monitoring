@@ -12,7 +12,7 @@ const PAGES = {
     answers: { 'health-check/:server': byServer('health-checks') },
     loaded: (page) => expect(page.getByText('1 errored')).toBeVisible(),
     data: (page) => page.getByText('1 errored'),
-    failed: (page) => page.getByText('15 errored'),
+    failed: (page) => page.getByText('12 errored'),
   },
   'search index': {
     route: '/search-index',
@@ -35,8 +35,8 @@ const PAGES = {
   'OpenSearch counts': {
     route: '/resource-counts/opensearch',
     answers: { 'resources/counts/opensearch': fixture('resource-counts-opensearch') },
-    loaded: (page) => expect(page.getByRole('cell', { name: '141233' })).toBeVisible(),
-    data: (page) => page.getByRole('cell', { name: '141233' }),
+    loaded: (page) => expect(page.getByRole('cell', { name: '143189' })).toBeVisible(),
+    data: (page) => page.getByRole('cell', { name: '143189' }),
   },
   'MySQL counts': {
     route: '/mysql-counts',

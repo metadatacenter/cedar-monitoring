@@ -28,8 +28,7 @@
     "element": 9806,
     "template": 4552,
     "instance": 106343,
-    "artifactTotal": 143189,
-    "recommenderTotal": 141233
+    "artifactTotal": 143189
   },
   "drift": {
     "checks": [

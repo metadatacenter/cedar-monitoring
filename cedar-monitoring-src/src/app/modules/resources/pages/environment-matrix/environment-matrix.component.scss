@@ -59,12 +59,12 @@
       font-size: var(--cedar-font-size-small);
       text-transform: uppercase;
       color: var(--cedar-text-muted);
-      font-weight: var(--cedar-font-weight-medium, 500);
+      font-weight: var(--cedar-font-weight-medium);
     }
 
     .tv {
       font-size: var(--cedar-font-size-large);
-      font-weight: var(--cedar-font-weight-medium, 500);
+      font-weight: var(--cedar-font-weight-medium);
       font-variant-numeric: tabular-nums;
     }
 
@@ -113,7 +113,7 @@ table.matrix {
       writing-mode: vertical-rl;
       transform: rotate(180deg);
       font-size: var(--cedar-font-size-small);
-      font-weight: var(--cedar-font-weight-medium, 500);
+      font-weight: var(--cedar-font-weight-medium);
       color: var(--cedar-text-muted);
       text-align: left;
       margin: 0 auto;
@@ -125,7 +125,7 @@ table.matrix {
     left: 0;
     background: var(--cedar-surface-raised);
     z-index: 1;
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
     border-right: 1px solid var(--cedar-border-rule);
     padding-right: var(--cedar-space-2);
     max-width: 300px;
@@ -205,7 +205,7 @@ table.matrix {
 .cell-unset {
   --cedar-icon-color: var(--cedar-status-error-text);
   color: var(--cedar-status-error-text);
-  font-weight: var(--cedar-font-weight-medium, 500);
+  font-weight: var(--cedar-font-weight-medium);
   background: var(--cedar-status-error-surface);
 }
 
@@ -226,13 +226,13 @@ table.matrix {
 // The legend in the note above the grid, so the glyphs are explained in the words that use them.
 .k-default {
   color: var(--cedar-text-muted);
-  font-weight: var(--cedar-font-weight-medium, 500);
+  font-weight: var(--cedar-font-weight-medium);
 }
 
 .k-unset {
   --cedar-icon-color: var(--cedar-status-error-text);
   color: var(--cedar-status-error-text);
-  font-weight: var(--cedar-font-weight-medium, 500);
+  font-weight: var(--cedar-font-weight-medium);
 }
 
 table.values {
@@ -257,7 +257,7 @@ table.values {
   }
 
   th.vname {
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
     white-space: nowrap;
     width: 1%;
   }
@@ -320,7 +320,7 @@ table.matrix {
   td.decl-cell.declared {
     --cedar-icon-color: var(--cedar-status-success-text);
     color: var(--cedar-status-success-text);
-    font-weight: var(--cedar-font-weight-medium, 500);
+    font-weight: var(--cedar-font-weight-medium);
   }
 }
 
