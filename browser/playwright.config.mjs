@@ -5,6 +5,7 @@ const port = Number(process.env.PORT || 4795);
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
+  workers: process.env.CEDAR_TEST_WORKERS ? Number(process.env.CEDAR_TEST_WORKERS) : undefined,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   use: { baseURL: `http://127.0.0.1:${port}`, browserName: 'chromium', trace: 'retain-on-failure' },
