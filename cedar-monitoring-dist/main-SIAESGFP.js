@@ -4662,7 +4662,7 @@ textarea.cdk-textarea-autosize-measuring-firefox {
   flex: 1 1 auto;
 }
 
-.mat-calendar-period-button {
+button.mat-calendar-period-button {
   min-width: 0;
   margin: 0 8px;
   font-size: var(--%NS%mat-datepicker-calendar-period-button-text-size, var(--%NS%mat-sys-title-small-size));
