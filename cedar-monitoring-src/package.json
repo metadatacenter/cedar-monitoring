@@ -34,11 +34,11 @@
     "@angular/cli": "22.2.5",
     "@angular/compiler-cli": "^22.2.0",
     "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261028.99e15abe",
-    "@vitest/browser-playwright": "^4.1.11",
+    "@vitest/browser-playwright": "^5.0.5",
     "istanbul-lib-instrument": "^6.0.3",
     "playwright": "^1.63.0",
     "typescript": "~6.0.3",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.5"
   },
   "allowScripts": {
     "@parcel/watcher@2.6.0": true,
