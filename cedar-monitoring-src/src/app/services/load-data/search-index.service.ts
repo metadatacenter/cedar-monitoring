@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {SnotifyService} from 'ng-alt-snotify';
 import {TranslateService} from '@ngx-translate/core';
 import {RestApiUrlService} from '../rest-api-url.service';
 import {GenericSingleLoaderService} from "./generic-single-loader";
@@ -25,10 +24,9 @@ export class SearchIndexService extends GenericSingleLoaderService<SearchIndexJo
     http: HttpClient,
     restApiUrl: RestApiUrlService,
     router: Router,
-    notify: SnotifyService,
     translateService: TranslateService
   ) {
-    super(http, restApiUrl, router, notify, translateService);
+    super(http, restApiUrl, router, translateService);
   }
 
   getSearchIndexJobStatus(): Observable<SearchIndexJobStatus | null> | null {

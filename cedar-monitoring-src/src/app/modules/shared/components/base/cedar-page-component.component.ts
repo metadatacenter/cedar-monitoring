@@ -1,5 +1,4 @@
 import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-alt-snotify';
 import {CedarBase} from './cedar-base.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
@@ -19,7 +18,6 @@ export abstract class CedarPageComponent extends CedarBase {
 
   protected constructor(
     translateService: TranslateService,
-    notify: SnotifyService,
     router: Router,
     route: ActivatedRoute,
     dataStore: DataStoreService,
@@ -27,7 +25,7 @@ export abstract class CedarPageComponent extends CedarBase {
     keycloak: KeycloakService,
     uiService: UiService
   ) {
-    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   ngOnInit() {

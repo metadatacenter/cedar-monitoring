@@ -200,6 +200,7 @@ button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) s
   filled-hover-label-text-color: tokens.$text-muted,
   filled-active-indicator-color: tokens.$control-border-default,
   filled-input-text-placeholder-color: tokens.$text-muted,
+  outlined-outline-color: tokens.$control-border-default,
   outlined-label-text-color: tokens.$text-muted,
   outlined-input-text-placeholder-color: tokens.$text-muted,
 ));

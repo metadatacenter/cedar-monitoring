@@ -3,12 +3,11 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-alt-snotify";
 import {SharedModule} from "./modules/shared";
 import {ResourcesModule} from "./modules/resources/resources.module";
 import {MaterialModule} from "./modules/material-module";
 import {provideHttpClient, withInterceptorsFromDi, withXhr} from "@angular/common/http";
-import {TranslateModule} from "@ngx-translate/core";
+import {provideTranslateService} from "@ngx-translate/core";
 import {AppConfigService} from "./services/app-config.service";
 import {provideTranslateHttpLoader} from "@ngx-translate/http-loader";
 import {initializeKeycloak} from "./init/keycloak-init.factory";
@@ -28,21 +27,14 @@ const appInitializerFn = (appConfig: AppConfigService) => {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SnotifyModule,
     SharedModule,
     ResourcesModule,
     MaterialModule,
     KeycloakAngularModule,
-    TranslateModule.forRoot(),
   ],
   providers: [
     provideHttpClient(withXhr(), withInterceptorsFromDi()),
-    provideTranslateHttpLoader(),
-    SnotifyService,
-    {
-      provide: 'SnotifyToastConfig',
-      useValue: ToastDefaults
-    },
+    provideTranslateService({loader: provideTranslateHttpLoader()}),
     AppConfigService,
     {
       provide: APP_INITIALIZER,
