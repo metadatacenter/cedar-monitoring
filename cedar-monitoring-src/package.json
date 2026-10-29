@@ -32,7 +32,7 @@
     "@angular/build": "22.2.5",
     "@angular/cli": "22.2.5",
     "@angular/compiler-cli": "^22.2.0",
-    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261028.f26a7bb0",
+    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261029.523c6f48",
     "@vitest/browser-playwright": "^5.0.5",
     "istanbul-lib-instrument": "^6.0.3",
     "playwright": "^1.63.0",
