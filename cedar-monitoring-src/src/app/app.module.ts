@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-alt-snotify";
 import {SharedModule} from "./modules/shared";
 import {ResourcesModule} from "./modules/resources/resources.module";
 import {MaterialModule} from "./modules/material-module";
@@ -28,7 +27,6 @@ const appInitializerFn = (appConfig: AppConfigService) => {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SnotifyModule,
     SharedModule,
     ResourcesModule,
     MaterialModule,
@@ -37,11 +35,6 @@ const appInitializerFn = (appConfig: AppConfigService) => {
   providers: [
     provideHttpClient(withXhr(), withInterceptorsFromDi()),
     provideTranslateService({loader: provideTranslateHttpLoader()}),
-    SnotifyService,
-    {
-      provide: 'SnotifyToastConfig',
-      useValue: ToastDefaults
-    },
     AppConfigService,
     {
       provide: APP_INITIALIZER,

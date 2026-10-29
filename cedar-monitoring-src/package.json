@@ -24,7 +24,6 @@
     "@ngx-translate/http-loader": "^18.1.0",
     "keycloak-angular": "^13.0.0",
     "keycloak-js": "^21.0.1",
-    "ng-alt-snotify": "^17.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "^0.16.3"
@@ -48,10 +47,6 @@
     "msgpackr-extract@3.0.4": true
   },
   "overrides": {
-    "ng-alt-snotify": {
-      "@angular/core": "$@angular/core",
-      "@angular/common": "$@angular/common"
-    },
     "keycloak-angular": {
       "@angular/core": "$@angular/core",
       "@angular/common": "$@angular/common",

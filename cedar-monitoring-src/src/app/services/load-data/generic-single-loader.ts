@@ -5,7 +5,6 @@ import {HttpClient} from '@angular/common/http';
 import {RestApiUrlService} from '../rest-api-url.service';
 import {Router} from '@angular/router';
 import {AbstractDataLoaderService} from './abstract-data-loader.service';
-import {SnotifyService} from 'ng-alt-snotify';
 import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
@@ -20,10 +19,9 @@ export class GenericSingleLoaderService<T> extends AbstractDataLoaderService {
     http: HttpClient,
     restApiUrl: RestApiUrlService,
     router: Router,
-    notify: SnotifyService,
     translateService: TranslateService
   ) {
-    super(http, restApiUrl, router, notify, translateService);
+    super(http, restApiUrl, router, translateService);
     this.data = null;
     this.observable = null;
   }

@@ -4,7 +4,6 @@ import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
 import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-alt-snotify';
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
 import {UiService} from '../../../../services/ui.service';
@@ -30,7 +29,6 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
 
   constructor(
     translateService: TranslateService,
-    notify: SnotifyService,
     router: Router,
     route: ActivatedRoute,
     dataStore: DataStoreService,
@@ -39,7 +37,7 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
     uiService: UiService,
     private microservicesService: MicroservicesService
   ) {
-    super(translateService, notify, router, route, dataStore, dataHandler, keycloak, uiService);
+    super(translateService, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
   override ngOnInit() {
