@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslatePipe} from '@ngx-translate/core';
 import {SpinnerComponent} from './components/spinner/spinner.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {MaterialModule} from '../../modules/material-module';
@@ -20,7 +20,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule,
+    TranslatePipe,
     MaterialModule,
     ClipboardModule,
   ],
@@ -37,7 +37,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule,
+    TranslatePipe,
     SpinnerComponent,
     HeaderComponent,
     JsonViewComponent

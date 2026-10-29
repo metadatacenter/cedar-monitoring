@@ -8,7 +8,7 @@ import {SharedModule} from "./modules/shared";
 import {ResourcesModule} from "./modules/resources/resources.module";
 import {MaterialModule} from "./modules/material-module";
 import {provideHttpClient, withInterceptorsFromDi, withXhr} from "@angular/common/http";
-import {TranslateModule} from "@ngx-translate/core";
+import {provideTranslateService} from "@ngx-translate/core";
 import {AppConfigService} from "./services/app-config.service";
 import {provideTranslateHttpLoader} from "@ngx-translate/http-loader";
 import {initializeKeycloak} from "./init/keycloak-init.factory";
@@ -33,11 +33,10 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     ResourcesModule,
     MaterialModule,
     KeycloakAngularModule,
-    TranslateModule.forRoot(),
   ],
   providers: [
     provideHttpClient(withXhr(), withInterceptorsFromDi()),
-    provideTranslateHttpLoader(),
+    provideTranslateService({loader: provideTranslateHttpLoader()}),
     SnotifyService,
     {
       provide: 'SnotifyToastConfig',
