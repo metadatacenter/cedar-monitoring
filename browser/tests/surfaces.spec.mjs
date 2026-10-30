@@ -26,6 +26,12 @@ const scenarios = {
     await page.goto('/profile');
     await expect(page.locator('.profile-card')).toBeVisible();
   },
+  // Signed in, but the monitor refuses: the user lacks MONITOR_READ.
+  'no-access': async (page) => {
+    await openMonitor(page, { 'health-check/monitor': 403 });
+    await page.goto('/');
+    await expect(page.locator('app-no-access')).toBeVisible();
+  },
   // The page makes no request until an identifier is looked up.
   'resource-info': async (page) => {
     await openMonitor(page, {

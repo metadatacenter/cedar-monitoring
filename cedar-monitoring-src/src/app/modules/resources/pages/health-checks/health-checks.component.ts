@@ -10,6 +10,7 @@ import {UiService} from '../../../../services/ui.service';
 import {HealthCheck} from "../../../../shared/model/health-check.model";
 import {MicroservicesService} from "../../../../services/microservices.service";
 import {KeycloakService} from "keycloak-angular";
+import {accessFromStatus} from "../../../../services/monitor-access.service";
 
 @Component({
   selector: 'app-health-checks',
@@ -76,10 +77,18 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
     this.nrErrored++;
   }
 
+  // A refusal is about the caller, not the service: it must not be painted as the service failing.
+  private isDenied(status: number | undefined): boolean {
+    return status !== undefined && accessFromStatus(status) === 'denied';
+  }
+
   getStatus(serverName: string): string {
     let status = this.healthCheckStatusMap.get(serverName);
-    if (status) {
-      return 'Error: ' + status;
+    if (this.isDenied(status)) {
+      return 'No access (' + status + '), health unknown';
+    } else if (status !== undefined) {
+      // 0 is the browser's own failure: nothing answered at all.
+      return status === 0 ? 'Error: no response' : 'Error: ' + status;
     } else {
       return 'Health check loaded';
     }
@@ -87,7 +96,9 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
 
   getServerColor(serverName: string) {
     let status = this.healthCheckStatusMap.get(serverName);
-    if (status) {
+    if (this.isDenied(status)) {
+      return '';
+    } else if (status !== undefined) {
       return 'warn';
     } else {
       return 'primary';

@@ -67,7 +67,9 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    // Keycloak data only: a user without MONITOR_READ can still see who they are signed in as.
+    data: {monitorAccess: false}
   },
   {
     path: 'resource-info',

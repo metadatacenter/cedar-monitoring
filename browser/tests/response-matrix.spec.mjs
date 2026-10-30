@@ -13,6 +13,8 @@ const PAGES = {
     loaded: (page) => expect(page.getByText('1 errored')).toBeVisible(),
     data: (page) => page.getByText('1 errored'),
     failed: (page) => page.getByText('12 errored'),
+    // The monitor's own health check answers for whether the user may read the Monitor at all.
+    refused: (page) => page.locator('app-no-access'),
   },
   'search index': {
     route: '/search-index',
@@ -128,9 +130,12 @@ const failing = (answers, failure) => Object.fromEntries(Object.keys(answers).ma
 
 /**
  * How a page states a failure: an error banner, unless it says so its own way. A page that reads every
- * service names those that did not answer; one that counts them says how many errored.
+ * service names those that did not answer; one that counts them says how many errored. A page whose
+ * refusal also refuses the access check lands on the no-access page instead.
  */
-const failureShown = (page, spec) => (spec.failed ? spec.failed(page) : page.locator('.banner.error'));
+const failureShown = (page, spec, answer) =>
+  spec.refused && (answer === 401 || answer === 403) ? spec.refused(page)
+    : spec.failed ? spec.failed(page) : page.locator('.banner.error');
 
 for (const [name, spec] of Object.entries(PAGES))
   for (const answer of ANSWERS)
@@ -145,6 +150,6 @@ for (const [name, spec] of Object.entries(PAGES))
         return;
       }
       await settled(page);
-      await expect(failureShown(page, spec).first()).toBeVisible();
+      await expect(failureShown(page, spec, answer).first()).toBeVisible();
       await expect(spec.data(page)).toHaveCount(0);
     });
