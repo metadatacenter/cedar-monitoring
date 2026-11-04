@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { NETWORK_FAILURE, byServer, fixture, logsExplorer, openMonitor, settled, templateId } from './monitor-fixture.mjs';
+import { NETWORK_FAILURE, byServer, expectAllHealthChecksErrored, fixture, healthChecksWithOneError, logsExplorer, openMonitor, settled, templateId } from './monitor-fixture.mjs';
 
 // Each Monitoring page against each answer the monitor API can give. A page that loads shows what it
 // loaded. A page whose request fails stops loading and says that it failed, rather than showing an
@@ -9,10 +9,10 @@ import { NETWORK_FAILURE, byServer, fixture, logsExplorer, openMonitor, settled,
 const PAGES = {
   'health checks': {
     route: '/health-checks',
-    answers: { 'health-check/:server': byServer('health-checks') },
-    loaded: (page) => expect(page.getByText('1 errored')).toBeVisible(),
-    data: (page) => page.getByText('1 errored'),
-    failed: (page) => page.getByText('12 errored'),
+    answers: { 'health-check/:server': healthChecksWithOneError },
+    loaded: (page) => expect(page.getByRole('button', { name: '1 errored', exact: true })).toBeVisible(),
+    data: (page) => page.getByRole('button', { name: '1 errored', exact: true }),
+    failed: (page) => page.getByRole('button', { name: /^[1-9]\d* errored$/ }),
     // The monitor's own health check answers for whether the user may read the Monitor at all.
     refused: (page) => page.locator('app-no-access'),
   },
@@ -151,5 +151,8 @@ for (const [name, spec] of Object.entries(PAGES))
       }
       await settled(page);
       await expect(failureShown(page, spec, answer).first()).toBeVisible();
+      if (name === 'health checks' && answer !== 401 && answer !== 403) {
+        await expectAllHealthChecksErrored(page);
+      }
       await expect(spec.data(page)).toHaveCount(0);
     });

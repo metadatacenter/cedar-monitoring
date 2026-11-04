@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { byServer, openMonitor, settled } from './monitor-fixture.mjs';
+import { byServer, expectAllHealthChecksErrored, openMonitor, settled } from './monitor-fixture.mjs';
 
 // Signed in is not the same as allowed: every monitor route needs MONITOR_READ. A user without it is
 // told so once, on its own page, instead of every page filling with refusals that read as outages.
@@ -20,7 +20,7 @@ test('a monitor that is down does not lock the user out', async ({ page }) => {
   await page.goto('/health-checks');
   await settled(page);
   await expect(page).toHaveURL(/\/health-checks$/);
-  await expect(page.getByText('12 errored')).toBeVisible();
+  await expectAllHealthChecksErrored(page);
 });
 
 test('the profile stays readable without MONITOR_READ', async ({ page }) => {

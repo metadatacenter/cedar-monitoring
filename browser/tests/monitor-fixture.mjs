@@ -101,6 +101,17 @@ export async function openMonitor(page, answers) {
 }
 export const byServer = (name) => ({ server }) => fixture(name)[server] ?? 503;
 
+// Keep the mixed health-check case independent of additions or retirements in the service list.
+// Worker fails explicitly; every other requested service receives a healthy response.
+export const healthChecksWithOneError = ({ server }) => server === 'worker' ? 503 : fixture('health-checks').worker;
+
+export async function expectAllHealthChecksErrored(page) {
+  await expect(page.locator('.dash-card').first()).toBeVisible();
+  const services = await page.locator('.dash-card').count();
+  await expect(page.getByRole('button', { name: `${services} errored`, exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: `0 of ${services} loaded`, exact: true })).toBeVisible();
+}
+
 // The pages show "Loading…" and a spinner until every request has answered.
 export async function settled(page) {
   await expect(page.locator('.loading-spinner')).toHaveCount(0);

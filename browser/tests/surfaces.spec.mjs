@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { test, expect } from '@playwright/test';
 import { surfaceCases, checkSurface } from './surface-contracts.generated.mjs';
-import { fixture, openMonitor, byServer, settled, logsExplorer, templateId } from './monitor-fixture.mjs';
+import { fixture, openMonitor, byServer, healthChecksWithOneError, settled, logsExplorer, templateId } from './monitor-fixture.mjs';
 
 const registry = JSON.parse(readFileSync(new URL('../../.ui-surfaces.json', import.meta.url), 'utf8'));
 const scenarios = {
@@ -16,9 +16,9 @@ const scenarios = {
     await expect(page.getByRole('menuitem', { name: 'Logout' })).toBeVisible();
   },
   'health-checks': async (page) => {
-    await openMonitor(page, { 'health-check/:server': byServer('health-checks') });
+    await openMonitor(page, { 'health-check/:server': healthChecksWithOneError });
     await page.goto('/health-checks');
-    await expect(page.getByText('1 errored')).toBeVisible();
+    await expect(page.getByRole('button', { name: '1 errored', exact: true })).toBeVisible();
     await settled(page);
   },
   profile: async (page) => {
