@@ -10,7 +10,6 @@ export class MicroservicesService {
     'artifact',
     'bridge',
     'group',
-    'impex',
     'messaging',
     'monitor',
     'openview',
