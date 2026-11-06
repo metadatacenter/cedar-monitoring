@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { NETWORK_FAILURE, byServer, fixture, logsExplorer, openMonitor, settled, templateId } from './monitor-fixture.mjs';
+import { NETWORK_FAILURE, byServer, expectAllHealthChecksErrored, fixture, healthChecksWithOneError, logsExplorer, openMonitor, settled, templateId } from './monitor-fixture.mjs';
 
 // Each Monitoring page against each answer the monitor API can give. A page that loads shows what it
 // loaded. A page whose request fails stops loading and says that it failed, rather than showing an
@@ -9,10 +9,12 @@ import { NETWORK_FAILURE, byServer, fixture, logsExplorer, openMonitor, settled,
 const PAGES = {
   'health checks': {
     route: '/health-checks',
-    answers: { 'health-check/:server': byServer('health-checks') },
-    loaded: (page) => expect(page.getByText('1 errored')).toBeVisible(),
-    data: (page) => page.getByText('1 errored'),
-    failed: (page) => page.getByText('12 errored'),
+    answers: { 'health-check/:server': healthChecksWithOneError },
+    loaded: (page) => expect(page.getByRole('button', { name: '1 errored', exact: true })).toBeVisible(),
+    data: (page) => page.getByRole('button', { name: '1 errored', exact: true }),
+    failed: (page) => page.getByRole('button', { name: /^[1-9]\d* errored$/ }),
+    // The monitor's own health check answers for whether the user may read the Monitor at all.
+    refused: (page) => page.locator('app-no-access'),
   },
   'search index': {
     route: '/search-index',
@@ -128,9 +130,12 @@ const failing = (answers, failure) => Object.fromEntries(Object.keys(answers).ma
 
 /**
  * How a page states a failure: an error banner, unless it says so its own way. A page that reads every
- * service names those that did not answer; one that counts them says how many errored.
+ * service names those that did not answer; one that counts them says how many errored. A page whose
+ * refusal also refuses the access check lands on the no-access page instead.
  */
-const failureShown = (page, spec) => (spec.failed ? spec.failed(page) : page.locator('.banner.error'));
+const failureShown = (page, spec, answer) =>
+  spec.refused && (answer === 401 || answer === 403) ? spec.refused(page)
+    : spec.failed ? spec.failed(page) : page.locator('.banner.error');
 
 for (const [name, spec] of Object.entries(PAGES))
   for (const answer of ANSWERS)
@@ -145,6 +150,9 @@ for (const [name, spec] of Object.entries(PAGES))
         return;
       }
       await settled(page);
-      await expect(failureShown(page, spec).first()).toBeVisible();
+      await expect(failureShown(page, spec, answer).first()).toBeVisible();
+      if (name === 'health checks' && answer !== 401 && answer !== 403) {
+        await expectAllHealthChecksErrored(page);
+      }
       await expect(spec.data(page)).toHaveCount(0);
     });

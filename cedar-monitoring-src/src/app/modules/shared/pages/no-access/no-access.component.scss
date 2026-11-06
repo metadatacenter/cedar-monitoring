@@ -1,0 +1,29 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
+.wrapper-card {
+  margin: var(--cedar-space-4);
+}
+
+.banner {
+  @include patterns.notice(info, $boxed: true);
+  margin: var(--cedar-space-4) 0 var(--cedar-space-2);
+
+  &.warn {
+    @include patterns.notice-tone(warning);
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--cedar-space-2);
+  margin-top: var(--cedar-space-4);
+
+  // Holds its line whether or not it has anything to say, so the row never reflows.
+  .status {
+    min-height: 1lh;
+    font-size: var(--cedar-font-size-small);
+    color: var(--cedar-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+}

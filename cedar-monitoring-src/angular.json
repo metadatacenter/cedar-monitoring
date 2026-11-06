@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "statsJson": true,
             "outputPath": {
               "base": "dist/cedar-monitoring",
               "browser": ""

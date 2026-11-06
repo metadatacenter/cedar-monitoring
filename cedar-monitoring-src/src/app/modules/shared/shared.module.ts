@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {SpinnerComponent} from './components/spinner/spinner.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
+import {NoAccessComponent} from './pages/no-access/no-access.component';
 import {MaterialModule} from '../../modules/material-module';
 import {HeaderComponent} from "./components/header/header.component";
 import {JsonViewComponent} from "./components/json-view/json-view.component";
@@ -27,6 +28,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
   declarations: [
     SpinnerComponent,
     DashboardComponent,
+    NoAccessComponent,
     HeaderComponent,
     JsonViewComponent
   ],

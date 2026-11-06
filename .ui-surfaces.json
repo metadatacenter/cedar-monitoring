@@ -88,6 +88,28 @@
       "test": "browser/tests/surfaces.spec.mjs"
     },
     {
+      "id": "monitoring.no-access",
+      "name": "No Access",
+      "section": "Monitoring",
+      "source": [
+        {
+          "file": "cedar-monitoring-src/src/app/app-routing.module.ts",
+          "anchor": "path: 'no-access'"
+        },
+        {
+          "file": "cedar-monitoring-src/src/app/modules/shared/pages/no-access/no-access.component.ts",
+          "anchor": "export class NoAccessComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "no-access",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
       "id": "monitoring.resource-info",
       "name": "Resource Info",
       "section": "Monitoring",
