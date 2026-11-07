@@ -16,6 +16,10 @@ const routes: Routes = [
     component: NoAccessComponent,
     canActivate: [AuthGuard],
     data: {monitorAccess: false}
+  },
+  {
+    path: '',
+    loadChildren: () => import('./modules/resources/resources.module').then(module => module.ResourcesModule)
   }
 ];
 

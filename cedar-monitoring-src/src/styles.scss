@@ -7,8 +7,6 @@
 @use '@org.metadatacenter/cedar-design-tokens/controls';
 @use '@org.metadatacenter/cedar-design-tokens/patterns';
 
-@use '@org.metadatacenter/cedar-design-tokens/fonts/regular';
-@use '@org.metadatacenter/cedar-design-tokens/fonts/medium';
 @include mat.core();
 
 // Material's M2 type levels on the shared scale. M2 tracks every level, from 0.1px on subtitles to

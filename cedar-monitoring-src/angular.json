@@ -35,6 +35,7 @@
               "src/assets/silent-check-sso.html"
             ],
             "styles": [
+              "node_modules/@org.metadatacenter/cedar-design-tokens/dist/fonts-hosted.css",
               "src/styles.scss"
             ],
             "scripts": [],

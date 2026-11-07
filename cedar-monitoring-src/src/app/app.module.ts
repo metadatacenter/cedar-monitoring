@@ -4,7 +4,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {SharedModule} from "./modules/shared";
-import {ResourcesModule} from "./modules/resources/resources.module";
 import {MaterialModule} from "./modules/material-module";
 import {provideHttpClient, withInterceptorsFromDi, withXhr} from "@angular/common/http";
 import {provideTranslateService} from "@ngx-translate/core";
@@ -28,7 +27,6 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    ResourcesModule,
     MaterialModule,
     KeycloakAngularModule,
   ],
