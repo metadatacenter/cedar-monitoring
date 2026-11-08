@@ -1,6 +1,6 @@
 {
   "name": "cedar-monitoring",
-  "version": "2.9.34-SNAPSHOT",
+  "version": "2.9.34",
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
   },
@@ -32,7 +32,7 @@
     "@angular/build": "22.2.6",
     "@angular/cli": "22.2.6",
     "@angular/compiler-cli": "^22.2.0",
-    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261107.g5294fab4514e.t2016",
+    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261108.g80589684d6ec.t2032",
     "@vitest/browser-playwright": "^5.0.5",
     "istanbul-lib-instrument": "^6.0.3",
     "playwright": "^1.63.0",
