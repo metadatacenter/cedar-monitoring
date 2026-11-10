@@ -341,7 +341,7 @@ table.matrix {
     border: 1px solid transparent;
 
     &.empty-value {
-      opacity: .6;
+      opacity: monitoring.state-opacity(empty-value);
       font-style: italic;
     }
   }

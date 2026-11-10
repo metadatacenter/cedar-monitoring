@@ -1,6 +1,43 @@
 import { test, expect } from '@playwright/test';
 import { openMonitor, logsExplorer, fixture, byServer, settled } from './monitor-fixture.mjs';
 
+test('informational emphasis and filter removal do not inherit disabled-control opacity', async ({ page }) => {
+  await openMonitor(page, {
+    ...logsExplorer,
+    'server-report/:server/environment': byServer('environments'),
+    'environment-model/declarations': fixture('environment-declarations'),
+    'environment-model/unmodelled': fixture('environment-unmodelled'),
+    'server-report/:server/insight': ({ server }) => server === 'worker' ? 503 : fixture('insights')[server] ?? 503,
+    'server-report/:server/build': ({ server }) => server === 'worker' ? 503 : fixture('builds')[server] ?? 503,
+    'host/git': fixture('host-git'),
+    'mysql/counts': fixture('mysql-counts'),
+  });
+  const filters = new URLSearchParams({ f: JSON.stringify([{ col: 'handler', op: 'eq', val: 'TemplatesResource' }]) });
+  for (const [route, selector, role, opacity] of [
+    ['/logs-explorer?' + filters, '.chip .x', 'filter-remove', '0.55'],
+    ['/environment', '.empty-value', 'empty-value', '0.6'],
+    ['/jvm', 'tr.absent-row', 'service-unreachable', '0.6'],
+    ['/deploy', 'tr.absent-row', 'build-unavailable', '0.6'],
+    ['/mysql-counts', '.count-note', 'count-note', '0.75'],
+  ]) {
+    await page.goto(route);
+    const element = page.locator(selector).first();
+    await expect(element).toBeVisible();
+    await settled(page);
+    await page.addStyleTag({ content: ':root { --cedar-control-disabled-opacity: 0.1; }' });
+    await expect(element).toHaveCSS('opacity', opacity);
+    await page.addStyleTag({ content: `:root { --cedar-monitor-${role}-opacity: 0.83; }` });
+    await expect(element).toHaveCSS('opacity', '0.83');
+    if (role === 'filter-remove') {
+      await expect(element).toBeEnabled();
+      await element.hover();
+      await expect(element).toHaveCSS('opacity', '1');
+      await element.click();
+      await expect(page.locator(selector)).toHaveCount(0);
+    }
+  }
+});
+
 test('copy feedback keeps its own colors and appears only after copying', async ({ page }) => {
   await openMonitor(page, logsExplorer);
   await page.context().grantPermissions(['clipboard-write']);

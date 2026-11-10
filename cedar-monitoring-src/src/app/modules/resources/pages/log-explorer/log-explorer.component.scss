@@ -180,7 +180,7 @@ select {
     cursor: pointer;
     @extend %medium;
     padding: 0 var(--cedar-space-1);
-    opacity: .55;
+    opacity: monitoring.state-opacity(filter-remove);
   }
 
   .x:hover {

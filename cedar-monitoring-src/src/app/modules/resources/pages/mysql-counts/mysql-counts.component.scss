@@ -1,3 +1,4 @@
+@use '@org.metadatacenter/cedar-design-tokens/monitoring';
 @use '@org.metadatacenter/cedar-design-tokens/patterns';
 
 .counts-card {
@@ -36,7 +37,7 @@
 
 .count-note {
   font-size: var(--cedar-font-size-small);
-  opacity: 0.75;
+  opacity: monitoring.state-opacity(count-note);
   margin-top: var(--cedar-space-1);
 }
 

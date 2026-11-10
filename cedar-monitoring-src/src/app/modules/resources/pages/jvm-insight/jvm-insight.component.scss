@@ -1,3 +1,4 @@
+@use '@org.metadatacenter/cedar-design-tokens/monitoring';
 @use '@org.metadatacenter/cedar-design-tokens/patterns';
 
 .wrapper-card {
@@ -104,7 +105,7 @@ table.grid {
   }
 
   tr.absent-row {
-    opacity: .6;
+    opacity: monitoring.state-opacity(service-unreachable);
   }
 
   .dim {

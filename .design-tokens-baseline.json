@@ -8,27 +8,6 @@
       "value": "2",
       "count": 1
     },
-    "301bbbe9ccd2e4d1067e": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
-      "rule": "geometry",
-      "property": "opacity",
-      "value": ".55",
-      "count": 1
-    },
-    "34c977e9df6ed57bb720": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss",
-      "rule": "geometry",
-      "property": "opacity",
-      "value": ".6",
-      "count": 1
-    },
-    "421406ae6f9fdab944a7": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
-      "rule": "geometry",
-      "property": "opacity",
-      "value": ".6",
-      "count": 1
-    },
     "430cd820defac18de2f0": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
       "rule": "geometry",
@@ -50,13 +29,6 @@
       "value": "3",
       "count": 1
     },
-    "5f71c49576142f1a0060": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/mysql-counts/mysql-counts.component.scss",
-      "rule": "geometry",
-      "property": "opacity",
-      "value": "0.75",
-      "count": 1
-    },
     "6544bcb04df62ab2a929": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
       "rule": "geometry",
@@ -76,13 +48,6 @@
       "rule": "typography",
       "property": "line-height",
       "value": "1.45",
-      "count": 1
-    },
-    "8aa0a8b627e25cde95b2": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss",
-      "rule": "geometry",
-      "property": "opacity",
-      "value": ".6",
       "count": 1
     },
     "8d600d2100f680be8278": {
