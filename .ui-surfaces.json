@@ -288,7 +288,7 @@
         {
           "property": "color",
           "value": "rgb(107, 79, 196)",
-          "reason": "#6b4fc4, a categorical chart purple Monitoring keeps by policy, on POST in the method column"
+          "reason": "Approved monitor-http-post-text default, owned by the central Monitoring category recipe"
         }
       ]
     },
@@ -314,12 +314,12 @@
         {
           "property": "background-color",
           "value": "rgb(140, 116, 216)",
-          "reason": "#8c74d8, a categorical chart purple Monitoring keeps by policy, filling Cypher bars in the waterfall chart"
+          "reason": "Approved monitor-trace-cypher-bar default, independent of trace text and HTTP method roles"
         },
         {
           "property": "color",
           "value": "rgb(107, 79, 196)",
-          "reason": "#6b4fc4, a categorical chart purple Monitoring keeps by policy, on the DB label of Cypher spans"
+          "reason": "Approved monitor-trace-cypher-text default, independent of POST and trace bar roles"
         }
       ]
     },
@@ -396,7 +396,7 @@
         {
           "property": "color",
           "value": "rgb(105, 65, 198)",
-          "reason": "#6941c6, a categorical chart purple Monitoring keeps by policy, on masked secret values"
+          "reason": "Approved monitor-masked-secret-text default, independent of method and trace categories"
         }
       ]
     },

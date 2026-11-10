@@ -1,13 +1,6 @@
 {
   "schema": 1,
   "findings": {
-    "228961475bfb5e2177a7": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
-      "rule": "color",
-      "property": "color",
-      "value": "#6b4fc4",
-      "count": 2
-    },
     "2dac96a53bb1e7653f1b": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
       "rule": "geometry",
@@ -20,13 +13,6 @@
       "rule": "geometry",
       "property": "opacity",
       "value": ".55",
-      "count": 1
-    },
-    "316f58dd32dfb49fd96c": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
-      "rule": "color",
-      "property": "background",
-      "value": "#8c74d8",
       "count": 1
     },
     "34c977e9df6ed57bb720": {
@@ -105,13 +91,6 @@
       "property": "z-index",
       "value": "2",
       "count": 1
-    },
-    "9385379ad7069e8dd009": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
-      "rule": "color",
-      "property": "color",
-      "value": "#6941c6",
-      "count": 2
     },
     "94ce5667149d972b9f9e": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",

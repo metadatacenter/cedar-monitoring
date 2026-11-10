@@ -1,3 +1,4 @@
+@use '@org.metadatacenter/cedar-design-tokens/monitoring';
 @use '@org.metadatacenter/cedar-design-tokens/patterns';
 
 // Visual language for the explorer. Deliberately quiet: the page is dense data, so the chrome should
@@ -337,20 +338,23 @@ table.data {
   color: var(--cedar-text-muted);
 
   &.m-get {
-    color: var(--cedar-color-primary);
+    color: monitoring.http-method-text(get);
   }
 
   &.m-post {
-    color: #6b4fc4;
+    color: monitoring.http-method-text(post);
   }
 
-  &.m-put,
+  &.m-put {
+    color: monitoring.http-method-text(put);
+  }
+
   &.m-patch {
-    color: var(--cedar-status-warning-text);
+    color: monitoring.http-method-text(patch);
   }
 
   &.m-delete {
-    color: var(--cedar-status-error-text);
+    color: monitoring.http-method-text(delete);
   }
 }
 
@@ -532,10 +536,10 @@ pre.code {
   .wkind {
     flex: 0 0 30px;
     font-weight: var(--cedar-font-weight-medium);
-    color: var(--cedar-color-primary);
+    color: monitoring.trace-text(request);
 
     &.k-cypher {
-      color: #6b4fc4;
+      color: monitoring.trace-text(cypher);
     }
   }
 
@@ -562,10 +566,10 @@ pre.code {
     top: 0;
     height: 12px;
     border-radius: var(--cedar-radius);
-    background: var(--cedar-color-primary);
+    background: monitoring.trace-bar(request);
 
     &.b-cypher {
-      background: #8c74d8;
+      background: monitoring.trace-bar(cypher);
     }
   }
 

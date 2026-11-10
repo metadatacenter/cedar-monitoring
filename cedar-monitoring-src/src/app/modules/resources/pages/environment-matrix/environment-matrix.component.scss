@@ -1,3 +1,4 @@
+@use '@org.metadatacenter/cedar-design-tokens/monitoring';
 @use '@org.metadatacenter/cedar-design-tokens/patterns';
 
 .wrapper-card {
@@ -199,7 +200,7 @@ table.matrix {
 }
 
 .cell-secure {
-  color: #6941c6;
+  color: monitoring.masked-secret-text();
 }
 
 .cell-unset {
@@ -266,7 +267,7 @@ table.values {
     word-break: break-all;
 
     &.secret {
-      color: #6941c6;
+      color: monitoring.masked-secret-text();
     }
   }
 
