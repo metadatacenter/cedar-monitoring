@@ -293,7 +293,7 @@ table.values {
   font-size: var(--cedar-font-size-small);
   color: var(--cedar-text-muted);
   margin: var(--cedar-space-2) 0;
-  line-height: 1.5;
+  @include patterns.relative-text-line($size: small);
 }
 
 h3.section {
