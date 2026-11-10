@@ -284,11 +284,10 @@
         "open"
       ],
       "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
+      "scaleRoles": [
         {
-          "property": "color",
-          "value": "rgb(107, 79, 196)",
-          "reason": "Approved monitor-http-post-text default, owned by the central Monitoring category recipe"
+          "selector": ".method.m-post",
+          "role": "monitor-http-post-text"
         }
       ]
     },
@@ -310,16 +309,14 @@
         "open"
       ],
       "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
+      "scaleRoles": [
         {
-          "property": "background-color",
-          "value": "rgb(140, 116, 216)",
-          "reason": "Approved monitor-trace-cypher-bar default, independent of trace text and HTTP method roles"
+          "selector": ".wbar.b-cypher",
+          "role": "monitor-trace-cypher-bar"
         },
         {
-          "property": "color",
-          "value": "rgb(107, 79, 196)",
-          "reason": "Approved monitor-trace-cypher-text default, independent of POST and trace bar roles"
+          "selector": ".wkind.k-cypher",
+          "role": "monitor-trace-cypher-text"
         }
       ]
     },
@@ -341,11 +338,10 @@
         "open"
       ],
       "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
+      "scaleRoles": [
         {
-          "property": "background-color",
-          "value": "rgb(33, 48, 63)",
-          "reason": "Approved monitor-copy-toast-surface default, owned independently of action and status surfaces"
+          "selector": ".toast",
+          "role": "monitor-copy-toast"
         }
       ]
     },
@@ -392,11 +388,10 @@
         "open"
       ],
       "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
+      "scaleRoles": [
         {
-          "property": "color",
-          "value": "rgb(105, 65, 198)",
-          "reason": "Approved monitor-masked-secret-text default, independent of method and trace categories"
+          "selector": "td.vval.secret",
+          "role": "monitor-masked-secret-text"
         }
       ]
     },
