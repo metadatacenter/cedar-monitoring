@@ -155,7 +155,7 @@ table.matrix {
     min-width: 26px;
     text-align: center;
     font-size: var(--cedar-font-size);
-    line-height: 1.3;
+    @include patterns.relative-text-line;
   }
 
   td.first-decl, th.first-decl {

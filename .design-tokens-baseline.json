@@ -15,13 +15,6 @@
       "value": "1",
       "count": 1
     },
-    "4d52ac2e96bb2f5613dc": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
-      "rule": "typography",
-      "property": "line-height",
-      "value": "1.3",
-      "count": 1
-    },
     "50e59120e70f01fd5252": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss",
       "rule": "geometry",
@@ -41,13 +34,6 @@
       "rule": "geometry",
       "property": "height",
       "value": "14px",
-      "count": 1
-    },
-    "8717ff515d7f7f9d428e": {
-      "file": "cedar-monitoring-src/src/styles.scss",
-      "rule": "typography",
-      "property": "line-height",
-      "value": "1.45",
       "count": 1
     },
     "8d600d2100f680be8278": {
