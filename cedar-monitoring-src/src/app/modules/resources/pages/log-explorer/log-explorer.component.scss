@@ -1,6 +1,10 @@
 @use '@org.metadatacenter/cedar-design-tokens/monitoring';
 @use '@org.metadatacenter/cedar-design-tokens/patterns';
 
+// Group repeated declarations without changing selectors or their specificity.
+%rounded { border-radius: var(--cedar-radius); }
+%medium { font-weight: var(--cedar-font-weight-medium); }
+
 // Visual language for the explorer. Deliberately quiet: the page is dense data, so the chrome should
 // recede. Three rules drive most of this:
 //   1. no ruled grid — per-row borders read as a 1990s analytics ledger; separation comes from
@@ -39,7 +43,7 @@
 
 .railgrp {
   @extend %secondary;
-  font-weight: var(--cedar-font-weight-medium);
+  @extend %medium;
   margin: 0 var(--cedar-space-1) 0 var(--cedar-space-3);
 
   &:first-child {
@@ -95,7 +99,7 @@
 .seg {
   display: inline-flex;
   border: 1px solid var(--cedar-control-border-default);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
   overflow: hidden;
 
   button {
@@ -119,7 +123,7 @@
     &.on {
       background: var(--cedar-surface-selected);
       color: var(--cedar-color-primary);
-      font-weight: var(--cedar-font-weight-medium);
+      @extend %medium;
     }
   }
 }
@@ -130,7 +134,7 @@ select {
   font-size: var(--cedar-font-size);
   padding: var(--cedar-space-2);
   border: 1px solid var(--cedar-control-border-default);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
   background: var(--cedar-surface-raised);
   color: var(--cedar-text-primary);
 }
@@ -174,7 +178,7 @@ select {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
-    font-weight: var(--cedar-font-weight-medium);
+    @extend %medium;
     padding: 0 var(--cedar-space-1);
     opacity: .55;
   }
@@ -255,7 +259,7 @@ table.data {
     background: var(--cedar-surface-raised);
     text-align: left;
     @extend %secondary;
-    font-weight: var(--cedar-font-weight-medium);
+    @extend %medium;
     padding: 0 var(--cedar-space-3) var(--cedar-space-2);
     border-bottom: 1px solid var(--cedar-border-rule);
     white-space: nowrap;
@@ -286,7 +290,7 @@ table.data {
 
   tr.detail td {
     background: var(--cedar-surface-subtle);
-    border-radius: var(--cedar-radius);
+    @extend %rounded;
   }
 
   .num {
@@ -334,7 +338,7 @@ table.data {
 // HTTP method: coloured text, not a filled chip.
 .method {
   font-size: var(--cedar-font-size-small);
-  font-weight: var(--cedar-font-weight-medium);
+  @extend %medium;
   color: var(--cedar-text-muted);
 
   &.m-get {
@@ -428,7 +432,7 @@ table.data {
 
 .dlabel {
   @extend %secondary;
-  font-weight: var(--cedar-font-weight-medium);
+  @extend %medium;
   margin-bottom: var(--cedar-space-1);
 }
 
@@ -436,7 +440,7 @@ pre.code {
   font-size: var(--cedar-font-size-small);
   background: var(--cedar-surface-raised);
   border: 1px solid var(--cedar-border-rule);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
   padding: var(--cedar-space-2) var(--cedar-space-3);
   margin: 0;
   white-space: pre-wrap;
@@ -468,7 +472,7 @@ pre.code {
 
 .tracepane {
   background: var(--cedar-surface-raised);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
   box-shadow: var(--cedar-shadow-overlay);
   width: min(1100px, 100%);
   max-height: calc(100vh - 80px);
@@ -484,7 +488,7 @@ pre.code {
 
   .tracetitle {
     font-size: var(--cedar-font-size);
-    font-weight: var(--cedar-font-weight-medium);
+    @extend %medium;
   }
 
   .spacer {
@@ -505,11 +509,11 @@ pre.code {
   min-width: 104px;
   padding: var(--cedar-space-2) var(--cedar-space-3);
   border: 1px solid var(--cedar-border-rule);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
 
   .tv {
     font-size: var(--cedar-font-size-large);
-    font-weight: var(--cedar-font-weight-medium);
+    @extend %medium;
     font-variant-numeric: tabular-nums;
   }
 
@@ -535,7 +539,7 @@ pre.code {
 
   .wkind {
     flex: 0 0 30px;
-    font-weight: var(--cedar-font-weight-medium);
+    @extend %medium;
     color: monitoring.trace-text(request);
 
     &.k-cypher {
@@ -558,14 +562,14 @@ pre.code {
     position: relative;
     height: 12px;
     background: var(--cedar-surface-subtle);
-    border-radius: var(--cedar-radius);
+    @extend %rounded;
   }
 
   .wbar {
     position: absolute;
     top: 0;
     height: 12px;
-    border-radius: var(--cedar-radius);
+    @extend %rounded;
     background: monitoring.trace-bar(request);
 
     &.b-cypher {
@@ -585,11 +589,10 @@ pre.code {
   position: fixed;
   right: 22px;
   bottom: 22px;
-  background: #21303f;
-  color: #fff;
+  @include monitoring.copy-toast-colors;
   font-size: var(--cedar-font-size-small);
   padding: var(--cedar-space-2) var(--cedar-space-3);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
   box-shadow: var(--cedar-shadow-overlay);
   z-index: var(--cedar-layer-modal);
 }

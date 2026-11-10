@@ -120,20 +120,6 @@
       "value": "12px",
       "count": 1
     },
-    "cdc6d9f77fb9280d5e43": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
-      "rule": "color",
-      "property": "color",
-      "value": "#fff",
-      "count": 1
-    },
-    "d026bf544cc37c1a1940": {
-      "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.scss",
-      "rule": "color",
-      "property": "background",
-      "value": "#21303f",
-      "count": 1
-    },
     "d1b348df946be2a130af": {
       "file": "cedar-monitoring-src/src/app/modules/resources/pages/host-disk/host-disk.component.scss",
       "rule": "geometry",

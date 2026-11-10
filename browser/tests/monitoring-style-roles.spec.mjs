@@ -1,6 +1,25 @@
 import { test, expect } from '@playwright/test';
 import { openMonitor, logsExplorer, fixture, byServer, settled } from './monitor-fixture.mjs';
 
+test('copy feedback keeps its own colors and appears only after copying', async ({ page }) => {
+  await openMonitor(page, logsExplorer);
+  await page.context().grantPermissions(['clipboard-write']);
+  await page.clock.install();
+  await page.goto('/logs-explorer');
+  await expect(page.locator('tr.main')).toHaveCount(6);
+  await expect(page.locator('.toast')).toHaveCount(0);
+  await page.locator('tr.main').first().getByRole('cell', { name: 'resource', exact: true }).click();
+  await expect(page.locator('.toast')).toHaveText('Copied component');
+  await page.addStyleTag({ content: ':root { --cedar-color-primary: #123456; --cedar-color-on-primary: #234567; }' });
+  await expect(page.locator('.toast')).toHaveCSS('background-color', 'rgb(33, 48, 63)');
+  await expect(page.locator('.toast')).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await page.addStyleTag({ content: ':root { --cedar-monitor-copy-toast-surface: #345678; --cedar-monitor-copy-toast-text: #fedcba; }' });
+  await expect(page.locator('.toast')).toHaveCSS('background-color', 'rgb(52, 86, 120)');
+  await expect(page.locator('.toast')).toHaveCSS('color', 'rgb(254, 220, 186)');
+  await page.clock.runFor(1800);
+  await expect(page.locator('.toast')).toHaveCount(0);
+});
+
 test('method, trace and masked-secret colors are independent of status and action roles', async ({ page }) => {
   await openMonitor(page, {
     ...logsExplorer,

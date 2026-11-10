@@ -345,7 +345,7 @@
         {
           "property": "background-color",
           "value": "rgb(33, 48, 63)",
-          "reason": "#21303f, the copy toast's dark background, which Monitoring keeps by policy"
+          "reason": "Approved monitor-copy-toast-surface default, owned independently of action and status surfaces"
         }
       ]
     },
