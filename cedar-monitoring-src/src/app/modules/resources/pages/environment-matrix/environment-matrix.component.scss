@@ -76,6 +76,11 @@
   }
 }
 
+// The values table scrolls inside its own box when the window is too narrow for its columns.
+.table-scroll {
+  overflow-x: auto;
+}
+
 // The matrix is fifteen columns wide by design, so it scrolls inside its own box rather than
 // widening the page. The variable name stays pinned: a cell in the middle of the grid is
 // meaningless without it.
@@ -340,8 +345,10 @@ table.matrix {
     color: var(--cedar-status-warning-text);
     border: 1px solid transparent;
 
+    // A variable present but empty reads quieter than a set one: muted and italic. The chip was
+    // faded instead, which took its text below 4.5:1.
     &.empty-value {
-      opacity: monitoring.state-opacity(empty-value);
+      color: var(--cedar-text-muted);
       font-style: italic;
     }
   }

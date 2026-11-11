@@ -2,8 +2,8 @@
   <button mat-icon-button [routerLink]="'/'" aria-label="Home">
     <mat-icon cedarIcon="home"></mat-icon>
   </button>
-  <div style="width:100%">
-    <a [routerLink]="'/'">CEDAR Monitoring View@if (title) {
+  <div class="title">
+    <a [routerLink]="'/'" [title]="'CEDAR Monitoring View' + (title ? ' - ' + title : '')">CEDAR Monitoring View@if (title) {
       - {{title}}
     }</a>
   </div>

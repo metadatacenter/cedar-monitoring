@@ -2,3 +2,20 @@ a {
   color: var(--cedar-color-on-primary);
   text-decoration: none;
 }
+
+// The page title takes the room the toolbar leaves and ends in an ellipsis when it runs out, so the
+// User button stays on screen and the link's title holds the whole. The link stays the width of its
+// text, set where inline text would sit, so its focus ring and its place are as they were.
+.title {
+  width: 100%;
+  min-width: 0;
+
+  a {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: text-top;
+    line-height: normal;
+  }
+}

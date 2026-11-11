@@ -1,5 +1,5 @@
+// The panel takes the width it is given and stops at the window's.
 .expansion-panel {
-  min-width:400px;
   max-width: 100%;
   margin-left: var(--cedar-space-4);
   margin-right: var(--cedar-space-4);
@@ -8,4 +8,28 @@
 
 .expansion-panel.mat-expanded {
   margin-top: var(--cedar-space-6);
+}
+
+// A title too long for a narrow window ends in an ellipsis, and its tooltip holds the whole. The
+// panel title may shrink below its text for that.
+mat-panel-title {
+  min-width: 0;
+}
+
+.panel-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// A subtitle naming a long method call, and a line of JSON too long for the panel, wrap rather than
+// run past the panel's edge, where the panel cuts them off.
+mat-card-subtitle {
+  overflow-wrap: anywhere;
+}
+
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }

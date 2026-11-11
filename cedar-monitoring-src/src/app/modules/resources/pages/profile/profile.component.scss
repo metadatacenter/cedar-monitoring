@@ -4,3 +4,29 @@
   margin-right: auto;
   margin-top: var(--cedar-space-6);
 }
+
+// One panel per field, so that no two headers share an identifier, drawn as the single panel the
+// fields used to share. The accordion takes that panel's surface, clipping and shadow, and the panels
+// inside draw none of them, so no edge shows between them. Each header keeps the corners its hover
+// fill had. An opened field keeps its place rather than standing apart from the others.
+.profile-fields {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--cedar-radius);
+  background: var(--cedar-surface-raised);
+  box-shadow: var(--cedar-shadow-overlay);
+
+  .mat-expansion-panel {
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .mat-expansion-panel-header {
+    border-radius: var(--cedar-radius);
+  }
+
+  .mat-expansion-panel-spacing {
+    margin: 0;
+  }
+}

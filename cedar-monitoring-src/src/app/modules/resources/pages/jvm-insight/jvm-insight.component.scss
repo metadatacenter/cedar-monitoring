@@ -1,4 +1,3 @@
-@use '@org.metadatacenter/cedar-design-tokens/monitoring';
 @use '@org.metadatacenter/cedar-design-tokens/patterns';
 
 .wrapper-card {
@@ -104,8 +103,10 @@ table.grid {
     font-weight: var(--cedar-font-weight-medium);
   }
 
+  // A service that did not answer reads quieter than the rest, in the muted text colour. The row was
+  // faded instead, which took its text below 4.5:1.
   tr.absent-row {
-    opacity: monitoring.state-opacity(service-unreachable);
+    color: var(--cedar-text-muted);
   }
 
   .dim {

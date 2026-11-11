@@ -1,4 +1,5 @@
 import {CedarIconDirective} from './directives/cedar-icon.directive';
+import {ScrollRegionDirective} from './directives/scroll-region.directive';
 import {NounPipe} from './pipes/noun.pipe';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
@@ -16,6 +17,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
 @NgModule({
   imports: [
     CedarIconDirective,
+    ScrollRegionDirective,
     NounPipe,
     CommonModule,
     FormsModule,
@@ -34,6 +36,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
   ],
   exports: [
     CedarIconDirective,
+    ScrollRegionDirective,
     NounPipe,
     CommonModule,
     FormsModule,

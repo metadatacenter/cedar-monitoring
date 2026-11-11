@@ -1,40 +1,59 @@
 import { test, expect } from '@playwright/test';
 import { openMonitor, logsExplorer, fixture, byServer, settled } from './monitor-fixture.mjs';
 
-test('informational emphasis and filter removal do not inherit disabled-control opacity', async ({ page }) => {
+test('informational emphasis does not inherit disabled-control opacity', async ({ page }) => {
+  await openMonitor(page, { 'mysql/counts': fixture('mysql-counts') });
+  await page.goto('/mysql-counts');
+  const element = page.locator('.count-note').first();
+  await expect(element).toBeVisible();
+  await settled(page);
+  await page.addStyleTag({ content: ':root { --cedar-control-disabled-opacity: 0.1; }' });
+  await expect(element).toHaveCSS('opacity', '0.75');
+  await page.addStyleTag({ content: ':root { --cedar-monitor-count-note-opacity: 0.83; }' });
+  await expect(element).toHaveCSS('opacity', '0.83');
+});
+
+// A filter chip's remove button rests at full colour, which its icon needs to reach 3:1 against the
+// chip, and neither the disabled-control opacity nor its former role fades it.
+test('filter removal rests at full colour', async ({ page }) => {
+  await openMonitor(page, logsExplorer);
+  const filters = new URLSearchParams({ f: JSON.stringify([{ col: 'handler', op: 'eq', val: 'TemplatesResource' }]) });
+  await page.goto('/logs-explorer?' + filters);
+  const remove = page.locator('.chip .x').first();
+  await expect(remove).toBeVisible();
+  await settled(page);
+  await page.addStyleTag({ content: ':root { --cedar-control-disabled-opacity: 0.1; --cedar-monitor-filter-remove-opacity: 0.3; }' });
+  await expect(remove).toHaveCSS('opacity', '1');
+  await expect(remove).toBeEnabled();
+  await remove.click();
+  await expect(page.locator('.chip .x')).toHaveCount(0);
+});
+
+// An unreachable service and an empty value read quieter through the muted text colour. Fading them
+// took their text below 4.5:1, so neither the disabled-control opacity nor their former roles apply.
+test('unreachable services and empty values take the muted text colour, not an opacity', async ({ page }) => {
   await openMonitor(page, {
-    ...logsExplorer,
     'server-report/:server/environment': byServer('environments'),
     'environment-model/declarations': fixture('environment-declarations'),
     'environment-model/unmodelled': fixture('environment-unmodelled'),
     'server-report/:server/insight': ({ server }) => server === 'worker' ? 503 : fixture('insights')[server] ?? 503,
     'server-report/:server/build': ({ server }) => server === 'worker' ? 503 : fixture('builds')[server] ?? 503,
     'host/git': fixture('host-git'),
-    'mysql/counts': fixture('mysql-counts'),
   });
-  const filters = new URLSearchParams({ f: JSON.stringify([{ col: 'handler', op: 'eq', val: 'TemplatesResource' }]) });
-  for (const [route, selector, role, opacity] of [
-    ['/logs-explorer?' + filters, '.chip .x', 'filter-remove', '0.55'],
-    ['/environment', '.empty-value', 'empty-value', '0.6'],
-    ['/jvm', 'tr.absent-row', 'service-unreachable', '0.6'],
-    ['/deploy', 'tr.absent-row', 'build-unavailable', '0.6'],
-    ['/mysql-counts', '.count-note', 'count-note', '0.75'],
+  for (const [route, selector, role] of [
+    ['/environment', '.empty-value', 'empty-value'],
+    ['/jvm', 'tr.absent-row th.name', 'service-unreachable'],
+    ['/deploy', 'tr.absent-row th.name', 'build-unavailable'],
   ]) {
     await page.goto(route);
     const element = page.locator(selector).first();
     await expect(element).toBeVisible();
     await settled(page);
-    await page.addStyleTag({ content: ':root { --cedar-control-disabled-opacity: 0.1; }' });
-    await expect(element).toHaveCSS('opacity', opacity);
-    await page.addStyleTag({ content: `:root { --cedar-monitor-${role}-opacity: 0.83; }` });
-    await expect(element).toHaveCSS('opacity', '0.83');
-    if (role === 'filter-remove') {
-      await expect(element).toBeEnabled();
-      await element.hover();
-      await expect(element).toHaveCSS('opacity', '1');
-      await element.click();
-      await expect(page.locator(selector)).toHaveCount(0);
-    }
+    await page.addStyleTag({
+      content: `:root { --cedar-control-disabled-opacity: 0.1; --cedar-monitor-${role}-opacity: 0.3; --cedar-text-muted: #345678; }`,
+    });
+    await expect(element).toHaveCSS('color', 'rgb(52, 86, 120)');
+    for (const faded of [element, element.locator('xpath=..')]) await expect(faded).toHaveCSS('opacity', '1');
   }
 });
 

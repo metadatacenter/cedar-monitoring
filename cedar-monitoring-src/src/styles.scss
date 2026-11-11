@@ -171,6 +171,16 @@ mat-icon.cedar-icon > svg { display: block; }
 
 button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) solid var(--cedar-color-primary); outline-offset: var(--cedar-focus-ring-offset); }
 
+// Material sets no outline on a menu item or an expansion panel header, and marks their focus with a
+// state layer too faint to see. Each takes the shared ring. It is drawn inside the control, because
+// the menu and the panel clip what lies outside it. Material's own `:focus` rule for a menu item loads
+// after this stylesheet, so the selector names the menu panel to outrank it.
+.mat-mdc-menu-panel .mat-mdc-menu-item:focus-visible,
+.mat-expansion-panel-header:focus-visible {
+  @include controls.focus-ring;
+  outline-offset: calc(-1 * var(--cedar-focus-ring-width));
+}
+
 .mat-toolbar.mat-primary :focus-visible { outline-color: var(--cedar-color-on-primary); }
 
 // Material's M2 elevation shadows and greys on the shared roles. Cards, raised buttons and expansion
@@ -196,6 +206,9 @@ button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) s
   filled-container-color: tokens.$surface-subtle,
   filled-label-text-color: tokens.$text-muted,
   filled-hover-label-text-color: tokens.$text-muted,
+  // A focused field's label sits on the field's tinted fill, where the theme colour Material
+  // chooses measured 3.09:1.
+  filled-focus-label-text-color: tokens.$color-primary-strong,
   filled-active-indicator-color: tokens.$control-border-default,
   filled-input-text-placeholder-color: tokens.$text-muted,
   outlined-outline-color: tokens.$control-border-default,

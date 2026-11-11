@@ -4,8 +4,10 @@
 // three quarters of the card and left a ragged column of white space beside it. The subtitle is a
 // paragraph here rather than a few words, so it should use the width the card already has.
 .counts-card {
+  // Its padding counts within that width, or the header runs 32px past the card.
   mat-card-header {
     width: 100%;
+    box-sizing: border-box;
   }
 
   .mat-mdc-card-header-text {
@@ -19,10 +21,10 @@
 }
 
 .counts-card {
-  min-width: 400px;
+  min-width: min(400px, 100%);
   // A drift column since 2026-09-16: each row can carry two checks (artifact store and search
   // index), so the table needs room for them beside the four store columns.
-  max-width: 980px;
+  max-width: min(980px, 100%);
   margin-left: auto;
   margin-right: auto;
   margin-top: var(--cedar-space-6);
@@ -152,4 +154,10 @@
   &.error {
     @include patterns.notice-tone(error);
   }
+}
+
+// The table scrolls inside the card when the window is too narrow for its columns, so the card
+// stops at the window's width.
+.table-scroll {
+  overflow-x: auto;
 }

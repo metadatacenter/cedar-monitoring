@@ -120,10 +120,13 @@
       background: var(--cedar-surface-subtle);
     }
 
+    // A tint is too faint to mark the choice alone, so the chosen segment carries the shared line
+    // too, drawn inside it because a focused segment takes the ring outside.
     &.on {
       background: var(--cedar-surface-selected);
       color: var(--cedar-color-primary);
       @extend %medium;
+      @include patterns.selected-frame;
     }
   }
 }
@@ -180,11 +183,6 @@ select {
     cursor: pointer;
     @extend %medium;
     padding: 0 var(--cedar-space-1);
-    opacity: monitoring.state-opacity(filter-remove);
-  }
-
-  .x:hover {
-    opacity: 1;
   }
 }
 

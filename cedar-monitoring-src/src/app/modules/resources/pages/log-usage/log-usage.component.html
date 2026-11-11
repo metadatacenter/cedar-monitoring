@@ -1,6 +1,6 @@
 <app-header title="Logs &amp; Usage"></app-header>
 
-<mat-card class="wrapper-card">
+<mat-card class="wrapper-card" role="main">
 
   <mat-card-header>
     <mat-card-title>Logs &amp; Usage</mat-card-title>
@@ -62,7 +62,7 @@
             <h3>🐢 Slowest endpoints</h3>
             @for (e of insights.slowestEndpoints; track e) {
               <div class="ins-row">
-                <span class="ins-name literal">{{ endpointLabel(e) }}</span>
+                <span class="ins-name literal" [title]="endpointLabel(e)">{{ endpointLabel(e) }}</span>
                 <span class="ins-val">{{ fmtMs(e.p95Nanos) }}</span>
               </div>
             }
@@ -74,7 +74,7 @@
             <h3>⛓ Slowest Cypher</h3>
             @for (c of insights.slowestCypher; track c) {
               <div class="ins-row">
-                <span class="ins-name literal">{{ c.operation }} · {{ shortHash(c.runnableHash) }}</span>
+                <span class="ins-name literal" [title]="c.operation + ' · ' + shortHash(c.runnableHash)">{{ c.operation }} · {{ shortHash(c.runnableHash) }}</span>
                 <span class="ins-val">{{ fmtMs(c.p95Nanos) }}</span>
               </div>
             }
@@ -86,7 +86,7 @@
             <h3>🔥 Heaviest callers</h3>
             @for (u of insights.heaviestUsers; track u) {
               <div class="ins-row">
-                <span class="ins-name">{{ u.userId }} <em>{{ authLabel(u) }}</em></span>
+                <span class="ins-name" [title]="u.userId + ' ' + authLabel(u)">{{ u.userId }} <em>{{ authLabel(u) }}</em></span>
                 <span class="ins-val">{{ fmtN(u.reqCount) }}</span>
               </div>
             }
@@ -98,7 +98,7 @@
             <h3>⚠ Error hotspots</h3>
             @for (e of insights.errorHotspots; track e) {
               <div class="ins-row">
-                <span class="ins-name literal">{{ endpointLabel(e) }}</span>
+                <span class="ins-name literal" [title]="endpointLabel(e)">{{ endpointLabel(e) }}</span>
                 <span class="ins-val" [ngClass]="errClass(e.errorCount, e.reqCount)">{{ errPct(e.errorCount, e.reqCount) | number:'1.1-1' }}%</span>
               </div>
             }
@@ -109,8 +109,8 @@
         </div>
       }
       <!-- endpoints table -->
-      <h3 class="section">Endpoints</h3>
-      <div class="tblwrap">
+      <h3 class="section" #endpointsHeading>Endpoints</h3>
+      <div class="tblwrap" [cedarScrollRegion]="endpointsHeading">
         <table class="data">
           <thead><tr><th>Endpoint</th><th class="num">Requests</th><th class="num">Err %</th><th class="num">p50</th><th class="num">p95</th><th class="num">max</th></tr></thead>
           <tbody>
@@ -131,15 +131,15 @@
         </table>
       </div>
       <!-- cypher table -->
-      <h3 class="section">Cypher shapes</h3>
-      <div class="tblwrap">
+      <h3 class="section" #cypherHeading>Cypher shapes</h3>
+      <div class="tblwrap" [cedarScrollRegion]="cypherHeading">
         <table class="data">
           <thead><tr><th>Operation · hash</th><th>Query</th><th class="num">Execs</th><th class="num">p95</th><th class="num">max</th></tr></thead>
           <tbody>
             @for (c of cypher; track c) {
               <tr>
                 <td class="literal">{{ c.operation }} <span class="muted">{{ shortHash(c.runnableHash) }}</span></td>
-                <td class="literal query">{{ c.sample }}</td>
+                <td class="literal query" [title]="c.sample">{{ c.sample }}</td>
                 <td class="num">{{ fmtN(c.execCount) }}</td>
                 <td class="num literal">{{ fmtMs(c.p95Nanos) }}</td>
                 <td class="num literal">{{ fmtMs(c.maxNanos) }}</td>
@@ -152,8 +152,8 @@
         </table>
       </div>
       <!-- users table -->
-      <h3 class="section">Users &amp; API keys</h3>
-      <div class="tblwrap">
+      <h3 class="section" #usersHeading>Users &amp; API keys</h3>
+      <div class="tblwrap" [cedarScrollRegion]="usersHeading">
         <table class="data">
           <thead><tr><th>User</th><th>Auth</th><th class="num">Requests</th><th class="num">Err %</th></tr></thead>
           <tbody>
