@@ -63,32 +63,19 @@ const SCROLLS_IN_PLACE = [
     states: ['environment'],
     why: 'The table of every variable against every service, fifteen columns wide by design, which scrolls inside its container at any width short of them.',
   },
+  {
+    selector: '.tracepane',
+    states: ['request-trace'],
+    why: "The trace waterfall, a row per span with its bar on one time axis that every row shares, which a narrow window scrolls inside the trace pane. The pane takes its name from the trace's title.",
+  },
 ];
-
-/** The states that show the json-view panels. */
-const panels = ['resource-info', 'store unavailable'];
 
 /**
  * What the checks find that is left as it is, each with the visible change that would remove it.
  * Each entry gives its check, kind, selector, states and why, as `Exception` in the generated
  * declaration says.
  */
-const EXCEPTIONS = [
-  {
-    check: 'reflow',
-    kind: 'scrolls',
-    selector: '.tracepane',
-    states: ['request-trace'],
-    why: "The trace waterfall is two-dimensional data: each row places a span's bar on one time axis that every row shares, so at 320 px the trace pane scrolls sideways in its own region rather than reflow, as 1.4.10 allows. The checker grants that allowance only to a region holding a table element, and the waterfall is drawn in div rows. Marking it up as a table, drawn as now, would let `SCROLLS_IN_PLACE` declare it instead.",
-  },
-  {
-    check: 'indicators',
-    kind: 'focus',
-    selector: 'mat-form-field.resource-id-form-field textarea',
-    states: panels,
-    why: "The checker's finding, not the page's: no visible change is needed. A focused filled field draws a 2px primary line in `.mdc-line-ripple::after`, which the checker reads in the field around a control when that field is at most 48px wider. With text in it, this field shows its Clear button, which takes the field 68px wider than the box, so the line is not read.",
-  },
-];
+const EXCEPTIONS = [];
 
 /** Each layout check by the name its tests carry. */
 const conditions = { reflow: 'reflow', resize: 'resize', 'text spacing': 'spacing' };

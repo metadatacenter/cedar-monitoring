@@ -522,7 +522,21 @@ pre.code {
 
 // Waterfall: bars are positioned as a percentage of the trace's wall time, so overlap between
 // components is visible — that overlap is why summed handler time exceeds wall time.
+// The table is displayed as a block of flex rows, not in table layout, so each row keeps its fixed
+// column widths and its track takes the rest of the width. Its hidden caption, header row and start
+// times are positioned inside it.
 .waterfall {
+  display: block;
+  position: relative;
+
+  tbody {
+    display: block;
+  }
+
+  td {
+    padding: 0;
+  }
+
   .wrow {
     display: flex;
     align-items: center;
@@ -581,6 +595,11 @@ pre.code {
     color: var(--cedar-text-muted);
     font-variant-numeric: tabular-nums;
   }
+}
+
+// Text for assistive technology alone.
+.sr {
+  @include patterns.visually-hidden;
 }
 
 .toast {

@@ -246,10 +246,10 @@
 <!-- Trace overlay: one request across every component that handled it, plus its Cypher. -->
 @if (trace || traceLoading || traceError) {
   <div class="scrim" (click)="closeTrace()">
-    <div class="tracepane" (click)="$event.stopPropagation()">
+    <div class="tracepane" [cedarScrollRegion]="traceTitle" (click)="$event.stopPropagation()">
       <div class="tracehead">
         <div>
-          <div class="tracetitle">Request trace</div>
+          <div class="tracetitle" #traceTitle>Request trace</div>
           @if (trace) {
             <div class="literal muted">{{ trace.globalRequestId }}</div>
           }
@@ -275,23 +275,41 @@
           <div class="tile"><span class="tv">{{ trace.dbMs | number:'1.0-0' }}ms</span><span class="tl">database</span></div>
           <div class="tile"><span class="tv">{{ trace.dbSharePct | number:'1.0-1' }}%</span><span class="tl">time in Neo4j</span></div>
         </div>
-        <div class="waterfall">
-          @for (s of trace.spans; track s) {
-            <div class="wrow" [title]="s.detail">
-              <span class="wkind" [class.k-cypher]="s.kind === 'cypher'">{{ s.kind === 'cypher' ? 'DB' : 'REQ' }}</span>
-              <span class="wcomp">{{ s.component }}</span>
-              <span class="wlabel literal ell" [title]="spanLabel(s)">{{ spanLabel(s) }}</span>
-              <span class="wtrack">
-                <span class="wbar" [class.b-cypher]="s.kind === 'cypher'"
-                [style.left]="spanLeft(s)" [style.width]="spanWidth(s)"></span>
-              </span>
-              <span class="wms literal">{{ s.durationMs | number:'1.0-2' }}ms</span>
-            </div>
-          }
-          @if (!trace.spans.length) {
-            <div class="empty">No spans — the rows may have been pruned.</div>
-          }
-        </div>
+        <!-- The waterfall is a table, so a screen reader can move through it by row and column. Its
+          caption, header row and each bar's start are visually hidden, and only the rows are drawn.
+          The roles keep the table's semantics in a browser that drops them from a table not
+          displayed as one. -->
+        @if (trace.spans.length) {
+          <table class="waterfall" role="table">
+            <caption class="sr">Spans of this request, timed from its start</caption>
+            <thead class="sr" role="rowgroup">
+              <tr role="row">
+                <th role="columnheader">Kind</th>
+                <th role="columnheader">Component</th>
+                <th role="columnheader">Handler or query</th>
+                <th role="columnheader">Start</th>
+                <th role="columnheader">Duration</th>
+              </tr>
+            </thead>
+            <tbody role="rowgroup">
+              @for (s of trace.spans; track s) {
+                <tr class="wrow" role="row" [title]="s.detail">
+                  <td class="wkind" role="cell" [class.k-cypher]="s.kind === 'cypher'">{{ s.kind === 'cypher' ? 'DB' : 'REQ' }}</td>
+                  <td class="wcomp" role="cell">{{ s.component }}</td>
+                  <td class="wlabel literal ell" role="cell" [title]="spanLabel(s)">{{ spanLabel(s) }}</td>
+                  <td class="wtrack" role="cell">
+                    <span class="wbar" [class.b-cypher]="s.kind === 'cypher'"
+                    [style.left]="spanLeft(s)" [style.width]="spanWidth(s)"></span>
+                    <span class="sr">{{ s.offsetMs | number:'1.0-2' }}ms</span>
+                  </td>
+                  <td class="wms literal" role="cell">{{ s.durationMs | number:'1.0-2' }}ms</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } @else {
+          <div class="empty">No spans — the rows may have been pruned.</div>
+        }
         <div class="caveat">@for (n of trace.notes; track n) {
           <span>{{ n }} </span>
         }</div>

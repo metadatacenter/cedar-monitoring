@@ -520,6 +520,30 @@ test('a table scroll container is a Tab stop only while it overflows', async ({ 
   await expect(region).toHaveCount(1);
 });
 
+// The trace waterfall is a table. Under its column headers each span gives its start and duration
+// as text, though the start shows only as where the bar begins. The values are the trace fixture's.
+test("the trace waterfall exposes its headers and each span's start and duration", async ({ page }) => {
+  await page.setViewportSize(WIDE);
+  await states['request-trace'](page);
+  const table = page.getByRole('table', { name: 'Spans of this request, timed from its start' });
+  await expect(table.getByRole('columnheader')).toHaveText(['Kind', 'Component', 'Handler or query', 'Start', 'Duration']);
+  const rows = table.getByRole('row').filter({ has: page.getByRole('cell') });
+  const spans = [
+    ['0ms', '182.7ms'],
+    ['6.1ms', '22.4ms'],
+    ['31.8ms', '48.2ms'],
+    ['96.4ms', '61ms'],
+    ['101.2ms', '12.6ms'],
+  ];
+  await expect(rows).toHaveCount(spans.length);
+  for (const [index, [start, duration]] of spans.entries()) {
+    const cells = rows.nth(index).getByRole('cell');
+    await expect(cells).toHaveCount(5);
+    await expect(cells.nth(3)).toHaveText(start);
+    await expect(cells.nth(4)).toHaveText(duration);
+  }
+});
+
 // The profile fields are a description list with nothing to open. No identifier repeats, every
 // reference resolves, and a click changes nothing.
 test('the profile page carries unique identifiers', async ({ page }) => {
