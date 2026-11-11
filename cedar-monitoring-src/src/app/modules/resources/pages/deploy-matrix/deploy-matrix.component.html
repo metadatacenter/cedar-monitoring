@@ -39,7 +39,7 @@
         <div class="tile" [class.bad]="versionDriftCount > 0">
           <div class="tl">On another version</div>
           <div class="tv">{{ versionDriftCount }}</div>
-          <div class="td">services</div>
+          <div class="td">{{ versionDriftCount | noun: 'service' }}</div>
         </div>
         <div class="tile" [class.bad]="staleProcessCount > 0">
           <div class="tl">Built, not restarted</div>
@@ -49,12 +49,12 @@
         <div class="tile" [class.bad]="hotPatched.length > 0">
           <div class="tl">Uncommitted edits</div>
           <div class="tv">{{ hotPatched.length }}</div>
-          <div class="td">repositories</div>
+          <div class="td">{{ hotPatched.length | noun: 'repository' : 'repositories' }}</div>
         </div>
         <div class="tile" [class.warn]="unreachableCount > 0">
           <div class="tl">Did not answer</div>
           <div class="tv">{{ unreachableCount }}</div>
-          <div class="td">services</div>
+          <div class="td">{{ unreachableCount | noun: 'service' }}</div>
         </div>
       </div>
       <h3 class="section" #servicesHeading>Services</h3>

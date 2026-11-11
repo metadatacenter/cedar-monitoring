@@ -520,12 +520,19 @@ test('a table scroll container is a Tab stop only while it overflows', async ({ 
   await expect(region).toHaveCount(1);
 });
 
-// Each profile field is a panel of its own, so no identifier repeats and every reference resolves.
+// The profile fields are a description list with nothing to open. No identifier repeats, every
+// reference resolves, and a click changes nothing.
 test('the profile page carries unique identifiers', async ({ page }) => {
   await page.setViewportSize(WIDE);
   await states.profile(page);
-  await expect(page.locator('mat-expansion-panel')).toHaveCount(6);
-  await expect(page.locator('mat-expansion-panel-header')).toHaveCount(6);
+  await expect(page.locator('mat-expansion-panel')).toHaveCount(0);
+  await expect(page.locator('dl.profile-fields > .profile-field')).toHaveCount(6);
+  await expect(page.locator('dl.profile-fields dt')).toHaveCount(6);
+  await expect(page.locator('dl.profile-fields dd')).toHaveCount(6);
+  await expect(page.locator('.profile-fields [aria-expanded], .profile-fields button')).toHaveCount(0);
+  const before = await page.locator('.profile-fields').boundingBox();
+  await page.locator('.profile-field').first().click();
+  expect(await page.locator('.profile-fields').boundingBox()).toEqual(before);
   const { repeated, unresolved } = await page.evaluate(() => {
     const ids = [...document.querySelectorAll('[id]')].map((element) => element.id);
     const references = [...document.querySelectorAll('[aria-controls], [aria-labelledby], [aria-describedby]')].flatMap(
