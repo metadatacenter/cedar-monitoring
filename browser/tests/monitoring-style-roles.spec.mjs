@@ -64,6 +64,9 @@ test('copy feedback keeps its own colors and appears only after copying', async 
   await page.goto('/logs-explorer');
   await expect(page.locator('tr.main')).toHaveCount(6);
   await expect(page.locator('.toast')).toHaveCount(0);
+  // The clock is paused before the copy, so the toast stays up through the colour checks however long
+  // they take. It leaves when the clock reaches 1.5 s after the copy, and not before.
+  await page.clock.pauseAt(Date.now() + 1000);
   await page.locator('tr.main').first().getByRole('cell', { name: 'resource', exact: true }).click();
   await expect(page.locator('.toast')).toHaveText('Copied component');
   await page.addStyleTag({ content: ':root { --cedar-color-primary: #123456; --cedar-color-on-primary: #234567; }' });
@@ -72,7 +75,9 @@ test('copy feedback keeps its own colors and appears only after copying', async 
   await page.addStyleTag({ content: ':root { --cedar-monitor-copy-toast-surface: #345678; --cedar-monitor-copy-toast-text: #fedcba; }' });
   await expect(page.locator('.toast')).toHaveCSS('background-color', 'rgb(52, 86, 120)');
   await expect(page.locator('.toast')).toHaveCSS('color', 'rgb(254, 220, 186)');
-  await page.clock.runFor(1800);
+  await page.clock.runFor(1499);
+  await expect(page.locator('.toast')).toHaveText('Copied component');
+  await page.clock.runFor(1);
   await expect(page.locator('.toast')).toHaveCount(0);
 });
 

@@ -105,9 +105,12 @@ export const scenarios = {
     await expect(page.locator('.tracepane .wrow')).toHaveCount(5);
   },
   // A click on a cell copies its value, and a toast confirms the copy for a second and a half. The
-  // clock is paused once the page has settled, so the toast stays up for the walk.
+  // clock is paused once the page has settled, so the toast stays up for the walk. A script keeps the
+  // page's own timers for `onPausedClock`. Context scripts run in the order they are added, so it is
+  // added before the clock.
   'copy-confirmation': async (page) => {
     await page.context().grantPermissions(['clipboard-write']);
+    await page.context().addInitScript(keepTimers, TIMERS);
     await page.clock.install();
     await scenarios['logs-explorer'](page);
     await page.clock.pauseAt(Date.now() + 1000);
@@ -159,23 +162,40 @@ export const scenarios = {
   },
 };
 
+/** The timer functions the clock replaces. */
+const TIMERS = [
+  'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'requestAnimationFrame', 'cancelAnimationFrame',
+  'requestIdleCallback', 'cancelIdleCallback',
+];
+
+/** Keep the page's own timer functions before the clock replaces them. */
+function keepTimers(names) {
+  window.__ownTimers = Object.fromEntries(names.map((name) => [name, window[name]]));
+}
+
 /**
- * Run `work` on the copy confirmation's paused clock, advancing the clock a frame at a time until the
- * work is done. axe-core and the layout checks wait on timers and animation frames, which a paused
- * clock holds. Advanced only as far as they need, the clock stays short of the 1.5 s after which the
- * toast leaves, however slowly the machine runs.
+ * Run `work` while the copy confirmation's paused clock stands still. axe-core and the layout checks
+ * wait on timers and animation frames, which a paused clock holds. Advancing the clock until the work
+ * is done would let as much time pass as the work takes, and on a busy machine the toast would leave
+ * during it. The work runs on the page's own timers instead. The toast's timer stays on the clock,
+ * which does not move, so the toast stays up however long the work takes.
  */
 export async function onPausedClock(page, work) {
-  const running = work();
-  let done = false;
-  running.then(() => (done = true), () => (done = true));
-  while (!done)
-    await page.clock.runFor(16).catch((error) => {
-      // The clock ticks every page of the context. axe-core's builder opens a page of its own and
-      // closes it, and a tick that meets it closing fails. The next tick runs without it.
-      if (!/has been closed/.test(error.message)) throw error;
+  await page.evaluate(() => {
+    const own = window.__ownTimers;
+    // Timers kept after the clock was installed would be the clock's, and the work would wait on them forever.
+    if (!/\[native code\]/.test(String(own.setTimeout))) throw new Error("The page kept the clock's timers");
+    window.__clockTimers = Object.fromEntries(Object.keys(own).map((name) => [name, window[name]]));
+    Object.assign(window, own);
+  });
+  try {
+    return await work();
+  } finally {
+    await page.evaluate(() => {
+      Object.assign(window, window.__clockTimers);
+      delete window.__clockTimers;
     });
-  return running;
+  }
 }
 
 /**
