@@ -3,6 +3,12 @@
 <main>
 <mat-card>
   <mat-card-content>
+
+    <div class="refresh-controls">
+      <button mat-button (click)="refresh.reload()"><mat-icon cedarIcon="refresh"></mat-icon> Reload</button>
+      <mat-checkbox [checked]="refresh.enabled" (change)="refresh.setEnabled($event.checked)">Refresh every 5s</mat-checkbox>
+    </div>
+
     <div class="button-row">
       <button mat-button>
         <mat-icon cedarIcon="health"></mat-icon>

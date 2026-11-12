@@ -57,6 +57,8 @@ for (const [name, open] of Object.entries(scenarios)) {
     // The scan takes the toast alone, on the paused clock that holds it. The page behind it is the
     // log explorer's own state.
     if (name === 'copy-confirmation') return { include: '.toast', paused: true };
+    // A native modal makes the underlying report inert; that report has its own complete scan.
+    if (name === 'request-trace') return { include: 'dialog.scrim' };
   };
   states[name] = scenario;
   states[`narrow ${name}`] = async (page) => {
@@ -300,16 +302,6 @@ const SETTLED = [
       'WebKit leaves the sticky table headers undecided; the screenshot probe measures text against the actual header fill.',
   },
   {
-    rule: 'color-contrast',
-    target: '*',
-    behind: '.scrim',
-    browsers: ['webkit'],
-    states: ['request-trace'],
-    measured: 'behind the scrim',
-    reason:
-      'WebKit also reports the dimmed log headers at desktop width. The scrim must cover the window, and logs-explorer measures the same text undimmed.',
-  },
-  {
     rule: 'aria-valid-attr-value',
     target: '.mat-mdc-menu-trigger',
     states: userMenu,
@@ -331,15 +323,6 @@ const SETTLED = [
     measured: '10.04:1',
     reason:
       'A tooltip lies in an overlay above the page, and axe cannot tell what is behind it. Its text meets 4.5:1 against its own surface.',
-  },
-  {
-    rule: 'color-contrast',
-    target: '*',
-    behind: '.scrim',
-    states: ['narrow request-trace'],
-    measured: 'behind the scrim',
-    reason:
-      "The open trace's scrim spans the window and dims the page behind it, and axe cannot tell what is behind the text it dims. That page waits until the trace closes, and the narrow log explorer state measures the same text undimmed.",
   },
   {
     rule: 'color-contrast',
@@ -634,9 +617,9 @@ test('the profile page carries unique identifiers', async ({ page }) => {
 // These roles are an announcement contract; actual speech is checked by the manual protocol.
 test('copy confirmation updates a persistent status region', async ({ page }) => {
   await scenarios['logs-explorer'](page);
-  await expect(page.getByRole('status')).toHaveText('');
+  await expect(page.getByRole('status', { name: 'Copy confirmation' })).toHaveText('');
   await scenarios['copy-confirmation'](page);
-  await expect(page.getByRole('status')).toHaveText('Copied component');
+  await expect(page.getByRole('status', { name: 'Copy confirmation' })).toHaveText('Copied component');
 });
 
 test('rebuild status, progress and read failures expose their semantics', async ({ page }) => {

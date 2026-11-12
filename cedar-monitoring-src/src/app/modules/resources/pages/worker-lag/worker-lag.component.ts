@@ -1,3 +1,4 @@
+import {Subscription} from 'rxjs';
 import {Component, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {WorkerLagService} from '../../../../services/load-data/worker-lag.service';
 import {WorkerLag, WorkerLagStatus} from '../../../../shared/model/worker-lag.model';
@@ -18,6 +19,8 @@ export class WorkerLagComponent implements OnInit, OnDestroy {
   autoRefresh = true;
 
   private timer: ReturnType<typeof setTimeout> | null = null;
+  private request: Subscription | null = null;
+  private destroyed = false;
 
   constructor(private svc: WorkerLagService) {
   }
@@ -27,6 +30,8 @@ export class WorkerLagComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.destroyed = true;
+    this.request?.unsubscribe();
     this.stopTimer();
   }
 
@@ -36,13 +41,18 @@ export class WorkerLagComponent implements OnInit, OnDestroy {
       this.scheduleReload();
     } else {
       this.stopTimer();
+      this.request?.unsubscribe();
+      this.loading = false;
     }
   }
 
   reload(): void {
+    if (this.destroyed) return;
+    this.stopTimer();
+    this.request?.unsubscribe();
     this.loading = true;
     this.error = null;
-    this.svc.lag().subscribe({
+    this.request = this.svc.lag().subscribe({
       next: lag => {
         this.lag = lag;
         this.loading = false;
@@ -106,7 +116,7 @@ export class WorkerLagComponent implements OnInit, OnDestroy {
 
   private scheduleReload(): void {
     this.stopTimer();
-    if (this.autoRefresh) {
+    if (this.autoRefresh && !this.destroyed) {
       this.timer = setTimeout(() => this.reload(), 10_000);
     }
   }
