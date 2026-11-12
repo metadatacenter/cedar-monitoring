@@ -1,4 +1,9 @@
+@use '@org.metadatacenter/cedar-design-tokens/monitoring';
 @use '@org.metadatacenter/cedar-design-tokens/patterns';
+
+// Group repeated declarations without changing selectors or their specificity.
+%rounded { border-radius: var(--cedar-radius); }
+%medium { font-weight: var(--cedar-font-weight-medium); }
 
 // Visual language for the explorer. Deliberately quiet: the page is dense data, so the chrome should
 // recede. Three rules drive most of this:
@@ -38,7 +43,7 @@
 
 .railgrp {
   @extend %secondary;
-  font-weight: var(--cedar-font-weight-medium);
+  @extend %medium;
   margin: 0 var(--cedar-space-1) 0 var(--cedar-space-3);
 
   &:first-child {
@@ -94,7 +99,7 @@
 .seg {
   display: inline-flex;
   border: 1px solid var(--cedar-control-border-default);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
   overflow: hidden;
 
   button {
@@ -115,10 +120,13 @@
       background: var(--cedar-surface-subtle);
     }
 
+    // A tint is too faint to mark the choice alone, so the chosen segment carries the shared line
+    // too, drawn inside it because a focused segment takes the ring outside.
     &.on {
       background: var(--cedar-surface-selected);
       color: var(--cedar-color-primary);
-      font-weight: var(--cedar-font-weight-medium);
+      @extend %medium;
+      @include patterns.selected-frame;
     }
   }
 }
@@ -129,7 +137,7 @@ select {
   font-size: var(--cedar-font-size);
   padding: var(--cedar-space-2);
   border: 1px solid var(--cedar-control-border-default);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
   background: var(--cedar-surface-raised);
   color: var(--cedar-text-primary);
 }
@@ -173,13 +181,8 @@ select {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
-    font-weight: var(--cedar-font-weight-medium);
+    @extend %medium;
     padding: 0 var(--cedar-space-1);
-    opacity: .55;
-  }
-
-  .x:hover {
-    opacity: 1;
   }
 }
 
@@ -220,7 +223,7 @@ select {
 
 .caveat {
   @extend %secondary;
-  line-height: 1.5;
+  @include patterns.relative-text-line($size: small);
   margin: var(--cedar-space-2) 0 0;
 }
 
@@ -254,7 +257,7 @@ table.data {
     background: var(--cedar-surface-raised);
     text-align: left;
     @extend %secondary;
-    font-weight: var(--cedar-font-weight-medium);
+    @extend %medium;
     padding: 0 var(--cedar-space-3) var(--cedar-space-2);
     border-bottom: 1px solid var(--cedar-border-rule);
     white-space: nowrap;
@@ -285,7 +288,7 @@ table.data {
 
   tr.detail td {
     background: var(--cedar-surface-subtle);
-    border-radius: var(--cedar-radius);
+    @extend %rounded;
   }
 
   .num {
@@ -333,24 +336,27 @@ table.data {
 // HTTP method: coloured text, not a filled chip.
 .method {
   font-size: var(--cedar-font-size-small);
-  font-weight: var(--cedar-font-weight-medium);
+  @extend %medium;
   color: var(--cedar-text-muted);
 
   &.m-get {
-    color: var(--cedar-color-primary);
+    color: monitoring.http-method-text(get);
   }
 
   &.m-post {
-    color: #6b4fc4;
+    color: monitoring.http-method-text(post);
   }
 
-  &.m-put,
+  &.m-put {
+    color: monitoring.http-method-text(put);
+  }
+
   &.m-patch {
-    color: var(--cedar-status-warning-text);
+    color: monitoring.http-method-text(patch);
   }
 
   &.m-delete {
-    color: var(--cedar-status-error-text);
+    color: monitoring.http-method-text(delete);
   }
 }
 
@@ -424,7 +430,7 @@ table.data {
 
 .dlabel {
   @extend %secondary;
-  font-weight: var(--cedar-font-weight-medium);
+  @extend %medium;
   margin-bottom: var(--cedar-space-1);
 }
 
@@ -432,12 +438,12 @@ pre.code {
   font-size: var(--cedar-font-size-small);
   background: var(--cedar-surface-raised);
   border: 1px solid var(--cedar-border-rule);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
   padding: var(--cedar-space-2) var(--cedar-space-3);
   margin: 0;
   white-space: pre-wrap;
   word-break: break-word;
-  line-height: 1.5;
+  @include patterns.relative-text-line($size: small);
   max-height: 320px;
   overflow: auto;
 }
@@ -464,7 +470,7 @@ pre.code {
 
 .tracepane {
   background: var(--cedar-surface-raised);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
   box-shadow: var(--cedar-shadow-overlay);
   width: min(1100px, 100%);
   max-height: calc(100vh - 80px);
@@ -480,7 +486,7 @@ pre.code {
 
   .tracetitle {
     font-size: var(--cedar-font-size);
-    font-weight: var(--cedar-font-weight-medium);
+    @extend %medium;
   }
 
   .spacer {
@@ -501,11 +507,11 @@ pre.code {
   min-width: 104px;
   padding: var(--cedar-space-2) var(--cedar-space-3);
   border: 1px solid var(--cedar-border-rule);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
 
   .tv {
     font-size: var(--cedar-font-size-large);
-    font-weight: var(--cedar-font-weight-medium);
+    @extend %medium;
     font-variant-numeric: tabular-nums;
   }
 
@@ -516,7 +522,21 @@ pre.code {
 
 // Waterfall: bars are positioned as a percentage of the trace's wall time, so overlap between
 // components is visible — that overlap is why summed handler time exceeds wall time.
+// The table is displayed as a block of flex rows, not in table layout, so each row keeps its fixed
+// column widths and its track takes the rest of the width. Its hidden caption, header row and start
+// times are positioned inside it.
 .waterfall {
+  display: block;
+  position: relative;
+
+  tbody {
+    display: block;
+  }
+
+  td {
+    padding: 0;
+  }
+
   .wrow {
     display: flex;
     align-items: center;
@@ -531,11 +551,11 @@ pre.code {
 
   .wkind {
     flex: 0 0 30px;
-    font-weight: var(--cedar-font-weight-medium);
-    color: var(--cedar-color-primary);
+    @extend %medium;
+    color: monitoring.trace-text(request);
 
     &.k-cypher {
-      color: #6b4fc4;
+      color: monitoring.trace-text(cypher);
     }
   }
 
@@ -554,18 +574,18 @@ pre.code {
     position: relative;
     height: 12px;
     background: var(--cedar-surface-subtle);
-    border-radius: var(--cedar-radius);
+    @extend %rounded;
   }
 
   .wbar {
     position: absolute;
     top: 0;
     height: 12px;
-    border-radius: var(--cedar-radius);
-    background: var(--cedar-color-primary);
+    @extend %rounded;
+    background: monitoring.trace-bar(request);
 
     &.b-cypher {
-      background: #8c74d8;
+      background: monitoring.trace-bar(cypher);
     }
   }
 
@@ -577,15 +597,19 @@ pre.code {
   }
 }
 
+// Text for assistive technology alone.
+.sr {
+  @include patterns.visually-hidden;
+}
+
 .toast {
   position: fixed;
   right: 22px;
   bottom: 22px;
-  background: #21303f;
-  color: #fff;
+  @include monitoring.copy-toast-colors;
   font-size: var(--cedar-font-size-small);
   padding: var(--cedar-space-2) var(--cedar-space-3);
-  border-radius: var(--cedar-radius);
+  @extend %rounded;
   box-shadow: var(--cedar-shadow-overlay);
   z-index: var(--cedar-layer-modal);
 }

@@ -4,3 +4,47 @@
   margin-right: auto;
   margin-top: var(--cedar-space-6);
 }
+
+// The fields are names and values with nothing to open. The list keeps the surface, clipping and
+// shadow the single expansion panel had, and a row takes no hover fill, since a click does nothing.
+// A row has that header's measures. Its value's right margin includes the 8px the header's content
+// kept. The name and the value clip their own overflow, as that content did, which keeps the text
+// raster identical. A name is never narrower than its longest word, so a narrow window wraps it
+// rather than cutting it off.
+.profile-fields {
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--cedar-radius);
+  background: var(--cedar-surface-raised);
+  box-shadow: var(--cedar-shadow-overlay);
+
+  .profile-field {
+    display: flex;
+    align-items: center;
+    height: calc(2 * var(--cedar-space-6));
+    padding: 0 var(--cedar-space-6);
+    border-radius: var(--cedar-radius);
+    font-weight: var(--cedar-font-weight-medium);
+  }
+
+  dt,
+  dd {
+    display: flex;
+    flex: 1 1 0px;
+    overflow: hidden;
+    align-items: center;
+    unicode-bidi: normal;
+    margin: 0 var(--cedar-space-4) 0 0;
+  }
+
+  dt {
+    min-width: min-content;
+  }
+
+  dd {
+    flex-grow: 2;
+    margin-right: var(--cedar-space-6);
+    color: var(--cedar-text-muted);
+  }
+}

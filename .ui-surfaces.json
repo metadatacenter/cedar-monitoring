@@ -2,6 +2,7 @@
   "schema": 1,
   "repo": "cedar-monitoring",
   "browserHelper": "browser/tests/surface-contracts.generated.mjs",
+  "layoutHelper": "browser/tests/layout-resilience.generated.mjs",
   "surfaces": [
     {
       "id": "monitoring.dashboard",
@@ -284,11 +285,10 @@
         "open"
       ],
       "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
+      "scaleRoles": [
         {
-          "property": "color",
-          "value": "rgb(107, 79, 196)",
-          "reason": "#6b4fc4, a categorical chart purple Monitoring keeps by policy, on POST in the method column"
+          "selector": ".method.m-post",
+          "role": "monitor-http-post-text"
         }
       ]
     },
@@ -310,16 +310,14 @@
         "open"
       ],
       "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
+      "scaleRoles": [
         {
-          "property": "background-color",
-          "value": "rgb(140, 116, 216)",
-          "reason": "#8c74d8, a categorical chart purple Monitoring keeps by policy, filling Cypher bars in the waterfall chart"
+          "selector": ".wbar.b-cypher",
+          "role": "monitor-trace-cypher-bar"
         },
         {
-          "property": "color",
-          "value": "rgb(107, 79, 196)",
-          "reason": "#6b4fc4, a categorical chart purple Monitoring keeps by policy, on the DB label of Cypher spans"
+          "selector": ".wkind.k-cypher",
+          "role": "monitor-trace-cypher-text"
         }
       ]
     },
@@ -341,11 +339,10 @@
         "open"
       ],
       "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
+      "scaleRoles": [
         {
-          "property": "background-color",
-          "value": "rgb(33, 48, 63)",
-          "reason": "#21303f, the copy toast's dark background, which Monitoring keeps by policy"
+          "selector": ".toast",
+          "role": "monitor-copy-toast"
         }
       ]
     },
@@ -392,11 +389,10 @@
         "open"
       ],
       "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
+      "scaleRoles": [
         {
-          "property": "color",
-          "value": "rgb(105, 65, 198)",
-          "reason": "#6941c6, a categorical chart purple Monitoring keeps by policy, on masked secret values"
+          "selector": "td.vval.secret",
+          "role": "monitor-masked-secret-text"
         }
       ]
     },

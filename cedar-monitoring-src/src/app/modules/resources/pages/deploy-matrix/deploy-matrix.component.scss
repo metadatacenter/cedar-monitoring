@@ -129,8 +129,10 @@ table.grid {
     color: var(--cedar-status-warning-text);
   }
 
+  // A service with no build to report reads quieter than the rest, in the muted text colour. The
+  // row was faded instead, which took its text below 4.5:1.
   tr.absent-row {
-    opacity: .6;
+    color: var(--cedar-text-muted);
   }
 
   td.bad {

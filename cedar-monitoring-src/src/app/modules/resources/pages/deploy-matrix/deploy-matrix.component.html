@@ -1,6 +1,6 @@
 <app-header title="Deploy"></app-header>
 
-<mat-card class="wrapper-card">
+<mat-card class="wrapper-card" role="main">
 
   <mat-card-header>
     <mat-card-title>Deploy</mat-card-title>
@@ -39,7 +39,7 @@
         <div class="tile" [class.bad]="versionDriftCount > 0">
           <div class="tl">On another version</div>
           <div class="tv">{{ versionDriftCount }}</div>
-          <div class="td">services</div>
+          <div class="td">{{ versionDriftCount | noun: 'service' }}</div>
         </div>
         <div class="tile" [class.bad]="staleProcessCount > 0">
           <div class="tl">Built, not restarted</div>
@@ -49,16 +49,16 @@
         <div class="tile" [class.bad]="hotPatched.length > 0">
           <div class="tl">Uncommitted edits</div>
           <div class="tv">{{ hotPatched.length }}</div>
-          <div class="td">repositories</div>
+          <div class="td">{{ hotPatched.length | noun: 'repository' : 'repositories' }}</div>
         </div>
         <div class="tile" [class.warn]="unreachableCount > 0">
           <div class="tl">Did not answer</div>
           <div class="tv">{{ unreachableCount }}</div>
-          <div class="td">services</div>
+          <div class="td">{{ unreachableCount | noun: 'service' }}</div>
         </div>
       </div>
-      <h3 class="section">Services</h3>
-      <div class="table-scroll">
+      <h3 class="section" #servicesHeading>Services</h3>
+      <div class="table-scroll" [cedarScrollRegion]="servicesHeading">
         <table class="grid">
           <thead>
             <tr>
@@ -113,7 +113,7 @@
         </tbody>
       </table>
     </div>
-    <h3 class="section">
+    <h3 class="section" #repositoriesHeading>
       Repositories on this host
       @if (majorityBranchName) {
         <span class="sub">most are on <code>{{ majorityBranchName }}</code></span>
@@ -124,7 +124,7 @@
       CEDAR checkout, so there is nothing here to read.</div>
     }
     @if (!gitError) {
-      <div class="table-scroll">
+      <div class="table-scroll" [cedarScrollRegion]="repositoriesHeading">
         <table class="grid">
           <thead>
             <tr>

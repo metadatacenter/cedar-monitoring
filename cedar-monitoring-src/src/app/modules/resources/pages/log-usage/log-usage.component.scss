@@ -39,9 +39,11 @@
   }
 }
 
+// Four tiles to a row where they fit, fewer where a tile would fall below 120px. A track is never
+// narrower than 22% of the row, which leaves room for four and no more.
 .tiles {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, max(120px, 22%)), 1fr));
   gap: var(--cedar-space-3);
   margin: var(--cedar-space-4) 0;
 
@@ -81,9 +83,11 @@
   }
 }
 
+// Two cards to a row where they fit, one where a card would fall below 280px. A track is never
+// narrower than 45% of the row, which leaves room for two and no more.
 .insights {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, max(280px, 45%)), 1fr));
   gap: var(--cedar-space-3);
   margin: var(--cedar-space-2) 0 var(--cedar-space-6);
 

@@ -10011,11 +10011,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss": {
-      "bytes": 4091,
+      "bytes": 4109,
       "imports": []
     },
     "src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.ts": {
-      "bytes": 33070,
+      "bytes": 34059,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10048,6 +10048,11 @@
           "original": "../../../shared/directives/cedar-icon.directive"
         },
         {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
+        },
+        {
           "path": "src/app/modules/shared/components/header/header.component.ts",
           "kind": "import-statement",
           "original": "../../../shared/components/header/header.component"
@@ -10068,6 +10073,11 @@
           "original": "@angular/material/icon"
         },
         {
+          "path": "src/app/modules/shared/pipes/noun.pipe.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/pipes/noun.pipe"
+        },
+        {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
           "kind": "import-statement",
           "original": "@angular/common"
@@ -10076,11 +10086,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss": {
-      "bytes": 8375,
+      "bytes": 8514,
       "imports": []
     },
     "src/app/modules/resources/pages/environment-matrix/environment-matrix.component.ts": {
-      "bytes": 51144,
+      "bytes": 51899,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10111,6 +10121,11 @@
           "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
           "kind": "import-statement",
           "original": "../../../shared/directives/cedar-icon.directive"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
         },
         {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
@@ -10165,7 +10180,7 @@
       "imports": []
     },
     "src/app/modules/resources/pages/health-checks/health-checks.component.ts": {
-      "bytes": 7569,
+      "bytes": 7583,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10260,7 +10275,7 @@
       "imports": []
     },
     "src/app/modules/resources/pages/host-disk/host-disk.component.ts": {
-      "bytes": 19931,
+      "bytes": 20234,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10281,6 +10296,11 @@
           "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
           "kind": "import-statement",
           "original": "../../../shared/directives/cedar-icon.directive"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
         },
         {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
@@ -10316,11 +10336,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss": {
-      "bytes": 3336,
+      "bytes": 3354,
       "imports": []
     },
     "src/app/modules/resources/pages/jvm-insight/jvm-insight.component.ts": {
-      "bytes": 21832,
+      "bytes": 22120,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10341,6 +10361,11 @@
           "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
           "kind": "import-statement",
           "original": "../../../shared/directives/cedar-icon.directive"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
         },
         {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
@@ -10381,11 +10406,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/log-explorer/log-explorer.component.scss": {
-      "bytes": 11296,
+      "bytes": 11492,
       "imports": []
     },
     "src/app/modules/resources/pages/log-explorer/log-explorer.component.ts": {
-      "bytes": 84172,
+      "bytes": 86905,
       "imports": [
         {
           "path": "src/app/modules/shared/pipes/noun.pipe.ts",
@@ -10416,6 +10441,11 @@
           "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
           "kind": "import-statement",
           "original": "../../../shared/directives/cedar-icon.directive"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
         },
         {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
@@ -10461,11 +10491,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/log-usage/log-usage.component.scss": {
-      "bytes": 5235,
+      "bytes": 5321,
       "imports": []
     },
     "src/app/modules/resources/pages/log-usage/log-usage.component.ts": {
-      "bytes": 31905,
+      "bytes": 33093,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10491,6 +10521,11 @@
           "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
           "kind": "import-statement",
           "original": "../../../shared/directives/cedar-icon.directive"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
         },
         {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
@@ -10531,11 +10566,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/mysql-counts/mysql-counts.component.scss": {
-      "bytes": 813,
+      "bytes": 884,
       "imports": []
     },
     "src/app/modules/resources/pages/mysql-counts/mysql-counts.component.ts": {
-      "bytes": 22612,
+      "bytes": 23007,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10586,6 +10621,11 @@
           "path": "src/app/services/ui.service.ts",
           "kind": "import-statement",
           "original": "../../../../services/ui.service"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
         },
         {
           "path": "src/app/modules/shared/components/header/header.component.ts",
@@ -10616,11 +10656,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/profile/profile.component.scss": {
-      "bytes": 116,
+      "bytes": 892,
       "imports": []
     },
     "src/app/modules/resources/pages/profile/profile.component.ts": {
-      "bytes": 5820,
+      "bytes": 6251,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10683,11 +10723,6 @@
           "original": "@angular/material/card"
         },
         {
-          "path": "node_modules/@angular/material/fesm2022/expansion.mjs",
-          "kind": "import-statement",
-          "original": "@angular/material/expansion"
-        },
-        {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
           "kind": "import-statement",
           "original": "@angular/common"
@@ -10696,11 +10731,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/queue-counts/queue-counts.component.scss": {
-      "bytes": 858,
+      "bytes": 919,
       "imports": []
     },
     "src/app/modules/resources/pages/queue-counts/queue-counts.component.ts": {
-      "bytes": 12633,
+      "bytes": 13047,
       "imports": [
         {
           "path": "src/app/modules/shared/util/load-failure.ts",
@@ -10756,6 +10791,11 @@
           "path": "src/app/services/ui.service.ts",
           "kind": "import-statement",
           "original": "../../../../services/ui.service"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
         },
         {
           "path": "src/app/modules/shared/components/header/header.component.ts",
@@ -10786,11 +10826,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/resource-counts-opensearch/resource-counts-opensearch.component.scss": {
-      "bytes": 689,
+      "bytes": 750,
       "imports": []
     },
     "src/app/modules/resources/pages/resource-counts-opensearch/resource-counts-opensearch.component.ts": {
-      "bytes": 10202,
+      "bytes": 10616,
       "imports": [
         {
           "path": "src/app/modules/shared/util/load-failure.ts",
@@ -10846,6 +10886,11 @@
           "path": "src/app/services/ui.service.ts",
           "kind": "import-statement",
           "original": "../../../../services/ui.service"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
         },
         {
           "path": "src/app/modules/shared/components/header/header.component.ts",
@@ -10871,11 +10916,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/resource-counts/resource-counts.component.scss": {
-      "bytes": 3327,
+      "bytes": 3414,
       "imports": []
     },
     "src/app/modules/resources/pages/resource-counts/resource-counts.component.ts": {
-      "bytes": 33168,
+      "bytes": 33597,
       "imports": [
         {
           "path": "src/app/modules/shared/util/load-failure.ts",
@@ -10931,6 +10976,11 @@
           "path": "src/app/services/ui.service.ts",
           "kind": "import-statement",
           "original": "../../../../services/ui.service"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
         },
         {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
@@ -10971,11 +11021,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/resource-info/resource-info.component.scss": {
-      "bytes": 926,
+      "bytes": 1009,
       "imports": []
     },
     "src/app/modules/resources/pages/resource-info/resource-info.component.ts": {
-      "bytes": 36379,
+      "bytes": 36814,
       "imports": [
         {
           "path": "src/app/modules/shared/util/load-failure.ts",
@@ -11043,6 +11093,11 @@
           "original": "../../../shared/directives/cedar-icon.directive"
         },
         {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
+        },
+        {
           "path": "node_modules/@angular/forms/fesm2022/forms.mjs",
           "kind": "import-statement",
           "original": "@angular/forms"
@@ -11090,7 +11145,7 @@
       "imports": []
     },
     "src/app/modules/resources/pages/search-index/search-index.component.ts": {
-      "bytes": 24809,
+      "bytes": 24825,
       "imports": [
         {
           "path": "src/app/modules/shared/util/load-failure.ts",
@@ -11180,7 +11235,7 @@
       "imports": []
     },
     "src/app/modules/resources/pages/server-configuration/server-configuration.component.ts": {
-      "bytes": 11441,
+      "bytes": 11457,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -11235,7 +11290,7 @@
       "imports": []
     },
     "src/app/modules/resources/pages/worker-lag/worker-lag.component.ts": {
-      "bytes": 16588,
+      "bytes": 16899,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -11256,6 +11311,11 @@
           "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
           "kind": "import-statement",
           "original": "../../../shared/directives/cedar-icon.directive"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/scroll-region.directive"
         },
         {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
@@ -11615,11 +11675,11 @@
       "format": "esm"
     },
     "src/app/modules/shared/components/header/header.component.scss": {
-      "bytes": 70,
+      "bytes": 268,
       "imports": []
     },
     "src/app/modules/shared/components/header/header.component.ts": {
-      "bytes": 4909,
+      "bytes": 5199,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -11700,11 +11760,11 @@
       "format": "esm"
     },
     "src/app/modules/shared/components/json-view/json-view.component.scss": {
-      "bytes": 241,
+      "bytes": 473,
       "imports": []
     },
     "src/app/modules/shared/components/json-view/json-view.component.ts": {
-      "bytes": 4739,
+      "bytes": 5154,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -11845,6 +11905,22 @@
       ],
       "format": "esm"
     },
+    "src/app/modules/shared/directives/scroll-region.directive.ts": {
+      "bytes": 2469,
+      "imports": [
+        {
+          "path": "node_modules/@angular/core/fesm2022/core.mjs",
+          "kind": "import-statement",
+          "original": "@angular/core"
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/core.mjs",
+          "kind": "import-statement",
+          "original": "@angular/core"
+        }
+      ],
+      "format": "esm"
+    },
     "src/app/modules/shared/index.ts": {
       "bytes": 33,
       "imports": [
@@ -11903,7 +11979,7 @@
       "imports": []
     },
     "src/app/modules/shared/pages/dashboard/dashboard.component.ts": {
-      "bytes": 12591,
+      "bytes": 12607,
       "imports": [
         {
           "path": "src/app/modules/shared/components/base/cedar-page-component.component.ts",
@@ -11978,7 +12054,7 @@
       "imports": []
     },
     "src/app/modules/shared/pages/no-access/no-access.component.ts": {
-      "bytes": 6971,
+      "bytes": 6987,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -12085,12 +12161,17 @@
       "format": "esm"
     },
     "src/app/modules/shared/shared.module.ts": {
-      "bytes": 1566,
+      "bytes": 1644,
       "imports": [
         {
           "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
           "kind": "import-statement",
           "original": "./directives/cedar-icon.directive"
+        },
+        {
+          "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
+          "kind": "import-statement",
+          "original": "./directives/scroll-region.directive"
         },
         {
           "path": "src/app/modules/shared/pipes/noun.pipe.ts",
@@ -13615,7 +13696,7 @@
       "format": "esm"
     },
     "src/styles.scss": {
-      "bytes": 46695,
+      "bytes": 46995,
       "imports": [
         {
           "path": "node_modules/@org.metadatacenter/cedar-design-tokens/dist/custom-properties.css",
@@ -13646,7 +13727,7 @@
       "bytes": 0,
       "ng-component": true
     },
-    "chunk-B3YE4WCB.js": {
+    "chunk-2J46KHW7.js": {
       "imports": [],
       "exports": [
         "$",
@@ -13674,13 +13755,10 @@
         "Gb",
         "H",
         "Ha",
-        "Hb",
         "I",
         "Ia",
-        "Ib",
         "J",
         "Ja",
-        "Jb",
         "K",
         "Ka",
         "L",
@@ -13868,7 +13946,7 @@
           "bytesInOutput": 3388
         },
         "node_modules/@angular/cdk/fesm2022/accordion.mjs": {
-          "bytesInOutput": 2576
+          "bytesInOutput": 1995
         },
         "node_modules/@angular/cdk/fesm2022/bidi.mjs": {
           "bytesInOutput": 133
@@ -14027,7 +14105,7 @@
           "bytesInOutput": 0
         },
         "node_modules/@angular/material/fesm2022/expansion.mjs": {
-          "bytesInOutput": 18181
+          "bytesInOutput": 17071
         },
         "node_modules/@angular/material/fesm2022/form-field.mjs": {
           "bytesInOutput": 151
@@ -14423,16 +14501,19 @@
           "bytesInOutput": 706
         },
         "src/app/modules/shared/components/header/header.component.ts": {
-          "bytesInOutput": 1674
+          "bytesInOutput": 1951
         },
         "src/app/modules/shared/components/json-view/json-view.component.ts": {
-          "bytesInOutput": 1683
+          "bytesInOutput": 2007
         },
         "src/app/modules/shared/components/spinner/spinner.component.ts": {
           "bytesInOutput": 914
         },
         "src/app/modules/shared/directives/cedar-icon.directive.ts": {
           "bytesInOutput": 453
+        },
+        "src/app/modules/shared/directives/scroll-region.directive.ts": {
+          "bytesInOutput": 1049
         },
         "src/app/modules/shared/index.ts": {
           "bytesInOutput": 0
@@ -14450,10 +14531,10 @@
           "bytesInOutput": 105
         },
         "src/app/modules/shared/pages/dashboard/dashboard.component.ts": {
-          "bytesInOutput": 5702
+          "bytesInOutput": 5716
         },
         "src/app/modules/shared/pages/no-access/no-access.component.ts": {
-          "bytesInOutput": 3131
+          "bytesInOutput": 3145
         },
         "src/app/modules/shared/pipes/noun.pipe.ts": {
           "bytesInOutput": 222
@@ -14597,12 +14678,12 @@
           "bytesInOutput": 14
         }
       },
-      "bytes": 860625
+      "bytes": 860585
     },
-    "chunk-K5Y3O6TF.js": {
+    "chunk-MQKLL4PH.js": {
       "imports": [
         {
-          "path": "chunk-B3YE4WCB.js",
+          "path": "chunk-2J46KHW7.js",
           "kind": "import-statement"
         }
       ],
@@ -14612,55 +14693,55 @@
       "entryPoint": "src/app/modules/resources/resources.module.ts",
       "inputs": {
         "src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.ts": {
-          "bytesInOutput": 14929
+          "bytesInOutput": 15285
         },
         "src/app/modules/resources/pages/environment-matrix/environment-matrix.component.ts": {
-          "bytesInOutput": 25866
+          "bytesInOutput": 26193
         },
         "src/app/modules/resources/pages/health-checks/health-checks.component.ts": {
-          "bytesInOutput": 2813
+          "bytesInOutput": 2826
         },
         "src/app/modules/resources/pages/host-disk/host-disk.component.ts": {
-          "bytesInOutput": 10310
+          "bytesInOutput": 10410
         },
         "src/app/modules/resources/pages/jvm-insight/jvm-insight.component.ts": {
-          "bytesInOutput": 11130
+          "bytesInOutput": 11222
         },
         "src/app/modules/resources/pages/log-explorer/log-explorer.component.ts": {
-          "bytesInOutput": 38932
+          "bytesInOutput": 40573
         },
         "src/app/modules/resources/pages/log-usage/log-usage.component.ts": {
-          "bytesInOutput": 16134
+          "bytesInOutput": 16666
         },
         "src/app/modules/resources/pages/mysql-counts/mysql-counts.component.ts": {
-          "bytesInOutput": 8360
+          "bytesInOutput": 8538
         },
         "src/app/modules/resources/pages/profile/profile.component.ts": {
-          "bytesInOutput": 2237
+          "bytesInOutput": 2828
         },
         "src/app/modules/resources/pages/queue-counts/queue-counts.component.ts": {
-          "bytesInOutput": 5689
+          "bytesInOutput": 5894
         },
         "src/app/modules/resources/pages/resource-counts-opensearch/resource-counts-opensearch.component.ts": {
-          "bytesInOutput": 4225
+          "bytesInOutput": 4430
         },
         "src/app/modules/resources/pages/resource-counts/resource-counts.component.ts": {
-          "bytesInOutput": 15094
+          "bytesInOutput": 15319
         },
         "src/app/modules/resources/pages/resource-info/resource-info.component.ts": {
-          "bytesInOutput": 17550
+          "bytesInOutput": 17777
         },
         "src/app/modules/resources/pages/search-index/search-index.component.ts": {
-          "bytesInOutput": 11458
+          "bytesInOutput": 11472
         },
         "src/app/modules/resources/pages/server-configuration/server-configuration.component.ts": {
-          "bytesInOutput": 5532
+          "bytesInOutput": 5546
         },
         "src/app/modules/resources/pages/worker-lag/worker-lag.component.ts": {
-          "bytesInOutput": 9923
+          "bytesInOutput": 10027
         },
         "src/app/modules/resources/resources-routing.module.ts": {
-          "bytesInOutput": 1017
+          "bytesInOutput": 1033
         },
         "src/app/modules/resources/resources.module.ts": {
           "bytesInOutput": 172
@@ -14669,19 +14750,19 @@
           "bytesInOutput": 84
         },
         "src/app/services/load-data/host-report.service.ts": {
-          "bytesInOutput": 332
+          "bytesInOutput": 334
         },
         "src/app/services/load-data/log-query.service.ts": {
-          "bytesInOutput": 628
+          "bytesInOutput": 630
         },
         "src/app/services/load-data/log-usage.service.ts": {
-          "bytesInOutput": 617
+          "bytesInOutput": 619
         },
         "src/app/services/load-data/server-report.service.ts": {
-          "bytesInOutput": 1252
+          "bytesInOutput": 1255
         },
         "src/app/services/load-data/worker-lag.service.ts": {
-          "bytesInOutput": 278
+          "bytesInOutput": 280
         },
         "src/app/services/microservices.service.ts": {
           "bytesInOutput": 352
@@ -14690,7 +14771,7 @@
           "bytesInOutput": 48
         }
       },
-      "bytes": 206004
+      "bytes": 210833
     },
     "dashboard.component-BRD6ARCA.css": {
       "imports": [],
@@ -14702,34 +14783,34 @@
       "bytes": 0,
       "ng-component": true
     },
-    "deploy-matrix.component-UTIBQ3FA.css": {
+    "deploy-matrix.component-F675MTNU.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/deploy-matrix/deploy-matrix.component.scss": {
-          "bytesInOutput": 3545
+          "bytesInOutput": 3564
         }
       },
-      "bytes": 3546,
+      "bytes": 3565,
       "ng-component": true
     },
-    "environment-matrix.component-RLXKO7XV.css": {
+    "environment-matrix.component-3CAWROZC.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/environment-matrix/environment-matrix.component.scss": {
-          "bytesInOutput": 7303
+          "bytesInOutput": 7386
         }
       },
-      "bytes": 7304,
+      "bytes": 7387,
       "ng-component": true
     },
-    "header.component-UHOA5C4E.css": {
+    "header.component-MTN4IA5X.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/shared/components/header/header.component.scss": {
-          "bytesInOutput": 59
+          "bytesInOutput": 216
         }
       },
-      "bytes": 60,
+      "bytes": 217,
       "ng-component": true
     },
     "health-checks.component-VFPNKBBE.css": {
@@ -14752,54 +14833,54 @@
       "bytes": 3567,
       "ng-component": true
     },
-    "json-view.component-BQ6DC6IJ.css": {
+    "json-view.component-JHZ4DGKO.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/shared/components/json-view/json-view.component.scss": {
-          "bytesInOutput": 209
+          "bytesInOutput": 393
         }
       },
-      "bytes": 210,
+      "bytes": 394,
       "ng-component": true
     },
-    "jvm-insight.component-7O325AXE.css": {
+    "jvm-insight.component-7JMLLFXG.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/jvm-insight/jvm-insight.component.scss": {
-          "bytesInOutput": 2916
+          "bytesInOutput": 2905
         }
       },
-      "bytes": 2917,
+      "bytes": 2906,
       "ng-component": true
     },
-    "log-explorer.component-VP7ESVNN.css": {
+    "log-explorer.component-TSQE7DCB.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/log-explorer/log-explorer.component.scss": {
-          "bytesInOutput": 9721
+          "bytesInOutput": 9891
         }
       },
-      "bytes": 9739,
+      "bytes": 9909,
       "ng-component": true
     },
-    "log-usage.component-PSYAZNNU.css": {
+    "log-usage.component-OSZYHWAA.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/log-usage/log-usage.component.scss": {
-          "bytesInOutput": 4582
+          "bytesInOutput": 4662
         }
       },
-      "bytes": 4583,
+      "bytes": 4663,
       "ng-component": true
     },
-    "main-IOBQYZ7O.js": {
+    "main-DNUXSU3I.js": {
       "imports": [
         {
-          "path": "chunk-B3YE4WCB.js",
+          "path": "chunk-2J46KHW7.js",
           "kind": "import-statement"
         },
         {
-          "path": "chunk-K5Y3O6TF.js",
+          "path": "chunk-MQKLL4PH.js",
           "kind": "dynamic-import"
         }
       ],
@@ -14970,14 +15051,14 @@
       },
       "bytes": 4796
     },
-    "mysql-counts.component-N7H7JD7T.css": {
+    "mysql-counts.component-AYC3JUGO.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/mysql-counts/mysql-counts.component.scss": {
-          "bytesInOutput": 682
+          "bytesInOutput": 748
         }
       },
-      "bytes": 683,
+      "bytes": 749,
       "ng-component": true
     },
     "no-access.component-NQOXJL6M.css": {
@@ -15004,54 +15085,54 @@
       },
       "bytes": 35876
     },
-    "profile.component-GGEJMWJ2.css": {
+    "profile.component-VIFI44LR.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/profile/profile.component.scss": {
-          "bytesInOutput": 97
+          "bytesInOutput": 763
         }
       },
-      "bytes": 98,
+      "bytes": 764,
       "ng-component": true
     },
-    "queue-counts.component-KAFZ7QBN.css": {
+    "queue-counts.component-D5G64XC3.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/queue-counts/queue-counts.component.scss": {
-          "bytesInOutput": 764
+          "bytesInOutput": 814
         }
       },
-      "bytes": 765,
+      "bytes": 815,
       "ng-component": true
     },
-    "resource-counts-opensearch.component-KZ352EXD.css": {
+    "resource-counts-opensearch.component-IIPUKCLS.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/resource-counts-opensearch/resource-counts-opensearch.component.scss": {
-          "bytesInOutput": 611
+          "bytesInOutput": 661
         }
       },
-      "bytes": 612,
+      "bytes": 662,
       "ng-component": true
     },
-    "resource-counts.component-SII5CMVA.css": {
+    "resource-counts.component-ZNZWWPJI.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/resource-counts/resource-counts.component.scss": {
-          "bytesInOutput": 2913
+          "bytesInOutput": 2985
         }
       },
-      "bytes": 2914,
+      "bytes": 2986,
       "ng-component": true
     },
-    "resource-info.component-YCOB7HPG.css": {
+    "resource-info.component-ZXPCN6U3.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/resource-info/resource-info.component.scss": {
-          "bytesInOutput": 810
+          "bytesInOutput": 880
         }
       },
-      "bytes": 811,
+      "bytes": 881,
       "ng-component": true
     },
     "search-index.component-DYUH4VG3.css": {
@@ -15084,7 +15165,7 @@
       "bytes": 381,
       "ng-component": true
     },
-    "styles-LCR37UNC.css": {
+    "styles-O7SFOB6D.css": {
       "imports": [
         {
           "path": "media/83572c3ab2cc39e33fb02c9050652e82eb00351564f8fa1581b586372934a754-PRJ7OQMU.woff2",
@@ -15161,10 +15242,10 @@
           "bytesInOutput": 1049
         },
         "src/styles.scss": {
-          "bytesInOutput": 43192
+          "bytesInOutput": 43471
         }
       },
-      "bytes": 50149
+      "bytes": 50428
     },
     "worker-lag.component-GTWAOV2A.css": {
       "imports": [],
