@@ -573,3 +573,22 @@ test('the profile page carries unique identifiers', async ({ page }) => {
   expect(repeated).toEqual([]);
   expect(unresolved).toEqual([]);
 });
+
+// These roles are an announcement contract; actual speech is checked by the manual protocol.
+test('copy confirmation updates a persistent status region', async ({ page }) => {
+  await scenarios['logs-explorer'](page);
+  await expect(page.getByRole('status')).toHaveText('');
+  await scenarios['copy-confirmation'](page);
+  await expect(page.getByRole('status')).toHaveText('Copied component');
+});
+
+test('rebuild status, progress and read failures expose their semantics', async ({ page }) => {
+  await scenarios['search-index'](page);
+  await expect(page.getByRole('status')).toContainText('RUNNING');
+  const progress = page.getByRole('progressbar', { name: 'Search index rebuild' });
+  await expect(progress).toHaveAttribute('aria-valuemin', '0');
+  await expect(progress).toHaveAttribute('aria-valuemax', '100');
+  await expect(progress).toHaveAttribute('aria-valuenow', /\d/);
+  await extraStates['search index failed'](page);
+  await expect(page.getByRole('alert')).toHaveText('Could not read the search index status (HTTP 500).');
+});

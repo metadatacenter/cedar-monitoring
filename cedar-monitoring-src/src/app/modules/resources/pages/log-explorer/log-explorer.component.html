@@ -239,9 +239,11 @@
   </mat-card-actions>
 </mat-card>
 
-@if (copied) {
-  <div class="toast">Copied {{ copied }}</div>
-}
+<div role="status" aria-atomic="true">
+  @if (copied) {
+    <div class="toast">Copied {{ copied }}</div>
+  }
+</div>
 
 <!-- Trace overlay: one request across every component that handled it, plus its Cypher. -->
 @if (trace || traceLoading || traceError) {
