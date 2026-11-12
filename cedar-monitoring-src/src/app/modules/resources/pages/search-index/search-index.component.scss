@@ -73,6 +73,20 @@
   }
 }
 
+// Firefox's automatic table sizing keeps an unbroken job identifier at its intrinsic width.
+// Constrain the narrow report and let both labels and values wrap within their existing columns.
+@media (max-width: 600px) {
+  .kv {
+    width: 100%;
+    table-layout: fixed;
+
+    th, td {
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+  }
+}
+
 .progress-block {
   margin-top: var(--cedar-space-2);
 

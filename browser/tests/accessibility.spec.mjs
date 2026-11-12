@@ -100,7 +100,7 @@ for (const [kind, [open, find, { tooltip } = {}]] of Object.entries(controls)) {
     await open(page);
     const control = find(page);
     // A key press first, so focus is drawn as it is for someone using the keyboard.
-    await page.keyboard.press('Shift');
+    await page.keyboard.press(kind === 'menu item' ? 'ArrowDown' : 'Tab');
     await control.focus();
     await expect.poll(() => control.evaluate((element) => element.matches(':focus-visible'))).toBe(true);
   };
@@ -255,6 +255,61 @@ const userMenu = ['user-menu', 'narrow user-menu', 'hovered menu item', 'focused
  */
 const SETTLED = [
   {
+    rule: 'color-contrast',
+    target: '.state-chip',
+    browsers: ['webkit'],
+    states: ['search-index', 'narrow search-index'],
+    measured: '5.30:1',
+    reason:
+      'WebKit leaves the rounded state chip undecided; its rendered white text on the primary fill is measured again.',
+  },
+  {
+    rule: 'color-contrast',
+    target: '.comp',
+    browsers: ['webkit'],
+    states: ['logs-usage'],
+    measured: '5.95:1',
+    reason: 'WebKit leaves the component badges undecided; their rendered text and fill are measured again.',
+  },
+  {
+    rule: 'color-contrast',
+    target: '.tblwrap th[title]',
+    browsers: ['webkit'],
+    states: [
+      'logs-explorer',
+      'log explorer board',
+      'log explorer filter',
+      'log explorer facet',
+      'log explorer cypher',
+      'log explorer row detail',
+      'hovered board',
+      'focused board',
+      'hovered segment',
+      'focused segment',
+      'hovered link button',
+      'focused link button',
+      'hovered select',
+      'focused select',
+      'hovered search box',
+      'focused search box',
+      'hovered filter removal',
+      'focused filter removal',
+    ],
+    measured: '7.45:1',
+    reason:
+      'WebKit leaves the sticky table headers undecided; the screenshot probe measures text against the actual header fill.',
+  },
+  {
+    rule: 'color-contrast',
+    target: '*',
+    behind: '.scrim',
+    browsers: ['webkit'],
+    states: ['request-trace'],
+    measured: 'behind the scrim',
+    reason:
+      'WebKit also reports the dimmed log headers at desktop width. The scrim must cover the window, and logs-explorer measures the same text undimmed.',
+  },
+  {
     rule: 'aria-valid-attr-value',
     target: '.mat-mdc-menu-trigger',
     states: userMenu,
@@ -288,7 +343,7 @@ const SETTLED = [
   },
   {
     rule: 'color-contrast',
-    target: '.table-scroll *, .tblwrap *',
+    target: '.table-scroll *, .tblwrap *, .vsrv > span',
     states: [
       'narrow deploy', 'narrow host-disk', 'narrow jvm', 'narrow worker-lag', 'narrow logs-usage', 'narrow logs-explorer',
       'narrow environment',
@@ -344,7 +399,9 @@ const matches = (page, node, selector) =>
   element(page, node).evaluate((found, selector) => found.matches(selector), selector);
 
 /** Whether an entry applies to `state`. */
-const applies = (entry, state) => entry.states.includes(state);
+const applies = (entry, state) =>
+  entry.states.includes(state) &&
+  (!entry.browsers || entry.browsers.includes(test.info().project.use.browserName));
 
 /** The first entry of `list` that applies to `state`, names `rule` and whose target the result's element matches. */
 async function entryFor(page, list, state, rule, node) {
@@ -460,7 +517,7 @@ for (const pointer of ['away', 'on the field'])
     const field = page.getByRole('textbox', { name: 'Resource id' });
     if (pointer === 'away') await page.mouse.move(1, 1);
     else await field.hover();
-    await page.keyboard.press('Shift');
+    await page.keyboard.press('Tab');
     await field.focus();
     const label = page.locator('mat-form-field.mat-focused mat-label');
     await expect(label).toHaveCSS('color', await role(page, '--cedar-color-primary-strong'));

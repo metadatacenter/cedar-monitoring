@@ -4,6 +4,15 @@ const port = Number(process.env.PORT || 4795);
 // answered from fixtures.
 export default defineConfig({
   testDir: './tests',
+  // Keep pixel baselines in their original project; measure accessibility in every engine.
+  projects: [
+    { name: '', use: { browserName: 'chromium' } },
+    ...['firefox', 'webkit'].map((browserName) => ({
+      name: `${browserName}-accessibility`,
+      testMatch: /(?:accessibility|layout-resilience)\.spec\.mjs/,
+      use: { browserName },
+    })),
+  ],
   fullyParallel: true,
   workers: process.env.CEDAR_TEST_WORKERS ? Number(process.env.CEDAR_TEST_WORKERS) : undefined,
   forbidOnly: !!process.env.CI,

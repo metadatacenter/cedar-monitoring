@@ -109,13 +109,18 @@ export const scenarios = {
   // page's own timers for `onPausedClock`. Context scripts run in the order they are added, so it is
   // added before the clock.
   'copy-confirmation': async (page) => {
-    await page.context().grantPermissions(['clipboard-write']);
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
+        writeText: async (text) => { window.__copiedText = text; },
+      } });
+    });
     await page.context().addInitScript(keepTimers, TIMERS);
     await page.clock.install();
     await scenarios['logs-explorer'](page);
     await page.clock.pauseAt(Date.now() + 1000);
     await page.locator('tr.main').first().getByRole('cell', { name: 'resource', exact: true }).click();
     await expect(page.locator('.toast')).toHaveText('Copied component');
+    expect(await page.evaluate(() => window.__copiedText)).toBe('resource');
   },
   environment: async (page) => {
     await openMonitor(page, {
