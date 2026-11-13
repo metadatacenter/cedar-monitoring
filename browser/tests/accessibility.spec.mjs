@@ -19,6 +19,12 @@ const LABEL_IN_NAME = 'label-content-name-mismatch';
  * full opacity.
  */
 async function audit(page, { include } = {}) {
+  // ResizeObserver supplies scroll-region semantics on the next rendering turn. Scan the painted
+  // report, after fonts and those observers settle, rather than an intermediate DOM snapshot.
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
   await page.evaluate(() =>
     Promise.all(
       document
@@ -136,7 +142,8 @@ async function textContrast(page, text) {
     for (let node = element.parentElement; node; node = node.parentElement)
       positions.push([node, node.scrollLeft, node.scrollTop]);
     window.__contrastScroll = { positions, x: scrollX, y: scrollY };
-    element.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+    // Keep glyphs clear of clipped viewport/container edges while measuring their painted pixels.
+    element.scrollIntoView({ block: 'center', inline: 'center', behavior: 'instant' });
     return true;
   });
   // Firefox can paint the pre-scroll position once before settling. A one-pixel shift of an
@@ -278,14 +285,16 @@ const SETTLED = [
     rule: 'color-contrast',
     target: '.comp',
     browsers: ['webkit'],
+    platforms: ['darwin'],
     states: ['logs-usage'],
     measured: '5.95:1',
-    reason: 'WebKit leaves the component badges undecided; their rendered text and fill are measured again.',
+    reason: 'macOS WebKit leaves the component badges undecided; their rendered text and fill are measured again.',
   },
   {
     rule: 'color-contrast',
     target: '.tblwrap th[title]',
     browsers: ['webkit'],
+    platforms: ['darwin'],
     states: [
       'logs-explorer',
       'log explorer board',
@@ -308,7 +317,7 @@ const SETTLED = [
     ],
     measured: '7.45:1',
     reason:
-      'WebKit leaves the sticky table headers undecided; the screenshot probe measures text against the actual header fill.',
+      'macOS WebKit leaves the sticky table headers undecided; the screenshot probe measures text against the actual header fill.',
   },
   {
     rule: 'aria-valid-attr-value',

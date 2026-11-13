@@ -14,6 +14,37 @@ async function openLogs(page) {
   await settled(page);
 }
 
+test('environment value expansion retains its row and keyboard focus', async ({page}) => {
+  const reports = fixture('environments');
+  const value = Array.from({length: 30}, (_, index) => `ONTOLOGY_${index}`).join(',');
+  for (const report of Object.values(reports)) {
+    if (!report?.variables) continue;
+    report.variables.push({name: 'CEDAR_TERMINOLOGY_LOCAL_ONTOLOGIES', state: 'SET', secure: false,
+      type: 'STRING', value, presentInHostEnvironment: true});
+  }
+  await openMonitor(page, {
+    'server-report/:server/environment': ({server}) => reports[server] ?? 503,
+    'environment-model/declarations': fixture('environment-declarations'),
+    'environment-model/unmodelled': fixture('environment-unmodelled'),
+  });
+  await page.goto('/environment');
+  await expect(page.locator('.unmodelled')).toBeVisible();
+  await settled(page);
+  const button = page.locator('.values .more').first();
+  const row = await button.evaluateHandle(element => element.closest('tr'));
+  await button.focus();
+  await page.keyboard.press('Enter');
+  await expect(button).toHaveText('Collapse');
+  await expect(button).toBeFocused();
+  expect(await row.evaluate(element => element.isConnected)).toBe(true);
+  await expect(page.locator('.values .long.open').first()).toHaveText(value);
+  await page.keyboard.press('Space');
+  await expect(button).toHaveText('Show all 30 items');
+  await expect(button).toBeFocused();
+  expect(await row.evaluate(element => element.isConnected)).toBe(true);
+  await expect(page.locator('.values .long.open')).toHaveCount(0);
+});
+
 async function traceFromKeyboard(page) {
   const expand = page.getByRole('button', {name: /^(Expand|Collapse) row 2$/});
   await expand.focus();
