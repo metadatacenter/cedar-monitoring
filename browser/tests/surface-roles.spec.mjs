@@ -43,3 +43,13 @@ test('unused literal allowances and unexercised role selectors fail', async ({ p
     ...surface.scaleRoles, { selector: '.missing-toast', role: 'monitor-copy-toast' },
   ] }, 'open', expect, testInfo)).rejects.toThrow(/selectors must be exercised/);
 });
+
+test('native select corners stay native while custom off-scale corners fail', async ({page}, testInfo) => {
+  await openMonitor(page, logsExplorer);
+  await page.goto('/logs-explorer');
+  await expect(page.locator('tr.main')).toHaveCount(6);
+  await settled(page);
+  await checkSurface(page, surface, 'open', expect, testInfo);
+  await page.addStyleTag({content: 'select { appearance: none !important; border-radius: 7px !important; }'});
+  await expect(checkSurface(page, surface, 'open', expect, testInfo)).rejects.toThrow(/outside the shared vocabulary/);
+});

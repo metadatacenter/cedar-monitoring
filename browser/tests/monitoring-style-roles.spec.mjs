@@ -57,9 +57,10 @@ test('unreachable services and empty values take the muted text colour, not an o
   }
 });
 
-test('copy feedback keeps its own colors and appears only after copying', async ({ page }) => {
+test('copy feedback keeps its own colors and appears only after copying', async ({ page, browserName }) => {
   await openMonitor(page, logsExplorer);
-  await page.context().grantPermissions(['clipboard-write']);
+  // Chromium exposes this permission; Firefox/WebKit authorize writes from the actual click.
+  if (browserName === 'chromium') await page.context().grantPermissions(['clipboard-write']);
   await page.clock.install();
   await page.goto('/logs-explorer');
   await expect(page.locator('tr.main')).toHaveCount(6);
