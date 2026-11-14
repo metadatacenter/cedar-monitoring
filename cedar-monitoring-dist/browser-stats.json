@@ -10090,7 +10090,7 @@
       "imports": []
     },
     "src/app/modules/resources/pages/environment-matrix/environment-matrix.component.ts": {
-      "bytes": 51899,
+      "bytes": 51960,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10180,8 +10180,18 @@
       "imports": []
     },
     "src/app/modules/resources/pages/health-checks/health-checks.component.ts": {
-      "bytes": 7583,
+      "bytes": 8904,
       "imports": [
+        {
+          "path": "node_modules/rxjs/dist/esm/index.js",
+          "kind": "import-statement",
+          "original": "rxjs"
+        },
+        {
+          "path": "src/app/modules/shared/util/report-refresh.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/util/report-refresh"
+        },
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
           "kind": "import-statement",
@@ -10193,9 +10203,9 @@
           "original": "../../../shared/components/base/cedar-page-component.component"
         },
         {
-          "path": "src/app/modules/shared/model/data-handler-data-id.model.ts",
+          "path": "src/app/shared/model/health-check.model.ts",
           "kind": "import-statement",
-          "original": "../../../shared/model/data-handler-data-id.model"
+          "original": "../../../../shared/model/health-check.model"
         },
         {
           "path": "src/app/services/monitor-access.service.ts",
@@ -10243,6 +10253,11 @@
           "original": "../../../../services/microservices.service"
         },
         {
+          "path": "src/app/services/load-data/health-checks.service.ts",
+          "kind": "import-statement",
+          "original": "../../../../services/load-data/health-checks.service"
+        },
+        {
           "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
           "kind": "import-statement",
           "original": "../../../shared/directives/cedar-icon.directive"
@@ -10261,6 +10276,11 @@
           "path": "node_modules/@angular/material/fesm2022/card.mjs",
           "kind": "import-statement",
           "original": "@angular/material/card"
+        },
+        {
+          "path": "node_modules/@angular/material/fesm2022/checkbox.mjs",
+          "kind": "import-statement",
+          "original": "@angular/material/checkbox"
         },
         {
           "path": "node_modules/@angular/material/fesm2022/icon.mjs",
@@ -10340,7 +10360,7 @@
       "imports": []
     },
     "src/app/modules/resources/pages/jvm-insight/jvm-insight.component.ts": {
-      "bytes": 22120,
+      "bytes": 22469,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10406,11 +10426,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/log-explorer/log-explorer.component.scss": {
-      "bytes": 11492,
+      "bytes": 11623,
       "imports": []
     },
     "src/app/modules/resources/pages/log-explorer/log-explorer.component.ts": {
-      "bytes": 86905,
+      "bytes": 92089,
       "imports": [
         {
           "path": "src/app/modules/shared/pipes/noun.pipe.ts",
@@ -10735,8 +10755,18 @@
       "imports": []
     },
     "src/app/modules/resources/pages/queue-counts/queue-counts.component.ts": {
-      "bytes": 13047,
+      "bytes": 14332,
       "imports": [
+        {
+          "path": "node_modules/rxjs/dist/esm/index.js",
+          "kind": "import-statement",
+          "original": "rxjs"
+        },
+        {
+          "path": "src/app/modules/shared/util/report-refresh.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/util/report-refresh"
+        },
         {
           "path": "src/app/modules/shared/util/load-failure.ts",
           "kind": "import-statement",
@@ -10753,9 +10783,9 @@
           "original": "../../../shared/components/base/cedar-page-component.component"
         },
         {
-          "path": "src/app/modules/shared/model/data-handler-data-id.model.ts",
+          "path": "src/app/shared/model/redis-queue-counts.model.ts",
           "kind": "import-statement",
-          "original": "../../../shared/model/data-handler-data-id.model"
+          "original": "../../../../shared/model/redis-queue-counts.model"
         },
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10793,6 +10823,16 @@
           "original": "../../../../services/ui.service"
         },
         {
+          "path": "src/app/services/load-data/redis-queue-counts.service.ts",
+          "kind": "import-statement",
+          "original": "../../../../services/load-data/redis-queue-counts.service"
+        },
+        {
+          "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/cedar-icon.directive"
+        },
+        {
           "path": "src/app/modules/shared/directives/scroll-region.directive.ts",
           "kind": "import-statement",
           "original": "../../../shared/directives/scroll-region.directive"
@@ -10813,6 +10853,16 @@
           "original": "@angular/material/card"
         },
         {
+          "path": "node_modules/@angular/material/fesm2022/checkbox.mjs",
+          "kind": "import-statement",
+          "original": "@angular/material/checkbox"
+        },
+        {
+          "path": "node_modules/@angular/material/fesm2022/icon.mjs",
+          "kind": "import-statement",
+          "original": "@angular/material/icon"
+        },
+        {
           "path": "node_modules/@angular/material/fesm2022/table.mjs",
           "kind": "import-statement",
           "original": "@angular/material/table"
@@ -10821,6 +10871,11 @@
           "path": "node_modules/@angular/material/fesm2022/tooltip.mjs",
           "kind": "import-statement",
           "original": "@angular/material/tooltip"
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
         }
       ],
       "format": "esm"
@@ -11141,12 +11196,22 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/search-index/search-index.component.scss": {
-      "bytes": 3305,
+      "bytes": 3466,
       "imports": []
     },
     "src/app/modules/resources/pages/search-index/search-index.component.ts": {
-      "bytes": 24825,
+      "bytes": 25247,
       "imports": [
+        {
+          "path": "node_modules/rxjs/dist/esm/index.js",
+          "kind": "import-statement",
+          "original": "rxjs"
+        },
+        {
+          "path": "src/app/modules/shared/util/report-refresh.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/util/report-refresh"
+        },
         {
           "path": "src/app/modules/shared/util/load-failure.ts",
           "kind": "import-statement",
@@ -11163,9 +11228,9 @@
           "original": "../../../shared/components/base/cedar-page-component.component"
         },
         {
-          "path": "src/app/modules/shared/model/data-handler-data-id.model.ts",
+          "path": "src/app/shared/model/search-index-job-status.model.ts",
           "kind": "import-statement",
-          "original": "../../../shared/model/data-handler-data-id.model"
+          "original": "../../../../shared/model/search-index-job-status.model"
         },
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -11208,6 +11273,11 @@
           "original": "../../../../services/load-data/search-index.service"
         },
         {
+          "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
+          "kind": "import-statement",
+          "original": "../../../shared/directives/cedar-icon.directive"
+        },
+        {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
           "kind": "import-statement",
           "original": "@angular/common"
@@ -11226,6 +11296,16 @@
           "path": "node_modules/@angular/material/fesm2022/card.mjs",
           "kind": "import-statement",
           "original": "@angular/material/card"
+        },
+        {
+          "path": "node_modules/@angular/material/fesm2022/checkbox.mjs",
+          "kind": "import-statement",
+          "original": "@angular/material/checkbox"
+        },
+        {
+          "path": "node_modules/@angular/material/fesm2022/icon.mjs",
+          "kind": "import-statement",
+          "original": "@angular/material/icon"
         }
       ],
       "format": "esm"
@@ -11290,7 +11370,7 @@
       "imports": []
     },
     "src/app/modules/resources/pages/worker-lag/worker-lag.component.ts": {
-      "bytes": 16899,
+      "bytes": 17248,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -12249,6 +12329,17 @@
     "src/app/modules/shared/util/load-failure.ts": {
       "bytes": 361,
       "imports": [],
+      "format": "esm"
+    },
+    "src/app/modules/shared/util/report-refresh.ts": {
+      "bytes": 1787,
+      "imports": [
+        {
+          "path": "node_modules/rxjs/dist/esm/index.js",
+          "kind": "import-statement",
+          "original": "rxjs"
+        }
+      ],
       "format": "esm"
     },
     "src/app/resource-address.ts": {
@@ -13696,7 +13787,7 @@
       "format": "esm"
     },
     "src/styles.scss": {
-      "bytes": 46995,
+      "bytes": 47213,
       "imports": [
         {
           "path": "node_modules/@org.metadatacenter/cedar-design-tokens/dist/custom-properties.css",
@@ -13727,7 +13818,7 @@
       "bytes": 0,
       "ng-component": true
     },
-    "chunk-2J46KHW7.js": {
+    "chunk-P4JHOZLD.js": {
       "imports": [],
       "exports": [
         "$",
@@ -13755,22 +13846,31 @@
         "Gb",
         "H",
         "Ha",
+        "Hb",
         "I",
         "Ia",
+        "Ib",
         "J",
         "Ja",
+        "Jb",
         "K",
         "Ka",
+        "Kb",
         "L",
         "La",
+        "Lb",
         "M",
         "Ma",
+        "Mb",
         "N",
         "Na",
+        "Nb",
         "O",
         "Oa",
+        "Ob",
         "P",
         "Pa",
+        "Pb",
         "Q",
         "Qa",
         "R",
@@ -14678,12 +14778,12 @@
           "bytesInOutput": 14
         }
       },
-      "bytes": 860585
+      "bytes": 860666
     },
-    "chunk-MQKLL4PH.js": {
+    "chunk-WNVF4UG2.js": {
       "imports": [
         {
-          "path": "chunk-2J46KHW7.js",
+          "path": "chunk-P4JHOZLD.js",
           "kind": "import-statement"
         }
       ],
@@ -14696,58 +14796,61 @@
           "bytesInOutput": 15285
         },
         "src/app/modules/resources/pages/environment-matrix/environment-matrix.component.ts": {
-          "bytesInOutput": 26193
+          "bytesInOutput": 26234
         },
         "src/app/modules/resources/pages/health-checks/health-checks.component.ts": {
-          "bytesInOutput": 2826
+          "bytesInOutput": 3351
         },
         "src/app/modules/resources/pages/host-disk/host-disk.component.ts": {
           "bytesInOutput": 10410
         },
         "src/app/modules/resources/pages/jvm-insight/jvm-insight.component.ts": {
-          "bytesInOutput": 11222
+          "bytesInOutput": 11443
         },
         "src/app/modules/resources/pages/log-explorer/log-explorer.component.ts": {
-          "bytesInOutput": 40573
+          "bytesInOutput": 43261
         },
         "src/app/modules/resources/pages/log-usage/log-usage.component.ts": {
           "bytesInOutput": 16666
         },
         "src/app/modules/resources/pages/mysql-counts/mysql-counts.component.ts": {
-          "bytesInOutput": 8538
+          "bytesInOutput": 8539
         },
         "src/app/modules/resources/pages/profile/profile.component.ts": {
           "bytesInOutput": 2828
         },
         "src/app/modules/resources/pages/queue-counts/queue-counts.component.ts": {
-          "bytesInOutput": 5894
+          "bytesInOutput": 6370
         },
         "src/app/modules/resources/pages/resource-counts-opensearch/resource-counts-opensearch.component.ts": {
-          "bytesInOutput": 4430
+          "bytesInOutput": 4431
         },
         "src/app/modules/resources/pages/resource-counts/resource-counts.component.ts": {
-          "bytesInOutput": 15319
+          "bytesInOutput": 15320
         },
         "src/app/modules/resources/pages/resource-info/resource-info.component.ts": {
-          "bytesInOutput": 17777
+          "bytesInOutput": 17785
         },
         "src/app/modules/resources/pages/search-index/search-index.component.ts": {
-          "bytesInOutput": 11472
+          "bytesInOutput": 12257
         },
         "src/app/modules/resources/pages/server-configuration/server-configuration.component.ts": {
           "bytesInOutput": 5546
         },
         "src/app/modules/resources/pages/worker-lag/worker-lag.component.ts": {
-          "bytesInOutput": 10027
+          "bytesInOutput": 10248
         },
         "src/app/modules/resources/resources-routing.module.ts": {
-          "bytesInOutput": 1033
+          "bytesInOutput": 1017
         },
         "src/app/modules/resources/resources.module.ts": {
           "bytesInOutput": 172
         },
         "src/app/modules/shared/util/load-failure.ts": {
           "bytesInOutput": 84
+        },
+        "src/app/modules/shared/util/report-refresh.ts": {
+          "bytesInOutput": 831
         },
         "src/app/services/load-data/host-report.service.ts": {
           "bytesInOutput": 334
@@ -14771,7 +14874,7 @@
           "bytesInOutput": 48
         }
       },
-      "bytes": 210833
+      "bytes": 216705
     },
     "dashboard.component-BRD6ARCA.css": {
       "imports": [],
@@ -14853,14 +14956,14 @@
       "bytes": 2906,
       "ng-component": true
     },
-    "log-explorer.component-TSQE7DCB.css": {
+    "log-explorer.component-AOZPZOWZ.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/log-explorer/log-explorer.component.scss": {
-          "bytesInOutput": 9891
+          "bytesInOutput": 9950
         }
       },
-      "bytes": 9909,
+      "bytes": 9968,
       "ng-component": true
     },
     "log-usage.component-OSZYHWAA.css": {
@@ -14873,14 +14976,14 @@
       "bytes": 4663,
       "ng-component": true
     },
-    "main-DNUXSU3I.js": {
+    "main-ATJP63MO.js": {
       "imports": [
         {
-          "path": "chunk-2J46KHW7.js",
+          "path": "chunk-P4JHOZLD.js",
           "kind": "import-statement"
         },
         {
-          "path": "chunk-MQKLL4PH.js",
+          "path": "chunk-WNVF4UG2.js",
           "kind": "dynamic-import"
         }
       ],
@@ -14909,7 +15012,7 @@
           "bytesInOutput": 101
         }
       },
-      "bytes": 4019
+      "bytes": 4004
     },
     "media/1df1ae79b14180fb1e9284310583ca4c17a861328a726b82068e0ab3ba586458-Z72STTMG.woff2": {
       "imports": [],
@@ -15135,14 +15238,14 @@
       "bytes": 881,
       "ng-component": true
     },
-    "search-index.component-DYUH4VG3.css": {
+    "search-index.component-RMPJA7ZI.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/search-index/search-index.component.scss": {
-          "bytesInOutput": 2897
+          "bytesInOutput": 3012
         }
       },
-      "bytes": 2898,
+      "bytes": 3013,
       "ng-component": true
     },
     "server-configuration.component-OA2D2KTC.css": {
@@ -15165,7 +15268,7 @@
       "bytes": 381,
       "ng-component": true
     },
-    "styles-O7SFOB6D.css": {
+    "styles-4YVCIU7A.css": {
       "imports": [
         {
           "path": "media/83572c3ab2cc39e33fb02c9050652e82eb00351564f8fa1581b586372934a754-PRJ7OQMU.woff2",
@@ -15242,10 +15345,10 @@
           "bytesInOutput": 1049
         },
         "src/styles.scss": {
-          "bytesInOutput": 43471
+          "bytesInOutput": 43661
         }
       },
-      "bytes": 50428
+      "bytes": 50618
     },
     "worker-lag.component-GTWAOV2A.css": {
       "imports": [],
