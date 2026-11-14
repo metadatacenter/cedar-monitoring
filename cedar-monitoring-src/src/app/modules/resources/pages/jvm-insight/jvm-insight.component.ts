@@ -1,3 +1,4 @@
+import {Subscription} from 'rxjs';
 import {Component, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ServerReportService} from '../../../../services/load-data/server-report.service';
 import {JvmInsight, ServerResult} from '../../../../shared/model/server-report.model';
@@ -59,6 +60,8 @@ export class JvmInsightComponent implements OnInit, OnDestroy {
   readonly refreshIntervalLabel = REFRESH_INTERVAL_LABEL;
 
   private timer: ReturnType<typeof setTimeout> | null = null;
+  private request: Subscription | null = null;
+  private destroyed = false;
 
   constructor(private svc: ServerReportService) {
   }
@@ -68,6 +71,8 @@ export class JvmInsightComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.destroyed = true;
+    this.request?.unsubscribe();
     this.stopTimer();
   }
 
@@ -77,13 +82,18 @@ export class JvmInsightComponent implements OnInit, OnDestroy {
       this.scheduleReload();
     } else {
       this.stopTimer();
+      this.request?.unsubscribe();
+      this.loading = false;
     }
   }
 
   reload(): void {
+    if (this.destroyed) return;
+    this.stopTimer();
+    this.request?.unsubscribe();
     this.loading = true;
     this.error = null;
-    this.svc.allInsights().subscribe({
+    this.request = this.svc.allInsights().subscribe({
       next: results => {
         this.rows = results.map(toRow);
         this.loading = false;
@@ -138,7 +148,7 @@ export class JvmInsightComponent implements OnInit, OnDestroy {
 
   private scheduleReload(): void {
     this.stopTimer();
-    if (this.autoRefresh) {
+    if (this.autoRefresh && !this.destroyed) {
       this.timer = setTimeout(() => this.reload(), REFRESH_INTERVAL_MS);
     }
   }

@@ -298,3 +298,12 @@ textarea.mat-mdc-input-element {
     @include patterns.menu-item;
   }
 }
+
+// The same refresh controls across reports, wrapping at narrow widths.
+.refresh-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cedar-space-2);
+  padding: var(--cedar-space-3) 0;
+}

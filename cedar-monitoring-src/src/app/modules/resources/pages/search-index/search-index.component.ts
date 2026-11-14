@@ -1,3 +1,5 @@
+import {of, Subscription} from 'rxjs';
+import {ReportRefresh} from '../../../shared/util/report-refresh';
 import {loadFailure} from '../../../shared/util/load-failure';
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
@@ -7,8 +9,6 @@ import {DataHandlerService} from '../../../../services/data-handler.service';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
-import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.model";
-import {DataHandlerDataStatus} from "../../../shared/model/data-handler-data-status.model";
 import {IndexJobStatus, SearchIndexJobStatus} from "../../../../shared/model/search-index-job-status.model";
 import {SearchIndexService} from "../../../../services/load-data/search-index.service";
 
@@ -33,14 +33,8 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
   public starting = false;
   public startError: string | null = null;
 
-  /**
-   * How often the status is re-read. A rebuild that takes hours does not need a faster answer than
-   * this, and a page left open on a wall display should not poll a production server harder than it
-   * has to.
-   */
-  private static readonly POLL_MILLIS = 3000;
-  private pollTimeout: any;
-  private destroyed = false;
+  private rebuildRequest: Subscription | null = null;
+  private awaitingRebuildResponse = false;
 
   constructor(
     translateService: TranslateService,
@@ -57,62 +51,26 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
 
   /** Why the job status could not be read, while it cannot. */
   public error: string | null = null;
-  /** Whether this poll's request failed, in which case the data handler calls both callbacks. */
-  private pollFailed = false;
+  readonly refresh = new ReportRefresh(3000, () => {
+    this.searchIndexService.reset();
+    return this.searchIndexService.getSearchIndexJobStatus() ?? of(null);
+  }, status => {
+    this.error = null;
+    this.jobStatus = Object.assign(new SearchIndexJobStatus(), status);
+    if (!this.awaitingRebuildResponse) this.starting = false;
+  }, error => {
+    this.error = loadFailure('the search index status', error);
+    if (!this.awaitingRebuildResponse) this.starting = false;
+  }, loading => loading ? this.dataHandler.spinner.show() : this.dataHandler.spinner.hide());
 
   override ngOnInit() {
     super.ngOnInit();
-    this.initDataHandler();
-    this.load();
+    this.refresh.reload();
   }
 
   ngOnDestroy() {
-    // The poll outlives the page otherwise, and keeps asking a server nobody is watching.
-    this.destroyed = true;
-    if (this.pollTimeout) {
-      clearTimeout(this.pollTimeout);
-    }
-  }
-
-  private load() {
-    // A click and a due poll can both arrive here. Cancelling first keeps one chain running rather
-    // than one per click, which is what made repeated clicks appear to "fix" the refresh.
-    if (this.pollTimeout) {
-      clearTimeout(this.pollTimeout);
-      this.pollTimeout = null;
-    }
-    this.pollFailed = false;
-    this.dataHandler.reset();
-    this.dataHandler
-      .require(DataHandlerDataId.SEARCH_INDEX_JOB_STATUS)
-      .load(() => this.statusCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.statusErrorCallback(error, dataStatus));
-  }
-
-  private statusCallback() {
-    // The data handler calls this after a failed poll too. The failure has already scheduled the next
-    // poll, and clearing the error here would hide it.
-    if (this.pollFailed) return;
-    this.error = null;
-    this.jobStatus = this.dataStore.getSearchIndexJobStatus();
-    // Released only now. Clearing it when the POST returned left a gap in which the button was
-    // enabled again while the status still said IDLE, so a second click was possible before the
-    // first rebuild had been reported as running.
-    this.starting = false;
-    this.scheduleNextPoll();
-  }
-
-  private statusErrorCallback(error: any, _dataStatus: DataHandlerDataStatus) {
-    this.pollFailed = true;
-    this.error = loadFailure('the search index status', error);
-    this.starting = false;
-    this.scheduleNextPoll();
-  }
-
-  private scheduleNextPoll() {
-    if (this.destroyed) {
-      return;
-    }
-    this.pollTimeout = setTimeout(() => this.load(), SearchIndexComponent.POLL_MILLIS);
+    this.refresh.destroy();
+    this.rebuildRequest?.unsubscribe();
   }
 
   get search(): IndexJobStatus | null {
@@ -136,13 +94,16 @@ export class SearchIndexComponent extends CedarPageComponent implements OnInit, 
       return;
     }
     this.starting = true;
+    this.awaitingRebuildResponse = true;
     this.startError = null;
-    this.searchIndexService.regenerate().subscribe({
+    this.rebuildRequest = this.searchIndexService.regenerate().subscribe({
       next: () => {
+        this.awaitingRebuildResponse = false;
         // Stays disabled until the refreshed status arrives and says what is running.
-        this.load();
+        this.refresh.reload();
       },
       error: (error: any) => {
+        this.awaitingRebuildResponse = false;
         this.starting = false;
         this.startError = this.describeStartFailure(error);
       }

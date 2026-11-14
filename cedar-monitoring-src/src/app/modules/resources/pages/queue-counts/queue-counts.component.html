@@ -2,6 +2,12 @@
 
 <mat-card class="wrapper-card" role="main">
 
+    <div class="refresh-controls">
+      <button mat-button (click)="refresh.reload()"><mat-icon cedarIcon="refresh"></mat-icon> Reload</button>
+      <mat-checkbox [checked]="refresh.enabled" (change)="refresh.setEnabled($event.checked)">Refresh every 2s</mat-checkbox>
+    </div>
+
+
   @if (error) {
     <div class="banner error">{{ error }}</div>
   }

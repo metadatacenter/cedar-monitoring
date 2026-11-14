@@ -45,12 +45,13 @@ jobs:
       - name: Build the production distribution
         run: npm run build -- --configuration=production
 
-      - name: Validate rendered page surfaces
-        working-directory: browser
-        run: |
-          npm ci
-          ./node_modules/.bin/playwright install --with-deps chromium
-          npm test
+      - name: Share the production distribution with all browser engines
+        uses: actions/upload-artifact@v7
+        with:
+          name: monitoring-browser-build
+          path: cedar-monitoring-src/dist/cedar-monitoring
+          if-no-files-found: error
+          retention-days: 2
 
       # Vitest runs the specs in headless Chromium, which the icon layout checks need.
       - name: Test shared icons and application rendering
@@ -67,3 +68,46 @@ jobs:
       - name: Reject independent icon sources
         working-directory: .
         run: python3 shared-design-checks/tools/check_icons.py --repo .
+
+  browser:
+    name: Browser contracts (${{ matrix.browser }})
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CEDAR_TEST_WORKERS: '2'
+    defaults:
+      run:
+        working-directory: browser
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Keep the unnamed Chromium project and its existing screenshot paths.
+          - browser: chromium
+            project: ''
+          - browser: firefox
+            project: firefox
+          - browser: webkit
+            project: webkit
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.22.1
+          cache: npm
+          cache-dependency-path: browser/package-lock.json
+      - uses: actions/download-artifact@v8
+        with:
+          name: monitoring-browser-build
+          path: cedar-monitoring-src/dist/cedar-monitoring
+      - name: Validate rendered page surfaces
+        run: |
+          npm ci
+          ./node_modules/.bin/playwright install --with-deps ${{ matrix.browser }}
+          npm test -- --project="${{ matrix.project }}" --retries=0
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: monitoring-${{ matrix.browser }}-diagnostics
+          path: browser/test-results

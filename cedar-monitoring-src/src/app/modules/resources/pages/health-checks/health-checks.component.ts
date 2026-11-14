@@ -1,11 +1,12 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {catchError, forkJoin, map, of} from 'rxjs';
+import {ReportRefresh} from '../../../shared/util/report-refresh';
+import {HealthChecksService} from '../../../../services/load-data/health-checks.service';
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
 import {TranslateService} from '@ngx-translate/core';
-import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
-import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
 import {UiService} from '../../../../services/ui.service';
 import {HealthCheck} from "../../../../shared/model/health-check.model";
 import {MicroservicesService} from "../../../../services/microservices.service";
@@ -19,7 +20,7 @@ import {accessFromStatus} from "../../../../services/monitor-access.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class HealthChecksComponent extends CedarPageComponent implements OnInit {
+export class HealthChecksComponent extends CedarPageComponent implements OnInit, OnDestroy {
 
   public serverNames: string[] = [];
   public healthCheckMap: Map<string, HealthCheck> = new Map<string, HealthCheck>();
@@ -36,45 +37,39 @@ export class HealthChecksComponent extends CedarPageComponent implements OnInit 
     dataHandler: DataHandlerService,
     keycloak: KeycloakService,
     uiService: UiService,
-    private microservicesService: MicroservicesService
+    private microservicesService: MicroservicesService,
+    private healthChecksService: HealthChecksService
   ) {
     super(translateService, router, route, dataStore, dataHandler, keycloak, uiService);
   }
 
+  readonly refresh = new ReportRefresh(5000, () => {
+    this.healthChecksService.reset();
+    return forkJoin(this.serverNames.map(server =>
+      (this.healthChecksService.getHealthCheck(server) ?? of(null)).pipe(
+        map(health => ({server, health: Object.assign(new HealthCheck(), health), status: undefined as number | undefined})),
+        catchError(error => of({server, health: null, status: Number(error?.status ?? 0)}))
+      )));
+  }, reports => {
+    this.healthCheckMap = new Map();
+    this.healthCheckStatusMap = new Map();
+    for (const report of reports) {
+      if (report.health) this.healthCheckMap.set(report.server, report.health);
+      if (report.status !== undefined) this.healthCheckStatusMap.set(report.server, report.status);
+    }
+    this.nrLoaded = this.healthCheckMap.size;
+    this.nrErrored = this.healthCheckStatusMap.size;
+  }, () => {}, loading => loading ? this.dataHandler.spinner.show() : this.dataHandler.spinner.hide());
+
   override ngOnInit() {
     super.ngOnInit();
-    this.nrLoaded = 0;
-    this.nrErrored = 0;
-    this.healthCheckMap.clear();
-    this.healthCheckStatusMap.clear();
     this.serverNames = this.microservicesService.getServerNames();
     this.nrTotal = this.serverNames.length;
-    this.initDataHandler();
-    this.dataHandler.reset();
-    for (let serverName of this.serverNames) {
-      this.dataHandler
-        .requireId(DataHandlerDataId.HEALTH_CHECK, serverName);
-    }
-    this.dataHandler
-      .load(() => this.allDataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
+    this.refresh.reload();
   }
 
-  private allDataLoadedCallback() {
-    for (let serverName of this.serverNames) {
-      const v = this.dataStore.getHealthCheck(serverName);
-      if (v) {
-        this.healthCheckMap.set(serverName, v);
-        this.nrLoaded++;
-      }
-    }
-    this.uiService.healthCheckTimeout = setTimeout(() => {
-      this.ngOnInit();
-    }, 5000);
-  }
-
-  private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
-    this.healthCheckStatusMap.set(dataStatus.id, error.status);
-    this.nrErrored++;
+  ngOnDestroy(): void {
+    this.refresh.destroy();
   }
 
   // A refusal is about the caller, not the service: it must not be painted as the service failing.

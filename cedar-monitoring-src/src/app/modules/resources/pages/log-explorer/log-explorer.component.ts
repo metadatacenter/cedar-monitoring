@@ -1,5 +1,6 @@
 import {noun} from '../../../shared/pipes/noun.pipe';
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, ViewChild} from '@angular/core';
+import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LogQueryService} from '../../../../services/load-data/log-query.service';
 import {
@@ -43,7 +44,7 @@ interface FacetDef {
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class LogExplorerComponent implements OnInit {
+export class LogExplorerComponent implements OnInit, OnDestroy {
 
   readonly ranges = [
     {label: '15m', minutes: 15},
@@ -74,6 +75,7 @@ export class LogExplorerComponent implements OnInit {
   coverage: CoverageResult | null = null;
 
   loading = false;
+  hasResults = false;
   error: string | null = null;
   expanded = new Set<number>();
   copied: string | null = null;
@@ -98,6 +100,29 @@ export class LogExplorerComponent implements OnInit {
   trace: TraceResult | null = null;
   traceLoading = false;
   traceError: string | null = null;
+
+  private traceRequest: Subscription | null = null;
+  private queryRequest: Subscription | null = null;
+  private traceElement: HTMLDialogElement | null = null;
+
+  @ViewChild('traceDialog') set traceDialog(element: ElementRef<HTMLDialogElement> | undefined) {
+    this.traceElement = element?.nativeElement ?? null;
+    if (this.traceElement && !this.traceElement.open) this.traceElement.showModal();
+  }
+
+  ngOnDestroy(): void {
+    this.traceRequest?.unsubscribe();
+    this.queryRequest?.unsubscribe();
+    clearTimeout(this.copiedTimer);
+    this.traceElement?.close();
+  }
+
+  get resultAnnouncement(): string {
+    if (!this.hasResults || this.error || this.loading) return '';
+    return `${this.rows.length} ${noun(this.rows.length, 'row')} loaded. Page ${this.pageIndex + 1}.`
+      + (this.truncated ? ' More available.' : '')
+      + (!this.exact ? ' Approximate rollup results.' : '');
+  }
 
   pageIndex = 0;
   private cursor: string | null = null;
@@ -275,10 +300,11 @@ export class LogExplorerComponent implements OnInit {
     if (!globalRequestId) {
       return;
     }
+    this.traceRequest?.unsubscribe();
     this.trace = null;
     this.traceError = null;
     this.traceLoading = true;
-    this.svc.trace(globalRequestId).subscribe({
+    this.traceRequest = this.svc.trace(globalRequestId).subscribe({
       next: (t) => {
         this.trace = t;
         this.traceLoading = false;
@@ -291,8 +317,12 @@ export class LogExplorerComponent implements OnInit {
   }
 
   closeTrace(): void {
+    this.traceRequest?.unsubscribe();
+    this.traceRequest = null;
+    this.traceElement?.close();
     this.trace = null;
     this.traceError = null;
+    this.traceLoading = false;
   }
 
   /** Same package-prefix trim as the table, so a span label reads the same as its row. */
@@ -468,9 +498,9 @@ export class LogExplorerComponent implements OnInit {
   }
 
   load(): void {
+    this.queryRequest?.unsubscribe();
     this.loading = true;
     this.error = null;
-    this.expanded.clear();
     this.syncUrl();
 
     // Cross-table boards declare their own endpoint but return the same shape, so everything below
@@ -481,8 +511,10 @@ export class LogExplorerComponent implements OnInit {
       ? this.svc.boardEndpoint(this.activeBoard.endpoint, from.toISOString(), to.toISOString(), this.pageSize)
       : this.svc.query(this.buildSpec());
 
-    request$.subscribe({
+    this.queryRequest = request$.subscribe({
       next: (r: QueryResult) => {
+        this.hasResults = true;
+        this.expanded.clear();
         this.columns = (r.columns || []).filter(c => c.key !== '_id');
         this.rows = r.rows || [];
         this.notes = r.notes || [];
@@ -526,9 +558,10 @@ export class LogExplorerComponent implements OnInit {
     this.facets = defs.map(d => ({col: d.col, label: d.label, values: [], selected: this.pendingFacets.get(d.col) ?? ''}));
     this.pendingFacets.clear();
     defs.forEach((d, i) => {
+      const facet = this.facets[i];
       this.svc.facet(this.table, d.col, from.toISOString(), to.toISOString()).subscribe({
-        next: (f) => this.facets[i].values = (f.values || []).filter(v => v.value != null),
-        error: () => this.facets[i].values = []
+        next: (f) => facet.values = (f.values || []).filter(v => v.value != null),
+        error: () => facet.values = []
       });
     });
   }
@@ -537,8 +570,8 @@ export class LogExplorerComponent implements OnInit {
 
   /**
    * Single delegated handler on <tbody>, resolving both "copy this cell" and "expand this row".
-   * Per-cell copy buttons would mean 6 columns x up to 2,000 rows = 12,000 bindings and listeners;
-   * a data attribute costs nothing. The text copied comes from data-copy, which carries the
+   * Native buttons supply Enter/Space activation and semantics without per-cell event listeners.
+   * The text copied comes from data-copy, which carries the
    * untruncated value rather than the ellipsised display text.
    */
   onTableClick(ev: MouseEvent): void {

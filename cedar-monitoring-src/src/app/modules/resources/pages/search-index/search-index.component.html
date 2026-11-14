@@ -3,6 +3,12 @@
 <mat-card class="wrapper-card" role="main">
   <mat-card-content>
 
+    <div class="refresh-controls">
+      <button mat-button (click)="refresh.reload()"><mat-icon cedarIcon="refresh"></mat-icon> Reload</button>
+      <mat-checkbox [checked]="refresh.enabled" (change)="refresh.setEnabled($event.checked)">Refresh every 3s</mat-checkbox>
+    </div>
+
+
     <div class="page-head">
       <h2>Search Index</h2>
       <button mat-raised-button color="primary" [disabled]="!canStart" (click)="startRebuild()">
@@ -11,7 +17,7 @@
     </div>
 
     @if (error) {
-      <div class="banner error">{{ error }}</div>
+      <div class="banner error" role="alert">{{ error }}</div>
     }
 
     <p class="page-note">
@@ -20,16 +26,16 @@
       existing index throughout, and the new one replaces it only once it is complete and verified.
     </p>
 
-    <div class="error-box" *ngIf="startError">{{ startError }}</div>
+    <div role="alert" class="error-box" *ngIf="startError">{{ startError }}</div>
 
     <div *ngIf="search">
-      <div class="status-line">
+      <div class="status-line" role="status" aria-atomic="true">
         <span class="state-chip" [ngClass]="stateClass">{{ search.state }}</span>
         <span *ngIf="search.command" class="muted">{{ search.command }}</span>
         <span *ngIf="search.overdue" class="overdue">reported no progress for long enough to be believed stopped</span>
       </div>
 
-      <div class="error-box" *ngIf="search.failure">{{ search.failure }}</div>
+      <div role="alert" class="error-box" *ngIf="search.failure">{{ search.failure }}</div>
 
       <table class="kv">
         <tr><th>Job</th><td>{{ search.jobId || '—' }}</td></tr>
@@ -42,7 +48,8 @@
         <h3>{{ search.progress.phase }}</h3>
         <p class="muted">{{ search.progress.phaseDescription }}</p>
 
-        <div class="bar" *ngIf="percent !== null">
+        <div class="bar" *ngIf="percent !== null" role="progressbar" aria-label="Search index rebuild"
+             aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="percent">
           <div class="bar-fill" [style.width.%]="percent"></div>
         </div>
         <p class="bar-label" *ngIf="percent !== null">

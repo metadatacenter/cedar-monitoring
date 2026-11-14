@@ -98,18 +98,26 @@
       </div>
     }
 
-    @if (loading) {
-      <div class="banner loading">Loading…</div>
-    }
-    @if (error) {
-      <div class="banner error">{{ error }}</div>
-    }
+    <div role="status" aria-label="Log query" aria-atomic="true">
+      @if (loading) {
+        <div class="banner loading">Loading…</div>
+      } @else {
+        <span class="sr">{{ resultAnnouncement }}</span>
+      }
+    </div>
+    <div role="alert" aria-label="Log query error" aria-atomic="true">
+      @if (error) {
+        <div class="banner error">{{ error }}</div>
+      }
+    </div>
+    <span id="log-copy-help" class="sr">Activate to copy this cell's full value.</span>
+
     @for (n of notes; track n) {
       <div class="banner note">{{ n }}</div>
     }
 
-    @if (!loading && !error) {
-      <div class="tblwrap" [cedarScrollRegion]="cardTitle">
+    @if (!error && (hasResults || !loading)) {
+      <div class="tblwrap" [attr.aria-busy]="loading" [cedarScrollRegion]="cardTitle">
         <div class="bar">
           <span class="count">
             {{ rows.length }} {{ rows.length | noun: 'row' }} · {{ elapsedMs }}ms
@@ -141,10 +149,15 @@
           <tbody (click)="onTableClick($event)">
             @for (row of rows; track row; let i = $index) {
               <tr class="main" [attr.data-row]="i">
-                <td><mat-icon class="caret" [class.open]="isOpen(i)" cedarIcon="chevron-right"></mat-icon></td>
+                <td><button class="row-toggle" type="button"
+                    [attr.aria-label]="(isOpen(i) ? 'Collapse row ' : 'Expand row ') + (i + 1)"
+                    [attr.aria-expanded]="isOpen(i)" [attr.aria-controls]="isOpen(i) ? 'log-detail-' + i : null">
+                    <mat-icon class="caret" [class.open]="isOpen(i)" cedarIcon="chevron-right"></mat-icon>
+                  </button></td>
                 @for (c of mainColumns; track c) {
                   <td [ngClass]="cellClass(c)"
                     [attr.data-copy]="raw(row, c)" [attr.data-copy-key]="c.key" [title]="raw(row, c)">
+                    <button class="cell-copy" type="button" aria-describedby="log-copy-help" [title]="raw(row, c)">
                     @if (c.key === 'httpMethod') {
                       <span class="method"
                       [ngClass]="methodClass(row[c.key])">{{ display(row, c) }}</span>
@@ -158,11 +171,12 @@
                         class="tilde">~</span>
                         }{{ display(row, c) }}
                       }
+                    </button>
                     </td>
                   }
                 </tr>
                 @if (isOpen(i)) {
-                  <tr class="detail">
+                  <tr class="detail" [id]="'log-detail-' + i">
                     <td [attr.colspan]="mainColumns.length + 1">
                       <div class="kv">
                         @for (c of columns; track c) {
@@ -239,17 +253,19 @@
   </mat-card-actions>
 </mat-card>
 
-@if (copied) {
-  <div class="toast">Copied {{ copied }}</div>
-}
+<div role="status" aria-label="Copy confirmation" aria-atomic="true">
+  @if (copied && !trace && !traceLoading && !traceError) {
+    <div class="toast">Copied {{ copied }}</div>
+  }
+</div>
 
 <!-- Trace overlay: one request across every component that handled it, plus its Cypher. -->
 @if (trace || traceLoading || traceError) {
-  <div class="scrim" (click)="closeTrace()">
+  <dialog #traceDialog class="scrim" aria-modal="true" aria-labelledby="trace-title" (cancel)="closeTrace()" (click)="closeTrace()">
     <div class="tracepane" [cedarScrollRegion]="traceTitle" (click)="$event.stopPropagation()">
       <div class="tracehead">
         <div>
-          <div class="tracetitle" #traceTitle>Request trace</div>
+          <div class="tracetitle" id="trace-title" #traceTitle>Request trace</div>
           @if (trace) {
             <div class="literal muted">{{ trace.globalRequestId }}</div>
           }
@@ -258,14 +274,20 @@
         @if (trace) {
           <button class="link" (click)="copyText(trace.globalRequestId, 'request id')">copy id</button>
         }
-        <button class="link" (click)="closeTrace()">close <mat-icon cedarIcon="close"></mat-icon></button>
+        <button class="link" autofocus (click)="closeTrace()">close <mat-icon cedarIcon="close"></mat-icon></button>
       </div>
-      @if (traceLoading) {
-        <div class="banner loading">Loading trace…</div>
-      }
-      @if (traceError) {
-        <div class="banner error">{{ traceError }}</div>
-      }
+      <div role="status" aria-label="Trace query" aria-atomic="true">
+        @if (traceLoading) {
+          <div class="banner loading">Loading trace…</div>
+        } @else if (trace) {
+          <span class="sr">Trace loaded. {{ trace.requestCount }} {{ trace.requestCount | noun: 'request row' }} and {{ trace.cypherCount }} {{ trace.cypherCount | noun: 'query' }}.</span>
+        }
+      </div>
+      <div role="alert" aria-atomic="true">
+        @if (traceError) {
+          <div class="banner error">{{ traceError }}</div>
+        }
+      </div>
       @if (trace) {
         <div class="tiles">
           <div class="tile"><span class="tv">{{ trace.componentCount }}</span><span class="tl">components</span></div>
@@ -315,5 +337,8 @@
         }</div>
       }
     </div>
-  </div>
+    <div role="status" aria-label="Copy confirmation" aria-atomic="true">
+      @if (copied) { <div class="toast">Copied {{ copied }}</div> }
+    </div>
+  </dialog>
 }

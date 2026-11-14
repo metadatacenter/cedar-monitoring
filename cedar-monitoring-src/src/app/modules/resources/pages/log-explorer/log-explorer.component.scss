@@ -246,7 +246,18 @@ select {
   overflow-x: auto;
 }
 
-table.data {
+:where(.cell-copy, .row-toggle) {
+  all: unset;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: var(--cedar-space-3);
+  cursor: pointer;
+}
+
+.data {
   width: 100%;
   border-collapse: collapse;
 
@@ -298,9 +309,13 @@ table.data {
     color: var(--cedar-text-muted);
   }
 
-  // Click-to-copy affordance: one delegated handler on <tbody> does the work, and the glyph is a
-  // hover-only ::after, so 6 columns x up to 2,000 rows cost zero extra nodes and zero listeners.
+  // Native buttons share one delegated click listener and keep the cell's existing appearance.
   // cursor is `pointer`, never `copy` — the native copy cursor draws an arrow with a big green plus.
+
+  td[data-copy], tr.main > td:first-child {
+    padding: 0;
+  }
+
   td[data-copy] {
     cursor: pointer;
     position: relative;
@@ -457,15 +472,19 @@ pre.code {
 // ---- trace overlay -----------------------------------------------------------------------------
 
 .scrim {
+  // Reset the native dialog's box while retaining its modal semantics and top-layer behavior.
+  all: unset;
   position: fixed;
   inset: 0;
   background: var(--cedar-dialog-backdrop);
+  box-sizing: border-box;
   display: flex;
+
+  &::backdrop { background: transparent; }
   align-items: flex-start;
   justify-content: center;
   padding: var(--cedar-space-6);
-  // The trace overlay draws above the page and below the copy toast and Material's overlays.
-  z-index: var(--cedar-layer-menu);
+  // Native modal containment keeps the underlying report inert; the copy toast lives inside it.
 }
 
 .tracepane {
@@ -537,64 +556,66 @@ pre.code {
     padding: 0;
   }
 
-  .wrow {
-    display: flex;
-    align-items: center;
-    gap: var(--cedar-space-2);
-    padding: var(--cedar-space-1) 0;
-    font-size: var(--cedar-font-size-small);
+}
 
-    &:hover {
-      background: var(--cedar-surface-subtle);
-    }
-  }
+// These classes belong only to the waterfall in this scoped component.
+.wrow {
+  display: flex;
+  align-items: center;
+  gap: var(--cedar-space-2);
+  padding: var(--cedar-space-1) 0;
+  font-size: var(--cedar-font-size-small);
 
-  .wkind {
-    flex: 0 0 30px;
-    @extend %medium;
-    color: monitoring.trace-text(request);
-
-    &.k-cypher {
-      color: monitoring.trace-text(cypher);
-    }
-  }
-
-  .wcomp {
-    flex: 0 0 84px;
-    color: var(--cedar-text-muted);
-  }
-
-  .wlabel {
-    flex: 0 0 260px;
-    color: var(--cedar-text-muted);
-  }
-
-  .wtrack {
-    flex: 1;
-    position: relative;
-    height: 12px;
+  &:hover {
     background: var(--cedar-surface-subtle);
-    @extend %rounded;
   }
+}
 
-  .wbar {
-    position: absolute;
-    top: 0;
-    height: 12px;
-    @extend %rounded;
-    background: monitoring.trace-bar(request);
+.wkind {
+  flex: 0 0 30px;
+  @extend %medium;
+  color: monitoring.trace-text(request);
 
-    &.b-cypher {
-      background: monitoring.trace-bar(cypher);
-    }
+  &.k-cypher {
+    color: monitoring.trace-text(cypher);
   }
+}
 
-  .wms {
-    flex: 0 0 74px;
-    text-align: right;
-    color: var(--cedar-text-muted);
-    font-variant-numeric: tabular-nums;
+.wcomp {
+  flex: 0 0 84px;
+  color: var(--cedar-text-muted);
+}
+
+.wlabel {
+  flex: 0 0 260px;
+  color: var(--cedar-text-muted);
+}
+
+.wtrack {
+  flex: 1;
+  position: relative;
+  height: 12px;
+  background: var(--cedar-surface-subtle);
+  @extend %rounded;
+}
+
+.wbar {
+  position: absolute;
+  top: 0;
+  height: 12px;
+  @extend %rounded;
+  background: monitoring.trace-bar(request);
+
+  &.b-cypher {
+    background: monitoring.trace-bar(cypher);
   }
+}
+
+.wms {
+  flex: 0 0 74px;
+  text-align: right;
+  color: var(--cedar-text-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 // Text for assistive technology alone.

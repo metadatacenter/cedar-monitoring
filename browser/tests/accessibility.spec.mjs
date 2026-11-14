@@ -19,6 +19,12 @@ const LABEL_IN_NAME = 'label-content-name-mismatch';
  * full opacity.
  */
 async function audit(page, { include } = {}) {
+  // ResizeObserver supplies scroll-region semantics on the next rendering turn. Scan the painted
+  // report, after fonts and those observers settle, rather than an intermediate DOM snapshot.
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
   await page.evaluate(() =>
     Promise.all(
       document
@@ -57,6 +63,8 @@ for (const [name, open] of Object.entries(scenarios)) {
     // The scan takes the toast alone, on the paused clock that holds it. The page behind it is the
     // log explorer's own state.
     if (name === 'copy-confirmation') return { include: '.toast', paused: true };
+    // A native modal makes the underlying report inert; that report has its own complete scan.
+    if (name === 'request-trace') return { include: 'dialog.scrim' };
   };
   states[name] = scenario;
   states[`narrow ${name}`] = async (page) => {
@@ -100,7 +108,7 @@ for (const [kind, [open, find, { tooltip } = {}]] of Object.entries(controls)) {
     await open(page);
     const control = find(page);
     // A key press first, so focus is drawn as it is for someone using the keyboard.
-    await page.keyboard.press('Shift');
+    await page.keyboard.press(kind === 'menu item' ? 'ArrowDown' : 'Tab');
     await control.focus();
     await expect.poll(() => control.evaluate((element) => element.matches(':focus-visible'))).toBe(true);
   };
@@ -134,9 +142,15 @@ async function textContrast(page, text) {
     for (let node = element.parentElement; node; node = node.parentElement)
       positions.push([node, node.scrollLeft, node.scrollTop]);
     window.__contrastScroll = { positions, x: scrollX, y: scrollY };
-    element.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    // Keep glyphs clear of clipped viewport/container edges while measuring their painted pixels.
+    element.scrollIntoView({ block: 'center', inline: 'center', behavior: 'instant' });
     return true;
   });
+  // Firefox can paint the pre-scroll position once before settling. A one-pixel shift of an
+  // adjacent icon between the pair would be misread as text against itself (1:1 contrast).
+  const painted = () => page.evaluate(() =>
+    new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  await painted();
   const box = await text.boundingBox();
   const clip = {
     x: Math.floor(box.x),
@@ -144,7 +158,10 @@ async function textContrast(page, text) {
     width: Math.ceil(box.x + box.width) - Math.floor(box.x),
     height: Math.ceil(box.y + box.height) - Math.floor(box.y),
   };
-  const shot = () => page.screenshot({ clip, animations: 'disabled', caret: 'hide', scale: 'css' });
+  const shot = async () => {
+    await painted();
+    return page.screenshot({ clip, animations: 'disabled', caret: 'hide', scale: 'css' });
+  };
   const color = await text.evaluate((element) => getComputedStyle(element).color);
   const shown = await shot();
   await text.evaluate((element) => {
@@ -255,6 +272,54 @@ const userMenu = ['user-menu', 'narrow user-menu', 'hovered menu item', 'focused
  */
 const SETTLED = [
   {
+    rule: 'color-contrast',
+    target: '.state-chip',
+    browsers: ['webkit'],
+    platforms: ['darwin'],
+    states: ['search-index', 'narrow search-index'],
+    measured: '5.30:1',
+    reason:
+      'macOS WebKit leaves the rounded state chip undecided; its rendered white text on the primary fill is measured again.',
+  },
+  {
+    rule: 'color-contrast',
+    target: '.comp',
+    browsers: ['webkit'],
+    platforms: ['darwin'],
+    states: ['logs-usage'],
+    measured: '5.95:1',
+    reason: 'macOS WebKit leaves the component badges undecided; their rendered text and fill are measured again.',
+  },
+  {
+    rule: 'color-contrast',
+    target: '.tblwrap th[title]',
+    browsers: ['webkit'],
+    platforms: ['darwin'],
+    states: [
+      'logs-explorer',
+      'log explorer board',
+      'log explorer filter',
+      'log explorer facet',
+      'log explorer cypher',
+      'log explorer row detail',
+      'hovered board',
+      'focused board',
+      'hovered segment',
+      'focused segment',
+      'hovered link button',
+      'focused link button',
+      'hovered select',
+      'focused select',
+      'hovered search box',
+      'focused search box',
+      'hovered filter removal',
+      'focused filter removal',
+    ],
+    measured: '7.45:1',
+    reason:
+      'macOS WebKit leaves the sticky table headers undecided; the screenshot probe measures text against the actual header fill.',
+  },
+  {
     rule: 'aria-valid-attr-value',
     target: '.mat-mdc-menu-trigger',
     states: userMenu,
@@ -279,16 +344,7 @@ const SETTLED = [
   },
   {
     rule: 'color-contrast',
-    target: '*',
-    behind: '.scrim',
-    states: ['narrow request-trace'],
-    measured: 'behind the scrim',
-    reason:
-      "The open trace's scrim spans the window and dims the page behind it, and axe cannot tell what is behind the text it dims. That page waits until the trace closes, and the narrow log explorer state measures the same text undimmed.",
-  },
-  {
-    rule: 'color-contrast',
-    target: '.table-scroll *, .tblwrap *',
+    target: '.table-scroll *, .tblwrap *, .vsrv > span',
     states: [
       'narrow deploy', 'narrow host-disk', 'narrow jvm', 'narrow worker-lag', 'narrow logs-usage', 'narrow logs-explorer',
       'narrow environment',
@@ -344,7 +400,10 @@ const matches = (page, node, selector) =>
   element(page, node).evaluate((found, selector) => found.matches(selector), selector);
 
 /** Whether an entry applies to `state`. */
-const applies = (entry, state) => entry.states.includes(state);
+const applies = (entry, state) =>
+  entry.states.includes(state) &&
+  (!entry.platforms || entry.platforms.includes(process.platform)) &&
+  (!entry.browsers || entry.browsers.includes(test.info().project.use.browserName));
 
 /** The first entry of `list` that applies to `state`, names `rule` and whose target the result's element matches. */
 async function entryFor(page, list, state, rule, node) {
@@ -405,10 +464,15 @@ for (const [name, state] of Object.entries(states))
     if (name.startsWith('narrow ')) test.slow();
     await page.setViewportSize(WIDE);
     const scope = (await state(page)) ?? {};
-    const verdict = scope.paused ? await onPausedClock(page, () => audit(page, scope)) : await audit(page, scope);
-    // A scan confined to an element that left during it would pass on nothing.
-    if (scope.include) await expect(page.locator(scope.include)).toBeVisible();
-    await judge(page, name, verdict);
+    const check = async () => {
+      const verdict = await audit(page, scope);
+      // A scan confined to an element that left during it would pass on nothing.
+      if (scope.include) await expect(page.locator(scope.include)).toBeVisible();
+      await judge(page, name, verdict);
+    };
+    // Pixel measurements also need real animation frames while the toast's clock remains paused.
+    if (scope.paused) await onPausedClock(page, check);
+    else await check();
   });
 
 /** The colour a shared role resolves to on this page. */
@@ -460,7 +524,7 @@ for (const pointer of ['away', 'on the field'])
     const field = page.getByRole('textbox', { name: 'Resource id' });
     if (pointer === 'away') await page.mouse.move(1, 1);
     else await field.hover();
-    await page.keyboard.press('Shift');
+    await page.keyboard.press('Tab');
     await field.focus();
     const label = page.locator('mat-form-field.mat-focused mat-label');
     await expect(label).toHaveCSS('color', await role(page, '--cedar-color-primary-strong'));
@@ -572,4 +636,23 @@ test('the profile page carries unique identifiers', async ({ page }) => {
   });
   expect(repeated).toEqual([]);
   expect(unresolved).toEqual([]);
+});
+
+// These roles are an announcement contract; actual speech is checked by the manual protocol.
+test('copy confirmation updates a persistent status region', async ({ page }) => {
+  await scenarios['logs-explorer'](page);
+  await expect(page.getByRole('status', { name: 'Copy confirmation' })).toHaveText('');
+  await scenarios['copy-confirmation'](page);
+  await expect(page.getByRole('status', { name: 'Copy confirmation' })).toHaveText('Copied component');
+});
+
+test('rebuild status, progress and read failures expose their semantics', async ({ page }) => {
+  await scenarios['search-index'](page);
+  await expect(page.getByRole('status')).toContainText('RUNNING');
+  const progress = page.getByRole('progressbar', { name: 'Search index rebuild' });
+  await expect(progress).toHaveAttribute('aria-valuemin', '0');
+  await expect(progress).toHaveAttribute('aria-valuemax', '100');
+  await expect(progress).toHaveAttribute('aria-valuenow', /\d/);
+  await extraStates['search index failed'](page);
+  await expect(page.getByRole('alert')).toHaveText('Could not read the search index status (HTTP 500).');
 });

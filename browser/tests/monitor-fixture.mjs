@@ -39,7 +39,9 @@ const identity = {
 async function signIn(page) {
   // The stubbed Keycloak is a public host and the application runs on loopback. Without the local
   // network access permission, Chromium refuses the silent check-sso iframe's return to loopback.
-  await page.context().grantPermissions(['local-network-access']);
+  if (page.context().browser().browserType().name() === 'chromium') {
+    await page.context().grantPermissions(['local-network-access']);
+  }
   await page.route('**/assets/data/appConfig.json', (route) => route.fulfill({ json: config }));
   await page.route(`${realm}/**`, (route) => {
     const request = route.request();

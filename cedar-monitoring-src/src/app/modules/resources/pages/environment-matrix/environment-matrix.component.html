@@ -157,8 +157,9 @@
                 </tr>
               </thead>
               <tbody>
-                @for (row of visibleValueRows; track row) {
-                  @for (group of row.groups; track group; let first = $first; let gi = $index) {
+                <!-- These derived objects are recreated during change detection; keep their DOM by value. -->
+                @for (row of visibleValueRows; track row.name) {
+                  @for (group of row.groups; track group.value; let first = $first; let gi = $index) {
                     <tr [class.drift]="row.drifts">
                       <th class="vname">
                         @if (first) {

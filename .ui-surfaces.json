@@ -300,7 +300,7 @@
       "source": [
         {
           "file": "cedar-monitoring-src/src/app/modules/resources/pages/log-explorer/log-explorer.component.html",
-          "anchor": "class=\"tracepane\""
+          "anchor": "aria-labelledby=\"trace-title\""
         }
       ],
       "contract": "dialog",
