@@ -20,9 +20,14 @@ export const scenarios = {
   },
   'health-checks': async (page) => {
     await openMonitor(page, { 'health-check/:server': healthChecksWithOneError });
+    // Authentication and the initial report requests precede the rendered assertion.
+    // Wait for the fixture's error response, then the complete report, before scanning it.
+    const workerResponse = page.waitForResponse(response =>
+      new URL(response.url()).pathname.endsWith('/health-check/worker') && response.status() === 503);
     await page.goto('/health-checks');
-    await expect(page.getByRole('button', { name: '1 errored', exact: true })).toBeVisible();
+    await workerResponse;
     await settled(page);
+    await expect(page.getByRole('button', { name: '1 errored', exact: true })).toBeVisible();
   },
   profile: async (page) => {
     await openMonitor(page, {});
