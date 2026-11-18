@@ -1,6 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { test, expect } from '@playwright/test';
 import { extraStates, facets, onPausedClock, scenarios } from './scenarios.mjs';
+import { VIEWPORTS } from './layout-resilience.generated.mjs';
 
 /**
  * Automated WCAG checks over every state the browser suites reach.
@@ -73,6 +74,25 @@ for (const [name, open] of Object.entries(scenarios)) {
   };
 }
 Object.assign(states, extraStates);
+
+/**
+ * A text too long for its line at 320 px, the width reflow is measured at, would widen the page past
+ * the window, and axe cannot tell what lies behind the part out of view. The unresolved placeholders
+ * are scanned at that width, after the page is shown to fit it. The window is tall enough to hold
+ * the whole page, since axe also gives up on text the window's lower edge cuts, which says nothing
+ * about the width.
+ */
+const REFLOW_SCAN = { width: VIEWPORTS.reflow.width, height: 1600 };
+states['320 px configuration unresolved'] = async (page) => {
+  await page.setViewportSize(REFLOW_SCAN);
+  await extraStates['configuration unresolved'](page);
+  const { width, height } = await page.evaluate(() => ({
+    width: document.documentElement.scrollWidth,
+    height: document.documentElement.scrollHeight,
+  }));
+  expect(width, 'page width at 320 px').toBeLessThanOrEqual(REFLOW_SCAN.width);
+  expect(height, 'page height at 320 px').toBeLessThanOrEqual(REFLOW_SCAN.height);
+};
 
 /**
  * One control of each kind, found in the state that shows it, and whether the pointer resting on it

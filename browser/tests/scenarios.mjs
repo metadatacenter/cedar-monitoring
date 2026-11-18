@@ -236,8 +236,9 @@ async function failed(page, route, patterns) {
 }
 
 /**
- * The log explorer's states the URL matrix reaches, the pages the response matrix shows failing, and
- * the no-access and store-unavailable pages in the states their own specs leave them.
+ * The log explorer's states the URL matrix reaches, the pages the response matrix shows failing, the
+ * no-access and store-unavailable pages in the states their own specs leave them, and the
+ * configuration page listing unresolved placeholders.
  */
 export const extraStates = {
   'log explorer board': async (page) => {
@@ -292,6 +293,16 @@ export const extraStates = {
   'jvm failed': async (page) => {
     await failed(page, '/jvm', ['server-report/:server/insight']);
     await expect(page.locator('.tile.warn').first()).toBeVisible();
+  },
+  // A resource server reads the artifact server's Mongo block, which it does not declare, so each
+  // value in it stays a literal placeholder. The longest, `${CEDAR_MONGO_APP_USER_PASSWORD}`, is
+  // wider than a 320 px window can show on one line.
+  'configuration unresolved': async (page) => {
+    await openMonitor(page, { 'server-report/:server/configuration': fixture('configuration-unresolved') });
+    await page.goto('/configuration');
+    await expect(page.locator('.placeholders li')).toHaveCount(4);
+    await expect(page.locator('app-json-view')).toBeVisible();
+    await settled(page);
   },
   'no access checked again': async (page) => {
     await scenarios['no-access'](page);

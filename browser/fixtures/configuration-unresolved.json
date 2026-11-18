@@ -1,0 +1,34 @@
+{
+  "application": "cedar-resource-server",
+  "server": "resource",
+  "configuration": {
+    "host": "metadatacenter.org",
+    "artifactServer": {
+      "mongoConnection": {
+        "host": "${CEDAR_MONGO_HOST}",
+        "port": "${CEDAR_MONGO_PORT}",
+        "user": "${CEDAR_MONGO_APP_USER_NAME}",
+        "password": "${CEDAR_MONGO_APP_USER_PASSWORD}",
+        "databaseName": "cedar",
+        "serverSelectionTimeoutMillis": 30000,
+        "connectTimeoutMillis": 10000,
+        "readTimeoutMillis": 60000,
+        "poolWaitTimeoutMillis": 120000,
+        "maxPoolSize": 100
+      },
+      "collections": {
+        "field": "template-fields",
+        "element": "template-elements",
+        "template": "templates",
+        "instance": "template-instances"
+      }
+    },
+    "servers": {
+      "resource": {
+        "httpPort": "9010",
+        "adminPort": "9110",
+        "base": "http://localhost:9010/"
+      }
+    }
+  }
+}
