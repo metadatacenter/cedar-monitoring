@@ -29,11 +29,11 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -53,7 +53,7 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "NUMERIC",
@@ -69,15 +69,23 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
@@ -116,11 +124,11 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -140,7 +148,7 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "NUMERIC",
@@ -156,19 +164,27 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
-        "state": "NOT_DECLARED",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
+        "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": null,
+        "value": "https://api.datacite.org",
         "presentInHostEnvironment": true
       }
     ]
@@ -203,11 +219,11 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -227,7 +243,7 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "NUMERIC",
@@ -243,15 +259,23 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
@@ -290,11 +314,11 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -314,7 +338,7 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "NUMERIC",
@@ -330,15 +354,23 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
@@ -377,11 +409,11 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -394,18 +426,18 @@
       },
       {
         "name": "CEDAR_OPENSEARCH_HOST",
-        "state": "NOT_DECLARED",
+        "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": null,
+        "value": "search-01.internal",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
-        "state": "NOT_DECLARED",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
+        "state": "SET",
         "secure": false,
         "type": "NUMERIC",
-        "value": null,
+        "value": "9200",
         "presentInHostEnvironment": true
       },
       {
@@ -417,15 +449,23 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
@@ -464,11 +504,11 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -488,7 +528,7 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "NUMERIC",
@@ -504,15 +544,23 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
@@ -536,26 +584,26 @@
       },
       {
         "name": "CEDAR_MONGO_HOST",
-        "state": "SET",
+        "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
-        "value": "localhost",
+        "value": null,
         "presentInHostEnvironment": true
       },
       {
         "name": "CEDAR_MONGO_APP_USER_PASSWORD",
-        "state": "SET",
+        "state": "NOT_DECLARED",
         "secure": true,
         "type": "STRING",
-        "value": "mo****24",
+        "value": null,
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -575,7 +623,7 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "NUMERIC",
@@ -591,15 +639,23 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
@@ -623,26 +679,26 @@
       },
       {
         "name": "CEDAR_MONGO_HOST",
-        "state": "SET",
+        "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
-        "value": "localhost",
+        "value": null,
         "presentInHostEnvironment": true
       },
       {
         "name": "CEDAR_MONGO_APP_USER_PASSWORD",
-        "state": "SET",
+        "state": "NOT_DECLARED",
         "secure": true,
         "type": "STRING",
-        "value": "mo****24",
+        "value": null,
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -662,11 +718,11 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
-        "state": "USING_DEFAULT",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
+        "state": "SET",
         "secure": false,
         "type": "NUMERIC",
-        "value": null,
+        "value": "9200",
         "presentInHostEnvironment": true
       },
       {
@@ -678,15 +734,23 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
@@ -725,11 +789,11 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -749,7 +813,7 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "NUMERIC",
@@ -765,15 +829,23 @@
         "presentInHostEnvironment": false
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
@@ -812,11 +884,11 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -836,7 +908,7 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "NUMERIC",
@@ -852,15 +924,23 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
@@ -884,26 +964,26 @@
       },
       {
         "name": "CEDAR_MONGO_HOST",
-        "state": "SET",
+        "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
-        "value": "localhost",
+        "value": null,
         "presentInHostEnvironment": true
       },
       {
         "name": "CEDAR_MONGO_APP_USER_PASSWORD",
-        "state": "SET",
+        "state": "NOT_DECLARED",
         "secure": true,
         "type": "STRING",
-        "value": "mo****24",
+        "value": null,
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_NEO4J_BOLT_URL",
+        "name": "CEDAR_NEO4J_HOST",
         "state": "SET",
         "secure": false,
         "type": "STRING",
-        "value": "bolt://localhost:7687",
+        "value": "localhost",
         "presentInHostEnvironment": true
       },
       {
@@ -923,11 +1003,11 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_OPENSEARCH_TRANSPORT_PORT",
-        "state": "USING_DEFAULT",
+        "name": "CEDAR_OPENSEARCH_REST_PORT",
+        "state": "SET",
         "secure": false,
         "type": "NUMERIC",
-        "value": null,
+        "value": "9200",
         "presentInHostEnvironment": true
       },
       {
@@ -939,15 +1019,23 @@
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LOG_QUEUE_ENABLED",
+        "name": "CEDAR_KEYCLOAK_ALLOW_INSECURE_TLS",
         "state": "SET",
         "secure": false,
         "type": "BOOLEAN",
-        "value": "true",
+        "value": "false",
         "presentInHostEnvironment": true
       },
       {
-        "name": "CEDAR_LEGACY_SUBMISSION_URL",
+        "name": "CEDAR_API_KEY_CACHE_TTL_SECONDS",
+        "state": "USING_DEFAULT",
+        "secure": false,
+        "type": "NUMERIC",
+        "value": null,
+        "presentInHostEnvironment": false
+      },
+      {
+        "name": "CEDAR_DATACITE_API_ENDPOINT_URL",
         "state": "NOT_DECLARED",
         "secure": false,
         "type": "STRING",
