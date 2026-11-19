@@ -11311,11 +11311,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/server-configuration/server-configuration.component.scss": {
-      "bytes": 1430,
+      "bytes": 1457,
       "imports": []
     },
     "src/app/modules/resources/pages/server-configuration/server-configuration.component.ts": {
-      "bytes": 11457,
+      "bytes": 11480,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -13745,7 +13745,7 @@
       "format": "esm"
     },
     "src/environments/environment.ts": {
-      "bytes": 147,
+      "bytes": 92,
       "imports": [],
       "format": "esm"
     },
@@ -13818,7 +13818,7 @@
       "bytes": 0,
       "ng-component": true
     },
-    "chunk-P4JHOZLD.js": {
+    "chunk-E2HZPWDG.js": {
       "imports": [],
       "exports": [
         "$",
@@ -14772,18 +14772,18 @@
           "bytesInOutput": 165
         },
         "src/environments/environment.ts": {
-          "bytesInOutput": 99
+          "bytesInOutput": 56
         },
         "src/environments/global-app-config.ts": {
           "bytesInOutput": 14
         }
       },
-      "bytes": 860666
+      "bytes": 860623
     },
-    "chunk-WNVF4UG2.js": {
+    "chunk-MD6N32U4.js": {
       "imports": [
         {
-          "path": "chunk-P4JHOZLD.js",
+          "path": "chunk-E2HZPWDG.js",
           "kind": "import-statement"
         }
       ],
@@ -14835,7 +14835,7 @@
           "bytesInOutput": 12257
         },
         "src/app/modules/resources/pages/server-configuration/server-configuration.component.ts": {
-          "bytesInOutput": 5546
+          "bytesInOutput": 5569
         },
         "src/app/modules/resources/pages/worker-lag/worker-lag.component.ts": {
           "bytesInOutput": 10248
@@ -14874,7 +14874,7 @@
           "bytesInOutput": 48
         }
       },
-      "bytes": 216705
+      "bytes": 216728
     },
     "dashboard.component-BRD6ARCA.css": {
       "imports": [],
@@ -14976,14 +14976,14 @@
       "bytes": 4663,
       "ng-component": true
     },
-    "main-ATJP63MO.js": {
+    "main-C7BVN3NM.js": {
       "imports": [
         {
-          "path": "chunk-P4JHOZLD.js",
+          "path": "chunk-E2HZPWDG.js",
           "kind": "import-statement"
         },
         {
-          "path": "chunk-WNVF4UG2.js",
+          "path": "chunk-MD6N32U4.js",
           "kind": "dynamic-import"
         }
       ],
@@ -15248,14 +15248,14 @@
       "bytes": 3013,
       "ng-component": true
     },
-    "server-configuration.component-OA2D2KTC.css": {
+    "server-configuration.component-DXASGWIQ.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/server-configuration/server-configuration.component.scss": {
-          "bytesInOutput": 1268
+          "bytesInOutput": 1291
         }
       },
-      "bytes": 1269,
+      "bytes": 1292,
       "ng-component": true
     },
     "spinner.component-JKFVTYO2.css": {
