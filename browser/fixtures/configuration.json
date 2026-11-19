@@ -3,34 +3,28 @@
   "server": "resource",
   "configuration": {
     "host": "metadatacenter.org",
-    "servers": {
-      "resource": {
-        "http": {
-          "port": 9010
-        },
-        "admin": {
-          "port": 9110
-        }
+    "neo4j": {
+      "bolt": {
+        "uri": "bolt://localhost:7687",
+        "userName": "neo4j",
+        "userPassword": "ne****j7",
+        "maxConnectionPoolSize": 100
       }
     },
-    "mongo": {
-      "host": "localhost",
-      "port": 27017,
-      "user": "cedarMongoUser",
-      "password": "mo****24"
-    },
-    "neo4j": {
-      "uri": "bolt://localhost:7687",
-      "userName": "neo4j",
-      "userPassword": "ne****j7"
-    },
-    "opensearch": {
-      "host": "search-01.internal",
-      "transportPort": 9300,
+    "elasticsearch": {
       "indexes": {
         "searchIndex": {
           "name": "cedar-search"
         }
+      },
+      "host": "search-01.internal",
+      "restPort": "9200"
+    },
+    "servers": {
+      "resource": {
+        "httpPort": "9010",
+        "adminPort": "9110",
+        "base": "http://localhost:9010/"
       }
     }
   }

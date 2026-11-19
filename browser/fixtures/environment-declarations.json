@@ -1,8 +1,8 @@
 {
-  "note": "Declared by components that are not running services. Nothing is running there to ask, so only the declaration is known.",
+  "note": "Declarations only. These components are builds and scripts, so no resolved value exists to report.",
   "components": [
     {
-      "component": "cedar-template-editor",
+      "component": "frontend-production",
       "variables": [
         {
           "name": "CEDAR_HOST",
@@ -12,15 +12,15 @@
       ]
     },
     {
-      "component": "keycloak",
+      "component": "keycloak-server",
       "variables": [
         {
-          "name": "CEDAR_HOST",
+          "name": "CEDAR_HOME",
           "secure": false,
           "presentInHostEnvironment": true
         },
         {
-          "name": "CEDAR_NEO4J_BOLT_URL",
+          "name": "CEDAR_HOST",
           "secure": false,
           "presentInHostEnvironment": true
         }
@@ -30,12 +30,12 @@
       "component": "cedar-cli",
       "variables": [
         {
-          "name": "CEDAR_HOST",
+          "name": "CEDAR_VERSION",
           "secure": false,
           "presentInHostEnvironment": true
         },
         {
-          "name": "CEDAR_MONGO_HOST",
+          "name": "CEDAR_HOME",
           "secure": false,
           "presentInHostEnvironment": true
         }

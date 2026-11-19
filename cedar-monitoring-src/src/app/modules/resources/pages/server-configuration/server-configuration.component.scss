@@ -42,7 +42,10 @@
 
 }
 
+// A placeholder and the path it sits at are single words with no break opportunity, and the longest
+// are wider than a narrow window. They wrap at any character rather than widen the page.
 .placeholders {
   margin: var(--cedar-space-2) 0 0;
   padding-left: var(--cedar-space-6);
+  overflow-wrap: anywhere;
 }

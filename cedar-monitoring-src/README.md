@@ -29,7 +29,7 @@ The browser tests in `../browser` drive the built application in Chromium with P
 
 `accessibility.spec.mjs` scans with axe-core every state the other browser tests open: each surface
 scenario at both widths, the log explorer's boards and filters, the pages showing a failed request,
-the no-access and store-unavailable pages, and one control of each kind hovered and focused. It fails on any violation of WCAG 2.0, 2.1 or 2.2
+the no-access and store-unavailable pages, the configuration page's unresolved placeholders at 320 px, and one control of each kind hovered and focused. It fails on any violation of WCAG 2.0, 2.1 or 2.2
 at level A or AA, and on any result axe leaves undecided that the spec does not settle by
 measurement. A finding that only a visible change can fix is listed in the spec's `EXCEPTIONS` with
 the change it needs. An entry whose finding has gone fails, so the fix removes the entry.
