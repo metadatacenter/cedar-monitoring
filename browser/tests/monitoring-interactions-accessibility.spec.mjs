@@ -1,6 +1,9 @@
 import {test, expect} from '@playwright/test';
 import {fixture, openMonitor, logsExplorer, healthChecksWithOneError, settled, byServer} from './monitor-fixture.mjs';
 
+// The search index page reads the newest search index job from the Monitor's job listing.
+const JOB_LISTING = '**/jobs?kind=search-index*';
+
 const tab = (page, backwards = false) => page.keyboard.press(
   `${backwards ? 'Shift+' : ''}${process.platform === 'darwin' && test.info().project.use.browserName === 'webkit' ? 'Alt+' : ''}Tab`);
 
@@ -150,14 +153,14 @@ test('log queries announce loading, errors and repeated results without moving f
 const reports = [
   {path: 'health-checks', seconds: 5, endpoint: '**/healthcheck/*', answers: {'healthcheck/:server': healthChecksWithOneError}, ready: '.button-row', content: '.button-row'},
   {path: 'queue-counts', seconds: 2, endpoint: '**/redis/queue-counts', answers: {'redis/queue-counts': fixture('redis-queue-counts')}, ready: '.queue-attention', content: '.counts-card'},
-  {path: 'search-index', seconds: 3, endpoint: '**/search-index/job-status', answers: {'search-index/job-status': fixture('search-index-job-status')}, ready: '.state-chip', content: '.progress-block'}
+  {path: 'search-index', seconds: 3, endpoint: JOB_LISTING, answers: {'jobs': fixture('search-index-job-status')}, ready: '.state-chip', content: '.progress-block'}
 ];
 for (const report of reports) {
   test(`${report.path}: pause, manual reload, resume and navigation keep a single refresh chain`, async ({page}) => {
     await openMonitor(page, report.answers);
     let reads = 0;
     page.on('request', request => {
-      if (request.url().includes(report.path === 'health-checks' ? '/healthcheck/' : report.path === 'queue-counts' ? '/redis/queue-counts' : '/search-index/job-status')) reads++;
+      if (request.url().includes(report.path === 'health-checks' ? '/healthcheck/' : report.path === 'queue-counts' ? '/redis/queue-counts' : '/jobs?kind=search-index')) reads++;
     });
     await page.goto('/' + report.path);
     await expect(page.locator(report.ready).first()).toBeVisible();
@@ -194,14 +197,14 @@ for (const report of reports) {
 test('pausing an active rebuild freezes its progress and resuming shows completion without another POST', async ({page}) => {
   const initial = fixture('search-index-job-status');
   let status = initial;
-  await openMonitor(page, {'search-index/job-status': () => status});
+  await openMonitor(page, {'jobs': () => status});
   let writes = 0;
   page.on('request', request => {if (request.method() === 'POST' && request.url().includes('/search-index/')) writes++;});
   await page.goto('/search-index');
   await expect(page.locator('.state-chip')).toHaveText('RUNNING');
   const toggle = page.getByRole('checkbox', {name: 'Refresh every 3s'});
   await toggle.uncheck();
-  status = {...initial, SEARCH: {...initial.SEARCH, state: 'SUCCEEDED', finishedAt: '2026-11-12T12:00:00Z'}};
+  status = {...initial, jobs: [{...initial.jobs[0], state: 'SUCCEEDED', finishedAt: '2026-11-12T12:00:00Z'}]};
   await page.clock.install(); await page.clock.runFor(12000);
   await expect(page.locator('.state-chip')).toHaveText('RUNNING');
   await expect(page.getByRole('button', {name: 'Rebuild search index'})).toBeDisabled();
@@ -212,7 +215,7 @@ test('pausing an active rebuild freezes its progress and resuming shows completi
 
 
 test('unchanged rebuild polls do not repeat the status announcement', async ({page}) => {
-  await openMonitor(page, {'search-index/job-status': fixture('search-index-job-status')});
+  await openMonitor(page, {'jobs': fixture('search-index-job-status')});
   await page.goto('/search-index');
   await expect(page.getByRole('status')).toContainText('RUNNING');
   await page.getByRole('status').evaluate(node => {
@@ -222,7 +225,7 @@ test('unchanged rebuild polls do not repeat the status announcement', async ({pa
   });
   await page.clock.install();
   for (let poll = 0; poll < 3; poll++) {
-    const read = page.waitForResponse('**/search-index/job-status');
+    const read = page.waitForResponse(JOB_LISTING);
     await page.clock.runFor(3100);
     await read;
     await settled(page);
@@ -271,8 +274,8 @@ for (const report of [
 
 test('a status read cannot re-enable rebuild while its start request is pending', async ({page}) => {
   const running = fixture('search-index-job-status');
-  let status = {...running, SEARCH: {...running.SEARCH, state: 'IDLE', progress: null}};
-  await openMonitor(page, {'search-index/job-status': () => status});
+  let status = {...running, totalCount: 0, jobs: []};
+  await openMonitor(page, {'jobs': () => status});
   let pending;
   await page.route('**/search-index/regenerate', route => {pending = route;});
   await page.goto('/search-index');
@@ -280,7 +283,7 @@ test('a status read cannot re-enable rebuild while its start request is pending'
   await expect(rebuild).toBeEnabled();
   await rebuild.click();
   await expect.poll(() => !!pending).toBe(true);
-  const read = page.waitForResponse('**/search-index/job-status');
+  const read = page.waitForResponse(JOB_LISTING);
   await page.getByRole('button', {name: 'Reload', exact: true}).click();
   await read; await settled(page);
   await expect(rebuild).toBeDisabled();
@@ -291,7 +294,7 @@ test('a status read cannot re-enable rebuild while its start request is pending'
 });
 
 test('refresh retains existing model defaults when a successful report omits values', async ({page}) => {
-  await openMonitor(page, {'redis/queue-counts': {}, 'search-index/job-status': {}});
+  await openMonitor(page, {'redis/queue-counts': {}, 'jobs': {}});
   await page.goto('/queue-counts');
   await expect(page.locator('.counts-card')).toBeVisible();
   await expect(page.getByRole('cell', {name: '-1', exact: true})).toHaveCount(9);

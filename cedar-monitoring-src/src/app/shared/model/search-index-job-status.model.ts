@@ -37,6 +37,11 @@ export class IndexJobStatus {
   progress: IndexingProgress | null = null;
 }
 
+/** One page of the jobs the Monitor relays, newest first. */
+export interface JobPage {
+  jobs?: IndexJobStatus[];
+}
+
 /** The state of each index a rebuild can contend over, keyed by index name. */
 export class SearchIndexJobStatus extends CedarMonitoring {
   SEARCH: IndexJobStatus = new IndexJobStatus();

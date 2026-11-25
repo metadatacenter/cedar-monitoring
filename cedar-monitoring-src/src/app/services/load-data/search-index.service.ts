@@ -1,11 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {RestApiUrlService} from '../rest-api-url.service';
 import {GenericSingleLoaderService} from "./generic-single-loader";
-import {SearchIndexJobStatus} from "../../shared/model/search-index-job-status.model";
+import {
+  IndexJobStatus,
+  JobPage,
+  SearchIndexJobStatus
+} from "../../shared/model/search-index-job-status.model";
 
 /**
  * Reading the state of a search index rebuild, and starting one.
@@ -15,10 +20,24 @@ import {SearchIndexJobStatus} from "../../shared/model/search-index-job-status.m
  * permission it has always required. A user who could not start a rebuild themselves cannot start
  * one from here, and the refusal arrives as a 403 from that server rather than from this page.
  */
+/**
+ * The page's status from the Monitor's job listing. The newest search index job is the one running
+ * now or the one that ran last. An empty listing means no rebuild has run since the resource server
+ * started, which the page shows as idle.
+ */
+export function searchIndexStatusFrom(page: JobPage | null): SearchIndexJobStatus {
+  const status = new SearchIndexJobStatus();
+  const latest = page?.jobs?.[0];
+  if (latest) {
+    status.SEARCH = Object.assign(new IndexJobStatus(), latest);
+  }
+  return status;
+}
+
 @Injectable({
   providedIn: 'root'
 })
-export class SearchIndexService extends GenericSingleLoaderService<SearchIndexJobStatus> {
+export class SearchIndexService extends GenericSingleLoaderService<JobPage> {
 
   protected constructor(
     http: HttpClient,
@@ -30,7 +49,7 @@ export class SearchIndexService extends GenericSingleLoaderService<SearchIndexJo
   }
 
   getSearchIndexJobStatus(): Observable<SearchIndexJobStatus | null> | null {
-    return this.getData(this.restApiUrl.searchIndexJobStatus());
+    return this.getData(this.restApiUrl.searchIndexJobStatus()).pipe(map(searchIndexStatusFrom));
   }
 
   /**

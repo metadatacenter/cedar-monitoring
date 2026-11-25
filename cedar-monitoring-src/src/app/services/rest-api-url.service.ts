@@ -194,9 +194,9 @@ export class RestApiUrlService {
       + `&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
   }
 
-  /** The state of every index rebuild, and how far a running one has got. */
+  /** The latest search index rebuild, and how far it has got if it is running. */
   searchIndexJobStatus() {
-    return `${this.base()}search-index/job-status`;
+    return `${this.base()}jobs?kind=search-index&limit=1`;
   }
 
   /** Start a full rebuild. The Monitor forwards the caller's credential; the resource server decides. */

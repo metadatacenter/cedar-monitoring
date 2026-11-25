@@ -18,7 +18,7 @@ const PAGES = {
   },
   'search index': {
     route: '/search-index',
-    answers: { 'search-index/job-status': fixture('search-index-job-status') },
+    answers: { 'jobs': fixture('search-index-job-status') },
     loaded: (page) => expect(page.locator('.state-chip')).toHaveText('RUNNING'),
     data: (page) => page.locator('.state-chip'),
   },

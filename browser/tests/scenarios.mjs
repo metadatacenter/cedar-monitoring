@@ -56,7 +56,7 @@ export const scenarios = {
     await settled(page);
   },
   'search-index': async (page) => {
-    await openMonitor(page, { 'search-index/job-status': fixture('search-index-job-status') });
+    await openMonitor(page, { 'jobs': fixture('search-index-job-status') });
     await page.goto('/search-index');
     await expect(page.locator('.state-chip')).toHaveText('RUNNING');
     await settled(page);
@@ -276,7 +276,7 @@ export const extraStates = {
     await expectAllHealthChecksErrored(page);
   },
   'search index failed': async (page) => {
-    await failed(page, '/search-index', ['search-index/job-status']);
+    await failed(page, '/search-index', ['jobs']);
     await expect(page.locator('.banner.error')).toBeVisible();
   },
   'mysql counts failed': async (page) => {
