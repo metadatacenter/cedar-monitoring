@@ -17,8 +17,8 @@ const OPENSEARCH = {
 
 async function lookUp(page, report) {
   await openMonitor(page, {
-    'command/resource-id-lookup': fixture('resource-id-lookup'),
-    'resource/templates': report,
+    'resources/lookup': fixture('resource-id-lookup'),
+    'resources/templates/:id': report,
   });
   await page.goto('/resource-info');
   await page.getByRole('textbox', { name: 'Resource id' }).fill(templateId);

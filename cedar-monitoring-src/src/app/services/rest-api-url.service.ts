@@ -1,4 +1,4 @@
-import { resourceSelector } from "../resource-address";
+import { resourcePathId, resourceSelector } from "../resource-address";
 import {Injectable} from '@angular/core';
 import {globalAppConfig} from "../../environments/global-app-config";
 
@@ -18,7 +18,7 @@ export class RestApiUrlService {
   }
 
   private healthChecks() {
-    return `${this.base()}health-check`;
+    return `${this.base()}healthcheck`;
   }
 
   /**
@@ -30,35 +30,35 @@ export class RestApiUrlService {
   }
 
   private resourceIdLookups() {
-    return `${this.base()}command/resource-id-lookup`;
+    return `${this.base()}resources/lookup`;
   }
 
   private resourceReportUsers() {
-    return `${this.base()}resource/users`;
+    return `${this.base()}resources/users`;
   }
 
   private resourceReportGroups() {
-    return `${this.base()}resource/groups`;
+    return `${this.base()}resources/groups`;
   }
 
   private resourceReportFolders() {
-    return `${this.base()}resource/folders`;
+    return `${this.base()}resources/folders`;
   }
 
   private resourceReportFields() {
-    return `${this.base()}resource/template-fields`;
+    return `${this.base()}resources/template-fields`;
   }
 
   private resourceReportElements() {
-    return `${this.base()}resource/template-elements`;
+    return `${this.base()}resources/template-elements`;
   }
 
   private resourceReportTemplates() {
-    return `${this.base()}resource/templates`;
+    return `${this.base()}resources/templates`;
   }
 
   private resourceReportInstances() {
-    return `${this.base()}resource/template-instances`;
+    return `${this.base()}resources/template-instances`;
   }
 
   public healthCheck(server: string) {
@@ -106,31 +106,31 @@ export class RestApiUrlService {
   }
 
   public resourceReportUser(userId: string) {
-    return `${this.resourceReportUsers()}?id=${encodeURIComponent(userId)}`;
+    return `${this.resourceReportUsers()}/${encodeURIComponent(userId)}`;
   }
 
   public resourceReportGroup(groupId: string) {
-    return `${this.resourceReportGroups()}?id=${encodeURIComponent(groupId)}`;
+    return `${this.resourceReportGroups()}/${encodeURIComponent(groupId)}`;
   }
 
   public resourceReportFolder(folderId: string) {
-    return `${this.resourceReportFolders()}?id=${encodeURIComponent(resourceSelector(folderId))}`;
+    return `${this.resourceReportFolders()}/${encodeURIComponent(resourcePathId(folderId))}`;
   }
 
   resourceReportField(fieldId: string) {
-    return `${this.resourceReportFields()}?id=${encodeURIComponent(resourceSelector(fieldId))}`;
+    return `${this.resourceReportFields()}/${encodeURIComponent(resourcePathId(fieldId))}`;
   }
 
   resourceReportElement(elementId: string) {
-    return `${this.resourceReportElements()}?id=${encodeURIComponent(resourceSelector(elementId))}`;
+    return `${this.resourceReportElements()}/${encodeURIComponent(resourcePathId(elementId))}`;
   }
 
   resourceReportTemplate(templateId: string) {
-    return `${this.resourceReportTemplates()}?id=${encodeURIComponent(resourceSelector(templateId))}`;
+    return `${this.resourceReportTemplates()}/${encodeURIComponent(resourcePathId(templateId))}`;
   }
 
   resourceReportInstance(instanceId: string) {
-    return `${this.resourceReportInstances()}?id=${encodeURIComponent(resourceSelector(instanceId))}`;
+    return `${this.resourceReportInstances()}/${encodeURIComponent(resourcePathId(instanceId))}`;
   }
 
   redisQueueCounts() {

@@ -9,7 +9,7 @@ import { NETWORK_FAILURE, byServer, expectAllHealthChecksErrored, fixture, healt
 const PAGES = {
   'health checks': {
     route: '/health-checks',
-    answers: { 'health-check/:server': healthChecksWithOneError },
+    answers: { 'healthcheck/:server': healthChecksWithOneError },
     loaded: (page) => expect(page.getByRole('button', { name: '1 errored', exact: true })).toBeVisible(),
     data: (page) => page.getByRole('button', { name: '1 errored', exact: true }),
     failed: (page) => page.getByRole('button', { name: /^[1-9]\d* errored$/ }),
@@ -112,8 +112,8 @@ const PAGES = {
   'resource info': {
     route: '/resource-info',
     answers: {
-      'command/resource-id-lookup': fixture('resource-id-lookup'),
-      'resource/templates': fixture('resource-report-template'),
+      'resources/lookup': fixture('resource-id-lookup'),
+      'resources/templates/:id': fixture('resource-report-template'),
     },
     act: async (page) => {
       await page.getByRole('textbox', { name: 'Resource id' }).fill(templateId);

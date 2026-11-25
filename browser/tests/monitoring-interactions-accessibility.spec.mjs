@@ -148,7 +148,7 @@ test('log queries announce loading, errors and repeated results without moving f
 });
 
 const reports = [
-  {path: 'health-checks', seconds: 5, endpoint: '**/health-check/*', answers: {'health-check/:server': healthChecksWithOneError}, ready: '.button-row', content: '.button-row'},
+  {path: 'health-checks', seconds: 5, endpoint: '**/healthcheck/*', answers: {'healthcheck/:server': healthChecksWithOneError}, ready: '.button-row', content: '.button-row'},
   {path: 'queue-counts', seconds: 2, endpoint: '**/redis/queue-counts', answers: {'redis/queue-counts': fixture('redis-queue-counts')}, ready: '.queue-attention', content: '.counts-card'},
   {path: 'search-index', seconds: 3, endpoint: '**/search-index/job-status', answers: {'search-index/job-status': fixture('search-index-job-status')}, ready: '.state-chip', content: '.progress-block'}
 ];
@@ -157,7 +157,7 @@ for (const report of reports) {
     await openMonitor(page, report.answers);
     let reads = 0;
     page.on('request', request => {
-      if (request.url().includes(report.path === 'health-checks' ? '/health-check/' : report.path === 'queue-counts' ? '/redis/queue-counts' : '/search-index/job-status')) reads++;
+      if (request.url().includes(report.path === 'health-checks' ? '/healthcheck/' : report.path === 'queue-counts' ? '/redis/queue-counts' : '/search-index/job-status')) reads++;
     });
     await page.goto('/' + report.path);
     await expect(page.locator(report.ready).first()).toBeVisible();

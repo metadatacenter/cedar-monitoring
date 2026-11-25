@@ -9,14 +9,14 @@ const ROUTES = ['/', '/health-checks', '/queue-counts', '/logs-usage', '/worker-
 for (const answer of [401, 403])
   for (const route of ROUTES)
     test(`${route} sends a user the monitor refuses (${answer}) to the no-access page`, async ({ page }) => {
-      await openMonitor(page, { 'health-check/:server': answer });
+      await openMonitor(page, { 'healthcheck/:server': answer });
       await page.goto(route);
       await expect(page).toHaveURL(/\/no-access$/);
       await expect(page.locator('app-no-access')).toContainText('monitorManager');
     });
 
 test('a monitor that is down does not lock the user out', async ({ page }) => {
-  await openMonitor(page, { 'health-check/:server': 503 });
+  await openMonitor(page, { 'healthcheck/:server': 503 });
   await page.goto('/health-checks');
   await settled(page);
   await expect(page).toHaveURL(/\/health-checks$/);
@@ -24,7 +24,7 @@ test('a monitor that is down does not lock the user out', async ({ page }) => {
 });
 
 test('the profile stays readable without MONITOR_READ', async ({ page }) => {
-  await openMonitor(page, { 'health-check/:server': 403 });
+  await openMonitor(page, { 'healthcheck/:server': 403 });
   await page.goto('/profile');
   await expect(page.locator('.profile-card')).toBeVisible();
   await expect(page).toHaveURL(/\/profile$/);
@@ -32,7 +32,7 @@ test('the profile stays readable without MONITOR_READ', async ({ page }) => {
 
 test('one refused service is unknown, not failing', async ({ page }) => {
   await openMonitor(page, {
-    'health-check/:server': ({ server }) => (server === 'artifact' ? 403 : byServer('health-checks')({ server })),
+    'healthcheck/:server': ({ server }) => (server === 'artifact' ? 403 : byServer('health-checks')({ server })),
   });
   await page.goto('/health-checks');
   await settled(page);
@@ -44,7 +44,7 @@ test('one refused service is unknown, not failing', async ({ page }) => {
 test('check again lets the user in once the role is granted', async ({ page }) => {
   let granted = false;
   await openMonitor(page, {
-    'health-check/:server': ({ server }) => (granted ? byServer('health-checks')({ server }) : 403),
+    'healthcheck/:server': ({ server }) => (granted ? byServer('health-checks')({ server }) : 403),
   });
   await page.goto('/');
   await expect(page.locator('app-no-access')).toBeVisible();

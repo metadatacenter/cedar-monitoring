@@ -19,11 +19,11 @@ export const scenarios = {
     await expect(page.getByRole('menuitem', { name: 'Logout' })).toBeVisible();
   },
   'health-checks': async (page) => {
-    await openMonitor(page, { 'health-check/:server': healthChecksWithOneError });
+    await openMonitor(page, { 'healthcheck/:server': healthChecksWithOneError });
     // Authentication and the initial report requests precede the rendered assertion.
     // Wait for the fixture's error response, then the complete report, before scanning it.
     const workerResponse = page.waitForResponse(response =>
-      new URL(response.url()).pathname.endsWith('/health-check/worker') && response.status() === 503);
+      new URL(response.url()).pathname.endsWith('/healthcheck/worker') && response.status() === 503);
     await page.goto('/health-checks');
     await workerResponse;
     await settled(page);
@@ -36,15 +36,18 @@ export const scenarios = {
   },
   // Signed in, but the monitor refuses: the user lacks MONITOR_READ.
   'no-access': async (page) => {
-    await openMonitor(page, { 'health-check/monitor': 403 });
+    await openMonitor(page, { 'healthcheck/monitor': 403 });
     await page.goto('/');
     await expect(page.locator('app-no-access')).toBeVisible();
   },
   // The page makes no request until an identifier is looked up.
   'resource-info': async (page) => {
     await openMonitor(page, {
-      'command/resource-id-lookup': fixture('resource-id-lookup'),
-      'resource/templates': fixture('resource-report-template'),
+      'resources/lookup': fixture('resource-id-lookup'),
+      // The identifier arrives as one percent-encoded path segment, as a full IRI or as the bare
+      // identifier the deployment mints on its own base.
+      'resources/templates/:id': ({ id }) => [templateId, templateId.split('/').pop()].includes(decodeURIComponent(id))
+        ? fixture('resource-report-template') : 404,
     });
     await page.goto('/resource-info');
     await page.getByRole('textbox', { name: 'Resource id' }).fill(templateId);
@@ -269,7 +272,7 @@ export const extraStates = {
     await expect(page.locator('.banner.error')).toBeVisible();
   },
   'health checks failed': async (page) => {
-    await failed(page, '/health-checks', ['health-check/:server']);
+    await failed(page, '/health-checks', ['healthcheck/:server']);
     await expectAllHealthChecksErrored(page);
   },
   'search index failed': async (page) => {
@@ -312,8 +315,8 @@ export const extraStates = {
   'store unavailable': async (page) => {
     const opensearch = { document: null, unavailable: 'OpenSearch could not be read: Connection refused' };
     await openMonitor(page, {
-      'command/resource-id-lookup': fixture('resource-id-lookup'),
-      'resource/templates': { ...fixture('resource-report-template'), opensearch },
+      'resources/lookup': fixture('resource-id-lookup'),
+      'resources/templates/:id': { ...fixture('resource-report-template'), opensearch },
     });
     await page.goto('/resource-info');
     await page.getByRole('textbox', { name: 'Resource id' }).fill(templateId);
